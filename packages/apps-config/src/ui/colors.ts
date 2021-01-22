@@ -14,33 +14,7 @@ const emptyColor = '#99999';
 
 // based on chain name
 // alphabetical
-const chainSherpax = '#6bbee8';
-const chainAcala = '#645AFF';
-const chainAjuna = '#161212';
-const chainAleph = '#00CCAB';
-const chainAltair = '#ffb700';
-const chainAmplitude = '#5DEFA7';
-const chainAmplitudeRococo = '#5DEFA7';
-const chainApron = 'linear-gradient(45deg, #0099F7 0%, #2E49EB 100%)';
-const chainAstar = '#1b6dc1d9';
-const chainEggnet = '#0099ff';
-const chainAutomata = '#EC7032';
-const chainAutomataContextFree = '#EC7032';
-const chainBajun = '#161212';
-const chainBitCountry = '#191a2e';
-const chainBitCountryPioneer = '#000000';
-const chainBasiliskTestnet = `url(${String(nodeBasiliskRococo)}) #000`;
-const chainBeastEave = '#900048';
-const chainBitgreen = '#13F513';
-const chainBrainstorm = '#161616';
-const chainCalamari = '#000000';
-const chainCoinversation = '#e6017a';
-const chainCompetitorsClub = '#213830';
-const chainComposableFinance = '#C90E8A';
-const chainCrab = '#512DBC';
-const chainCreditcoin = '#2D353F';
-const chainCreditcoinTestnet = '#00DF83';
-const chainCrownSterling = '#13264b';
+const chainCrab = '#7C30DD';
 const chainCrust = '#ff8812';
 const chainCrustMaxwell = '#2E333B';
 const chainClover = 'linear-gradient(to right, #52ad75, #7cc773)';
@@ -117,14 +91,9 @@ const chainPontem = '#A92FAC';
 const chainPrism = 'linear-gradient(45deg, rgba(63,94,251,1) 0%, rgba(252,70,107,1) 100%)';
 const chainQuartz = '#FF4D6A';
 const chainRocco = '#6f36dc';
-const chainRoccoMandala = '#173DC9';
-const chainRoccoAres = '#70FF8B';
-const chainAresGladios = '#1295F0';
-const chainRoccoBifrost = '#5a25f0';
-const chainRococoContracts = '#000000';
-const chainRoccoDarwinia = '#FF0083';
-const chainRoccoDataHighway = 'linear-gradient(-90deg, #9400D3 0%, #5A5CA9 50%, #00BFFF 100%)';
-const chainRococoEave = '#900048';
+const chainRoccoAcala = '#173DC9';
+const chainRoccoBifrost = '#002cc3';
+const chainRoccoDarwinia = '#7C30DD';
 const chainRococoLaminar = '#004FFF';
 const chainRoccoTick = '#22bb22';
 const chainRoccoTrack = '#bb2222';
@@ -160,34 +129,14 @@ const chainZenlink = 'linear-gradient(45deg, #F20082 0%, #FF4D4D 100%)';
 const chainCESS = '#2269a9';
 // based on node name
 // alphabetical
-const nodeAjuna = '#161212';
-const nodeApron = 'linear-gradient(45deg, #0099F7 0%, #2E49EB 100%)';
-const nodeAres = '#E56239';
-const nodeAstar = '#1b6dc1d9';
-const nodeAutomata = '#EC7032';
-const nodeAutomataContextFree = '#EC7032';
-const nodeBasilisk = '#49E49F';
-const nodeBajun = '#161212';
-const nodeBitCountry = '#191a2e';
-const nodeBifrost = '#5a25f0';
+const nodeBifrost = '#002cc3';
+const nodeCanvas = '#c77cff';
 const nodeCentrifuge = '#fcc367';
-const nodeCoinversation = '#e6017a';
-const nodeCompetitorsClub = '#213830';
-const nodeCrownSterling = '#13264b';
-const nodeDotMog = '#020609';
-const nodeEdgeware = '#111111';
-const nodeEfinity = '#496ddb';
-const nodeEncointer = '#0000cc';
-const nodeFantour = '#5a189a';
-const nodeGalital = '#00063F;';
-const nodeGamePower = '#5d21a5';
-const nodeGeek = '#4f46e5';
-const nodeHeiko = '#42d5de';
-const nodeImbue = '#baff36';
-const nodeIntegritee = '#658ea9';
-const nodeIpse = '#08a1e8';
-const nodeJaz = '#121212';
-const nodeJoystream = '#4038FF';
+const nodeCere = '#b7aeff';
+const nodeEdgeware = '#0a95df';
+const nodeEncointerNotee = '#cc0000';
+const nodeEncointerTeeproxy = '#0000cc';
+const nodeEquilibrium = '#1792ff';
 const nodeJupiter = '#7143ff';
 const nodeKabocha = '#f53485';
 const nodeKonomi = '#007aff';
@@ -249,360 +198,68 @@ export { emptyColor };
 
 // Alphabetical overrides based on the actual matched chain name
 // NOTE: This is as retrieved via the system.chain RPC
-export const chainColors: Record<string, string> = Object.entries({
-  Acala: chainAcala,
-  'Acala Dev': chainAcala,
-  'acala mandala pc1': chainRoccoMandala,
-  'acala mandala pc2': chainRoccoMandala,
-  'Ajuna Testnet': chainAjuna,
-  'Aleph Zero': chainAleph,
-  'Aleph Zero Testnet': chainAleph,
-  Altair: chainAltair,
-  Amplitude: chainAmplitude,
-  'Amplitude Testnet': chainAmplitudeRococo,
-  'Apron PC1': chainApron,
-  'Ares Gladios': chainAresGladios,
-  'Ares Odyssey': nodeOdyssey,
-  'Ares PC1': chainRoccoAres,
-  Astar: chainAstar,
-  Automata: chainAutomata,
-  'Automata ContextFree': chainAutomataContextFree,
-  'Bajun Testnet': chainBajun,
-  'Basilisk testnet': chainBasiliskTestnet,
-  'Beast Developer': chainBeastEave,
-  bifrost: chainRoccoBifrost,
-  'Bifrost Asgard CC4': chainRoccoBifrost,
-  'Bifrost K Rococo': chainRoccoBifrost,
-  'Bifrost Kusama': chainRoccoBifrost,
-  'Bifrost PC1': chainRoccoBifrost,
-  'Bifrost Polkadot': chainRoccoBifrost,
-  'Bifrost Stage Testnet': chainRoccoBifrost,
-  'Bit.Country Tewai Chain': chainBitCountry,
-  BitgreenRococo: chainBitgreen,
-  'Calamari Parachain': chainCalamari,
-  'Calamari Parachain Development': chainCalamari,
-  'Calamari Parachain Local': chainCalamari,
-  'Calamari Parachain Testnet': chainCalamari,
-  Centrifuge: nodeCentrifuge,
-  'CESS Testnet': chainCESS,
-  ChainOLI: chainOLI,
-  ChainX: chainChainx,
-  Clover: chainClover,
-  Coinversation: chainCoinversation,
-  'Competitors Club': chainCompetitorsClub,
-  'Composable Finance': chainComposableFinance,
-  'Contracts on Rococo': chainRococoContracts,
-  'Crab Parachain': chainCrab,
-  Creditcoin: chainCreditcoin,
-  'Creditcoin Testnet': chainCreditcoinTestnet,
-  'Crown Sterling': chainCrownSterling,
-  crust: chainCrust,
-  'crust maxwell': chainCrustMaxwell,
-  'Crust PC1': chainCrust,
-  'Crust Testnet': chainCrust,
-  'Dali Rococo': chainDali,
-  'Dali Westend': chainDali,
-  Darwinia: chainDarwinia,
-  'darwinia cc1': chainDarwinia,
-  'Darwinia Crab': chainCrab,
-  'Darwinia Crab Redirect': chainCrab,
-  'Darwinia Parachain': chainDarwinia,
-  'Darwinia PC2': chainRoccoDarwinia,
-  'DataHighway Spreehafen Rococo Parachain Testnet': chainRoccoDataHighway,
-  'DataHighway Tanganika Kusama Parachain': chainKusamaDataHighway,
-  Dolphin: chainDolphin,
-  'Dolphin Testnet': chainDolphin,
-  'Dora Factory': chainDorafactory,
-  'DOTMog.com NET': chainDotMog,
-  Efinity: chainEfinity,
-  'Egg Rococo': chainEggnet,
-  Equilibrium: chainEquilibrium,
-  'Equilibrium parachain': chainEquilibrium,
-  EquilibriumTestnet: chainGenshiro,
-  'Fantour Development': chainFantour,
-  Galital: chainGalital,
-  'Galois-PoC-1': chainGalois,
-  'GamePower Network': chainGamePower,
-  Genshiro: chainGenshiro,
-  'Genshiro Rococo Testnet': chainGenshiro,
-  'GM Parachain': chainGM,
-  'Halongbay PC1': chainPolkaFoundry,
-  hanonycash: chainHanonycash,
-  HydraDX: chainSnakenet,
-  'HydraDX Hydrate': chainHydrate,
-  'HydraDX Snakenet': chainHydrate,
-  'HydraDX Snakenet Gen2': chainHydrate,
-  'HydraDX Snakenet Gen3': chainHydrate,
-  Idavoll: chainIdavoll,
-  'Imbue Testnet': chainImbue,
-  InterBTC: chainInterbtc,
-  'InterBTC Staging': chainInterbtc,
-  Interlay: chainInterlay,
-  'InvArch Brainstorm Testnet': chainBrainstorm,
-  'InvArch Tinker Network': chainTinker,
-  IpseTestnet: chainIpse,
-  'Jupiter A1': chainJupiter,
-  'Jupiter PC1': chainJupiter,
-  Kapex: chainTotem,
-  Karura: chainKarura,
-  Khala: chainKhala,
-  KICO: chainKico,
-  KILT: chainKilt,
-  'KILT Local': chainKiltDev,
-  'KILT Peregrine': chainKiltPeregrine,
-  'KILT Peregrine Stagenet': chainKiltDev,
-  'KILT Spiritnet': chainKilt,
-  'KILT Spiritnet Development': chainKiltDev,
-  'KILT Testnet': chainKiltDev,
-  Kintsugi: chainKintsugi,
-  'KLUGDOSSIER.NET': chainKlug,
-  Konomi: chainKonomi,
-  Kpron: nodeKpron,
-  Kulupu: chainKulupu,
-  Kusama: chainKusama,
-  'Kusama CC1': chainKusama,
-  'Kusama CC2': chainKusama,
-  'Kusama CC3': chainKusama,
-  kusari: chainKusari,
-  'Kylin Testnet': chainKylin,
-  'laminar turbulence pc1': chainRococoLaminar,
-  Lego: chainTotem,
-  'Listen Network': chainListen,
-  Litentry: chainLitentry,
-  'Litentry-rococo': chainLitentryRococo,
-  Litmus: chainLitmus,
-  'Mangata Kusama Mainnet': chainMangata,
-  'Mangata Public Testnet': chainMangata,
-  'Manta Parachain': chainManta,
-  'Manta Parachain Development': chainManta,
-  'Manta Parachain Local': chainManta,
-  'Manta Parachain Testnet': chainManta,
-  Mars: nodeAres,
-  MathChain: nodeMathChain,
-  'MathChain PC1': chainGalois,
-  Minix: chainMinix,
-  'Minix Testnet': chainMinix,
-  'Moonbase Alpha': nodeMoonbase,
-  'Moonbase Development Testnet': nodeMoonbase,
-  'Moonbase Stage': nodeMoonbase,
-  Moonbeam: nodeMoonbeam,
-  Moonriver: nodeMoonriver,
-  Moonrock: chainMoonrock,
-  'Moonsama Development': chainMoonsama,
-  Moonshadow: nodeMoonbeam,
-  'mybank.network Testnet': chainMybank,
-  'NFTMart Staging': chainNFTMart,
-  'NFTMart Testnet': chainNFTMart,
-  'Nodle Parachain': chainNodle,
-  'Nodle Testing Parachain': chainNodle,
-  Odyssey: nodeOdyssey,
-  'OLI Parachain': chainOLI,
-  OmniBTC: chainOmniBTC,
-  'Opal Node': chainOpal,
-  'OriginTrail Parachain': chainOriginTrail,
-  'OriginTrail Parachain Testnet': chainOriginTrailTestnet,
-  Pangolin: chainPangolin,
-  'Pangolin Parachain': chainPangolin,
-  Pangoro: chainPangoro,
-  Parallel: chainParallel,
-  'Parallel Heiko': chainHeiko,
-  'Parami PC2': chainParami,
-  Phala: chainPhala,
-  PHOENIX: chainPhoenix,
-  Picasso: chainPicasso,
-  'Pichiu Testnet': chainPichiu,
-  'Pioneer Network': chainBitCountryPioneer,
-  PolkaBTC: chainInterbtc,
-  'Polkadex Testnet': chainPolkadex,
-  Polkadot: chainPolkadot,
-  'Polkadot CC1': chainPolkadot,
-  PolkaSmith: chainPolkaSmith,
-  'Pontem Testnet': chainPontem,
-  'Prism PC1': chainPrism,
-  'Prism Testnet': chainPrism,
-  'QUARTZ by UNIQUE': chainQuartz,
-  'ReAlis Network': nodeRealis,
-  RILT: chainKiltRilt,
-  'RioChain CC-1': chainRiochain,
-  'Riochain Staging': chainRiochain,
-  Robonomics: nodeRobonomics,
-  Rococo: chainRocco,
-  Sakura: chainSakura,
-  Shadow: chainShadow,
-  Sherpax: chainSherpax,
-  'Sherpax Testnet': chainSherpax,
-  Shiden: chainShiden,
-  'SkyeKiwi Testnet Alpha': chainSkyeKiwi,
-  'SORA Kusama': chainSora,
-  'SORA Rococo': chainSora,
-  Spanner: chainSpanner,
-  Standard: chainStandard,
-  'Standard Kusama Parachain': chainUnorthodox,
-  Statemine: specStatemine,
-  'Statemine Test': specStatemine,
-  Statemint: specStatemint,
-  'Statemint Test': specStatemint,
-  'Steam PC': chainRococoEave,
-  SubDAO: chainSubDAO,
-  'SubDAO PC1': chainSubDAO,
-  'SubDAO Staging': chainSubDAO,
-  subgame: nodeSubGame,
-  'SubGame Gamma': nodeSubGame,
-  'SubGame Staging': nodeSubGame,
-  Subspace: nodeSubspace,
-  Subzero: chainZero,
-  swapdex: chainSwapdex,
-  t0rn: chainT0rn,
-  Tick: chainRoccoTick,
-  Track: chainRoccoTrack,
-  Trick: chainRoccoTrick,
-  'TrustBase PC1': chainTrustBase,
-  'Turing Network': chainTuring,
-  'Turing Network (Staging)': chainTuring,
-  'uni arts staging network': chainUniarts,
-  'UniArts Mainnet': chainUniarts,
-  'Unique Node': chainUnique,
-  UNIT: chainUnitv,
-  VirtoRococo: chainVirto,
-  'VLN PC': chainVln,
-  Wapex: chainTotem,
-  'Web3Games Plum': chainWeb3games,
-  Westend: chainWestend,
-  Westlake: chainWestlake,
-  Westmint: specWestmint,
-  'Westmint Test': specWestmint,
-  Whala: chainWhala,
-  WILT: chainKilt,
-  'zcloak poc1': nodeZCloak,
-  'Zenlink PC1': chainZenlink,
-  'ZERO.IO': chainZero
-}).reduce<Record<string, string>>((colors, [chain, color]) => ({
-  ...colors,
-  [sanitize(chain)]: color
-}), {});
-
-// Alphabetical overrides based on the actual software node type
-// NOTE: This is as retrieved via the system.name RPC
-export const nodeColors = Object.entries({
-  'Ajuna Node': nodeAjuna,
-  'Apron Node': nodeApron,
-  Astar: nodeAstar,
-  'Automata ContextFree Node': nodeAutomataContextFree,
-  'Automata Node': nodeAutomata,
-  'Bajun Node': nodeBajun,
-  Basilisk: nodeBasilisk,
-  'Bifrost Node': nodeBifrost,
-  'Bifrost Stage Testnet': nodeBifrost,
-  'Bit.Country Node': nodeBitCountry,
-  centrifuge: nodeCentrifuge,
-  'centrifuge chain': nodeCentrifuge,
-  'Centrifuge Chain Node': nodeCentrifuge,
-  'CESS Testnet': nodeCESS,
-  'Circuit Collator': chainT0rn,
-  Coinversation: nodeCoinversation,
-  'Competitors Club': nodeCompetitorsClub,
-  'Crown Sterling': nodeCrownSterling,
-  'DataHighway Spreehafen Rococo Parachain Testnet': chainRoccoDataHighway,
-  'DataHighway Tanganika Kusama Parachain': chainKusamaDataHighway,
-  'Dora Factory': chainDorafactory,
-  'DOTMog Node': nodeDotMog,
-  'edgeware node': nodeEdgeware,
-  Efinity: nodeEfinity,
-  'Encointer collator': nodeEncointer,
-  'Encointer Node noTEE': nodeEncointer,
-  'Fantour Development': nodeFantour,
-  Galital: nodeGalital,
-  'Galital Parachain Collator': nodeGalital,
-  'GamePower Node': nodeGamePower,
-  GEEK: nodeGeek,
-  'GM Collator': chainGM,
-  'Imbue Parachain Collator': nodeImbue,
-  'Integritee Collator': nodeIntegritee,
-  'Integritee Node': nodeIntegritee,
-  'InvArch Brainstorm Node': chainBrainstorm,
-  'InvArch Tinkernet Node': chainTinker,
-  IpseTestnet: nodeIpse,
-  'Jaz Node': nodeJaz,
-  'Joystream Node': nodeJoystream,
-  Kabocha: nodeKabocha,
-  KICO: chainKico,
-  'Klug Dossier Node': nodeKlug,
-  'Konomi Collator': nodeKonomi,
-  'Kpron Collator': nodeKpron,
-  kusari: nodeKusari,
-  'Kylin Parachain Collator': nodeKylin,
-  'Listen Network': chainListen,
-  'Litentry node': nodeLitentry,
-  'logion Collator': chainLogion,
-  'Logion Node': chainLogion,
-  'Manta Collator': nodeManta,
-  'Manta Node': nodeManta,
-  MathChain: nodeMathChain,
-  'Moonsama Development': chainMoonsama,
-  'mybank.network node': nodeMybank,
-  Myriad: chainMyriad,
-  'NFTMart Staging': nodeNFTMart,
-  'NFTMart Testnet': nodeNFTMart,
-  'nodle chain node': nodeNodle,
-  OmniBTC: nodeOmniBTC,
-  'Opal Node': nodeOpal,
-  'Opportunity Standalone Testnet': nodeOpportunity,
-  Pangolin: nodePangolin,
-  'Pangolin Parachain': nodePangolin,
-  Pangoro: nodePangoro,
-  Parallel: nodeParallel,
-  'Parallel Heiko': nodeHeiko,
-  'Parami Collator': nodeParami,
-  'Patract Node': nodeJupiter,
-  'Pichiu Parachain Collator': nodePichiu,
-  'Polkadex Node': nodePolkadex,
-  'Polymesh Node': nodePolymesh,
-  'Pontem Node': nodePontem,
-  'Prism Collator': nodePrism,
-  'Prism Node': nodePrism,
-  'ReAlis Network': nodeRealis,
-  'Rio Defi Chain Node': nodeRiochain,
-  'Riochain Staging': nodeRiochain,
-  'Shiden Collator': chainShiden,
-  SORA: nodeSora,
-  'Stafi node': nodeStafi,
-  'Statemine Collator': specStatemint,
-  'Statemint Collator': specStatemint,
-  SubDAO: nodeSubDAO,
-  'SubDAO Collator': nodeSubDAO,
-  'SubDAO Staging': nodeSubDAO,
-  subgame: nodeSubGame,
-  'SubGame Gamma': nodeSubGame,
-  'SubGame Staging': nodeSubGame,
-  'Subsocial Collator': nodeSubsocialX,
-  'subsocial node': nodeSubsocial,
-  Subspace: nodeSubspace,
-  'subzero node': nodeZero,
-  swapdex: nodeSwapdex,
-  'Ternoa Node': nodeTernoa,
-  'uni arts node': nodeUniarts,
-  'UniArts Node': nodeUniarts,
-  'Unique Node': nodeUnique,
-  'Web3Games Node': nodeWeb3games,
-  Westlake: nodeWestlake,
-  'Westmint Collator': specWestmint,
-  'zcloak node': nodeZCloak,
-  'Zeitgeist Collator': nodeZeitgeist,
-  'Zeitgeist Node': nodeZeitgeist,
-  'Zenlink Collator': nodeZenlink
-}).reduce<Record<string, string>>((colors, [node, color]) => ({
+export const chainColors: Record<string, any> = [
+  ['acala mandala pc1', chainRoccoAcala],
+  ['acala mandala pc2', chainRoccoAcala],
+  ['Bifrost PC1', chainRoccoBifrost],
+  ['Darwinia Crab', chainCrab],
+  ['crust maxwell cc2', chainCrust],
+  ['darwinia cc1', chainDarwinia],
+  ['darwinia parachain', chainRoccoDarwinia],
+  ['hanonycash', chainHanonycash],
+  ['Jupiter Testnet', chainJupiter],
+  ['Kulupu', chainKulupu],
+  ['Kusama', chainKusama],
+  ['Kusama CC1', chainKusama],
+  ['Kusama CC2', chainKusama],
+  ['Kusama CC3', chainKusama],
+  ['laminar turbulence pc1', chainRococoLaminar],
+  ['Moonbase Alpha', nodeMoonbeam],
+  ['Phala poc 3', chainPhala],
+  ['Plasm', chainPlasm],
+  ['Plasm PC2', chainPlasm],
+  ['PolkaBTC', chainPolkabtc],
+  ['Polkadex Testnet', chainPolkadex],
+  ['Polkadot', chainPolkadot],
+  ['Polkadot CC1', chainPolkadot],
+  ['Rococo', chainRocco],
+  ['Tick', chainRoccoTick],
+  ['Track', chainRoccoTrack],
+  ['Trick', chainRoccoTrick],
+  ['Westend', chainWestend],
+  ['Galois', chainGalois],
+  ['ZΞRO Alphaville', chainZero],
+  ['Uniarts', chainUniarts]
+].reduce((colors, [chain, color]): Record<string, any> => ({
   ...colors,
   [sanitize(node)]: color
 }), {});
 
 // Alphabetical overrides based on the actual software node type
 // NOTE: This is as retrieved via the system.name RPC
-export const specColors = Object.entries({
-  shell: specShell,
-  statemine: specStatemine,
-  statemint: specStatemint,
-  westmint: specWestmint
-}).reduce<Record<string, string>>((colors, [spec, color]) => ({
+export const nodeColors: Record<string, any> = [
+  ['Bifrost Node', nodeBifrost],
+  ['Canvas Node', nodeCanvas],
+  ['centrifuge chain', nodeCentrifuge],
+  ['Centrifuge Chain Node', nodeCentrifuge],
+  ['Substrate Node', nodeCere],
+  ['edgeware node', nodeEdgeware],
+  ['Encointer Node', nodeEncointerNotee],
+  ['Encointer Node noTEE', nodeEncointerNotee],
+  ['Encointer Node TEE proxy', nodeEncointerTeeproxy],
+  ['Equilibrium node', nodeEquilibrium],
+  ['Jupiter Node', nodeJupiter],
+  ['kilt node', nodeKilt],
+  ['nodle chain node', nodeNodle],
+  ['Polkadex Node', nodePolkadex],
+  ['SORA-staging Node', nodeSora],
+  ['Stafi node', nodeStafi],
+  ['subsocial node', nodeSubsocial],
+  ['SUBZΞRO', nodeZero]
+  // ['node template', emptyColor],
+  // ['parity polkadot', emptyColor],
+  // ['substrate node', emptyColor]
+].reduce((colors, [node, color]): Record<string, any> => ({
   ...colors,
   [sanitize(spec)]: color
 }), {});
