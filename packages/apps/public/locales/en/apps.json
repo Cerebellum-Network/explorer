@@ -15,9 +15,8 @@
   "custom endpoint": "custom endpoint",
   "nav.github": "nav.github",
   "nav.wiki": "nav.wiki",
+  "nav.website": "nav.website",
   "transfer received": "transfer received",
   "update on #{{index}}": "update on #{{index}}",
-  "{{relay}} Common": "{{relay}} Common",
-  "{{relay}} Parachain": "{{relay}} Parachain",
-  "{{relay}} System": "{{relay}} System"
+  "version {{version}}": "version {{version}}"
 }
