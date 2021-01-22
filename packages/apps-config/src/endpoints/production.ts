@@ -20,6 +20,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     {
       dnslink: 'polkadot',
       info: 'polkadot',
+      isDisabled: true,
       text: t('rpc.polkadot.parity', 'Polkadot', { ns: 'apps-config' }),
       providers: {
         Parity: 'wss://rpc.polkadot.io',
@@ -30,6 +31,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     {
       dnslink: 'kusama',
       info: 'kusama',
+      isDisabled: true,
       text: t('rpc.kusama.parity', 'Kusama', { ns: 'apps-config' }),
       providers: {
         Parity: 'wss://kusama-rpc.polkadot.io',
@@ -41,6 +43,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     {
       dnslink: 'centrifuge',
       info: 'centrifuge',
+      isDisabled: true,
       text: t('rpc.centrifuge', 'Centrifuge', { ns: 'apps-config' }),
       providers: {
         Centrifuge: 'wss://fullnode.centrifuge.io'
@@ -48,6 +51,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'crab',
+      isDisabled: true,
       text: t('rpc.crab', 'Darwinia Crab', { ns: 'apps-config' }),
       providers: {
         'Darwinia Network': 'wss://crab.darwinia.network'
@@ -55,6 +59,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'darwinia',
+      isDisabled: true,
       text: t('rpc.darwinia', 'Darwinia', { ns: 'apps-config' }),
       providers: {
         'Darwinia Network': 'wss://cc1.darwinia.network'
@@ -62,6 +67,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'dock-mainnet',
+      isDisabled: true,
       text: t('rpc.dock-mainnet', 'Dock', { ns: 'apps-config' }),
       providers: {
         'Dock Association': 'wss://mainnet-node.dock.io'
@@ -70,6 +76,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     {
       dnslink: 'edgeware',
       info: 'edgeware',
+      isDisabled: true,
       text: t('rpc.edgeware', 'Edgeware', { ns: 'apps-config' }),
       providers: {
         'Commonwealth Labs': 'wss://mainnet4.edgewa.re'
@@ -77,6 +84,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'equilibrium',
+      isDisabled: true,
       text: t('rpc.equilibrium', 'Equilibrium', { ns: 'apps-config' }),
       providers: {
         Equilibrium: 'wss://tge.equilibrium.io'
@@ -84,6 +92,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'hanonycash',
+      isDisabled: true,
       text: t('rpc.hanonycash', 'Hanonycash', { ns: 'apps-config' }),
       providers: {
         Hanonycash: 'wss://rpc.hanonycash.com'
@@ -92,6 +101,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     {
       dnslink: 'kulupu',
       info: 'kulupu',
+      isDisabled: true,
       text: t('rpc.kulupu', 'Kulupu', { ns: 'apps-config' }),
       providers: {
         Kulupu: 'wss://rpc.kulupu.corepaper.org/ws'
@@ -99,6 +109,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'nodle',
+      isDisabled: true,
       text: t('rpc.nodle-main', 'Nodle', { ns: 'apps-config' }),
       providers: {
         Nodle: 'wss://main1.nodleprotocol.io'
@@ -106,6 +117,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'plasm',
+      isDisabled: true,
       text: t('rpc.plasm', 'Plasm', { ns: 'apps-config' }),
       providers: {
         'Stake Technologies': 'wss://rpc.plasmnet.io/'
@@ -121,6 +133,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'subsocial',
+      isDisabled: true,
       text: t('rpc.subsocial', 'Subsocial', { ns: 'apps-config' }),
       providers: {
         DappForce: 'wss://rpc.subsocial.network'
