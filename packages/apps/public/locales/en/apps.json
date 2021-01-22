@@ -13,6 +13,7 @@
   "custom endpoint": "custom endpoint",
   "nav.github": "nav.github",
   "nav.wiki": "nav.wiki",
+  "nav.website": "nav.website",
   "transfer received": "transfer received",
   "update on #{{index}}": "update on #{{index}}",
   "version {{version}}": "version {{version}}"
