@@ -32,7 +32,7 @@ export function createTesting (t: TFunction): LinkOption[] {
       info: 'cere',
       text: t('rpc.cere', 'Cerebellum Network', { ns: 'apps-config' }),
       providers: {
-        CerebellumNetwork: 'ws://64.225.102.118:9944'
+        CerebellumNetwork: 'wss://testnet-node-0.cere.network:9945'
       }
     },
     {
