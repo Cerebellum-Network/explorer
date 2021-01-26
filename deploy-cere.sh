@@ -8,4 +8,4 @@ export NVM_DIR="$HOME/.nvm"
 
 aws cloudfront create-invalidation --distribution-id E3FW68C232HTDC --paths "/*" --profile=cerebellum
 
-nvm exec yarn build cd ./packages/apps/ && aws s3 sync build/ s3://block-viewer.cere.io --profile=cerebellum
+nvm exec yarn build && cd ./packages/apps/ && aws s3 sync build/ s3://block-viewer.cere.io --profile=cerebellum
