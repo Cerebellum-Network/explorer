@@ -60,7 +60,7 @@ import emptyLogo from './empty.svg';
 // NOTE: This is as retrieved via system.chain RPC
 export const chainLogos: Record<string, unknown> = [
   ['darwinia crab', nodeCrab],
-  ['cere', nodeCere],
+  ['Cerebellum Network Testnet', nodeCere],
   ['Dusty', chainDusty],
   ['Galois', nodeMath],
   ['Kusama', chainKusama], // new name after CC3
