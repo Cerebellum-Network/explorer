@@ -15,7 +15,7 @@ import { expandEndpoints } from './util';
 //   text: The text to display on the dropdown
 //   value: The actual hosted secure websocket endpoint
 
-export function createTesting (t: TFunction): LinkOption[] {
+export function createTesting(t: TFunction): LinkOption[] {
   return expandEndpoints(t, [
     // polkadot test relays
     createRococo(t),
@@ -30,7 +30,14 @@ export function createTesting (t: TFunction): LinkOption[] {
     },
     {
       info: 'cere',
-      text: t('rpc.cere', 'Cerebellum Network', { ns: 'apps-config' }),
+      text: t('rpc.cere.fullnode', 'Cerebellum Network Full Node', { ns: 'apps-config' }),
+      providers: {
+        CerebellumNetwork: 'wss://testnet-node-1.cere.network:9945'
+      }
+    },
+    {
+      info: 'cere',
+      text: t('rpc.cere', 'Cerebellum Network Validator Node', { ns: 'apps-config' }),
       providers: {
         CerebellumNetwork: 'wss://testnet-node-1.cere.network:9945'
       }

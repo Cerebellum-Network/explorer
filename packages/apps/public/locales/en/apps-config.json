@@ -6,6 +6,7 @@
   "rpc.canvas": "Canvas",
   "rpc.centrifuge": "Centrifuge",
   "rpc.cere": "Cerebellum Network",
+  "rpc.cere.fullnode": "Cerebellum Network Full Node",
   "rpc.crab": "Darwinia Crab",
   "rpc.crust.network": "Crust Maxwell CC2",
   "rpc.custom": "Custom environment",
