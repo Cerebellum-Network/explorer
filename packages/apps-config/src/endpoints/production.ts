@@ -54,7 +54,15 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.crab', 'Darwinia Crab', { ns: 'apps-config' }),
       providers: {
-        'Darwinia Network': 'wss://crab.darwinia.network'
+        'Darwinia Network': 'wss://crab-rpc.darwinia.network'
+      }
+    },
+    {
+      info: 'chainx',
+      text: t('rpc.chainx', 'ChainX', { ns: 'apps-config' }),
+      providers: {
+        ChainX: 'wss://mainnet.chainx.org/ws',
+        'Patract Elara': 'wss://chainx.elara.patract.io'
       }
     },
     {
@@ -62,7 +70,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.darwinia', 'Darwinia', { ns: 'apps-config' }),
       providers: {
-        'Darwinia Network': 'wss://cc1.darwinia.network'
+        'Darwinia Network': 'wss://rpc.darwinia.network',
+        'Patract Elara': 'wss://darwinia.elara.patract.io'
       }
     },
     {
@@ -70,7 +79,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.dock-mainnet', 'Dock', { ns: 'apps-config' }),
       providers: {
-        'Dock Association': 'wss://mainnet-node.dock.io'
+        'Dock Association': 'wss://mainnet-node.dock.io',
+        'Patract Elara': 'wss://dock.elara.patract.io'
       }
     },
     {
@@ -79,7 +89,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.edgeware', 'Edgeware', { ns: 'apps-config' }),
       providers: {
-        'Commonwealth Labs': 'wss://mainnet4.edgewa.re'
+        'Commonwealth Labs': 'wss://mainnet4.edgewa.re',
+        'Patract Elara': 'wss://edgeware.elara.patract.io'
       }
     },
     {
@@ -87,7 +98,7 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.equilibrium', 'Equilibrium', { ns: 'apps-config' }),
       providers: {
-        Equilibrium: 'wss://tge.equilibrium.io'
+        Equilibrium: 'wss://node.equilibrium.io'
       }
     },
     {
@@ -99,12 +110,21 @@ export function createProduction (t: TFunction): LinkOption[] {
       }
     },
     {
+      info: 'snakenet',
+      text: t('rpc.hydra', 'HydraDX', { ns: 'apps-config' }),
+      providers: {
+        HydraDX: 'wss://rpc-01.snakenet.hydradx.io',
+        'Galactic Council': 'wss://rpc-02.snakenet.hydradx.io'
+      }
+    },
+    {
       dnslink: 'kulupu',
       info: 'kulupu',
       isDisabled: true,
       text: t('rpc.kulupu', 'Kulupu', { ns: 'apps-config' }),
       providers: {
-        Kulupu: 'wss://rpc.kulupu.corepaper.org/ws'
+        Kulupu: 'wss://rpc.kulupu.corepaper.org/ws',
+        'Patract Elara': 'wss://kulupu.elara.patract.io'
       }
     },
     {
@@ -112,7 +132,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.nodle-main', 'Nodle', { ns: 'apps-config' }),
       providers: {
-        Nodle: 'wss://main1.nodleprotocol.io'
+        Nodle: 'wss://main3.nodleprotocol.io',
+        'Patract Elara': 'wss://nodle.elara.patract.io'
       }
     },
     {
@@ -120,7 +141,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.plasm', 'Plasm', { ns: 'apps-config' }),
       providers: {
-        'Stake Technologies': 'wss://rpc.plasmnet.io/'
+        'Stake Technologies': 'wss://rpc.plasmnet.io/',
+        'Patract Elara': 'wss://plasm.elara.patract.io'
       }
     },
     {
@@ -128,7 +150,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true, // Cannot find type ChainId
       text: t('rpc.stafi', 'Stafi', { ns: 'apps-config' }),
       providers: {
-        'Stafi Foundation': 'wss://mainnet-rpc.stafi.io'
+        'Stafi Foundation': 'wss://mainnet-rpc.stafi.io',
+        'Patract Elara': 'wss://stafi.elara.patract.io'
       }
     },
     {
