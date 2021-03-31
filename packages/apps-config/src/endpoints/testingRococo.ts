@@ -65,10 +65,100 @@ export function createRococo (t: TFunction): EndpointOption {
         }
       },
       {
-        info: 'rococoAcala',
-        paraId: 666,
+        info: 'rococoBitCountry',
         isDisabled: true,
-        text: t('rpc.rococo.acala', 'Mandala PC2', { ns: 'apps-config' }),
+        paraId: 8,
+        text: t('rpc.rococo.bitcountry', 'Bit.Country PC1', { ns: 'apps-config' }),
+        providers: {
+          BitCountry: 'wss://tewai-parachain.bit.country:9955'
+        }
+      },
+      {
+        info: 'rococoClover',
+        isDisabled: true,
+        paraId: 229,
+        text: t('rpc.rococo.clover', 'Clover PC1', { ns: 'apps-config' }),
+        providers: {
+          Clover: 'wss://api-rococo.clover.finance'
+        }
+      },
+      {
+        info: 'rococoCrab',
+        isDisabled: true,
+        paraId: 9,
+        text: t('rpc.rococo.crab', 'Darwinia Crab PC2', { ns: 'apps-config' }),
+        providers: {
+          Darwinia: 'wss://crab-pc2-rpc.darwinia.network'
+        }
+      },
+      {
+        info: 'rococoCrust',
+        isDisabled: true,
+        paraId: 7777,
+        text: t('rpc.rococo.crust', 'Crust PC1', { ns: 'apps-config' }),
+        providers: {
+          Crust: 'wss://api-rococo.crust.network'
+        }
+      },
+      {
+        info: 'rococoChainX',
+        isDisabled: true,
+        paraId: 59,
+        text: t('rpc.rococo.chainx', 'ChainX PC1', { ns: 'apps-config' }),
+        providers: {
+          ChainX: 'wss://sherpax.chainx.org'
+        }
+      },
+      {
+        info: 'rococoDataHighway',
+        isDisabled: true,
+        paraId: 2,
+        text: t('rpc.rococo.datahighway', 'DataHighway', { ns: 'apps-config' }),
+        providers: {
+          DataHighway: 'wss://testnet-harbour.datahighway.com'
+        }
+      },
+      {
+        info: 'rococoEncointer',
+        paraId: 1862,
+        isDisabled: true,
+        text: t('rpc.rococo.encointer', 'Encointer PC1', { ns: 'apps-config' }),
+        providers: {
+          Encointer: 'wss://rococo.encointer.org'
+        }
+      },
+      {
+        info: 'rococoHydrate',
+        paraId: 82406,
+        isDisabled: true,
+        text: t('rpc.rococo.hydrate', 'Hydrate', { ns: 'apps-config' }),
+        providers: {
+          HydraDX: 'wss://hydrate-rpc.hydradx.io:9944'
+        }
+      },
+      {
+        info: 'rococoIdavoll',
+        paraId: 7766,
+        isDisabled: true,
+        text: t('rpc.rococo.idavoll', 'Idavoll', { ns: 'apps-config' }),
+        providers: {
+          Idavoll: 'wss://rococo.idavoll.network'
+        }
+      },
+      {
+        info: 'rococoIntegritee',
+        paraId: 1983,
+        isDisabled: true,
+        text: t('rpc.rococo.integritee', 'IntegriTEE PC1', { ns: 'apps-config' }),
+        providers: {
+          SCS: 'wss://rococo.integritee.network'
+        }
+      },
+      {
+        info: 'rococoJupiter',
+        paraId: 1,
+        isDisabled: true,
+        text: t('rpc.rococo.jupiter', 'Patract Jupiter R1', { ns: 'apps-config' }),
         providers: {
           Acala: 'wss://rococo-1.acala.laminar.one/ws'
         }

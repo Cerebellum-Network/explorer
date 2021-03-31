@@ -54,7 +54,16 @@ export function createProduction (t: TFunction): LinkOption[] {
       isDisabled: true,
       text: t('rpc.crab', 'Darwinia Crab', { ns: 'apps-config' }),
       providers: {
-        'Darwinia Network': 'wss://crab.darwinia.network'
+        'Darwinia Network': 'wss://crab-rpc.darwinia.network'
+      }
+    },
+    {
+      info: 'chainx',
+      isDisabled: true,
+      text: t('rpc.chainx', 'ChainX', { ns: 'apps-config' }),
+      providers: {
+        ChainX: 'wss://mainnet.chainx.org/ws',
+        'Patract Elara': 'wss://chainx.elara.patract.io'
       }
     },
     {
@@ -96,6 +105,15 @@ export function createProduction (t: TFunction): LinkOption[] {
       text: t('rpc.hanonycash', 'Hanonycash', { ns: 'apps-config' }),
       providers: {
         Hanonycash: 'wss://rpc.hanonycash.com'
+      }
+    },
+    {
+      info: 'snakenet',
+      isDisabled: true,
+      text: t('rpc.hydra', 'HydraDX', { ns: 'apps-config' }),
+      providers: {
+        HydraDX: 'wss://rpc-01.snakenet.hydradx.io',
+        'Galactic Council': 'wss://rpc-02.snakenet.hydradx.io'
       }
     },
     {
