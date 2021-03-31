@@ -59,6 +59,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'chainx',
+      isDisabled: true,
       text: t('rpc.chainx', 'ChainX', { ns: 'apps-config' }),
       providers: {
         ChainX: 'wss://mainnet.chainx.org/ws',
@@ -111,6 +112,7 @@ export function createProduction (t: TFunction): LinkOption[] {
     },
     {
       info: 'snakenet',
+      isDisabled: true,
       text: t('rpc.hydra', 'HydraDX', { ns: 'apps-config' }),
       providers: {
         HydraDX: 'wss://rpc-01.snakenet.hydradx.io',

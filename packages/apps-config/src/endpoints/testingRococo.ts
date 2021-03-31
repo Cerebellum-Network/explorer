@@ -134,6 +134,7 @@ export function createRococo (t: TFunction): LinkOption[] {
       {
         info: 'rococoEncointer',
         paraId: 1862,
+        isDisabled: true,
         text: t('rpc.rococo.encointer', 'Encointer PC1', { ns: 'apps-config' }),
         providers: {
           Encointer: 'wss://rococo.encointer.org'
@@ -142,6 +143,7 @@ export function createRococo (t: TFunction): LinkOption[] {
       {
         info: 'rococoHydrate',
         paraId: 82406,
+        isDisabled: true,
         text: t('rpc.rococo.hydrate', 'Hydrate', { ns: 'apps-config' }),
         providers: {
           HydraDX: 'wss://hydrate-rpc.hydradx.io:9944'
@@ -150,6 +152,7 @@ export function createRococo (t: TFunction): LinkOption[] {
       {
         info: 'rococoIdavoll',
         paraId: 7766,
+        isDisabled: true,
         text: t('rpc.rococo.idavoll', 'Idavoll', { ns: 'apps-config' }),
         providers: {
           Idavoll: 'wss://rococo.idavoll.network'
@@ -158,6 +161,7 @@ export function createRococo (t: TFunction): LinkOption[] {
       {
         info: 'rococoIntegritee',
         paraId: 1983,
+        isDisabled: true,
         text: t('rpc.rococo.integritee', 'IntegriTEE PC1', { ns: 'apps-config' }),
         providers: {
           SCS: 'wss://rococo.integritee.network'
@@ -166,6 +170,7 @@ export function createRococo (t: TFunction): LinkOption[] {
       {
         info: 'rococoJupiter',
         paraId: 1,
+        isDisabled: true,
         text: t('rpc.rococo.jupiter', 'Patract Jupiter R1', { ns: 'apps-config' }),
         providers: {
           jupiter: 'wss://ws.rococo.jupiter.patract.cn'
