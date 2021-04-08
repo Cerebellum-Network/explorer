@@ -15,7 +15,7 @@ import { isJsonObject, stringToU8a, u8aToString } from '@polkadot/util';
 
 import { useTranslation } from './translate';
 
-const EMPTY_CODE = '{\n\n}';
+const EMPTY_CODE = '{\n    "ChainId": "u8",\n    "ResourceId": "[u8; 32]",\n    "TokenId": "U256"\n}';
 const EMPTY_TYPES = {};
 
 interface AllState {
