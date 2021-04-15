@@ -15,7 +15,7 @@ import { isJsonObject, stringToU8a, u8aToString } from '@polkadot/util';
 
 import { useTranslation } from './translate';
 
-const EMPTY_CODE = '{\n\n}';
+const EMPTY_CODE = '{"ChainId":"u8","DepositNonce":"u64","ResourceId":"[u8; 32]","ProposalVotes":{"votes_for":"Vec<AccountId>","votes_against":"Vec<AccountId>","status":"enum","expiry":"BlockNumber"},"TokenId":"U256","Erc721Token":{"id":"TokenId","metadata":"Vec<u8>"},"Address":"AccountId","LookupSource":"Address"}';
 const EMPTY_TYPES = {};
 
 interface AllState {
