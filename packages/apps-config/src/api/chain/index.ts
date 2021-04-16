@@ -8,4 +8,5 @@ import Cere from './cere';
 export default {
   'Phala PoC-3': Phala,
   'Cerebellum Network Testnet': Cere,
+  'Local Testnet': Cere, // For Nodes bootstraped from --local chainspec
 };
