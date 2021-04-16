@@ -2,8 +2,10 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import Phala from './phala';
+import Cere from './cere';
 
 // alphabetical, based on the actual displayed name
 export default {
-  'Phala PoC-3': Phala
+  'Phala PoC-3': Phala,
+  'Cerebellum Network Testnet': Cere,
 };
