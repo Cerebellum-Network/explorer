@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.1-cere Apr 17, 2021
+- Fixed chain config
+
 ## 0.121.1 Aug 22, 2022
 
 Contributed:
