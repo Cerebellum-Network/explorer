@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.1-cere Apr 17, 2021
+- Fixed chain config
+
 ## 0.1.0-cere Apr 16, 2021
 - Added config for ERC20 Bridge for Cere Network
 - Updated using upstream from origin repo master branch
