@@ -3,6 +3,9 @@
 ## 0.1.1-cere Apr 17, 2021
 - Fixed chain config
 
+## 0.1.2-cere Apr 17, 2021
+- Updated config after forkless upgrade for ERC20 bridge
+
 ## 0.121.1 Aug 22, 2022
 
 Contributed:
