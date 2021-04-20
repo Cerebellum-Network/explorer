@@ -20,8 +20,8 @@ export default {
     id: "TokenId",
     metadata: "Vec<u8>"
   },
-  Address: "AccountId",
-  LookupSource: "Address"
+  // Address: "AccountId",
+  // LookupSource: "Address"
 };
 
 // For the network before ERC20 integrated
