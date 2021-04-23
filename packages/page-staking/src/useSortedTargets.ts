@@ -228,6 +228,23 @@ function extractBaseInfo (api: ApiPromise, allAccounts: string[], electedDerive:
     .sort((a, b) => a.cmp(b));
   const totalStaked = activeTotals.reduce((total: BN, value) => total.iadd(value), new BN(0));
   const avgStaked = totalStaked.divn(activeTotals.length);
+  /**
+   * Since we set inflation to 0 in Node's code we need to be sure that
+   * it will be the same in the BlockViewer until we switch it back
+   */
+  // const inflation = calcInflation(api, totalStaked, totalIssuance);
+  const inflation: ReturnType<typeof calcInflation> = { inflation: 0, stakedReturn: 0 };
+
+  // add the explicit stakedReturn
+  !avgStaked.isZero() && elected.forEach((e): void => {
+    if (!e.skipRewards) {
+      const adjusted = avgStaked.mul(BN_HUNDRED).imuln(inflation.stakedReturn).div(e.bondTotal);
+
+      // in some cases, we may have overflows... protect against those
+      e.stakedReturn = (adjusted.gt(BN_MAX_INTEGER) ? BN_MAX_INTEGER : adjusted).toNumber() / BN_HUNDRED.toNumber();
+      e.stakedReturnCmp = e.stakedReturn * (100 - e.commissionPer) / 100;
+    }
+  });
 
   // all validators, calc median commission
   const minNominated = Object.values(nominators).reduce((min: BN, value) => {
