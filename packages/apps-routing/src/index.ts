@@ -22,7 +22,7 @@ import poll from './poll';
 import rpc from './rpc';
 import settings from './settings';
 import signing from './signing';
-import society from './society';
+// import society from './society';
 import staking from './staking';
 import storage from './storage';
 import sudo from './sudo';
@@ -47,7 +47,7 @@ export default function create (t: TFunction): Routes {
     parachains(t),
     gilt(t),
     assets(t),
-    society(t),
+    // society(t),
     calendar(t),
     contracts(t),
     storage(t),
