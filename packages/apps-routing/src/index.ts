@@ -26,7 +26,7 @@ import society from './society';
 import staking from './staking';
 import storage from './storage';
 import sudo from './sudo';
-import techcomm from './techcomm';
+// import techcomm from './techcomm';
 import transfer from './transfer';
 import treasury from './treasury';
 
@@ -43,7 +43,7 @@ export default function create (t: TFunction): Routes {
     council(t),
     treasury(t),
     bounties(t),
-    techcomm(t),
+    // techcomm(t),
     parachains(t),
     gilt(t),
     assets(t),
