@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.4-cere Apr 30, 2021
+- Update cere chain config
+- Set inflation and stakedReturn to zero
+
 ## 0.1.3-cere Apr 20, 2021
 - Fixed chain config
 
