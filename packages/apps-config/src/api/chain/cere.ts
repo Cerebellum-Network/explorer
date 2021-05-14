@@ -22,6 +22,6 @@ export default {
     id: 'TokenId',
     metadata: 'Vec<u8>'
   },
-  Address: 'AccountId',
-  LookupSource: 'AccountId'
+  Address: 'IndicesLookupSource',
+  LookupSource: 'IndicesLookupSource'
 };
