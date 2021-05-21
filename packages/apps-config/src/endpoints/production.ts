@@ -67,6 +67,13 @@ export function createProduction (t: TFunction): LinkOption[] {
       }
     },
     {
+      info: 'cere',
+      text: t('rpc.cere', 'Cerebellum Network', { ns: 'apps-config' }),
+      providers: {
+        CerebellumNetwork: 'wss://archive.mainnet.stage.cere.network:9945'
+      }
+    },
+    {
       info: 'darwinia',
       isDisabled: true,
       text: t('rpc.darwinia', 'Darwinia', { ns: 'apps-config' }),
