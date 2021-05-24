@@ -1,5 +1,9 @@
 # CHANGELOG
 
+## 0.1.5-cere May 24, 2021
+- Update cere chain config
+- Added Cerebellum Mainnet to the chain config list
+
 ## 0.1.4-cere Apr 30, 2021
 - Update cere chain config
 - Set inflation and stakedReturn to zero
