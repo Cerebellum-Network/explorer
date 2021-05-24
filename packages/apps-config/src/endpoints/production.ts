@@ -70,7 +70,7 @@ export function createProduction (t: TFunction): LinkOption[] {
       info: 'cere',
       text: t('rpc.cere', 'Cerebellum Network', { ns: 'apps-config' }),
       providers: {
-        CerebellumNetwork: 'wss://archive.mainnet.stage.cere.network:9945'
+        'Cerebellum Network': 'wss://archive.mainnet.stage.cere.network:9945'
       }
     },
     {
