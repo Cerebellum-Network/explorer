@@ -10,6 +10,7 @@ export default {
   'Cerebellum Mainnet Alpha Stage': Cere,
   'Cerebellum Network Testnet': Cere,
   'Cerebellum Network Testnet Beta': Cere,
+  'Cerebellum Testnet': Cere,
   'Cerebellum Devnet': Cere,
   'Local Testnet': Cere, // For Nodes bootstraped from --local chainspec
   'Phala PoC-3': Phala
