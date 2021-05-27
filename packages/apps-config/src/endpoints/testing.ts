@@ -27,14 +27,28 @@ export function createTesting (t: TFunction): LinkOption[] {
     },
     {
       info: 'cere',
-      text: t('rpc.cere', 'Cerebellum Mainnet Alpha Stage', { ns: 'apps-config' }),
+      text: t('rpc.cere', 'Cerebellum Devnet', { ns: 'apps-config' }),
       providers: {
-        'Cerebellum Network': 'wss://archive.mainnet.stage.cere.network:9945'
+        'Cerebellum Network': 'wss://rpc.testnet.dev.cere.network:9945'
       }
     },
     {
-      info: 'cereTestnet',
+      info: 'cere',
       text: t('rpc.cere', 'Cerebellum Testnet', { ns: 'apps-config' }),
+      providers: {
+        'Cerebellum Network': 'wss://rpc.mainnet.stage.cere.network:9945'
+      }
+    },
+    {
+      info: 'cere',
+      text: t('rpc.cere', 'Cerebellum QAnet', { ns: 'apps-config' }),
+      providers: {
+        'Cerebellum Network': 'wss://rpc.testnet.cere.network:9945'
+      }
+    },
+    {
+      info: 'cere',
+      text: t('rpc.cere', 'Cerebellum Dev', { ns: 'apps-config' }),
       providers: {
         'Cerebellum Network': 'wss://rpc.testnet.cere.network:9945'
       }
