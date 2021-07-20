@@ -8,6 +8,10 @@ import Phala from './phala';
 // alphabetical, based on the actual displayed name
 export default {
   'Cerebellum Devnet': Cere,
+  'Cerebellum Ext Devs Network 1': Cere,
+  'Cerebellum Ext Devs Network 2': Cere,
+  'Cerebellum Ext Devs Network 3': Cere,
+  'Cerebellum Ext Devs Network 4': Cere,
   'Cerebellum Mainnet Alpha': Cere,
   'Cerebellum Network Testnet': CereQa,
   'Cerebellum Testnet': Cere,
