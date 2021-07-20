@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.7-cere Jul 20, 2021
+- Added support for External Dev cluster
+
 ## 0.1.6-cere May 31, 2021
 - Update cere chain config
 - Added Cerebellum Mainnet to the chain config list
