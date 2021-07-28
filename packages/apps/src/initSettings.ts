@@ -30,6 +30,8 @@ function getApiUrl (): string {
     // https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer;
     const url = decodeURIComponent(urlOptions.rpc.split('#')[0]);
 
+    assert(url.includes('.cere.network') || url.includes('localhost') || url.includes('127.0.0.1'), 'Invalid ws endpoint');
+    assert(url.startsWith('ws://') || url.startsWith('wss://'), 'Non-prefixed ws/wss url');
     assert(url.startsWith('ws://') || url.startsWith('wss://') || url.startsWith('light://'), 'Non-prefixed ws/wss/light url');
 
     return url;
