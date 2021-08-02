@@ -35,11 +35,15 @@ interface UrlState {
 const STORAGE_AFFINITIES = 'network:affinities';
 
 function isValidUrl (url: string): boolean {
+  const regex = /^(wss?:\/\/)([0-9]{1,3}(?:\.[0-9]{1,3}){3}|[^\/]+):([0-9]{4,5})$/;
+
   return (
     // some random length... we probably want to parse via some lib
     (url.length >= 7) &&
     // check that it starts with a valid ws identifier
-    (url.startsWith('ws://') || url.startsWith('wss://'))
+    (url.startsWith('ws://') || url.startsWith('wss://')) &&
+    // check it matches the URL format wss://domain-name:port
+    (regex.test(url))
   );
 }
 
