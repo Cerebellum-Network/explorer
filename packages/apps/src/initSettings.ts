@@ -9,6 +9,10 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
+function getDomainName (hostname: string): string {
+  return hostname.substr(-13);
+}
+
 function getApiUrl (): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?rpc=wss://substrate-rpc.parity.io/#/explorer
@@ -25,15 +29,16 @@ function getApiUrl (): string {
     assert(url.startsWith('ws://') || url.startsWith('wss://'), 'Non-prefixed ws/wss url');
 
     const urlArray = ['127.0.0.1', 'localhost', '.cere.network'];
-    let hostname = (new URL(url)).hostname;
-    const port = Number(new URL(url).port);
+    const URLObj = new URL(url);
+    let hostname = URLObj.hostname;
+    const port = Number(URLObj.port);
 
     if (port) {
-      assert(port < 64000, 'Invalid ws provider');
+      assert(port < 64000, 'Invalid ws port');
     }
 
     if (hostname !== 'localhost') {
-      hostname = hostname.substr(-13);
+      hostname = getDomainName(hostname);
     }
 
     assert(urlArray.includes(hostname), 'Invalid ws url');
