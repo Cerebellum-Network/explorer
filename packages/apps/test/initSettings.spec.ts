@@ -3,7 +3,7 @@
 
 import { validateURL } from '../src/initSettings';
 
-describe('Testing Init Function', () => {
+describe('Test Init Function', () => {
   test('should return URL for ws://localhost:9944', (done) => {
     const result = validateURL('ws://localhost:9944');
 
