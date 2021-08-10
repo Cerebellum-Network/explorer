@@ -9,46 +9,33 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
-<<<<<<< HEAD
-<<<<<<< HEAD
-function networkOrUrl (apiUrl: string): void {
-  if (apiUrl.startsWith('light://')) {
-    console.log('Light endpoint=', apiUrl.replace('light://', ''));
-  } else {
-    console.log('WS endpoint=', apiUrl);
-  }
-=======
 function getDomainName (hostname: string): string {
   return hostname.substr(-13);
->>>>>>> updating whitelist logic
-=======
-const DOMAINCHARACTERS = 13; // .cere.network
-
-function getDomainName (hostname: string): string {
-  return hostname.substr(-DOMAINCHARACTERS);
->>>>>>> updating unit test cases and function return type
 }
 
-export function validateURL (url: string): boolean {
+export function validateURL (url: string): string {
   if (!/^wss?:\/\//.test(url)) {
     throw new Error('Non-prefixed ws/wss url');
   }
 
+  const urlArray = ['127.0.0.1', 'localhost', '.cere.network'];
   const URLObj = new URL(url);
-  let hostname = URLObj.hostname;
+  const hostname = URLObj.hostname;
   const port = Number(URLObj.port);
 
-  if (port && port > 64000) {
-    throw new Error('Invalid ws port');
+  if (port) {
+    if (port > 64000) {
+      throw new Error('Invalid ws port');
+    }
   }
 
   if (hostname !== 'localhost') {
     hostname = getDomainName(hostname);
   }
 
-  assert(/^((.cere.network)|(localhost)|(127.0.0.1))$/.test(hostname), 'Invalid ws url');
+  assert(urlArray.includes(hostname), 'Invalid ws url');
 
-  return true;
+  return url;
 }
 
 function getApiUrl (): string {
@@ -64,23 +51,29 @@ function getApiUrl (): string {
     // https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer;
     const url = decodeURIComponent(urlOptions.rpc.split('#')[0]);
 
-<<<<<<< HEAD
     const validatedUrl = validateURL(url);
 
-<<<<<<< HEAD
+    const urlArray = ['127.0.0.1', 'localhost', '.cere.network'];
+    const URLObj = new URL(url);
+    let hostname = URLObj.hostname;
+    const port = Number(URLObj.port);
+
+    if (port) {
+      assert(port < 64000, 'Invalid ws port');
+    }
+
+    if (hostname !== 'localhost') {
+      hostname = getDomainName(hostname);
+    }
+
+    assert(urlArray.includes(hostname), 'Invalid ws url');
+
     assert(url.includes('.cere.network') || url.includes('localhost') || url.includes('127.0.0.1'), 'Invalid ws endpoint');
     assert(url.startsWith('ws://') || url.startsWith('wss://'), 'Non-prefixed ws/wss url');
     assert(url.startsWith('ws://') || url.startsWith('wss://') || url.startsWith('light://'), 'Non-prefixed ws/wss/light url');
 
     return url;
-=======
     return validatedUrl;
->>>>>>> updated test and functions
-=======
-    if (validateURL(url)) {
-      return url;
-    }
->>>>>>> updating unit test cases and function return type
   }
 
   const endpoints = createWsEndpoints(<T = string>(): T => ('' as unknown as T));
