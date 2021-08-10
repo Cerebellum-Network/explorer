@@ -9,30 +9,20 @@ import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
-const DOMAINCHARACTERS = 13; // .cere.network
-
-function getDomainName (hostname: string): string {
-  return hostname.substr(-DOMAINCHARACTERS);
-}
-
 export function validateURL (url: string): boolean {
   if (!/^wss?:\/\//.test(url)) {
     throw new Error('Non-prefixed ws/wss url');
   }
 
   const URLObj = new URL(url);
-  let hostname = URLObj.hostname;
+  const hostname = URLObj.hostname;
   const port = Number(URLObj.port);
 
   if (port && port > 64000) {
     throw new Error('Invalid ws port');
   }
 
-  if (hostname !== 'localhost') {
-    hostname = getDomainName(hostname);
-  }
-
-  assert(/^((.cere.network)|(localhost)|(127.0.0.1))$/.test(hostname), 'Invalid ws url');
+  assert(/(.*.cere.network$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
 
   return true;
 }
