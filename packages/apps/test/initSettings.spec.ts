@@ -19,21 +19,19 @@ describe('Test Init Function', () => {
   });
 
   test('should throw error for ws://localhost:65000', (done) => {
-    try {
+    expect(() => {
       validateURL('ws://localhost:65000');
-    } catch (error) {
-      expect(error).toMatchObject(new Error('Invalid ws port'));
-      done();
-    }
+    }).toThrowError('Invalid ws port');
+
+    done();
   });
 
   test('should throw error for ws://198.162.1.1:9944', (done) => {
-    try {
+    expect(() => {
       validateURL('ws://198.162.1.1:9944');
-    } catch (error) {
-      expect(error).toMatchObject(new Error('Invalid ws url'));
-      done();
-    }
+    }).toThrowError('Invalid ws url');
+
+    done();
   });
 
   test('should return URL for ws://dev.cere.network:9944', (done) => {
