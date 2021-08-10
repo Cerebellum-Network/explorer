@@ -22,6 +22,31 @@ function getDomainName (hostname: string): string {
 >>>>>>> updating whitelist logic
 }
 
+export function validateURL (url: string): string {
+  if (!/^wss?:\/\//.test(url)) {
+    throw new Error('Non-prefixed ws/wss url');
+  }
+
+  const urlArray = ['127.0.0.1', 'localhost', '.cere.network'];
+  const URLObj = new URL(url);
+  let hostname = URLObj.hostname;
+  const port = Number(URLObj.port);
+
+  if (port) {
+    if (port > 64000) {
+      throw new Error('Invalid ws port');
+    }
+  }
+
+  if (hostname !== 'localhost') {
+    hostname = getDomainName(hostname);
+  }
+
+  assert(urlArray.includes(hostname), 'Invalid ws url');
+
+  return url;
+}
+
 function getApiUrl (): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?rpc=wss://substrate-rpc.parity.io/#/explorer
@@ -35,28 +60,17 @@ function getApiUrl (): string {
     // https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer;
     const url = decodeURIComponent(urlOptions.rpc.split('#')[0]);
 
-    assert(url.startsWith('ws://') || url.startsWith('wss://'), 'Non-prefixed ws/wss url');
+    const validatedUrl = validateURL(url);
 
-    const urlArray = ['127.0.0.1', 'localhost', '.cere.network'];
-    const URLObj = new URL(url);
-    let hostname = URLObj.hostname;
-    const port = Number(URLObj.port);
-
-    if (port) {
-      assert(port < 64000, 'Invalid ws port');
-    }
-
-    if (hostname !== 'localhost') {
-      hostname = getDomainName(hostname);
-    }
-
-    assert(urlArray.includes(hostname), 'Invalid ws url');
-
+<<<<<<< HEAD
     assert(url.includes('.cere.network') || url.includes('localhost') || url.includes('127.0.0.1'), 'Invalid ws endpoint');
     assert(url.startsWith('ws://') || url.startsWith('wss://'), 'Non-prefixed ws/wss url');
     assert(url.startsWith('ws://') || url.startsWith('wss://') || url.startsWith('light://'), 'Non-prefixed ws/wss/light url');
 
     return url;
+=======
+    return validatedUrl;
+>>>>>>> updated test and functions
   }
 
   const endpoints = createWsEndpoints(<T = string>(): T => ('' as unknown as T));
