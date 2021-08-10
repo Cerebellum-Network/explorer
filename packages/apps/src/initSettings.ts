@@ -10,6 +10,7 @@ import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
 
 <<<<<<< HEAD
+<<<<<<< HEAD
 function networkOrUrl (apiUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
@@ -20,22 +21,25 @@ function networkOrUrl (apiUrl: string): void {
 function getDomainName (hostname: string): string {
   return hostname.substr(-13);
 >>>>>>> updating whitelist logic
+=======
+const DOMAINCHARACTERS = 13; // .cere.network
+
+function getDomainName (hostname: string): string {
+  return hostname.substr(-DOMAINCHARACTERS);
+>>>>>>> updating unit test cases and function return type
 }
 
-export function validateURL (url: string): string {
+export function validateURL (url: string): boolean {
   if (!/^wss?:\/\//.test(url)) {
     throw new Error('Non-prefixed ws/wss url');
   }
 
-  const urlArray = ['127.0.0.1', 'localhost', '.cere.network'];
   const URLObj = new URL(url);
   let hostname = URLObj.hostname;
   const port = Number(URLObj.port);
 
-  if (port) {
-    if (port > 64000) {
-      throw new Error('Invalid ws port');
-    }
+  if (port && port > 64000) {
+    throw new Error('Invalid ws port');
   }
 
   if (hostname !== 'localhost') {
@@ -44,7 +48,7 @@ export function validateURL (url: string): string {
 
   assert(/^((.cere.network)|(localhost)|(127.0.0.1))$/.test(hostname), 'Invalid ws url');
 
-  return url;
+  return true;
 }
 
 function getApiUrl (): string {
@@ -60,6 +64,7 @@ function getApiUrl (): string {
     // https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer;
     const url = decodeURIComponent(urlOptions.rpc.split('#')[0]);
 
+<<<<<<< HEAD
     const validatedUrl = validateURL(url);
 
 <<<<<<< HEAD
@@ -71,6 +76,11 @@ function getApiUrl (): string {
 =======
     return validatedUrl;
 >>>>>>> updated test and functions
+=======
+    if (validateURL(url)) {
+      return url;
+    }
+>>>>>>> updating unit test cases and function return type
   }
 
   const endpoints = createWsEndpoints(<T = string>(): T => ('' as unknown as T));
