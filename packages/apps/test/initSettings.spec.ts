@@ -3,80 +3,28 @@
 
 import { validateURL } from '../src/initSettings';
 
-describe('Test Init Function', () => {
-  test('should return URL for ws://localhost:9944', (done) => {
-    const result = validateURL('ws://localhost:9944');
-
-    expect(result).toBeTruthy();
-    done();
+describe('Test validateURL function', () => {
+  test.each([
+    ['ws://localhost:9944', true],
+    ['wss://localhost:9944', true],
+    ['ws://127.0.0.1:9944', true],
+    ['wss://node-1.cere.network:9944', true],
+    ['ws://dev-2.cere.network:9944', true]
+  ])('Should return true for %s', (url) => {
+    expect(validateURL(url)).toBeTruthy();
   });
 
-  test('should return URL for ws://127.0.0.1:9944', (done) => {
-    const result = validateURL('ws://127.0.0.1:9944');
-
-    expect(result).toBeTruthy();
-    done();
-  });
-
-  test('should throw error for ws://localhost:65000', (done) => {
+  test.each([
+    ['ws://127.0.0.2:9944', 'Invalid ws url'],
+    ['wss://dev.cere.node.network:9944', 'Invalid ws url'],
+    ['wss://cere.network.xyz.com:9944', 'Invalid ws url'],
+    ['wss://dev.cere.network:65000', 'Invalid ws port'],
+    ['http://node.cere.network:9944', 'Non-prefixed ws/wss url'],
+    ['https://node.cere.network:9944', 'Non-prefixed ws/wss url'],
+    ['node.cere.network:9944', 'Non-prefixed ws/wss url']
+  ])('Should throw error for %s as %s', (url, expected) => {
     expect(() => {
-      validateURL('ws://localhost:65000');
-    }).toThrowError('Invalid ws port');
-
-    done();
-  });
-
-  test('should throw error for ws://198.162.1.1:9944', (done) => {
-    expect(() => {
-      validateURL('ws://198.162.1.1:9944');
-    }).toThrowError('Invalid ws url');
-
-    done();
-  });
-
-  test('should return URL for ws://dev.cere.network:9944', (done) => {
-    const result = validateURL('ws://dev.cere.network:9944');
-
-    expect(result).toBeTruthy();
-    done();
-  });
-
-  test('should return URL for wss://dev.cere.network:9944', (done) => {
-    const result = validateURL('wss://dev.cere.network:9944');
-
-    expect(result).toBeTruthy();
-    done();
-  });
-
-  test('should throw error for wss://cere.dev.network:9944', (done) => {
-    expect(() => {
-      validateURL('wss://cere.dev.network:9944');
-    }).toThrowError('Invalid ws url');
-
-    done();
-  });
-
-  test('should throw error for wss://dev.cere.network:65000', (done) => {
-    expect(() => {
-      validateURL('wss://dev.cere.network:65000');
-    }).toThrowError('Invalid ws port');
-
-    done();
-  });
-
-  test('should throw error for http://dev.cere.network:65000', (done) => {
-    expect(() => {
-      validateURL('http://dev.cere.network:65000');
-    }).toThrowError('Non-prefixed ws/wss url');
-
-    done();
-  });
-
-  test('should throw error for wss://cere.network.xyz.com:9944', (done) => {
-    expect(() => {
-      validateURL('wss://cere.network.xyz.com:9944');
-    }).toThrowError('Invalid ws url');
-
-    done();
+      validateURL(url);
+    }).toThrowError(expected);
   });
 });
