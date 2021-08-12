@@ -34,7 +34,7 @@ interface UrlState {
 
 const STORAGE_AFFINITIES = 'network:affinities';
 
-function isValidUrl (url: string): boolean {
+export function isValidUrl (url: string): boolean {
   const regex = /^(wss?:\/\/)((.*.?cere.network)|(localhost)|(127.0.0.1)):([0-9]{4,5})$/;
 
   return (
