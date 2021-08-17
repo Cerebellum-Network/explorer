@@ -1,7 +1,9 @@
 # CHANGELOG
 
+
 ## vNext 
 - Updated URL validation
+- Added assert for connection string
 
 ## 0.1.7-cere Jul 20, 2021
 - Added support for External Dev cluster
