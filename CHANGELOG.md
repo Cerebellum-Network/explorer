@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## VNext 
+## vNext 
 - Updated URL validation
 
 ## 0.1.7-cere Jul 20, 2021
