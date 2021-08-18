@@ -1,6 +1,6 @@
 # CHANGELOG
 
-## vNext
+## 0.1.8-cere Aug 18, 2021
 - Added assert for connection string
 - Updated URL validation
 - Updated endpoints for all the networks
