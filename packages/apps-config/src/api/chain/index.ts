@@ -12,6 +12,7 @@ export default {
   'Cerebellum Ext Devs Network 2': Cere,
   'Cerebellum Ext Devs Network 3': Cere,
   'Cerebellum Ext Devs Network 4': Cere,
+  'Cerebellum Ext Devs Network 5': Cere,
   'Cerebellum Mainnet Alpha': Cere,
   'Cerebellum Network Testnet': CereQa,
   'Cerebellum Testnet': Cere,

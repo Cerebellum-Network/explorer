@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.9-cere Aug 20, 2021
+- Added ext-devs-5 network support
+
 ## 0.1.8-cere Aug 18, 2021
 - Added assert for connection string
 - Updated URL validation
