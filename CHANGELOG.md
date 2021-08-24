@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.10-cere Aug 24, 2021
+- Added qa network support
+
 ## 0.1.9-cere Aug 20, 2021
 - Added ext-devs-5 network support
 
