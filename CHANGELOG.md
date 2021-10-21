@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 0.1.11-cere Oct 21, 2021
+- Renamed `Cerebellum` to `Cere`
+
 ## 0.1.10-cere Aug 24, 2021
 - Added qa network support
 
