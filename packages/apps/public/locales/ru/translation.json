@@ -1583,8 +1583,7 @@
   "nav.explorer": "Эксплорер",
   "nav.extrinsics": "Экстринзики",
   "nav.generic-asset": "generic-asset",
-  "nav.gilt": "Ценности",
-  "nav.github": "GitHub",
+  "nav.home": "Cere Network домашняя страница",
   "nav.i18n": "I18n Переводчик",
   "nav.js": "javascript",
   "nav.membership": "Членство",
@@ -2207,6 +2206,5 @@
   "{{step}}. Sign with your ETH address": "{{step}}. Подпишите Вашим адресом Ethereum",
   "{{threshold}}, not passing": "{{threshold}}, не проходит",
   "{{threshold}}, passing": "{{threshold}}, проходит",
-  "{{type}} copied": "",
-  "{{value}}x voting balance, locked for {{lock}}x duration ({{period}} days)": "{{value}}x баланс голосования, заблокировано на {{lock}}x ({{period}} дней)"
+  "{{value}}x voting balance, locked for {{lock}}x enactment ({{period}} days)": "{{value}}x баланс голосования, заблокировано на {{lock}}x ({{period}} дней)"
 }
