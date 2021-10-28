@@ -27,13 +27,6 @@ export function createTesting (t: TFunction): LinkOption[] {
     },
     {
       info: 'cere',
-      text: t('rpc.cere', 'Cere Devnet', { ns: 'apps-config' }),
-      providers: {
-        'Cere Network': 'wss://rpc.devnet.cere.network:9945'
-      }
-    },
-    {
-      info: 'cere',
       text: t('rpc.cere', 'Cere Testnet', { ns: 'apps-config' }),
       providers: {
         'Cere Network': 'wss://rpc.testnet.cere.network:9945'
@@ -44,6 +37,13 @@ export function createTesting (t: TFunction): LinkOption[] {
       text: t('rpc.cere', 'Cere QAnet', { ns: 'apps-config' }),
       providers: {
         'Cere Network': 'wss://rpc.qanet.cere.network:9945'
+      }
+    },
+    {
+      info: 'cere',
+      text: t('rpc.cere', 'Cere Devnet', { ns: 'apps-config' }),
+      providers: {
+        'Cere Network': 'wss://rpc.devnet.cere.network:9945'
       }
     },
     {

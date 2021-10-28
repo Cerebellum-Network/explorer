@@ -1,5 +1,10 @@
 # CHANGELOG
 
+## vNext 
+- Updated page title
+- Reordered networks under Test Network
+- Fixed linter error
+
 ## 0.1.11-cere Oct 21, 2021
 - Renamed `Cerebellum` to `Cere`
 
