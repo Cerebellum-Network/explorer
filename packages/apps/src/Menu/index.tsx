@@ -29,8 +29,7 @@ const disabledLog = new Map<string, string>();
 
 function createExternals (t: TFunction): ItemRoute[] {
   return [
-    { href: 'https://github.com/Cerebellum-Network', icon: 'code-branch', name: 'github', text: t<string>('nav.github', 'GitHub', { ns: 'apps-routing' }) },
-    { href: 'https://cere.network', icon: 'link', name: 'wiki', text: t<string>('nav.wiki', 'Website', { ns: 'apps-routing' }) }
+    { href: 'https://cere-network.gitbook.io/cere-network/mainnet/network-details', icon: 'home', name: 'Home', text: t<string>('nav.home', 'Cere Network Homepage', { ns: 'apps-routing' }) }
   ];
 }
 
