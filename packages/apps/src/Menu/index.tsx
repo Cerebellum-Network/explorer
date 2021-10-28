@@ -27,7 +27,7 @@ interface Props {
 
 function createExternals (t: TFunction): ItemRoute[] {
   return [
-    { href: 'https://cere-network.gitbook.io/cere-network/mainnet/network-details', icon: 'home', name: 'Home', text: t<string>('nav.home', 'Cere Network Homepage', { ns: 'apps-routing' }) }
+    { href: 'https://cere-network.gitbook.io/cere-network/', icon: 'home', name: 'Home', text: t<string>('nav.home', 'Cere Network Homepage', { ns: 'apps-routing' }) }
   ];
 }
 
