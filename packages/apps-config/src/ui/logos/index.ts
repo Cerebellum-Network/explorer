@@ -28,7 +28,7 @@ import nodeBifrost from './nodes/bifrost.svg';
 import nodeBitCountry from './nodes/bitcountry.svg';
 import nodeCanvas from './nodes/canvas-2.png';
 import nodeCentrifuge from './nodes/centrifuge.png';
-import nodeCere from './nodes/cere.png';
+import nodeCere from './nodes/cere.svg';
 import nodeChainx from './nodes/chainx.svg';
 import nodeClover from './nodes/clover.svg';
 import nodeCrab from './nodes/crab.svg';
@@ -85,7 +85,10 @@ export const chainLogos: Record<string, unknown> = [
   ['Crust PC1', nodeCrust],
   ['ChainX', nodeChainx],
   ['darwinia crab', nodeCrab],
-  ['Cerebellum Network Testnet', nodeCere],
+  ['Cere Mainnet Alpha', nodeCere],
+  ['Cere Testnet', nodeCere],
+  ['Cere QAnet', nodeCere],
+  ['Cere Devnet', nodeCere],
   ['Darwinia Crab PC2', nodeCrab],
   ['DataHighway', nodeDataHighway],
   ['Dusty', chainDusty],
