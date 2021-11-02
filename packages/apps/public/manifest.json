@@ -1,6 +1,6 @@
 {
-  "short_name": "Polkadot Apps",
-  "name": "Apps for interacting with a Polkadot node",
+  "short_name": "Cere Explorer",
+  "name": "Explorer for interacting with a Cere node",
   "icons": [
     {
       "src": "favicon.ico",
