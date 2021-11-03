@@ -99,7 +99,9 @@ import nodeBeast from './nodes/beast.svg';
 import nodeBifrost from './nodes/bifrost.svg';
 import nodeCanvas from './nodes/canvas-2.png';
 import nodeCentrifuge from './nodes/centrifuge.png';
-import nodeCere from './nodes/cere.png';
+import nodeCere from './nodes/cere.svg';
+import nodeChainx from './nodes/chainx.svg';
+import nodeClover from './nodes/clover.svg';
 import nodeCrab from './nodes/crab.svg';
 import nodeCrownSterling from './nodes/crown-sterling.png';
 import nodeCrust from './nodes/crust.svg';
@@ -217,7 +219,12 @@ import emptyLogo from './empty.svg';
 // NOTE: This is as retrieved via system.chain RPC
 export const chainLogos: Record<string, unknown> = [
   ['darwinia crab', nodeCrab],
-  ['Cerebellum Network Testnet', nodeCere],
+  ['Cere Mainnet Alpha', nodeCere],
+  ['Cere Testnet', nodeCere],
+  ['Cere QAnet', nodeCere],
+  ['Cere Devnet', nodeCere],
+  ['Darwinia Crab PC2', nodeCrab],
+  ['DataHighway', nodeDataHighway],
   ['Dusty', chainDusty],
   ['Galois', nodeMath],
   ['Kusama', chainKusama], // new name after CC3
