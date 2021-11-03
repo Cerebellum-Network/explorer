@@ -2,13 +2,9 @@
   "author": "Jaco Greeff <jacogr@gmail.com>",
   "bugs": "https://github.com/polkadot-js/apps/issues",
   "description": "An Apps portal into the Polkadot network",
-  "engines": {
-    "node": ">=14.0.0"
-  },
-  "homepage": "https://github.com/polkadot-js/apps#readme",
-  "license": "Apache-2.0",
-  "name": "polkadot-apps",
-  "packageManager": "yarn@3.2.0",
+  "author": "Jaco Greeff <jacogr@gmail.com>",
+  "version": "0.12.0",
+  "license": "Apache-2",
   "private": true,
   "repository": {
     "type": "git",
