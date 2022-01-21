@@ -232,8 +232,8 @@ function extractBaseInfo (api: ApiPromise, allAccounts: string[], electedDerive:
    * Since we set inflation to 0 in Node's code we need to be sure that
    * it will be the same in the BlockViewer until we switch it back
    */
-  // const inflation = calcInflation(api, totalStaked, totalIssuance);
-  const inflation: ReturnType<typeof calcInflation> = { inflation: 0, stakedReturn: 0 };
+  const inflation = calcInflation(api, totalStaked, totalIssuance);
+  // const inflation: ReturnType<typeof calcInflation> = { inflation: 0, stakedReturn: 0 };
 
   // add the explicit stakedReturn
   !avgStaked.isZero() && elected.forEach((e): void => {

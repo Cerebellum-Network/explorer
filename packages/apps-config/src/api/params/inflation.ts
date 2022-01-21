@@ -15,12 +15,10 @@ interface InflationParams {
 }
 
 const DEFAULT_PARAMS: InflationParams = {
-  auctionAdjust: 0,
-  auctionMax: 0,
-  falloff: 0.05,
-  maxInflation: 0.1,
-  minInflation: 0.025,
-  stakeTarget: 0.5
+  falloff: 5,
+  idealStake: 20,
+  maxInflation: 0.255,
+  minInflation: 0.01
 };
 
 const KNOWN_PARAMS: Record<string, InflationParams> = {
