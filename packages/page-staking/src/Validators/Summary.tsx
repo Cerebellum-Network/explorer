@@ -61,6 +61,15 @@ function Summary ({ className = '', stakingOverview, targets: { counterForNomina
             : <Spinner noLabel />
           }
         </CardSummary>
+        <CardSummary
+          className='media--1200'
+          label={t<string>('inflation')}
+        >
+          {(inflation > 0) && Number.isFinite(inflation)
+            ? <>{inflation.toFixed(4)}%</>
+            : '-'
+          }
+        </CardSummary>
       </section>
       <section>
         {(idealStake > 0) && Number.isFinite(idealStake) && (
