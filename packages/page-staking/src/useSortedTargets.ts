@@ -168,12 +168,9 @@ function extractInfo (api: ApiPromise, allAccounts: string[], electedDerive: Der
     .sort((a, b) => a.cmp(b));
   const totalStaked = activeTotals.reduce((total: BN, value) => total.iadd(value), new BN(0));
   const avgStaked = totalStaked.divn(activeTotals.length);
-  /**
-   * Since we set inflation to 0 in Node's code we need to be sure that
-   * it will be the same in the BlockViewer until we switch it back
-   */
+
+  // inflation calculation
   const inflation = calcInflation(api, totalStaked, totalIssuance);
-  // const inflation: ReturnType<typeof calcInflation> = { inflation: 0, stakedReturn: 0 };
 
   // add the explicit stakedReturn
   !avgStaked.isZero() && elected.forEach((e): void => {
