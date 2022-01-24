@@ -58,7 +58,7 @@ function Summary ({ className = '', isVisible, stakingOverview, targets: { infla
           label={t<string>('inflation')}
         >
           {(inflation > 0) && Number.isFinite(inflation)
-            ? <>{inflation.toFixed(1)}%</>
+            ? <>{inflation.toFixed(4)}%</>
             : '-'
           }
         </CardSummary>
