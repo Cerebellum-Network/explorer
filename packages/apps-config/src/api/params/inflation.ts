@@ -14,9 +14,9 @@ interface InflationParams {
 
 const DEFAULT_PARAMS: InflationParams = {
   falloff: 0.05,
-  idealStake: 0.5,
-  maxInflation: 0.1,
-  minInflation: 0.025
+  idealStake: 0.1,
+  maxInflation: 0.013,
+  minInflation: 0.0001
 };
 
 const KNOWN_PARAMS: Record<string, InflationParams> = {
