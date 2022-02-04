@@ -1,7 +1,10 @@
 # CHANGELOG
 
 ## vNext
-- Enabled inflation on staking overview page 
+- ...
+
+## 0.13.0
+- Enabled inflation on staking overview page
 
 ## 0.12.0
 - Updated page title
