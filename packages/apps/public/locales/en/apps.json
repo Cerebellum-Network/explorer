@@ -1,6 +1,7 @@
 {
   "Accounts": "Accounts",
   "Developer": "Developer",
+  "Files": "Files",
   "Governance": "Governance",
   "Initializing connection": "Initializing connection",
   "Network": "Network",
@@ -15,6 +16,5 @@
   "nav.website": "nav.website",
   "nav.wiki": "nav.wiki",
   "transfer received": "transfer received",
-  "update on #{{index}}": "update on #{{index}}",
-  "version {{version}}": "version {{version}}"
+  "update on #{{index}}": "update on #{{index}}"
 }

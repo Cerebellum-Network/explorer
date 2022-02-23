@@ -1,12 +1,21 @@
 {
+  "bugs": "https://github.com/polkadot-js/apps/issues",
+  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-staking#readme",
+  "license": "Apache-2.0",
   "name": "@polkadot/app-staking",
   "private": true,
-  "version": "0.86.2",
-  "license": "Apache-2.0",
+  "repository": {
+    "directory": "packages/page-staking",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/apps.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.106.2-19",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@polkadot/app-explorer": "^0.86.2",
-    "@polkadot/react-components": "^0.86.2",
-    "@polkadot/react-query": "^0.86.2"
+    "@babel/runtime": "^7.17.2",
+    "@polkadot/app-explorer": "^0.106.2-19",
+    "@polkadot/react-components": "^0.106.2-19",
+    "@polkadot/react-query": "^0.106.2-19"
   }
 }

@@ -1,17 +1,18 @@
-// Copyright 2017-2021 @polkadot/app-parachains authors & contributors
+// Copyright 2017-2022 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type BN from 'bn.js';
+import type { BN } from '@polkadot/util';
 import type { AuctionInfo, LeasePeriod, OwnedId, OwnerInfo } from '../types';
 
 import React, { useState } from 'react';
 
 import { Button, InputBalance, InputNumber, Modal, TxButton } from '@polkadot/react-components';
 import { useApi, useToggle } from '@polkadot/react-hooks';
-import { BN_ONE, BN_THREE, BN_ZERO } from '@polkadot/util';
+import { BN_ONE, BN_ZERO } from '@polkadot/util';
 
 import InputOwner from '../InputOwner';
 import { useTranslation } from '../translate';
+import { useLeaseRanges } from '../useLeaseRanges';
 
 interface Props {
   auctionInfo?: AuctionInfo;
@@ -21,19 +22,23 @@ interface Props {
   ownedIds: OwnedId[];
 }
 
+const EMPTY_OWNER: OwnerInfo = { accountId: null, paraId: 0 };
+
 function FundAdd ({ auctionInfo, bestNumber, className, leasePeriod, ownedIds }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
-  const [{ accountId, paraId }, setOwnerInfo] = useState<OwnerInfo>({ accountId: null, paraId: 0 });
+  const ranges = useLeaseRanges();
+  const [{ accountId, paraId }, setOwnerInfo] = useState<OwnerInfo>(EMPTY_OWNER);
   const [cap, setCap] = useState<BN | undefined>();
   const [endBlock, setEndBlock] = useState<BN | undefined>();
   const [firstSlot, setFirstSlot] = useState<BN | undefined>();
   const [lastSlot, setLastSlot] = useState<BN | undefined>();
   const [isOpen, toggleOpen] = useToggle();
 
+  const maxPeriods = ranges[ranges.length - 1][1] - ranges[0][0];
   const isEndError = !bestNumber || !endBlock || endBlock.lt(bestNumber);
   const isFirstError = !firstSlot || (!!leasePeriod && firstSlot.lt(leasePeriod.currentPeriod));
-  const isLastError = !lastSlot || !firstSlot || lastSlot.lt(firstSlot) || lastSlot.gt(firstSlot.add(BN_THREE));
+  const isLastError = !lastSlot || !firstSlot || lastSlot.lt(firstSlot) || lastSlot.gt(firstSlot.addn(maxPeriods));
   const defaultSlot = (auctionInfo?.leasePeriod || leasePeriod?.currentPeriod.add(BN_ONE) || 1).toString();
 
   // TODO Add verifier
@@ -50,6 +55,7 @@ function FundAdd ({ auctionInfo, bestNumber, className, leasePeriod, ownedIds }:
         <Modal
           className={className}
           header={t<string>('Add campaign')}
+          onClose={toggleOpen}
           size='large'
         >
           <Modal.Content>
@@ -71,12 +77,14 @@ function FundAdd ({ auctionInfo, bestNumber, className, leasePeriod, ownedIds }:
                 onChange={setEndBlock}
               />
             </Modal.Columns>
-            <Modal.Columns hint={
-              <>
-                <p>{t<string>('The first and last lease periods for this funding campaign.')}</p>
-                <p>{t<string>('The ending lease period should be after the first and a maximum of 3 periods more than the first')}</p>
-              </>
-            }>
+            <Modal.Columns
+              hint={
+                <>
+                  <p>{t<string>('The first and last lease periods for this funding campaign.')}</p>
+                  <p>{t<string>('The ending lease period should be after the first and a maximum of {{maxPeriods}} periods more than the first', { replace: { maxPeriods } })}</p>
+                </>
+              }
+            >
               <InputNumber
                 defaultValue={defaultSlot}
                 isError={isFirstError}
@@ -91,7 +99,7 @@ function FundAdd ({ auctionInfo, bestNumber, className, leasePeriod, ownedIds }:
               />
             </Modal.Columns>
           </Modal.Content>
-          <Modal.Actions onCancel={toggleOpen}>
+          <Modal.Actions>
             <TxButton
               accountId={accountId}
               icon='plus'

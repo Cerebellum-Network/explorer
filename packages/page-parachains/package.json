@@ -1,11 +1,20 @@
 {
+  "bugs": "https://github.com/polkadot-js/apps/issues",
+  "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-parachains#readme",
+  "license": "Apache-2.0",
   "name": "@polkadot/app-parachains",
   "private": true,
-  "version": "0.86.2",
-  "license": "Apache-2.0",
+  "repository": {
+    "directory": "packages/page-parachains",
+    "type": "git",
+    "url": "https://github.com/polkadot-js/apps.git"
+  },
+  "sideEffects": false,
+  "type": "module",
+  "version": "0.106.2-19",
   "dependencies": {
-    "@babel/runtime": "^7.13.10",
-    "@polkadot/react-components": "^0.86.2",
-    "@polkadot/react-query": "^0.86.2"
+    "@babel/runtime": "^7.17.2",
+    "@polkadot/react-components": "^0.106.2-19",
+    "@polkadot/react-query": "^0.106.2-19"
   }
 }

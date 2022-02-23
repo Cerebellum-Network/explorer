@@ -1,11 +1,13 @@
-// Copyright 2017-2021 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import { typesChain } from '@phala/typedefs';
 import Cere from './cere';
-import Phala from './phala';
+import CrustMaxwell from './crust-maxwell';
 
 // alphabetical, based on the actual displayed name
 export default {
+  ...typesChain,
   'Cere Devnet': Cere,
   'Cere Ext Devs Network 1': Cere,
   'Cere Ext Devs Network 2': Cere,
@@ -24,6 +26,6 @@ export default {
   'Cerebellum Mainnet Alpha': Cere,
   'Cerebellum QAnet': Cere,
   'Cerebellum Testnet': Cere,
+  'Crust Maxwell': CrustMaxwell,
   'Local Testnet': Cere, // For Nodes bootstraped from --local chainspec
-  'Phala PoC-3': Phala
 };
