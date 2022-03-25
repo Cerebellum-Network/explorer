@@ -220,6 +220,7 @@ import emptyLogo from './empty.svg';
 export const chainLogos: Record<string, unknown> = [
   ['darwinia crab', nodeCrab],
   ['Cere Mainnet Alpha', nodeCere],
+  ['Cere Mainnet Beta', nodeCere],
   ['Cere Testnet', nodeCere],
   ['Cere QAnet', nodeCere],
   ['Cere Devnet', nodeCere],

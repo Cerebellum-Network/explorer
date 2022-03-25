@@ -13,6 +13,7 @@ export default {
   'Cere Ext Devs Network 4': Cere,
   'Cere Ext Devs Network 5': Cere,
   'Cere Mainnet Alpha': Cere,
+  'Cere Mainnet Beta': Cere,
   'Cere QAnet': Cere,
   'Cere Testnet': Cere,
   'Cerebellum Devnet': Cere,
