@@ -3,6 +3,9 @@
 ## vNext
 - ...
 
+## vNext
+- Added `Cere Mainnet Beta` to the types mapping
+
 ## 0.13.0
 - Enabled inflation on staking overview page
 
