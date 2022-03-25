@@ -3,7 +3,7 @@
 ## vNext
 - ...
 
-## vNext
+## 0.13.1
 - Added `Cere Mainnet Beta` to the types mapping
 
 ## 0.13.0
