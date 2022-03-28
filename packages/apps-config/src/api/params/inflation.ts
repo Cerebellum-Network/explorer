@@ -14,8 +14,8 @@ interface InflationParams {
 
 const DEFAULT_PARAMS: InflationParams = {
   falloff: 0.05,
-  idealStake: 0.1,
-  maxInflation: 0.013,
+  idealStake: 0.2,
+  maxInflation: 0.05,
   minInflation: 0.0001
 };
 
