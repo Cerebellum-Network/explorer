@@ -3,6 +3,9 @@
 ## vNext
 - ...
 
+## 0.13.2
+- Updated inflation parameters
+
 ## 0.13.1
 - Added `Cere Mainnet Beta` to the types mapping
 
