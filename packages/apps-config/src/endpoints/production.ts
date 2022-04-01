@@ -70,7 +70,8 @@ export function createProduction (t: TFunction): LinkOption[] {
       info: 'cere',
       text: t('rpc.cere', 'Cere Mainnet', { ns: 'apps-config' }),
       providers: {
-        'Cere Network': 'wss://archive-1.mainnet.cere.network:9945'
+        'Mirror 1': 'wss://archive-1.mainnet.cere.network:9945',
+        'Mirror 2': 'wss://archive.mainnet.cere.network:9945',
       }
     },
     {
