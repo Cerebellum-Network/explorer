@@ -36,7 +36,7 @@ export function expandEndpoint (t: TFunction, input: EndpointOption): LinkOption
   const result = Object.entries(providers).map(([host, value], index): LinkOption => ({
     ...base,
     dnslink: index === 0 ? dnslink : undefined,
-    textBy: t('rpc.hosted.by', 'hosted by {{host}}', { ns: 'apps-config', replace: { host } }),
+    textBy: t('rpc.hosted.by', '{{host}}', { ns: 'apps-config', replace: { host } }),
     value
   }));
 

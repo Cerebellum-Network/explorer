@@ -3,6 +3,9 @@
 ## vNext
 - ...
 
+## 0.13.3
+- Added Cere Mirror 1 and 2
+
 ## 0.13.2
 - Updated inflation parameters
 
