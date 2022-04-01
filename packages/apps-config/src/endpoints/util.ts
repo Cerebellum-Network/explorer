@@ -59,23 +59,12 @@ function expandEndpoint (t: TFunction, { dnslink, genesisHash, homepage, info, i
     text
   };
 
-  const result = Object
-    .entries(
-      hasProviders
-        ? providers
-        : { Placeholder: `wss://${++dummyId}` }
-    )
-    .filter((_, index) => !firstOnly || index === 0)
-    .map(([host, value], index): LinkOption => ({
-      ...base,
-      dnslink: index === 0 ? dnslink : undefined,
-      isLightClient: value.startsWith('light://'),
-      isRelay: false,
-      textBy: value.startsWith('light://')
-        ? t('lightclient.experimental', 'light client (experimental)', { ns: 'apps-config' })
-        : t('rpc.hosted.via', 'via {{host}}', { ns: 'apps-config', replace: { host } }),
-      value
-    }));
+  const result = Object.entries(providers).map(([host, value], index): LinkOption => ({
+    ...base,
+    dnslink: index === 0 ? dnslink : undefined,
+    textBy: t('rpc.hosted.by', '{{host}}', { ns: 'apps-config', replace: { host } }),
+    value
+  }));
 
   if (linked) {
     const last = result[result.length - 1];
