@@ -36,7 +36,7 @@ export function createTesting (t: TFunction): LinkOption[] {
       info: 'cere',
       text: t('rpc.cere', 'Cere QAnet', { ns: 'apps-config' }),
       providers: {
-        'Cere Network': 'wss://rpc.qanet.cere.network:9945'
+        'Cere Network': 'wss://archive.v2.qanet.cere.network/ws'
       }
     },
     {
