@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## vNext
-- ...
+- Updated QAnet and Testnet urls
 
 ## 0.13.3
 - Added Cere Mirror 1 and 2
