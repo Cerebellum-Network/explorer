@@ -35,7 +35,7 @@ interface UrlState {
 const STORAGE_AFFINITIES = 'network:affinities';
 
 export function isValidUrl (url: string): boolean {
-  const regex = /^(wss:\/\/)(.{7,})/;
+  const regex = /^(wss?:\/\/)(.{7,})/;
 
   return (
     // check it matches the URL format wss://domain-name
