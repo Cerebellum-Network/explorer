@@ -32,7 +32,7 @@
   "rpc.header.rococo.relay": "Test Rococo & parachains",
   "rpc.header.test": "Test networks",
   "rpc.header.test.relay": "Test relays & parachains",
-  "rpc.hosted.by": "{{host}}",
+  "rpc.hosted.by": "hosted by {{host}}",
   "rpc.hydra": "HydraDX",
   "rpc.jupiter": "Jupiter",
   "rpc.kilt": "Mashnet",
