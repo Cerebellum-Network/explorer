@@ -4,7 +4,7 @@
 - ...
 
 ## 0.14.0
-- Updated QAnet and Testnet urls
+- Updated Cere QAnet, Testnet and Mainnet urls
 
 ## 0.13.3
 - Added Cere Mirror 1 and 2
