@@ -71,6 +71,7 @@ export function createProduction (t: TFunction): LinkOption[] {
       text: t('rpc.cere', 'Cere Mainnet', { ns: 'apps-config' }),
       providers: {
         'Cere Network': 'wss://archive.v2.mainnet.cere.network/ws',
+        'Republic Crypto': 'wss://cere-archive.centrifuge.labs.republiccrypto.com:444',
       }
     },
     {
