@@ -22,7 +22,7 @@ export function validateURL (url: string): boolean {
     throw new Error('Invalid ws port');
   }
 
-  assert(/(.*.cere.network$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
+  assert(/(.*.cere.network$)|(.*.republiccrypto.com$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
 
   return true;
 }
