@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## vNext
-- ...
+- Added Republic Crypto as a Cere archive node provider
 
 ## 0.14.0
 - Updated Cere QAnet, Testnet and Mainnet urls
