@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+- ...
+
+## 0.15.0
 - Added Republic Crypto as a Cere archive node provider
 
 ## 0.14.0
