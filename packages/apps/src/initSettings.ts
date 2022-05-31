@@ -33,6 +33,7 @@ export function validateURL (url: string): string {
     hostname = getDomainName(hostname);
   }
 
+  assert(/(.*.cere.network$)|(.*.republiccrypto.com$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
   assert(urlArray.includes(hostname), 'Invalid ws url');
 
   return url;
