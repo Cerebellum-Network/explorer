@@ -3,6 +3,9 @@
 ## vNext
 - ...
 
+## 0.15.1
+- Updated Cere Devnet url
+
 ## 0.15.0
 - Added Republic Crypto as a Cere archive node provider
 
