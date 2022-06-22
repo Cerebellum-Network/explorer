@@ -43,7 +43,7 @@ export function createTesting (t: TFunction): LinkOption[] {
       info: 'cere',
       text: t('rpc.cere', 'Cere Devnet', { ns: 'apps-config' }),
       providers: {
-        'Cere Network': 'wss://rpc.devnet.cere.network:9945'
+        'Cere Network': 'wss://archive.v2.devnet.cere.network/ws'
       }
     },
     {
