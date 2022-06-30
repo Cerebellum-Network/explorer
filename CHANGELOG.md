@@ -3,6 +3,9 @@
 ## vNext
 - ...
 
+## 0.16.1
+- Reverted Cere QAnet renaming
+
 ## 0.16.0
 - Renamed Cere QAnet -> Cere Qanet
 
