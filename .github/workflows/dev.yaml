@@ -1,5 +1,6 @@
 name: Release to dev
 on:
+  workflow_dispatch:
   push:
     branches:
       - dev
@@ -29,7 +30,7 @@ jobs:
         with:
           name: build
           path: build
-  
+
   deploy:
     runs-on: [ self-hosted, cere-network-large-workers ]
     needs: build
