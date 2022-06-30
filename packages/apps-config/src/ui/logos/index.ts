@@ -88,7 +88,7 @@ export const chainLogos: Record<string, unknown> = [
   ['Cere Mainnet Alpha', nodeCere],
   ['Cere Mainnet Beta', nodeCere],
   ['Cere Testnet', nodeCere],
-  ['Cere Qanet', nodeCere],
+  ['Cere QAnet', nodeCere],
   ['Cere Devnet', nodeCere],
   ['Darwinia Crab PC2', nodeCrab],
   ['DataHighway', nodeDataHighway],
