@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## vNext
-- ...
+- Renamed Cere QAnet -> Cere Qanet
 
 ## 0.15.1
 - Updated Cere Devnet url
