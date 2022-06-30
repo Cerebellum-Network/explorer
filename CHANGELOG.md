@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+- ...
+
+## 0.16.0
 - Renamed Cere QAnet -> Cere Qanet
 
 ## 0.15.1
