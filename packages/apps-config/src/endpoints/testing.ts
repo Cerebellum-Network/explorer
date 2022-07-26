@@ -29,21 +29,21 @@ export function createTesting (t: TFunction): LinkOption[] {
       info: 'cere',
       text: t('rpc.cere', 'Cere Testnet', { ns: 'apps-config' }),
       providers: {
-        'Cere Network': 'wss://archive.v2.testnet.cere.network/ws'
+        'Cere Network': 'wss://archive.testnet.cere.network/ws'
       }
     },
     {
       info: 'cere',
       text: t('rpc.cere', 'Cere QAnet', { ns: 'apps-config' }),
       providers: {
-        'Cere Network': 'wss://archive.v2.qanet.cere.network/ws'
+        'Cere Network': 'wss://archive.qanet.cere.network/ws'
       }
     },
     {
       info: 'cere',
       text: t('rpc.cere', 'Cere Devnet', { ns: 'apps-config' }),
       providers: {
-        'Cere Network': 'wss://archive.v2.devnet.cere.network/ws'
+        'Cere Network': 'wss://archive.devnet.cere.network/ws'
       }
     },
     {
