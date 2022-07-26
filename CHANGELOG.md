@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## vNext
-- ...
+- Updated Cere Blockchain public URLs
 
 ## 0.16.1
 - Reverted Cere QAnet renaming
