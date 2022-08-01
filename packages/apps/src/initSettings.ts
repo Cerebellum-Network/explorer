@@ -100,6 +100,9 @@ function getApiUrl (): string {
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
+// clean settings on app reload
+store.clearAll();
+
 // There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
 const apiUrl = getApiUrl();
 

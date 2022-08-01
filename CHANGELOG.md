@@ -5,6 +5,7 @@
 
 ## 0.17.0
 - Updated Cere Blockchain public URLs
+- Fixed getting cached app settings from local storage
 
 ## 0.16.1
 - Reverted Cere QAnet renaming
