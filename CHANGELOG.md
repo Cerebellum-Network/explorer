@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.17.0
 - Updated Cere Blockchain public URLs
 
 ## 0.16.1
