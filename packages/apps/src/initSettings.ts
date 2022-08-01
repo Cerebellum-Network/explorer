@@ -68,6 +68,9 @@ function getApiUrl (): string {
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
+// clean settings on app reload
+store.clearAll();
+
 const apiUrl = getApiUrl();
 
 // set the default as retrieved here
