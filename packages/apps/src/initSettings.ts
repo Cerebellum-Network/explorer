@@ -93,15 +93,12 @@ function getApiUrl (): string {
   const fallbackUrl = endpoints.find(({ value }) => !!value);
 
   // via settings, or the default chain
-  return [stored.apiUrl, process.env.WS_URL].includes(settings.apiUrl)
-    ? settings.apiUrl // keep as-is
+  return [fallbackUrl, process.env.WS_URL].includes(stored.apiUrl as string)
+    ? stored.apiUrl as string// keep as-is
     : fallbackUrl
       ? fallbackUrl.value // grab the fallback
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
-
-// clean settings on app reload
-store.clearAll();
 
 // There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
 const apiUrl = getApiUrl();
