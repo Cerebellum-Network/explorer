@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import queryString from 'query-string';
-import store from 'store';
 
 import { createWsEndpoints } from '@polkadot/apps-config';
 import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
@@ -60,7 +59,7 @@ function getApiUrl (): string {
   const fallbackUrl = endpoints.find(({ value }) => !!value);
 
   // via settings, or the default chain
-  const urls = endpoints.map((endpoint) => endpoint.value).filter((endpoint) => !!endpoint);
+  const urls = endpoints.map((endpoint) => endpoint.value).filter((url) => !!url);
 
   return [...urls, process.env.WS_URL].includes(settings.apiUrl)
     ? settings.apiUrl // keep as-is
