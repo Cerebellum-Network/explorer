@@ -6,6 +6,7 @@ import Phala from './phala';
 
 // alphabetical, based on the actual displayed name
 export default {
+  'Cere Devnet 1': Cere,
   'Cere Devnet': Cere,
   'Cere Ext Devs Network 1': Cere,
   'Cere Ext Devs Network 2': Cere,
