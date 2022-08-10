@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.17.1
+- Added Cere Devnet 1
+
 ## 0.17.0
 - Updated Cere Blockchain public URLs
 - Fixed getting cached app settings from local storage

@@ -3,7 +3,7 @@
   "bugs": "https://github.com/polkadot-js/apps/issues",
   "description": "An Apps portal into the Polkadot network",
   "author": "Jaco Greeff <jacogr@gmail.com>",
-  "version": "0.16.1",
+  "version": "0.17.1",
   "license": "Apache-2",
   "private": true,
   "repository": {
