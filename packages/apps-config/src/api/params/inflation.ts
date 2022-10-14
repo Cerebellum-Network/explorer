@@ -18,9 +18,9 @@ const DEFAULT_PARAMS: InflationParams = {
   auctionAdjust: 0,
   auctionMax: 0,
   falloff: 0.05,
-  maxInflation: 0.1,
-  minInflation: 0.025,
-  stakeTarget: 0.5
+  stakeTarget: 0.2,
+  maxInflation: 0.05,
+  minInflation: 0.0001
 };
 
 const KNOWN_PARAMS: Record<string, InflationParams> = {
