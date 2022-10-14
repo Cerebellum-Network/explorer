@@ -95,6 +95,101 @@ Changes:
 - Silence build-step i18n scanner output
 
 
+## 0.121.1 Aug 22, 2022
+
+Contributed:
+
+- Update Logion types (Thanks to https://github.com/gdethier)
+- Update Bit Country Pioneer logo (Thanks to https://github.com/mikejamesli)
+- Add Rococo Amplitude (Thanks to https://github.com/gonzamontiel)
+- Add Kusama Snow (Thanks to https://github.com/0xrust)
+- Add Rococo Confti (Thanks to https://github.com/cheft)
+- Update Kusama GM endpoint (Thanks to https://github.com/arrudagates)
+- Adjust Unique lookup key (Thanks to https://github.com/ashkuc)
+- Add derive mapping for interlay testnets (Thanks to https://github.com/bvotteler)
+- Update Genshiro types (Thanks to https://github.com/pr0fedt)
+- Add BLD nodes endpoint for GM (Thanks to https://github.com/arrudagates)
+- Add TerraBioDAO endpoint for GM (Thanks to https://github.com/koutakou)
+- Add OnFinality endpoint for Efinity (Thanks to https://github.com/banananeko)
+- Add RadiumBlock endpoint for Statemine (Thanks to https://github.com/radiumb)
+- Update Moonbeam types bundle (Thanks to https://github.com/hyd628)
+- Add Dwellir endpoints for Acala and Karura (Thanks to https://github.com/benjichat)
+
+Changes:
+
+- Ajust display for endpoints (Relay, Parachains, Common)
+- Adjust check for availability of payment queries (via runtime)
+- Disable unreachable endpoints
+
+
+## 0.120.1 Aug 8, 2022
+
+Contributed:
+
+- Update i18n for nominee list (Thanks to https://github.com/Nick-1979)
+- Remove OnFinality endpoint for Calamari (Thanks to https://github.com/banananeko)
+- Remove OnFinality endpoint for Turnin (Thanks to https://github.com/irsal)
+- Add Dwellir endpoint for Bajun (Thanks to https://github.com/Maharacha)
+- Added Shiden/Astar endpoint (Thanks to https://github.com/shunsukew)
+- Remove Bit Country RPC node (Thanks to https://github.com/mikejamesli)
+- Add Web3 Games RPC node (Thanks to https://github.com/Zombieliu)
+
+Changes:
+
+- Built `typesBundle` statically (no explicit 3rd party dependencies)
+- Add support for Gov2 apps (referanda, preimages, whitelist, ranked collective)
+- Correctly handle errors on invalid proxy account selection
+- Handle JS apps error logs where logging itself fails
+
+
+## 0.119.1 Jul 30, 2022
+
+Contributed:
+
+- Fixes for alliance unscrupulous (Thanks to https://github.com/joepetrowski)
+- Add OnFinality endpoint for Kylin (Thanks to https://github.com/banananeko)
+- Update creditcoin endpoints (Thanks to https://github.com/jfrank-summit)
+- Register Bifrost on Rococo (Thanks to https://github.com/awesomepan)
+- Update Darwinia Crab parachain settings (Thanks to https://github.com/JayJay1024)
+- Add CESS testnet (Thanks to https://github.com/swowk)
+- Remove OnFalinaty endpoint for Basilisk (Thanks to https://github.com/banananeko)
+- Add Eggnet Rococo parachain (Thanks to https://github.com/1xstj)
+- Fix Turing logo display (Thanks to https://github.com/imstar15)
+- Add Subzero Rococo parachain (Thanks to https://github.com/vasylenko-yevhen)
+- Add Crust Rococo parachain (Thanks to https://github.com/mmyyrroonn)
+- Adjust Basilisk UI components (Thanks to https://github.com/lumir-mrkva)
+- Split Interlay & Kintsugi testnets (Thanks to https://github.com/gregdhill)
+- Add Dwellir endpoint for Efininity (Thanks to https://github.com/Maharacha)
+- Remove Dwellir endpoints for Acala & Karura (Thanks to https://github.com/Maharacha)
+- Add Crust, Litmus, Turing to Subsquare links (Thanks to https://github.com/wliyongfeng)
+
+Changes:
+
+- Add support for Alliance pallet
+- Only support contracts where `storageDepositLimit` is available
+- Adjust param component with additional deep inspection
+- Exclude `transactionPayment.TransactionFeePaid` from global events list
+
+
+## 0.118.1 Jul 19, 2022
+
+Contributed:
+
+- Add Kylin network (Thanks to https://github.com/Bart200c)
+- Add OLI parachain (Thanks to https://github.com/m-yahya)
+- Update OmniBTC logo (Thanks to https://github.com/wbh1328551759)
+- Westend collective common-good parachain (Thanks to https://github.com/lazam)
+- Update Singular to v2 links (Thanks to https://github.com/abzen)
+
+Changes:
+
+- Always use author from chain derive (remove apps-specific detection logic)
+- Don't fail full block display in explorer on undecodable events
+- Bump 3rd party dependencies
+- Filter sections/methods for internal attributes
+- Silence build-step i18n scanner output
+
+
 ## 0.117.3 Jul 14, 2022
 
 Contributed:
@@ -1428,6 +1523,11 @@ Changes:
 - Show unlocking when democracy has been undelegated
 - Disable all parachain < 1000 networks (now reserved)
 - Params now deals defaults to hex-only for H160/256/512
+
+## 0.1.0-cere Apr 16, 2021
+
+- Added config for ERC20 Bridge for Cere Network
+- Updated using upstream from origin repo master branch
 
 
 ## 0.87.1 Apr 12, 2021

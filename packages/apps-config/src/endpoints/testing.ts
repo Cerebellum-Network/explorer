@@ -18,6 +18,7 @@ export * from './testingRelayWestend';
 export const testChains: EndpointOption[] = [
   {
     info: 'ajuna',
+    isDisabled: true,
     text: 'Ajuna Testnet',
     providers: {
       'Ajuna Network': 'wss://rpc-test.ajuna.network'
@@ -25,6 +26,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'aleph',
+    isDisabled: true,
     text: 'Aleph Zero Testnet',
     providers: {
       'Aleph Zero Foundation': 'wss://ws.test.azero.dev'
@@ -40,6 +42,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'arctic',
+    isDisabled: true,
     text: 'Arctic',
     providers: {
       Arctic: 'wss://arctic-rpc.icenetwork.io:9944'
@@ -47,6 +50,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'Ares Gladios',
+    isDisabled: true,
     text: 'Ares Gladios',
     providers: {
       'Ares Protocol': 'wss://gladios.aresprotocol.io'
@@ -54,6 +58,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'jaz',
+    isDisabled: true,
     text: 'Artio Testnet',
     providers: {
       Jaz: 'wss://ws0.jaz.network'
@@ -61,6 +66,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'automata-contextfree',
+    isDisabled: true,
     text: 'Automata ContextFree',
     providers: {
       'Automata Network': 'wss://cf-api.ata.network',
@@ -77,6 +83,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'bifrost',
+    isDisabled: true,
     text: 'Bifrost Stage Network',
     providers: {
       Liebi: 'wss://bifrost-rpc.testnet.liebi.com/ws'
@@ -84,13 +91,36 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'bitcountry',
+    isDisabled: true,
     text: 'Bit.Country - Metaverse Network',
     providers: {
       'Metaverse Foundation': 'wss://tewai-rpc.bit.country'
     }
   },
   {
+    info: 'cere',
+    text: 'Cere Testnet',
+    providers: {
+      'Cere Network': 'wss://ext-devs-node-3.cluster-3.cere.network:9945#testnet'
+    }
+  },
+  {
+    info: 'cere',
+    text: 'Cere QAnet',
+    providers: {
+      'Cere Network': 'wss://ext-devs-node-3.cluster-3.cere.network:9945#qanet'
+    }
+  },
+  {
+    info: 'cere',
+    text: 'Cere Devnet',
+    providers: {
+      'Cere Network': 'wss://ext-devs-node-3.cluster-3.cere.network:9945#devnet'
+    }
+  },
+  {
     info: 'cess-testnet',
+    isDisabled: true,
     text: 'CESS Testnet',
     providers: {
       CESS: 'wss://testnet-rpc0.cess.cloud/ws/'
@@ -116,6 +146,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'creditcoin-testnet',
+    isDisabled: true,
     text: 'Creditcoin Testnet',
     providers: {
       'Creditcoin Foundation': 'wss://rpc.testnet.creditcoin.network/ws'
@@ -123,6 +154,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'Crust Maxwell',
+    isDisabled: true,
     text: 'Crust Maxwell',
     providers: {
       'Crust Network': 'wss://api.crust.network/',
@@ -156,6 +188,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'dotmog',
+    isDisabled: true,
     text: 'DOTMog',
     providers: {
       DOTMog: 'wss://mogiway-01.dotmog.com'
@@ -163,6 +196,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'encointer',
+    isDisabled: true,
     text: 'Encointer Gesell',
     providers: {
       'Encointer Association': 'wss://gesell.encointer.org'
@@ -202,6 +236,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'galois',
+    isDisabled: true,
     text: 'Galois',
     providers: {
       MathWallet: 'wss://galois-hk.maiziqianbao.net/ws',
@@ -218,6 +253,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'geek',
+    isDisabled: true,
     text: 'GeekCash',
     providers: {
       'Geek Team': 'wss://testnet.geekcash.org'
@@ -233,6 +269,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'interlay-testnet',
+    isDisabled: true,
     text: 'Interlay Testnet',
     providers: {
       Interlay: 'wss://api-testnet.interlay.io/parachain/'
@@ -240,6 +277,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'brainstorm',
+    isDisabled: true,
     text: 'InvArch Brainstorm Testnet',
     providers: {
       // 'InvArch Team': 'wss://brainstorm.invarch.network/' // https://github.com/polkadot-js/apps/issues/8020
@@ -257,6 +295,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'joystream',
+    isDisabled: true,
     text: 'Joystream',
     providers: {
       Jsgenesis: 'wss://rpc.joystream.org:9944'
@@ -280,6 +319,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'kilt',
+    isDisabled: true,
     text: 'KILT Mashnet',
     providers: {
       'KILT Protocol': 'wss://full-nodes.kilt.io:9944/'
@@ -287,6 +327,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'kilt',
+    isDisabled: true,
     text: 'KILT Peregrine',
     providers: {
       'KILT Protocol': 'wss://peregrine.kilt.io/parachain-public-ws/'
@@ -294,6 +335,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'kintsugi-testnet',
+    isDisabled: true,
     text: 'Kintsugi Testnet',
     providers: {
       Interlay: 'wss://api-dev-kintsugi.interlay.io/parachain'
@@ -301,6 +343,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'klugdossier',
+    isDisabled: true,
     text: 'Klug Dossier',
     providers: {
       'Klug Dossier': 'wss://klugdossier.net/'
@@ -316,6 +359,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'litentry',
+    isDisabled: true,
     text: 'Litentry Testnet',
     providers: {
       Litentry: 'wss://testnet.litentry.io'
@@ -323,6 +367,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'logion',
+    isDisabled: true,
     text: 'logion Para Testnet',
     providers: {
       Logion: 'wss://chimay.logion.network'
@@ -330,6 +375,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'logion',
+    isDisabled: true,
     text: 'logion Standalone Testnet',
     providers: {
       Logion: 'wss://test-rpc01.logion.network'
@@ -337,6 +383,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'acala',
+    isDisabled: true,
     text: 'Mandala',
     providers: {
       Acala: 'wss://mandala.polkawallet.io',
@@ -353,6 +400,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'minix',
+    isDisabled: true,
     text: 'MiniX Testnet',
     providers: {
       Chainx: 'wss://minichain.coming.chat/ws'
@@ -360,6 +408,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'moonbaseAlpha',
+    isDisabled: true,
     text: 'Moonbase Alpha',
     providers: {
       'Moonbeam Foundation': 'wss://wss.api.moonbase.moonbeam.network',
@@ -378,6 +427,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'nftmart',
+    isDisabled: true,
     text: 'NFTMart',
     providers: {
       NFTMartDev: 'wss://dev-ws.nftmart.io',
@@ -386,7 +436,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'opal',
-    isDisabled: false,
+    isDisabled: true,
     text: 'OPAL by UNIQUE',
     providers: {
       'Geo Load Balancer': 'wss://ws-opal.unique.network',
@@ -405,6 +455,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'pangolin',
+    isDisabled: true,
     text: 'Pangolin',
     providers: {
       'Darwinia Network': 'wss://pangolin-rpc.darwinia.network'
@@ -412,6 +463,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'pangoro',
+    isDisabled: true,
     text: 'Pangoro',
     providers: {
       'Darwinia Network': 'wss://pangoro-rpc.darwinia.network'
@@ -419,6 +471,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'phala',
+    isDisabled: true,
     text: 'Phala (PoC 5)',
     providers: {
       'Phala Network': 'wss://poc5.phala.network/ws'
@@ -442,6 +495,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'polkadex',
+    isDisabled: true,
     text: 'Polkadex',
     providers: {
       'Polkadex Team': 'wss://blockchain.polkadex.trade'
@@ -449,6 +503,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'polymesh',
+    isDisabled: true,
     text: 'Polymesh Testnet',
     providers: {
       Polymath: 'wss://testnet-rpc.polymesh.live'
@@ -456,6 +511,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'pontem',
+    isDisabled: true,
     text: 'Pontem',
     providers: {
       // Pontem: 'wss://testnet.pontem.network/ws', // https://github.com/polkadot-js/apps/issues/7652
@@ -487,6 +543,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'sherpax',
+    isDisabled: true,
     text: 'Sherpax Testnet',
     providers: {
       Chainx: 'wss://sherpax-testnet.chainx.org'
@@ -494,6 +551,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'shibuya',
+    isDisabled: true,
     text: 'Shibuya',
     providers: {
       StakeTechnologies: 'wss://rpc.shibuya.astar.network',
@@ -503,6 +561,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'skyekiwi',
+    isDisabled: true,
     text: 'SkyeKiwi Testnet',
     providers: {
       SkyeKiwi: 'wss://staging.rpc.skye.kiwi'
@@ -510,6 +569,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'soonsocial',
+    isDisabled: true,
     text: 'Soonsocial',
     providers: {
       DappForce: 'wss://testnet.subsocial.network'
@@ -517,6 +577,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'sora-substrate',
+    isDisabled: true,
     text: 'SORA-staging',
     providers: {
       Soramitsu: 'wss://ws.stage.sora2.soramitsu.co.jp'
@@ -540,6 +601,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'subspace-farmnet',
+    isDisabled: true,
     text: 'Subspace Farmnet',
     providers: {
       'Subspace Network': 'wss://farm-rpc.subspace.network/ws'
@@ -547,6 +609,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'subspace-gemini-1',
+    isDisabled: true,
     text: 'Subspace Gemini 1',
     providers: {
       'North America': 'wss://na.gemini-1b.subspace.network/ws',
@@ -556,6 +619,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'subspace',
+    isDisabled: true,
     text: 'Subspace Testnet',
     providers: {
       'Subspace Network': 'wss://test-rpc.subspace.network'
@@ -563,6 +627,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'ternoa-alphanet',
+    isDisabled: true,
     text: 'Ternoa Alphanet',
     providers: {
       CapsuleCorp: 'wss://alphanet.ternoa.com'
@@ -570,6 +635,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'ternoa-testnet',
+    isDisabled: true,
     text: 'Ternoa Testnet',
     providers: {
       CapsuleCorp: 'wss://testnet.ternoa.com/'
@@ -577,6 +643,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'laminar',
+    isDisabled: true,
     text: 'Turbulence',
     providers: {
       Laminar: 'wss://testnet-node-1.laminar-chain.laminar.one/ws'
@@ -584,6 +651,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'uniarts',
+    isDisabled: true,
     text: 'UniArts',
     providers: {
       UniArts: 'wss://testnet.uniarts.network'
@@ -607,6 +675,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'vodka',
+    isDisabled: true,
     text: 'Vodka',
     providers: {
       Vodka: 'wss://vodka.rpc.neatcoin.org/ws'
@@ -614,6 +683,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'web3games',
+    isDisabled: true,
     text: 'Web3Games',
     providers: {
       'Web3Games Foundation 0': 'wss://testnet-rpc-0.web3games.org',
@@ -631,6 +701,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'zeitgeist',
+    isDisabled: true,
     text: 'Zeitgeist Battery Station',
     providers: {
       Zeitgeist: 'wss://bsr.zeitgeist.pm'
@@ -638,6 +709,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'zero',
+    isDisabled: true,
     text: 'Zero Alphaville',
     providers: {
       ZERO: 'wss://alphaville.zero.io'

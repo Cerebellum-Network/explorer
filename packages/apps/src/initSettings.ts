@@ -16,6 +16,14 @@ function networkOrUrl (apiUrl: string): void {
   }
 }
 
+function networkOrUrl (apiUrl: string): void {
+  if (apiUrl.startsWith('light://')) {
+    console.log('Light endpoint=', apiUrl.replace('light://', ''));
+  } else {
+    console.log('WS endpoint=', apiUrl);
+  }
+}
+
 function getApiUrl (): string {
   // we split here so that both these forms are allowed
   //  - http://localhost:3000/?rpc=wss://substrate-rpc.parity.io/#/explorer
