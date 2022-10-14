@@ -1,4 +1,4 @@
-// Copyright 2017-2021 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import queryString from 'query-string';
@@ -24,6 +24,14 @@ export function validateURL (url: string): boolean {
   assert(/(.*.cere.network$)|(.*.republiccrypto.com$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
 
   return true;
+}
+
+function networkOrUrl (apiUrl: string): void {
+  if (apiUrl.startsWith('light://')) {
+    console.log('Light endpoint=', apiUrl.replace('light://', ''));
+  } else {
+    console.log('WS endpoint=', apiUrl);
+  }
 }
 
 function getApiUrl (): string {
@@ -52,7 +60,7 @@ function getApiUrl (): string {
     const option = endpoints.find(({ dnslink }) => dnslink === ipnsChain);
 
     if (option) {
-      return option.value as string;
+      return option.value;
     }
   }
 
@@ -64,13 +72,14 @@ function getApiUrl (): string {
   return [...urls, process.env.WS_URL].includes(settings.apiUrl)
     ? settings.apiUrl // keep as-is
     : fallbackUrl
-      ? fallbackUrl.value as string // grab the fallback
+      ? fallbackUrl.value // grab the fallback
       : 'ws://127.0.0.1:9944'; // nothing found, go local
 }
 
+// There cannot be a Substrate Connect light client default (expect only jrpc EndpointType)
 const apiUrl = getApiUrl();
 
 // set the default as retrieved here
 settings.set({ apiUrl });
 
-console.log('WS endpoint=', apiUrl);
+networkOrUrl(apiUrl);
