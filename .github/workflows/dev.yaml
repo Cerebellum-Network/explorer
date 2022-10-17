@@ -9,7 +9,7 @@ jobs:
   build:
     runs-on: [ self-hosted, cere-network-large-workers ]
     container:
-      image: node:12-buster-slim
+      image: node:14-buster-slim
     steps:
       - uses: actions/checkout@v3
       - name: Install system packages
@@ -24,7 +24,7 @@ jobs:
       - name: Install packages
         run: yarn install
       - name: Build
-        run: yarn build
+        run: yarn build:www
       - name: Prepare artifacts
         uses: actions/upload-artifact@v2
         with:
