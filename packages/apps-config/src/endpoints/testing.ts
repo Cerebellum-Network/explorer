@@ -90,6 +90,27 @@ export const testChains: EndpointOption[] = [
     }
   },
   {
+    info: 'cere',
+    text: 'Cere Testnet',
+    providers: {
+      'Cere Network': 'wss://archive.testnet.cere.network/ws'
+    }
+  },
+  {
+    info: 'cere',
+    text: 'Cere QAnet',
+    providers: {
+      'Cere Network': 'wss://archive.qanet.cere.network/ws'
+    }
+  },
+  {
+    info: 'cere',
+    text: 'Cere Devnet',
+    providers: {
+      'Cere Network': 'wss://archive.devnet.cere.network/ws'
+    }
+  },
+  {
     info: 'cess-testnet',
     text: 'CESS Testnet',
     providers: {
