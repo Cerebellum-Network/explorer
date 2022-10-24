@@ -45,8 +45,8 @@ export const prodChains: EndpointOption[] = [
     info: 'cere',
     text: 'Cere Mainnet',
     providers: {
-      'Cere Network': 'wss://ext-devs-node-3.cluster-3.cere.network:9945',
-      'Republic Crypto': 'wss://ext-devs-node-3.cluster-3.cere.network:9945#republic',
+      'Cere Network': 'wss://archive.mainnet.cere.network/ws',
+      'Republic Crypto': 'wss://cere-archive.centrifuge.labs.republiccrypto.com:444',
     }
   },
   {
