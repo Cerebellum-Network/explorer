@@ -23,5 +23,6 @@ export default {
     metadata: 'Vec<u8>'
   },
   Address: 'MultiAddress',
-  LookupSource: 'MultiAddress'
+  LookupSource: 'MultiAddress',
+  AccountInfo: 'AccountInfoWithDualRefCount'
 };
