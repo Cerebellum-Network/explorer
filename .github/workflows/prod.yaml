@@ -13,7 +13,7 @@ jobs:
       deploy_container: 'ubuntu:20.04'
       install_packages_command: 'yarn install'
       build_command: 'yarn build'
-      path_to_static_files_to_upload: 'build'
+      path_to_static_files_to_upload: 'packages/apps/build'
     secrets:
       NETWORK_AWS_ACCESS_KEY_ID: ${{ secrets.PRD_NETWORK_AWS_ACCESS_KEY_ID }}
       NETWORK_AWS_SECRET_ACCESS_KEY: ${{ secrets.PRD_NETWORK_AWS_SECRET_ACCESS_KEY }}
