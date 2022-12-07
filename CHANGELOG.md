@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.18.0
 - Added support of the Cere node v2.32.0 
 
 ## 0.17.1
