@@ -3,8 +3,11 @@
 ## vNext
 ...
 
+## 0.18.1
+- Added "Republic Crypto | Runtime" as a Cere archive node provider in Testnet
+
 ## 0.18.0
-- Added support of the Cere node v2.32.0 
+- Added support of the Cere node v2.32.0
 
 ## 0.17.1
 - Added Cere Devnet 1
