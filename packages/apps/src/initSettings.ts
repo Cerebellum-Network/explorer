@@ -21,11 +21,11 @@ export function validateURL (url: string): boolean {
     throw new Error('Invalid ws port');
   }
 
-  assert(/(.*.cere.network$)|(.*.republiccrypto.com$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
+  assert(/(.*.cere.network$)|(.*.republiccrypto.com$)|(.*.republiccrypto-runtime.com$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
 
   return true;
 }
-  
+
 function networkOrUrl (apiUrl: string): void {
   if (apiUrl.startsWith('light://')) {
     console.log('Light endpoint=', apiUrl.replace('light://', ''));
