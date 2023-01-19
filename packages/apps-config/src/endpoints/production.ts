@@ -46,7 +46,7 @@ export const prodChains: EndpointOption[] = [
     text: 'Cere Mainnet',
     providers: {
       'Cere Network': 'wss://archive.mainnet.cere.network/ws',
-      'Republic Crypto': 'wss://cere-archive.centrifuge.labs.republiccrypto.com:444',
+      'Republic Crypto | Runtime': 'wss://mainnet.cere-archive.republiccrypto-runtime.com:444',
     }
   },
   {

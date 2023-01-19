@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.18.2
+- Added "Republic Crypto | Runtime" as a Cere archive node provider in Mainnet
+
 ## 0.18.1
 - Added "Republic Crypto | Runtime" as a Cere archive node provider in Testnet
 
