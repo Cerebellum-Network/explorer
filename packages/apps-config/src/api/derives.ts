@@ -1,12 +1,12 @@
-// Copyright 2017-2022 @polkadot/apps-config authors & contributors
+// Copyright 2017-2023 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { OverrideBundleDefinition, OverrideBundleType } from '@polkadot/types/types';
 
-import equilibrium from './spec/equilibrium';
-import genshiro from './spec/genshiro';
-import interbtc from './spec/interbtc';
-import subspace from './spec/subspace';
+import equilibrium from './spec/equilibrium.js';
+import genshiro from './spec/genshiro.js';
+import interbtc from './spec/interbtc.js';
+import subspace from './spec/subspace.js';
 
 const mapping: [OverrideBundleDefinition, string[]][] = [
   [equilibrium, ['Equilibrium']],
