@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.19.0
+- Hid Files (IPFS) page
+
 ## 0.18.2
 - Added "Republic Crypto | Runtime" as a Cere archive node provider in Mainnet
 
