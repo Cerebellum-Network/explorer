@@ -469,7 +469,7 @@ export const prodParasKusama: EndpointOption[] = [
       Blast: 'wss://moonriver.public.blastapi.io',
       'Moonbeam Foundation': 'wss://wss.api.moonriver.moonbeam.network',
       OnFinality: 'wss://moonriver.api.onfinality.io/public-ws',
-      UnitedBloc: 'wss://moonriver.unitedbloc.com:2001'
+      UnitedBloc: 'wss://moonriver.unitedbloc.com'
     },
     text: 'Moonriver',
     ui: {
@@ -482,10 +482,7 @@ export const prodParasKusama: EndpointOption[] = [
     info: 'heiko',
     paraId: 2085,
     providers: {
-      // This is a possible false positive since OnFinality does not allow connections
-      // from non polkadot.js.org urls - however until resolved, this needs to be disabled
-      // since we cannot manually check the urls twice daily when they are reported
-      OnFinality: 'wss://parallel-heiko.api.onfinality.io/public-ws', // https://github.com/polkadot-js/apps/issues/8973
+      OnFinality: 'wss://parallel-heiko.api.onfinality.io/public-ws',
       Parallel: 'wss://heiko-rpc.parallel.fi'
     },
     text: 'Parallel Heiko',
