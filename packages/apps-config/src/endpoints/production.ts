@@ -2,59 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type {EndpointOption} from './types.js';
-
-import {
-  chains3dpassPNG,
-  chainsAlephSVG,
-  chainsBittensorPNG,
-  chainsCreditcoinPNG,
-  chainsDebioSVG,
-  chainsEquilibriumSVG,
-  chainsFragnovaPNG,
-  chainsGenshiroSVG,
-  chainsLogionPNG,
-  chainsMyriadPNG,
-  chainsSpannerPNG,
-  chainsVaraSVG
-} from '../ui/logos/chains/index.js';
-import {
-  nodesAresOdysseySVG,
-  nodesAutomataPNG,
-  nodesCentrifugePNG,
-  nodesChainxSVG,
-  nodesCompetitorsClubPNG,
-  nodesCrownSterlingPNG,
-  nodesCrustSVG,
-  nodesDarwiniaSVG,
-  nodesDatahighwayPNG,
-  nodesDockPNG,
-  nodesEdgewareWhitePNG,
-  nodesEfinitySVG,
-  nodesHanyonycashPNG,
-  nodesHumanodePNG,
-  nodesJoystreamSVG,
-  nodesKulupuSVG,
-  nodesKusariSVG,
-  nodesMathSVG,
-  nodesMinixPNG,
-  nodesNftmartPNG,
-  nodesNodleSVG,
-  nodesPolkadexSVG,
-  nodesPolymeshSVG,
-  nodesRiochainSVG,
-  nodesRobonomicsSVG,
-  nodesSherpaxPNG,
-  nodesSoraSubstrateSVG,
-  nodesStafiPNG,
-  nodesSubgameSVG,
-  nodesSubsocialSVG,
-  nodesSwapdexSVG,
-  nodesTernoaSVG,
-  nodesThebifrostPNG,
-  nodesUniartsPNG,
-  nodesUnitnetworkPNG,
-  nodesCereSVG
-} from '../ui/logos/nodes/index.js';
+import {nodesCereSVG} from '../ui/logos/nodes/index.js';
 
 export * from './productionRelayKusama.js';
 export * from './productionRelayPolkadot.js';
