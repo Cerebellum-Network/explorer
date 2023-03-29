@@ -1,14 +1,14 @@
-// Copyright 2017-2022 @polkadot/app-alliance authors & contributors
+// Copyright 2017-2023 @polkadot/app-alliance authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId32 } from '@polkadot/types/interfaces';
-import type { Member } from './types';
+import type { Member } from './types.js';
 
 import { useEffect, useState } from 'react';
 
 import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
-const ROLES = <const> ['Founder', 'Fellow', 'Ally'];
+const ROLES = <const> ['Retiring', 'Ally', 'Fellow'];
 
 function addMembers (prev: Member[], ...query: AccountId32[][]): Member[] {
   const all: Member[] = [];
@@ -31,7 +31,7 @@ function addMembers (prev: Member[], ...query: AccountId32[][]): Member[] {
     }
   }
 
-  return all;
+  return all.reverse();
 }
 
 function useMembersImpl (): Member[] | undefined {
@@ -43,7 +43,9 @@ function useMembersImpl (): Member[] | undefined {
 
   useEffect((): void => {
     role0 && role1 && role2 &&
-      setState((prev = []) => addMembers(prev, role0, role1, role2));
+      setState((prev = []) =>
+        addMembers(prev, role0, role1, role2)
+      );
   }, [role0, role1, role2]);
 
   return state;

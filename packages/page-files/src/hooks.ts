@@ -1,10 +1,10 @@
-// Copyright 2017-2022 @polkadot/app-files authors & contributors
+// Copyright 2017-2023 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { useCallback, useEffect, useMemo, useState } from 'react';
 import store from 'store';
 
-import { SaveFile } from './types';
+import { SaveFile } from './types.js';
 
 export interface Files {
   files: SaveFile[],

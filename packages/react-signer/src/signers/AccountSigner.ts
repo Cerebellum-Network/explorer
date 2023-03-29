@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-signer authors & contributors
+// Copyright 2017-2023 @polkadot/react-signer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Signer, SignerResult } from '@polkadot/api/types';
@@ -7,7 +7,7 @@ import type { Registry, SignerPayloadJSON } from '@polkadot/types/types';
 
 import { objectSpread } from '@polkadot/util';
 
-import { lockAccount } from '../util';
+import { lockAccount } from '../util.js';
 
 let id = 0;
 
