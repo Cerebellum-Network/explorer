@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { isValidUrl } from '../src/Endpoints/index';
+import { isValidUrl } from '../src/Endpoints/index.js';
 
 describe('Test isValidUrl function', () => {
   test.each([
