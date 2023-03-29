@@ -169,7 +169,8 @@ const StyledDiv = styled.div`
   }
 
   &.isLoading {
-    background: #999 !important;
+    // Change to Cere Network color to prevent blinking during reloading.
+    background: #b7aeff !important;
 
     .menuActive {
       background: var(--bg-page);
