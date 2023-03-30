@@ -3,6 +3,11 @@
 ## vNext
 ...
 
+## 0.20.0
+- Synced codebase with the Polkadot-JS App master branch.
+- Fixed bugs related to merging the new version.
+- Replaced the node image in the workflow from version 14 to the latest LTS version.
+
 ## 0.19.0
 - Hid Files (IPFS) page
 
