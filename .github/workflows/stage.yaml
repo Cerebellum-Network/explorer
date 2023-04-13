@@ -1,5 +1,6 @@
 name: Release to stage
 on:
+  workflow_dispatch:
   push:
     branches:
       - 'release/**'

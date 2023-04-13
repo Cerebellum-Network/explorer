@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.21.0
+- Added workflow_dispatch for Prod and Stage
+
 ## 0.20.0
 - Synced codebase with the Polkadot-JS App master branch.
 - Fixed bugs related to merging the new version.
