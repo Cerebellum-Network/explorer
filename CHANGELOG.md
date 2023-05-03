@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.19.1
+- Added workflow_dispatch for Prod and Stage
+
 ## 0.19.0
 - Hid Files (IPFS) page
 
