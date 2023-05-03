@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.19.2
 - Replaced DCC Wiki with Community Portal link.
 
 ## 0.19.1
