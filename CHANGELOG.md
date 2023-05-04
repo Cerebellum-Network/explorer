@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.19.2
+- Replaced DCC Wiki with Community Portal link.
+
 ## 0.19.1
 - Added workflow_dispatch for Prod and Stage
 
