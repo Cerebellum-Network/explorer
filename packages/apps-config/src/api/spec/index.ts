@@ -22,6 +22,7 @@ import bitcountryPioneer from './bitcountry-pioneer';
 import bitcountryParachain from './bitcountry-rococo';
 import centrifuge from './centrifuge';
 import centrifugeChain from './centrifuge-chain';
+import cere from '/cere';
 import chainx from './chainx';
 import clover from './clover';
 import cloverRococo from './clover-rococo';
@@ -158,6 +159,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'bitcountry-parachain': bitcountryParachain,
   centrifuge,
   'centrifuge-chain': centrifugeChain,
+  cere,
   chainx,
   'chainx-parachain': chainx,
   clover,
