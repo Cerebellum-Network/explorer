@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.19.3
+- Added GTAG GA4 Analytics tracking support
+
 ## 0.19.2
 - Replaced DCC Wiki with Community Portal link.
 
