@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BountyStatus } from '@polkadot/types/interfaces';
@@ -6,7 +6,7 @@ import type { BN } from '@polkadot/util';
 
 import { BN_ZERO } from '@polkadot/util';
 
-import { UserRole, ValidUnassignCuratorAction } from '../types';
+import { UserRole, ValidUnassignCuratorAction } from '../types.js';
 
 export function determineUnassignCuratorAction (roles: UserRole[], status: BountyStatus, blocksUntilUpdate?: BN): ValidUnassignCuratorAction[] {
   const actions: ValidUnassignCuratorAction[] = [];

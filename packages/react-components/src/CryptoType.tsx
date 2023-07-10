@@ -1,10 +1,10 @@
-// Copyright 2017-2022 @polkadot/react-components authors & contributors
+// Copyright 2017-2023 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useState } from 'react';
 
-import { AccountIdIsh } from './types';
-import { getAccountCryptoType } from './util';
+import { getAccountCryptoType } from './util/index.js';
+import { AccountIdIsh } from './types.js';
 
 interface Props {
   accountId: AccountIdIsh;
@@ -24,7 +24,7 @@ function CryptoType ({ accountId, className = '', label = '' }: Props): React.Re
   }, [accountId]);
 
   return (
-    <div className={`ui--CryptoType ${className}`}>
+    <div className={`${className} ui--CryptoType`}>
       {label}{type}
     </div>
   );
