@@ -11,6 +11,15 @@
 - Fixed bugs related to merging the new version.
 - Replaced the node image in the workflow from version 14 to the latest LTS version.
 
+## 0.19.3
+- Added GTAG GA4 Analytics tracking support
+
+## 0.19.2
+- Replaced DCC Wiki with Community Portal link.
+
+## 0.19.1
+- Added workflow_dispatch for Prod and Stage
+
 ## 0.19.0
 - Hid Files (IPFS) page
 
