@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.22.0
 - Added Cere Mainnet link to PolkassemblyIo
 
 ## 0.21.0
