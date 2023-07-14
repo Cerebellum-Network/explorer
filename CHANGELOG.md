@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## vNext
-...
+- Added Cere Mainnet link to PolkassemblyIo
 
 ## 0.21.0
 - Added workflow_dispatch for Prod and Stage
