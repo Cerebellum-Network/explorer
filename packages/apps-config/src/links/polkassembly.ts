@@ -12,6 +12,7 @@ export const PolkassemblyIo: ExternalDef = {
     Astar: 'astar',
     'Bifrost Polkadot': 'bifrost',
     Calamari: 'calamari',
+    'Cere Mainnet Beta': 'cere',
     'Centrifuge Mainnet': 'centrifuge',
     Khala: 'khala',
     Kusama: 'kusama',
