@@ -19,7 +19,7 @@ export const testChains: EndpointOption[] = [
     info: 'cere',
     text: 'Cere Testnet',
     providers: {
-      'Cere Network': 'wss://archive.testnet.cere.network/ws',
+      'Cere Network': 'wss://archive.testnet.cere.network:9945/',
       'Republic Crypto | Runtime': 'wss://testnet.cere-archive.republiccrypto-runtime.com:444'
     },
     ui: {
