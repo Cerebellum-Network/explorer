@@ -53,6 +53,7 @@ function useWeightImpl (): UseWeight {
       isValid = !megaGas.isZero() && percentage < 65;
     }
 
+    // @ts-ignore
     return {
       executionTime,
       isEmpty,
@@ -61,7 +62,7 @@ function useWeightImpl (): UseWeight {
       percentage,
       setIsEmpty,
       setMegaGas,
-      weight
+      weight,
     };
   }, [api, blockTime, isEmpty, megaGas, setIsEmpty, setMegaGas]);
 }
