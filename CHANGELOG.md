@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.23.0
 - Reverted to commit `f778359c` (between tags `v0.121.1` and `v0.122.1` of Polkadot-JS Apps) to align with our node version and fix the Smart Contract Page
 
 ## 0.22.0
