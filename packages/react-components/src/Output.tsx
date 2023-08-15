@@ -1,17 +1,16 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { isString } from '@polkadot/util';
-
-import CopyButton from './CopyButton.js';
-import Labelled from './Labelled.js';
-import { styled } from './styled.js';
+import CopyButton from './CopyButton';
+import Labelled from './Labelled';
 
 interface Props {
   children?: React.ReactNode;
   className?: string;
+  help?: React.ReactNode;
   isDisabled?: boolean;
   isError?: boolean;
   isFull?: boolean;
@@ -21,15 +20,16 @@ interface Props {
   isTrimmed?: boolean;
   label?: React.ReactNode;
   labelExtra?: React.ReactNode;
-  value?: React.ReactNode | string | null;
+  value?: string;
   withCopy?: boolean;
   withLabel?: boolean;
 }
 
-function Output ({ children, className = '', isDisabled, isError, isFull, isHidden, isMonospace, isSmall, isTrimmed, label, labelExtra, value, withCopy = false, withLabel }: Props): React.ReactElement<Props> {
+function Output ({ children, className = '', help, isDisabled, isError, isFull, isHidden, isMonospace, isSmall, isTrimmed, label, labelExtra, value, withCopy = false, withLabel }: Props): React.ReactElement<Props> {
   return (
-    <StyledLabelled
-      className={`${className} ui--Output`}
+    <Labelled
+      className={className}
+      help={help}
       isFull={isFull}
       isHidden={isHidden}
       isSmall={isSmall}
@@ -38,8 +38,8 @@ function Output ({ children, className = '', isDisabled, isError, isFull, isHidd
       withLabel={withLabel}
     >
       <div className={`ui--output ui dropdown selection ${isError ? ' error' : ''}${isMonospace ? ' monospace' : ''}${isDisabled ? 'isDisabled' : ''}`}>
-        {isTrimmed && isString(value) && (value.length > 512)
-          ? `${value.slice(0, 256)}…${value.slice(-256)}`
+        {isTrimmed && value && (value.length > 512)
+          ? `${value.substr(0, 256)}…${value.substr(-256)}`
           : value
         }
         {children}
@@ -47,11 +47,11 @@ function Output ({ children, className = '', isDisabled, isError, isFull, isHidd
       {withCopy && (
         <CopyButton value={value} />
       )}
-    </StyledLabelled>
+    </Labelled>
   );
 }
 
-const StyledLabelled = styled(Labelled)`
+export default React.memo(styled(Output)`
   .ui.selection.dropdown.ui--output.isDisabled {
     background: transparent;
     border-style: dashed;
@@ -63,6 +63,4 @@ const StyledLabelled = styled(Labelled)`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-`;
-
-export default React.memo(Output);
+`);

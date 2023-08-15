@@ -1,10 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-query authors & contributors
+// Copyright 2017-2022 @polkadot/react-query authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BlockNumber } from '@polkadot/types/interfaces';
 
 import React from 'react';
 
+import { Digits } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
@@ -19,9 +20,11 @@ function BestFinalized ({ children, className = '', label }: Props): React.React
   const bestNumberFinalized = useCall<BlockNumber>(api.derive.chain.bestNumberFinalized);
 
   return (
-    <div className={`${className} ${bestNumberFinalized ? '' : '--tmp'}`}>
+    <div className={className}>
       {label || ''}{
-        <span className='--digits'>{formatNumber(bestNumberFinalized || 1234)}</span>
+        bestNumberFinalized
+          ? <Digits value={formatNumber(bestNumberFinalized)} />
+          : '-'
       }{children}
     </div>
   );

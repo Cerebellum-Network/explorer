@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
 import { useApi } from '@polkadot/react-hooks';
 import { chains } from '@polkadot/ui-settings/defaults/chains';
 
-import { styled } from './styled.js';
-import Toggle from './Toggle.js';
-import { useTranslation } from './translate.js';
+import Toggle from './Toggle';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
@@ -53,7 +53,7 @@ function ChainLock ({ className = '', genesisHash, isDisabled, onChange }: Props
   }
 
   return (
-    <StyledToggle
+    <Toggle
       className={className}
       isDisabled={isDisabled}
       label={t<string>('only this network')}
@@ -64,8 +64,6 @@ function ChainLock ({ className = '', genesisHash, isDisabled, onChange }: Props
   );
 }
 
-const StyledToggle = styled(Toggle)`
+export default React.memo(styled(ChainLock)`
   text-align: right;
-`;
-
-export default React.memo(ChainLock);
+`);

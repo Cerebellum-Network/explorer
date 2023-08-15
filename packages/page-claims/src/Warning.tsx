@@ -1,12 +1,13 @@
-// Copyright 2017-2023 @polkadot/app-claims authors & contributors
+// Copyright 2017-2022 @polkadot/app-claims authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { AddressMini, Card, styled } from '@polkadot/react-components';
+import { AddressMini, Card } from '@polkadot/react-components';
 
-import { useTranslation } from './translate.js';
-import usePolkadotPreclaims from './usePolkadotPreclaims.js';
+import { useTranslation } from './translate';
+import usePolkadotPreclaims from './usePolkadotPreclaims';
 
 export interface Props{
   className?: string;
@@ -22,11 +23,11 @@ function Warning ({ className }: Props): React.ReactElement<Props> | null {
 
   return (
     <Card isError>
-      <StyledDiv className={className}>
+      <div className={className}>
         {
           needsAttest.length > 1
-            ? t<string>('You need to sign an attestation for the following accounts:')
-            : t<string>('You need to sign an attestation for the following account:')
+            ? t('You need to sign an attestation for the following accounts:')
+            : t('You need to sign an attestation for the following account:')
         }{
           needsAttest.map((address) => (
             <AddressMini
@@ -35,13 +36,13 @@ function Warning ({ className }: Props): React.ReactElement<Props> | null {
             />
           ))
         }
-      </StyledDiv>
+      </div>
     </Card>
   );
 }
 
-const StyledDiv = styled.div`
-  font-size: var(--font-size-h3);
+export default React.memo(styled(Warning)`
+  font-size: 1.15rem;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -52,6 +53,4 @@ const StyledDiv = styled.div`
   .ui--AddressMini-address {
     max-width: 20rem;
   }
-`;
-
-export default React.memo(Warning);
+`);

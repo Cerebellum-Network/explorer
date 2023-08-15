@@ -1,9 +1,10 @@
-// Copyright 2017-2023 @polkadot/app-settings authors & contributors
+// Copyright 2017-2022 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
-import { Input, styled } from '@polkadot/react-components';
+import { Input } from '@polkadot/react-components';
 
 interface Props {
   className?: string;
@@ -20,18 +21,18 @@ function StringInput ({ className = '', onChange, original, tkey, tval }: Props)
   );
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <div className='label'>{original}</div>
       <Input
         onChange={_onChange}
         value={tval}
         withLabel={false}
       />
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(StringInput)`
   .label {
     font-style: italic;
     margin-top: 0.5rem;
@@ -40,6 +41,4 @@ const StyledDiv = styled.div`
       margin-left: 1rem;
     }
   }
-`;
-
-export default React.memo(StringInput);
+`);

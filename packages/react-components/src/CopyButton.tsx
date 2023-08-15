@@ -1,17 +1,15 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
 
-import React, { useCallback } from 'react';
+import React, { useCallback, useContext } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import styled from 'styled-components';
 
-import { useQueue } from '@polkadot/react-hooks';
-import { isString } from '@polkadot/util';
-
-import Button from './Button/index.js';
-import { styled } from './styled.js';
-import { useTranslation } from './translate.js';
+import StatusContext from './Status/Context';
+import Button from './Button';
+import { useTranslation } from './translate';
 
 interface Props {
   children?: React.ReactNode;
@@ -20,14 +18,14 @@ interface Props {
   label?: React.ReactNode;
   type?: string;
   isMnemonic?: boolean;
-  value?: React.ReactNode | null;
+  value: string;
 }
 
 const NOOP = () => undefined;
 
-function CopyButton ({ children, className = '', icon = 'copy', label, type, value }: Props): React.ReactElement<Props> | null {
+function CopyButton ({ children, className = '', icon = 'copy', label, type, value }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const { queueAction } = useQueue();
+  const { queueAction } = useContext(StatusContext);
 
   const _onCopy = useCallback(
     (): void => {
@@ -40,15 +38,11 @@ function CopyButton ({ children, className = '', icon = 'copy', label, type, val
     [type, queueAction, t]
   );
 
-  if (!isString(value)) {
-    return null;
-  }
-
   return (
-    <StyledDiv className={`${className} ui--CopyButton`}>
+    <div className={`ui--CopyButton ${className}`}>
       <CopyToClipboard
         onCopy={_onCopy}
-        text={value as string}
+        text={value}
       >
         <div className='copyContainer'>
           {children}
@@ -63,14 +57,12 @@ function CopyButton ({ children, className = '', icon = 'copy', label, type, val
           </span>
         </div>
       </CopyToClipboard>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(CopyButton)`
   .copySpan {
     white-space: nowrap;
   }
-`;
-
-export default React.memo(CopyButton);
+`);

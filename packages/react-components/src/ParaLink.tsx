@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
 import { useParaEndpoints } from '@polkadot/react-hooks';
 
-import ChainImg from './ChainImg.js';
-import { styled } from './styled.js';
+import ChainImg from './ChainImg';
 
 interface Props {
   className?: string;
@@ -26,15 +26,15 @@ function ParaLink ({ className, id }: Props): React.ReactElement<Props> | null {
     return null;
   }
 
-  const { text, ui, value } = links.length
+  const { info, text, value } = links.length
     ? links[links.length - 1]
     : endpoints[0];
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <ChainImg
         isInline
-        logo={ui.logo || 'empty'}
+        logo={info || 'empty'}
         withoutHl
       />
       {links.length
@@ -46,11 +46,11 @@ function ParaLink ({ className, id }: Props): React.ReactElement<Props> | null {
         )
         : text
       }
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(ParaLink)`
   vertical-align: middle;
   white-space: nowrap;
 
@@ -63,6 +63,4 @@ const StyledDiv = styled.div`
     text-overflow: ellipsis;
     vertical-align: middle;
   }
-`;
-
-export default React.memo(ParaLink);
+`);

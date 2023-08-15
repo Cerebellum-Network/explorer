@@ -1,8 +1,5 @@
-// Copyright 2017-2023 @polkadot/page-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { ApiProps } from '@polkadot/react-api/types';
-import type { PartialQueueTxExtrinsic, QueueProps, QueueTxExtrinsicAdd } from '@polkadot/react-components/Status/types';
 
 import { queryByAttribute, render, RenderResult, screen } from '@testing-library/react';
 import React, { Suspense } from 'react';
@@ -12,17 +9,19 @@ import { ThemeProvider } from 'styled-components';
 import AccountSidebar from '@polkadot/app-accounts/Sidebar';
 import { lightTheme } from '@polkadot/apps/themes';
 import { POLKADOT_GENESIS } from '@polkadot/apps-config';
-import { ApiCtx } from '@polkadot/react-api';
-import { QueueCtx } from '@polkadot/react-hooks/ctx/Queue';
+import { ApiContext } from '@polkadot/react-api';
+import { ApiProps } from '@polkadot/react-api/types';
+import { QueueProvider } from '@polkadot/react-components/Status/Context';
+import { PartialQueueTxExtrinsic, QueueProps, QueueTxExtrinsicAdd } from '@polkadot/react-components/Status/types';
 import { UseAccountInfo } from '@polkadot/react-hooks/types';
+import { mockApiHooks } from '@polkadot/test-support/utils/mockApiHooks';
 import { TypeRegistry } from '@polkadot/types/create';
 import { keyring } from '@polkadot/ui-keyring';
 import { BN } from '@polkadot/util';
 
-import { alice, bob, charlie, ferdie } from '../keyring/index.js';
-import { Table } from '../pagesElements/index.js';
-import { AccountOverrides, mockAccountHooks } from '../utils/accountDefaults.js';
-import { mockApiHooks } from '../utils/mockApiHooks.js';
+import { alice, bob, charlie, ferdie } from '../keyring';
+import { Table } from '../pagesElements';
+import { AccountOverrides, mockAccountHooks } from '../utils/accountDefaults';
 
 let queueExtrinsic: (value: PartialQueueTxExtrinsic) => void;
 
@@ -60,8 +59,8 @@ jest.mock('@polkadot/react-hooks/useAccountInfo', () => {
   });
 });
 
-jest.mock('@polkadot/react-hooks/useNextTick', () => ({
-  useNextTick: () => true
+jest.mock('@polkadot/react-hooks/useLoadingDelay', () => ({
+  useLoadingDelay: () => false
 }));
 
 jest.mock('@polkadot/react-hooks/useBalancesAll', () => ({
@@ -104,10 +103,6 @@ jest.mock('@polkadot/react-hooks/useRegistrars', () => ({
   })
 }));
 
-jest.mock('@polkadot/react-hooks/useTheme', () => ({
-  useTheme: () => ({ theme: 'light', themeClassName: 'theme--light' })
-}));
-
 export abstract class Page {
   private renderResult?: RenderResult;
   protected readonly defaultAddresses = [alice, bob, charlie, ferdie];
@@ -125,7 +120,6 @@ export abstract class Page {
     });
 
     const noop = () => Promise.resolve(() => { /**/ });
-    const registry = new TypeRegistry();
     const api = {
       consts: {
         babe: {
@@ -159,7 +153,7 @@ export abstract class Page {
           account: noop
         }
       },
-      genesisHash: registry.createType('Hash', POLKADOT_GENESIS),
+      genesisHash: new TypeRegistry().createType('Hash', POLKADOT_GENESIS),
       query: {
         democracy: {
           votingOf: noop
@@ -171,8 +165,6 @@ export abstract class Page {
       registry: {
         chainDecimals: [12],
         chainTokens: ['Unit'],
-        createType: (...args: Parameters<typeof registry.createType>) =>
-          registry.createType(...args),
         lookup: {
           names: []
         }
@@ -197,10 +189,6 @@ export abstract class Page {
         ...api,
         isReady: Promise.resolve(api)
       },
-      isApiConnected: true,
-      isApiInitialized: true,
-      isApiReady: true,
-      isEthereum: false,
       systemName: 'substrate'
     } as unknown as ApiProps;
 
@@ -213,17 +201,17 @@ export abstract class Page {
       <>
         <div id='tooltips' />
         <Suspense fallback='...'>
-          <QueueCtx.Provider value={queue}>
+          <QueueProvider value={queue}>
             <MemoryRouter>
               <ThemeProvider theme={lightTheme}>
-                <ApiCtx.Provider value={mockApi}>
+                <ApiContext.Provider value={mockApi}>
                   <AccountSidebar>
                     {React.cloneElement(this.overview, { onStatusChange: noop }) }
                   </AccountSidebar>
-                </ApiCtx.Provider>
+                </ApiContext.Provider>
               </ThemeProvider>
             </MemoryRouter>
-          </QueueCtx.Provider>
+          </QueueProvider>
         </Suspense>
       </>
     );

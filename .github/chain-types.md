@@ -1,6 +1,6 @@
 ---
 title: Outdated chain types
-labels: ['ci']
+labels: ['ci', '@apps-config']
 ---
 
 cc @polkadot-js/notifications

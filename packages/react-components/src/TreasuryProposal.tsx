@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-democracy authors & contributors
+// Copyright 2017-2022 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Option } from '@polkadot/types';
@@ -6,23 +6,24 @@ import type { TreasuryProposal as TreasuryProposalType } from '@polkadot/types/i
 
 import React, { useEffect, useState } from 'react';
 
+import { InputAddress, Labelled, Static } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 
-import InputAddress from './InputAddress/index.js';
-import Labelled from './Labelled.js';
-import Static from './Static.js';
-import { useTranslation } from './translate.js';
+import Inset, { InsetProps } from './Inset';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
+  asInset?: boolean;
+  insetProps?: Partial<InsetProps>;
   onClick?: () => void;
   proposalId?: string;
   proposal?: TreasuryProposalType | null;
   withLink?: boolean;
 }
 
-function TreasuryProposal ({ className = '', onClick, proposal, proposalId }: Props): React.ReactElement<Props> | null {
+function TreasuryProposal ({ asInset, className = '', insetProps, onClick, proposal, proposalId }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const [stateProposal, setProposal] = useState<TreasuryProposalType | null>(null);
   const { api } = useApi();
@@ -72,6 +73,17 @@ function TreasuryProposal ({ className = '', onClick, proposal, proposalId }: Pr
       </Static>
     </>
   );
+
+  if (asInset) {
+    return (
+      <Inset
+        className={className}
+        {...insetProps}
+      >
+        {inner}
+      </Inset>
+    );
+  }
 
   return (
     <div

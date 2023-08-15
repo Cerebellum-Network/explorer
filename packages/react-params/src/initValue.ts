@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/react-params authors & contributors
+// Copyright 2017-2022 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Registry, TypeDef } from '@polkadot/types/types';
@@ -96,8 +96,6 @@ export default function getInitValue (registry: Registry, def: TypeDef): unknown
       return '';
 
     case 'AccountId':
-    case 'AccountId20':
-    case 'AccountId32':
     case 'AccountIdOf':
     case 'Address':
     case 'Call':
@@ -108,7 +106,6 @@ export default function getInitValue (registry: Registry, def: TypeDef): unknown
     case 'LookupSource':
     case 'MisbehaviorReport':
     case 'Proposal':
-    case 'RuntimeCall':
     case 'Signature':
     case 'SessionKey':
     case 'StorageKey':

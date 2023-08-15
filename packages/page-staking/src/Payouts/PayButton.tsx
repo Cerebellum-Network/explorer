@@ -1,17 +1,18 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { EraIndex } from '@polkadot/types/interfaces';
-import type { PayoutValidator } from './types.js';
+import type { PayoutValidator } from './types';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressMini, Button, InputAddress, Modal, Static, styled, TxButton } from '@polkadot/react-components';
+import { AddressMini, Button, InputAddress, Modal, Static, TxButton } from '@polkadot/react-components';
 import { useApi, useToggle, useTxBatch } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -78,7 +79,7 @@ function PayButton ({ className, isAll, isDisabled, payout }: Props): React.Reac
   return (
     <>
       {payout && isVisible && (
-        <StyledModal
+        <Modal
           className={className}
           header={t<string>('Payout all stakers')}
           onClose={togglePayout}
@@ -136,7 +137,7 @@ function PayButton ({ className, isAll, isDisabled, payout }: Props): React.Reac
               onStart={togglePayout}
             />
           </Modal.Actions>
-        </StyledModal>
+        </Modal>
       )}
       <Button
         icon='credit-card'
@@ -152,9 +153,8 @@ function PayButton ({ className, isAll, isDisabled, payout }: Props): React.Reac
   );
 }
 
-const StyledModal = styled(Modal)`
+export default React.memo(styled(PayButton)`
   .ui--AddressMini.padded.addressStatic {
-    display: inline-block;
     padding-top: 0.5rem;
 
     .ui--AddressMini-info {
@@ -162,6 +162,4 @@ const StyledModal = styled(Modal)`
       max-width: 10rem;
     }
   }
-`;
-
-export default React.memo(PayButton);
+`);

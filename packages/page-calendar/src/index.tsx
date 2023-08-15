@@ -1,18 +1,19 @@
-// Copyright 2017-2023 @polkadot/app-calendar authors & contributors
+// Copyright 2017-2022 @polkadot/app-calendar authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DateState } from './types.js';
+import type { DateState } from './types';
 
 import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { styled, Tabs } from '@polkadot/react-components';
+import { Tabs } from '@polkadot/react-components';
 
-import Day from './Day.js';
-import Month from './Month.js';
-import { useTranslation } from './translate.js';
-import UpcomingEvents from './UpcomingEvents.js';
-import useScheduled from './useScheduled.js';
-import { getDateState, nextMonth, prevMonth } from './util.js';
+import Day from './Day';
+import Month from './Month';
+import { useTranslation } from './translate';
+import UpcomingEvents from './UpcomingEvents';
+import useScheduled from './useScheduled';
+import { getDateState, nextMonth, prevMonth } from './util';
 
 interface Props {
   basePath: string;
@@ -114,7 +115,7 @@ function CalendarApp ({ basePath, className }: Props): React.ReactElement<Props>
   );
 
   return (
-    <StyledMain className={className}>
+    <main className={className}>
       <Tabs
         basePath={basePath}
         items={itemsRef.current}
@@ -153,11 +154,11 @@ function CalendarApp ({ basePath, className }: Props): React.ReactElement<Props>
           }
         </div>
       </div>
-    </StyledMain>
+    </main>
   );
 }
 
-const StyledMain = styled.main`
+export default React.memo(styled(CalendarApp)`
   .calendarFlex {
     align-items: flex-start;
     display: flex;
@@ -182,7 +183,7 @@ const StyledMain = styled.main`
       }
 
       .ui--Button-Group {
-        margin: 0;
+        margin-top: 0;
       }
     }
 
@@ -191,22 +192,15 @@ const StyledMain = styled.main`
       border-bottom: 0.25rem solid var(--bg-page);
       display: flex;
       justify-content: space-between;
-      padding: 0.5rem 0.5rem 0.5rem 1rem;
-
-      > div:first-child {
-        align-items: center;
-        display: inline-flex;
-      }
+      padding: 0.5rem 0.5rem 0 1rem;
 
       .all-events-button {
         margin-right: 1rem;
       }
 
       .ui--Button {
-        font-size: var(--font-size-small);
+        font-size: 1rem;
       }
     }
   }
-`;
-
-export default React.memo(CalendarApp);
+`);

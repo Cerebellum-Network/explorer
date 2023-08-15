@@ -1,27 +1,29 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
 
 import { isString } from '@polkadot/util';
 
-import Spinner from '../Spinner.js';
+import Spinner from '../Spinner';
 
 interface Props {
   children?: React.ReactNode;
   className?: string;
   empty?: React.ReactNode | false;
   emptySpinner?: React.ReactNode;
-  isEmpty: boolean;
   noBodyTag?: boolean;
 }
 
-function Body ({ children, className = '', empty, emptySpinner, isEmpty, noBodyTag }: Props): React.ReactElement<Props> {
-  const bodyClassName = `${className} ui--Table-Body`;
-
-  return isEmpty
+function Body ({ children, className = '', empty, emptySpinner, noBodyTag }: Props): React.ReactElement<Props> {
+  return children
     ? (
-      <tbody className={bodyClassName}>
+      noBodyTag
+        ? <>{children}</>
+        : <tbody className={className}>{children}</tbody>
+    )
+    : (
+      <tbody className={className}>
         <tr>
           <td colSpan={100}>{
             isString(empty)
@@ -30,10 +32,7 @@ function Body ({ children, className = '', empty, emptySpinner, isEmpty, noBodyT
           }</td>
         </tr>
       </tbody>
-    )
-    : noBodyTag
-      ? <>{children}</>
-      : <tbody className={bodyClassName}>{children}</tbody>;
+    );
 }
 
 export default React.memo(Body);

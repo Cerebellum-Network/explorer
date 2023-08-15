@@ -1,15 +1,15 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DropdownItemProps, DropdownProps } from 'semantic-ui-react';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { Button as SUIButton, Dropdown as SUIDropdown } from 'semantic-ui-react';
+import styled from 'styled-components';
 
 import { isUndefined } from '@polkadot/util';
 
-import Labelled from './Labelled.js';
-import { styled } from './styled.js';
+import Labelled from './Labelled';
 
 interface Props<Option extends DropdownItemProps> {
   allowAdd?: boolean;
@@ -17,6 +17,7 @@ interface Props<Option extends DropdownItemProps> {
   className?: string;
   defaultValue?: any;
   dropdownClassName?: string;
+  help?: React.ReactNode;
   isButton?: boolean;
   isDisabled?: boolean;
   isError?: boolean;
@@ -29,7 +30,7 @@ interface Props<Option extends DropdownItemProps> {
   onChange?: (value: any) => void;
   onClose?: () => void;
   onSearch?: (filteredOptions: any[], query: string) => Option[];
-  options: (React.ReactNode | Option)[];
+  options: Option[];
   placeholder?: string;
   renderLabel?: (item: any) => any;
   searchInput?: { autoFocus: boolean };
@@ -44,7 +45,7 @@ export type IDropdown<Option extends DropdownItemProps> = React.ComponentType<Pr
   Header: React.ComponentType<{ content: React.ReactNode }>;
 }
 
-function DropdownBase<Option extends DropdownItemProps> ({ allowAdd = false, children, className = '', defaultValue, dropdownClassName, isButton, isDisabled, isError, isFull, isMultiple, label, labelExtra, onAdd, onBlur, onChange, onClose, onSearch, options, placeholder, renderLabel, searchInput, tabIndex, transform, value, withEllipsis, withLabel }: Props<Option>): React.ReactElement<Props<Option>> {
+function BaseDropdown<Option extends DropdownItemProps> ({ allowAdd = false, children, className = '', defaultValue, dropdownClassName, help, isButton, isDisabled, isError, isFull, isMultiple, label, labelExtra, onAdd, onBlur, onChange, onClose, onSearch, options, placeholder, renderLabel, searchInput, tabIndex, transform, value, withEllipsis, withLabel }: Props<Option>): React.ReactElement<Props<Option>> {
   const lastUpdate = useRef<string>('');
   const [stored, setStored] = useState<string | undefined>();
 
@@ -97,9 +98,7 @@ function DropdownBase<Option extends DropdownItemProps> ({ allowAdd = false, chi
       onBlur={onBlur}
       onChange={_onChange}
       onClose={onClose}
-      // NOTE This is not quite correct since we also pass React.ReactNode items
-      // through (e.g. these are used as headers, see InputAddress). But... it works...
-      options={options as Option[]}
+      options={options}
       placeholder={placeholder}
       renderLabel={renderLabel}
       search={onSearch || allowAdd}
@@ -113,8 +112,9 @@ function DropdownBase<Option extends DropdownItemProps> ({ allowAdd = false, chi
   return isButton
     ? <SUIButton.Group>{dropdown}{children}</SUIButton.Group>
     : (
-      <StyledLabelled
-        className={`${className} ui--Dropdown`}
+      <Labelled
+        className={`ui--Dropdown ${className}`}
+        help={help}
         isFull={isFull}
         label={label}
         labelExtra={labelExtra}
@@ -123,11 +123,11 @@ function DropdownBase<Option extends DropdownItemProps> ({ allowAdd = false, chi
       >
         {dropdown}
         {children}
-      </StyledLabelled>
+      </Labelled>
     );
 }
 
-const StyledLabelled = styled(Labelled)`
+const Dropdown = React.memo(styled(BaseDropdown)`
   .ui--Dropdown-item {
     position: relative;
     white-space: nowrap;
@@ -145,7 +145,7 @@ const StyledLabelled = styled(Labelled)`
       width: 32px;
 
       &.opaque {
-        opacity: var(--opacity-light);
+        opacity: 0.5;
       }
     }
 
@@ -167,12 +167,9 @@ const StyledLabelled = styled(Labelled)`
       }
     }
   }
-`;
+`) as unknown as IDropdown<any>;
 
-const Dropdown = React.memo(DropdownBase) as unknown as typeof DropdownBase & {
-  Header: typeof SUIDropdown.Header
-};
-
-Dropdown.Header = SUIDropdown.Header;
+// eslint-disable-next-line @typescript-eslint/no-unsafe-member-access
+(Dropdown as any).Header = SUIDropdown.Header;
 
 export default Dropdown;

@@ -1,23 +1,24 @@
-// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ThemeProps } from '@polkadot/react-components/types';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { Icon, styled } from '@polkadot/react-components';
+import { Icon } from '@polkadot/react-components';
 
-import { bountySvgColor } from '../theme.js';
+import { bountySvgColor } from '../theme';
 
 interface Props {
-  className?: string;
+  className: '';
   description: string;
   type?: 'info' | 'warning';
 }
 
 function BountyInfo ({ className = '', description, type = 'info' }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       {type === 'warning' && (
         <div className='info-icon'>
           <Icon icon={'exclamation-triangle'} />
@@ -26,31 +27,29 @@ function BountyInfo ({ className = '', description, type = 'info' }: Props): Rea
       <div className='description'>
         {description}
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div(({ theme }: ThemeProps) => `
+export default React.memo(styled(BountyInfo)(({ theme }: ThemeProps) => `
   display: flex;
   align-items: center;
-  font-size: var(--font-size-small);
+  font-weight: 500;
+  font-size: 0.857rem;
   line-height: 1.5rem;
 
-  .info-icon {
+  .info-icon{
     margin-right: 0.2rem;
-
     svg {
       color: ${bountySvgColor[theme.theme]};
     }
   }
 
   .description {
-    font-weight: var(--font-weight-normal);
-    var(font-size: var(--font-size-tiny);)
+    font-weight: 400;
+    font-size: 0.714rem;
     line-height: 0.864rem;
     color: var(--color-label);
     word-wrap: break-word;
   }
-`);
-
-export default React.memo(BountyInfo);
+`));

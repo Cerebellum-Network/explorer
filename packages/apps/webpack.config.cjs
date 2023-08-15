@@ -23,7 +23,7 @@ module.exports = merge(
       new SubresourceIntegrityPlugin(),
       new HtmlWebpackPlugin({
         PAGE_TITLE: 'Cere Explorer',
-        minify: false,
+        inject: true,
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
       })
     ]

@@ -1,18 +1,19 @@
-// Copyright 2017-2023 @polkadot/app-calendar authors & contributors
+// Copyright 2017-2022 @polkadot/app-calendar authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EntryInfoTyped } from './types.js';
+import type { EntryInfo } from './types';
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
-import { Button, styled } from '@polkadot/react-components';
+import { Button } from '@polkadot/react-components';
 
-import DayItem from './DayItem.js';
-import { useTranslation } from './translate.js';
+import DayItem from './DayItem';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
-  scheduled: EntryInfoTyped[];
+  scheduled: EntryInfo[];
   setView: (v: boolean) => void;
 }
 
@@ -29,7 +30,7 @@ function UpcomingEvents ({ className, scheduled, setView }: Props): React.ReactE
   );
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <h1>
         <div>
           <Button
@@ -52,11 +53,11 @@ function UpcomingEvents ({ className, scheduled, setView }: Props): React.ReactE
           );
         })}
       </ul>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(UpcomingEvents)`
   flex: 0;
   max-width: max-content;
 
@@ -71,6 +72,4 @@ const StyledDiv = styled.div`
   .allEventsWrapper {
     padding-inline-start: 10px;
   }
-`;
-
-export default React.memo(UpcomingEvents);
+`);

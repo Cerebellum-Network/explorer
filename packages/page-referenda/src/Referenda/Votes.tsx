@@ -1,18 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-referenda authors & contributors
+// Copyright 2017-2022 @polkadot/app-referenda authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { PalletConvictionVotingTally, PalletRankedCollectiveTally, PalletRankedCollectiveVoteRecord } from '@polkadot/types/lookup';
+import type { PalletConvictionVotingTally, PalletRankedCollectiveTally } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
-import type { PalletVote } from '../types.js';
+import type { PalletVote } from '../types';
 
-import React, { useCallback, useMemo } from 'react';
+import React from 'react';
 
-import { AddressMini, Expander } from '@polkadot/react-components';
+import { Expander } from '@polkadot/react-components';
 import { FormatBalance } from '@polkadot/react-query';
-import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import useVotes from './useVotes.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -22,62 +20,12 @@ interface Props {
   tally: PalletConvictionVotingTally | PalletRankedCollectiveTally;
 }
 
-function renderMini (list?: [string, BN][]): React.ReactNode[] | undefined {
-  return list
-    ?.sort(([, a], [, b]) => b.cmp(a))
-    .map(([a]) => (
-      <AddressMini
-        key={a}
-        value={a}
-      />
-    ));
-}
-
-function extractVotes (votes: Record<string, PalletRankedCollectiveVoteRecord> = {}): [[string, BN][]?, [string, BN][]?] {
-  const ayes: [string, BN][] = [];
-  const nays: [string, BN][] = [];
-  const entries = Object.entries(votes);
-
-  for (let i = 0; i < entries.length; i++) {
-    const [accountId, vote] = entries[i];
-
-    if (vote.isAye) {
-      ayes.push([accountId, vote.asAye]);
-    } else {
-      nays.push([accountId, vote.asNay]);
-    }
-  }
-
-  return [
-    ayes.length ? ayes : undefined,
-    nays.length ? nays : undefined
-  ];
-}
-
-function Votes ({ className = '', id, isConvictionVote, palletVote, tally }: Props): React.ReactElement<Props> {
+function Votes ({ className = '', isConvictionVote, tally }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const votes = useVotes(palletVote, id, isConvictionVote);
-
-  const [ayes, nays] = useMemo(
-    () => extractVotes(votes),
-    [votes]
-  );
-
-  const renderAyes = useCallback(
-    () => renderMini(ayes),
-    [ayes]
-  );
-
-  const renderNays = useCallback(
-    () => renderMini(nays),
-    [nays]
-  );
 
   return (
-    <td className={`${className} expand media--1200-noPad`}>
+    <td className={`${className} expand`}>
       <Expander
-        className='media--1200'
-        renderChildren={ayes && renderAyes}
         summary={
           isConvictionVote
             ? (
@@ -86,12 +34,10 @@ function Votes ({ className = '', id, isConvictionVote, palletVote, tally }: Pro
                 <div><FormatBalance value={tally.ayes} /></div>
               </>
             )
-            : t<string>('Aye {{count}}', { replace: { count: formatNumber(tally.ayes) } })
+            : t<string>('Aye {{count}}', { replace: { count: tally.ayes.toNumber() } })
         }
       />
       <Expander
-        className='media--1200'
-        renderChildren={nays && renderNays}
         summary={
           isConvictionVote
             ? (
@@ -100,7 +46,7 @@ function Votes ({ className = '', id, isConvictionVote, palletVote, tally }: Pro
                 <div><FormatBalance value={tally.nays} /></div>
               </>
             )
-            : t<string>('Nay {{count}}', { replace: { count: formatNumber(tally.nays) } })
+            : t<string>('Nay {{count}}', { replace: { count: tally.nays.toNumber() } })
         }
       />
     </td>

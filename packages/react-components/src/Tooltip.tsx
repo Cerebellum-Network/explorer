@@ -1,11 +1,10 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useState } from 'react';
 import { createPortal } from 'react-dom';
 import ReactTooltip from 'react-tooltip';
-
-import { styled } from './styled.js';
+import styled from 'styled-components';
 
 function rootElement () {
   return typeof document === 'undefined'
@@ -14,15 +13,22 @@ function rootElement () {
 }
 
 interface Props {
-  children?: React.ReactNode;
   className?: string;
-  isClickable?: boolean;
+  clickable?: boolean;
+  dataFor?: string;
+  effect?: 'solid' | 'float';
+  offset?: {
+    bottom?: number;
+    left?: number;
+    right?: number;
+    top?: number;
+  };
   place?: 'bottom' | 'top' | 'right' | 'left';
-  text?: React.ReactNode;
+  text: React.ReactNode;
   trigger: string;
 }
 
-function Tooltip ({ children, className = '', isClickable = false, place, text, trigger }: Props): React.ReactElement<Props> | null {
+function Tooltip ({ className = '', clickable = false, effect = 'solid', offset, place = 'top', text, trigger }: Props): React.ReactElement<Props> | null {
   const [tooltipContainer] = useState(
     typeof document === 'undefined'
       ? {} as HTMLElement // This hack is required for server side rendering
@@ -40,29 +46,21 @@ function Tooltip ({ children, className = '', isClickable = false, place, text, 
   }, [tooltipContainer]);
 
   return createPortal(
-    <StyledReactTooltip
-      className={`${className} ui--Tooltip`}
-      clickable={isClickable}
-      effect='solid'
+    <ReactTooltip
+      className={`ui--Tooltip ${className}`}
+      clickable={clickable}
+      effect={effect}
       id={trigger}
+      offset={offset}
       place={place}
     >
-      <div className='tooltipSpacer'>
-        {text}{children}
-      </div>
-    </StyledReactTooltip>,
+      {className?.includes('address') ? <div>{text}</div> : text}
+    </ReactTooltip>,
     tooltipContainer
   );
 }
 
-// FIXME This cast should really not be needed since the export is React.Component<TooltipProps>,
-// however while it works as specified, it fails here on the definition. Until we have the component
-// upgraded to latest, we probably don't want to start digging...
-const StyledReactTooltip = styled(ReactTooltip as unknown as React.ComponentType<any>)`
-  .tooltipSpacer {
-    padding: 0.375rem;
-  }
-
+export default React.memo(styled(Tooltip)`
   > div {
     overflow: hidden;
   }
@@ -105,7 +103,7 @@ const StyledReactTooltip = styled(ReactTooltip as unknown as React.ComponentType
   .faded {
     margin-top: 0;
     opacity: 0.75 !important;
-    font-size: var(--font-size-tiny) !important;
+    font-size: 0.85em !important;
 
     .faded {
       font-size: 1em !important;
@@ -119,6 +117,4 @@ const StyledReactTooltip = styled(ReactTooltip as unknown as React.ComponentType
   .row+.row {
     margin-top: 0.5rem;
   }
-`;
-
-export default React.memo(Tooltip);
+`);

@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/app-collator authors & contributors
+// Copyright 2017-2022 @polkadot/app-collator authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useRef } from 'react';
 
 import { Tabs } from '@polkadot/react-components';
 
-import Collators from './Collators.js';
-import { useTranslation } from './translate.js';
+import Collators from './Collators';
+import { useTranslation } from './translate';
 
 interface Props {
   basePath: string;

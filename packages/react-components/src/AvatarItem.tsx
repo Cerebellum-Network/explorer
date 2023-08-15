@@ -1,9 +1,8 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
-
-import { styled } from './styled.js';
+import styled from 'styled-components';
 
 interface Props {
   children?: React.ReactNode;
@@ -17,7 +16,7 @@ interface Props {
 
 function AvatarItem ({ children, className = '', icon, isBig, subtitle, title }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={['ui--AvatarItem', className, isBig && 'big'].join(' ')}>
+    <div className={['ui--AvatarItem', className, isBig && 'big'].join(' ')}>
       <div className='ui--AvatarItem-icon'>
         {icon}
       </div>
@@ -30,11 +29,11 @@ function AvatarItem ({ children, className = '', icon, isBig, subtitle, title }:
         </div>
       </div>
       {children}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(AvatarItem)`
   & {
     display: flex;
     align-items: center;
@@ -50,12 +49,12 @@ const StyledDiv = styled.div`
   .ui--AvatarItem-details {
     .ui--AvatarItem-title {
       font-weight: 600;
-      font-size: var(--font-size-base);
+      font-size: 1rem;
     }
 
     .ui--AvatarItem-subtitle {
       font-weight: var(--font-weight-normal);
-      font-size: var(--font-size-base);
+      font-size: 1rem;
     }
   }
 
@@ -78,6 +77,4 @@ const StyledDiv = styled.div`
       }
     }
   }
-`;
-
-export default React.memo(AvatarItem);
+`);

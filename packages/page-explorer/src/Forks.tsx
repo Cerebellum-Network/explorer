@@ -1,15 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-explorer authors & contributors
+// Copyright 2017-2022 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { ApiProps } from '@polkadot/react-api/types';
 import type { Header } from '@polkadot/types/interfaces';
 
 import React, { useCallback, useEffect, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { CardSummary, IdentityIcon, styled, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, IdentityIcon, SummaryBox } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from './translate.js';
+import { useTranslation } from './translate';
 
 interface LinkHeader {
   author: string | null;
@@ -30,8 +32,10 @@ interface Link {
   hdr: LinkHeader;
 }
 
-interface Props {
+interface Props extends ApiProps {
   className?: string;
+  finHead?: Header;
+  newHead?: Header;
 }
 
 type UnsubFn = () => void;
@@ -371,7 +375,7 @@ function Forks ({ className }: Props): React.ReactElement<Props> | null {
   }
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <SummaryBox>
         <section>
           <CardSummary label={t<string>('blocks')}>{formatNumber(countRef.current.numBlocks)}</CardSummary>
@@ -383,11 +387,11 @@ function Forks ({ className }: Props): React.ReactElement<Props> | null {
           {renderRows(createRows(tree.arr))}
         </tbody>
       </table>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Forks)`
   margin-bottom: 1.5rem;
 
   table {
@@ -419,7 +423,7 @@ const StyledDiv = styled.div`
         }
 
         .parent {
-          font-size: var(--font-size-small);
+          font-size: 0.75rem;
           line-height: 0.75rem;
           max-width: 4.5rem;
         }
@@ -456,6 +460,4 @@ const StyledDiv = styled.div`
       }
     }
   }
-`;
-
-export default React.memo(Forks);
+`);

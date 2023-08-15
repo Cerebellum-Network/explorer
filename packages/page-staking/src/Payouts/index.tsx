@@ -1,23 +1,25 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TFunction } from 'i18next';
 import type { DeriveStakerReward } from '@polkadot/api-derive/types';
-import type { OwnPool } from '@polkadot/app-staking2/Pools/types';
 import type { StakerState } from '@polkadot/react-hooks/types';
-import type { PayoutStash, PayoutValidator } from './types.js';
+import type { OwnPool } from '../types';
+import type { PayoutStash, PayoutValidator } from './types';
 
 import React, { useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { Button, MarkWarning, styled, Table, ToggleGroup } from '@polkadot/react-components';
+import { Button, MarkWarning, Table, ToggleGroup } from '@polkadot/react-components';
 import { useApi, useBlockInterval, useCall, useOwnEraRewards } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 import { BN, BN_THREE } from '@polkadot/util';
 
-import ElectionBanner from '../ElectionBanner.js';
-import { useTranslation } from '../translate.js';
-import PayButton from './PayButton.js';
-import Stash from './Stash.js';
-import Validator from './Validator.js';
+import ElectionBanner from '../ElectionBanner';
+import { useTranslation } from '../translate';
+import PayButton from './PayButton';
+import Stash from './Stash';
+import Validator from './Validator';
 
 interface Props {
   className?: string;
@@ -183,34 +185,33 @@ function Payouts ({ className = '', historyDepth, isInElection, ownPools, ownVal
     [allRewards]
   );
 
-  const headerStashes = useMemo<[React.ReactNode?, string?, number?][]>(
-    () => [
-      [myStashesIndex ? t<string>('payout/stash') : t<string>('overall/validator'), 'start', 2],
-      [t<string>('eras'), 'start'],
-      [myStashesIndex ? t<string>('own') : t<string>('total')],
-      [('remaining')],
-      [undefined, undefined, 3]
-    ],
-    [myStashesIndex, t]
-  );
+  const headerStashes = useMemo(() => [
+    [myStashesIndex ? t('payout/stash') : t('overall/validator'), 'start', 2],
+    [t('eras'), 'start'],
+    [myStashesIndex ? t('own') : t('total')],
+    [('remaining')],
+    [undefined, undefined, 3]
+  ], [myStashesIndex, t]);
 
-  const headerValidatorsRef = useRef<[React.ReactNode?, string?, number?][]>([
-    [t<string>('payout/validator'), 'start', 2],
-    [t<string>('eras'), 'start'],
-    [t<string>('own')],
+  const headerValidatorsRef = useRef([
+    [t('payout/validator'), 'start', 2],
+    [t('eras'), 'start'],
+    [t('own')],
     [('remaining')],
     [undefined, undefined, 3]
   ]);
 
   const valOptions = useMemo(() => [
-    { isDisabled: !hasOwnValidators, text: t<string>('Own validators'), value: 'val' },
-    { text: t<string>('Own stashes'), value: 'all' }
+    { isDisabled: !hasOwnValidators, text: t('Own validators'), value: 'val' },
+    { text: t('Own stashes'), value: 'all' }
   ], [hasOwnValidators, t]);
 
   const footerStash = useMemo(() => (
     <tr>
       <td colSpan={3} />
-      <Table.Column.Balance value={stashAvail} />
+      <td className='number'>
+        {stashAvail && <FormatBalance value={stashAvail} />}
+      </td>
       <td colSpan={4} />
     </tr>
   ), [stashAvail]);
@@ -218,13 +219,15 @@ function Payouts ({ className = '', historyDepth, isInElection, ownPools, ownVal
   const footerVal = useMemo(() => (
     <tr>
       <td colSpan={3} />
-      <Table.Column.Balance value={valAvail} />
+      <td className='number'>
+        {valAvail && <FormatBalance value={valAvail} />}
+      </td>
       <td colSpan={4} />
     </tr>
   ), [valAvail]);
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <Button.Group>
         <ToggleGroup
           onChange={setMyStashesIndex}
@@ -248,8 +251,8 @@ function Payouts ({ className = '', historyDepth, isInElection, ownPools, ownVal
           className='warning centered'
           withIcon={false}
         >
-          <p>{t<string>('Payouts of rewards for a validator can be initiated by any account. This means that as soon as a validator or nominator requests a payout for an era, all the nominators for that validator will be rewarded. Each user does not need to claim individually and the suggestion is that validators should claim rewards for everybody as soon as an era ends.')}</p>
-          <p>{t<string>('If you have not claimed rewards straight after the end of the era, the validator is in the active set and you are seeing no rewards, this would mean that the reward payout transaction was made by another account on your behalf. Always check your favorite explorer to see any historic payouts made to your accounts.')}</p>
+          <p>{t('Payouts of rewards for a validator can be initiated by any account. This means that as soon as a validator or nominator requests a payout for an era, all the nominators for that validator will be rewarded. Each user does not need to claim individually and the suggestion is that validators should claim rewards for everybody as soon as an era ends.')}</p>
+          <p>{t('If you have not claimed rewards straight after the end of the era, the validator is in the active set and you are seeing no rewards, this would mean that the reward payout transaction was made by another account on your behalf. Always check your favorite explorer to see any historic payouts made to your accounts.')}</p>
         </MarkWarning>
       )}
       <Table
@@ -287,11 +290,11 @@ function Payouts ({ className = '', historyDepth, isInElection, ownPools, ownVal
           ))}
         </Table>
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Payouts)`
   .payout-eras {
     padding-left: 0.25rem;
     vertical-align: middle;
@@ -300,6 +303,4 @@ const StyledDiv = styled.div`
       white-space: nowrap;
     }
   }
-`;
-
-export default React.memo(Payouts);
+`);

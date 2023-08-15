@@ -1,36 +1,26 @@
-// Copyright 2017-2023 @polkadot/app-ranked authors & contributors
+// Copyright 2017-2022 @polkadot/app-ranked authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { FlagColor } from '@polkadot/react-components/types';
-import type { Member as MemberType } from '../types.js';
+import type { Member as MemberType } from '../types';
 
 import React from 'react';
 
-import { AddressSmall, Tag } from '@polkadot/react-components';
-
-import { useTranslation } from '../translate.js';
+import { AddressSmall } from '@polkadot/react-components';
+import { formatNumber } from '@polkadot/util';
 
 interface Props {
   className?: string;
   value: MemberType;
 }
 
-const COLOR_LST: FlagColor[] = ['grey', 'grey', 'yellow', 'orange', 'purple', 'blue', 'green', 'black'];
-const COLOR_DEF = COLOR_LST[COLOR_LST.length - 1];
-
-function Member ({ className, value: { accountId, info: { rank } } }: Props): React.ReactElement<Props> {
-  const { t } = useTranslation();
-
+function Member ({ className, value: { accountId, info } }: Props): React.ReactElement<Props> {
   return (
     <tr className={className}>
-      <td className='address all relative'>
+      <td className='address all'>
         <AddressSmall value={accountId} />
-        <Tag
-          className='absolute'
-          color={COLOR_LST[rank.toNumber()] || COLOR_DEF}
-          hover={t<string>('Membership rank')}
-          label={rank.toString()}
-        />
+      </td>
+      <td className='number'>
+        {formatNumber(info.rank)}
       </td>
     </tr>
   );

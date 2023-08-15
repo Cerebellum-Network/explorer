@@ -1,6 +1,7 @@
-// Copyright 2017-2023 @polkadot/react-api authors & contributors
+// Copyright 2017-2022 @polkadot/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-export default function echoTransform <T> (x: T, _index: number): T {
+// eslint-disable-next-line @typescript-eslint/no-unused-vars
+export default function echoTransform <T> (x: T, index: number): T {
   return x;
 }

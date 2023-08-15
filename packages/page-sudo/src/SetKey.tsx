@@ -1,12 +1,13 @@
-// Copyright 2017-2023 @polkadot/app-js authors & contributors
+// Copyright 2017-2022 @polkadot/app-js authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { AddressMini, InputAddress, Labelled, styled, TxButton } from '@polkadot/react-components';
+import { AddressMini, InputAddress, Labelled, TxButton } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
-import { useTranslation } from './translate.js';
+import { useTranslation } from './translate';
 
 interface Props {
   allAccounts: string[];
@@ -31,7 +32,7 @@ function SetKey ({ allAccounts, className = '', isMine, sudoKey }: Props): React
 
   return (
     <section>
-      <StyledSection className={`${className} ui--row`}>
+      <section className={`${className} ui--row`}>
         {isMine
           ? (
             <>
@@ -63,7 +64,7 @@ function SetKey ({ allAccounts, className = '', isMine, sudoKey }: Props): React
             </Labelled>
           )
         }
-      </StyledSection>
+      </section>
       {willLose && (
         <article className='warning padded'>
           <div>{t<string>('You will no longer have sudo access')}</div>
@@ -73,7 +74,7 @@ function SetKey ({ allAccounts, className = '', isMine, sudoKey }: Props): React
   );
 }
 
-const StyledSection = styled.section`
+export default React.memo(styled(SetKey)`
   align-items: flex-end;
   justify-content: center;
 
@@ -88,6 +89,4 @@ const StyledSection = styled.section`
   .sudoLabelled {
     align-items: center;
   }
-`;
-
-export default React.memo(SetKey);
+`);

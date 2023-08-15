@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-claims authors & contributors
+// Copyright 2017-2022 @polkadot/app-claims authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { TxCallback } from '@polkadot/react-components/Status/types';
@@ -7,23 +7,24 @@ import type { BalanceOf, EthereumAddress, StatementKind } from '@polkadot/types/
 import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
 
-import { Button, Card, styled, TxButton } from '@polkadot/react-components';
+import { Button, Card, TxButton } from '@polkadot/react-components';
 import { useAccounts, useApi } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
-import { ClaimStyles } from './Claim.js';
-import Statement from './Statement.js';
-import { useTranslation } from './translate.js';
-import { getStatement } from './util.js';
+import { ClaimStyles } from './Claim';
+import Statement from './Statement';
+import { useTranslation } from './translate';
+import { getStatement } from './util';
 
 interface Props {
   accountId: string;
   className?: string;
-  ethereumAddress?: EthereumAddress | string | null;
+  ethereumAddress: EthereumAddress | null;
   onSuccess?: TxCallback;
-  statementKind?: StatementKind | null;
+  statementKind?: StatementKind;
   systemChain: string;
 }
 
@@ -68,7 +69,7 @@ function Attest ({ accountId, className, ethereumAddress, onSuccess, statementKi
   if (noClaim || !statementSentence) {
     return (
       <Card isError>
-        <StyledDiv className={className}>
+        <div className={className}>
           {noClaim && (
             <p>{t<string>('There is no on-chain claimable balance associated with the Ethereum account {{ethereumAddress}}', {
               replace: { ethereumAddress }
@@ -79,7 +80,7 @@ function Attest ({ accountId, className, ethereumAddress, onSuccess, statementKi
               replace: { ethereumAddress }
             })}</p>
           )}
-        </StyledDiv>
+        </div>
       </Card>
     );
   }
@@ -87,32 +88,32 @@ function Attest ({ accountId, className, ethereumAddress, onSuccess, statementKi
   if (!accounts.isAccount(accountId)) {
     return (
       <Card isError>
-        <StyledDiv className={className}>
+        <div className={className}>
           {t<string>('We found a pre-claim with this Polkadot address. However, attesting requires signing with this account. To continue with attesting, please add this account as an owned account first.')}
-          <h2>
+          <h3>
             <FormatBalance
               label={t<string>('Account balance:')}
               value={claimValue}
             />
-          </h2>
-        </StyledDiv>
+          </h3>
+        </div>
       </Card>
     );
   }
 
   return (
     <Card isSuccess>
-      <StyledDiv className={className}>
+      <div className={className}>
         <Statement
           kind={statementKind}
           systemChain={systemChain}
         />
-        <h2>
+        <h3>
           <FormatBalance
             label={t<string>('Account balance:')}
             value={claimValue}
           />
-        </h2>
+        </h3>
         <Button.Group>
           <TxButton
             accountId={accountId}
@@ -124,11 +125,9 @@ function Attest ({ accountId, className, ethereumAddress, onSuccess, statementKi
             tx={api.tx.claims.attest}
           />
         </Button.Group>
-      </StyledDiv>
+      </div>
     </Card>
   );
 }
 
-const StyledDiv = styled.div`${ClaimStyles}`;
-
-export default React.memo(Attest);
+export default React.memo(styled(Attest)`${ClaimStyles}`);

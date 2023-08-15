@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useState } from 'react';
 
-import Sidebar from './Sidebar.js';
+import Sidebar from './Sidebar';
 
 interface Props {
   children: React.ReactNode;
@@ -11,14 +11,12 @@ interface Props {
 
 type State = [string | null, (() => void) | null];
 
-type SetStateContext = undefined | (([address, onUpdateName]: State) => void);
+type ToggleContext = undefined | (([address, onUpdateName]: State) => void);
 
-const EMPTY_STATE: State = [null, null];
-
-export const AccountSidebarCtx = React.createContext<SetStateContext>(undefined);
+const AccountSidebarToggle: React.Context<ToggleContext> = React.createContext<ToggleContext>(undefined);
 
 function AccountSidebar ({ children }: Props): React.ReactElement<Props> {
-  const [[address, onUpdateName], setAddress] = useState<State>(EMPTY_STATE);
+  const [[address, onUpdateName], setAddress] = useState<State>([null, null]);
 
   const onClose = useCallback(
     () => setAddress([null, null]),
@@ -26,7 +24,7 @@ function AccountSidebar ({ children }: Props): React.ReactElement<Props> {
   );
 
   return (
-    <AccountSidebarCtx.Provider value={setAddress}>
+    <AccountSidebarToggle.Provider value={setAddress}>
       {children}
       {address && (
         <Sidebar
@@ -36,8 +34,10 @@ function AccountSidebar ({ children }: Props): React.ReactElement<Props> {
           onUpdateName={onUpdateName}
         />
       )}
-    </AccountSidebarCtx.Provider>
+    </AccountSidebarToggle.Provider>
   );
 }
+
+export { AccountSidebarToggle };
 
 export default React.memo(AccountSidebar);

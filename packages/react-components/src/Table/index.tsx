@@ -1,128 +1,72 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { useWindowColumns } from '@polkadot/react-hooks';
+import Body from './Body';
+import Foot from './Foot';
+import Head from './Head';
 
-import { styled } from '../styled.js';
-import Column from './Column/index.js';
-import Row from './Row/index.js';
-import Body from './Body.js';
-import Foot from './Foot.js';
-import Head from './Head.js';
-
-interface Props {
-  children?: React.ReactNode;
+interface TableProps {
+  children: React.ReactNode;
   className?: string;
   empty?: React.ReactNode | false;
   emptySpinner?: React.ReactNode;
   filter?: React.ReactNode;
   footer?: React.ReactNode;
-  header?: ([React.ReactNode?, string?, number?, (() => void)?] | false | null | undefined)[];
-  headerChildren?: React.ReactNode;
+  header?: [React.ReactNode?, string?, number?, (() => void)?][];
   isFixed?: boolean;
   isInline?: boolean;
-  isSplit?: boolean;
   legend?: React.ReactNode;
-  maxColumns?: 2 | 3;
   noBodyTag?: boolean;
+  withCollapsibleRows: boolean;
 }
 
-const COLUMN_INDEXES = {
-  2: [0, 1],
-  3: [0, 1, 2]
-} as const;
-
-function TableBase ({ children, className = '', empty, emptySpinner, filter, footer, header, headerChildren, isFixed, isInline, isSplit, legend, maxColumns, noBodyTag }: Props): React.ReactElement<Props> {
-  const numColumns = useWindowColumns(maxColumns);
-  const isArray = Array.isArray(children);
-  const isEmpty = !children || (isArray && children.length === 0);
-
-  const headerNode = (
-    <Head
-      filter={filter}
-      header={header}
-      isEmpty={isEmpty}
-    >
-      {headerChildren}
-    </Head>
-  );
-
-  if (isSplit && isArray && !isEmpty && (numColumns !== 1)) {
-    return (
-      <StyledDiv className={`${className} ui--Table isSplit`}>
-        {legend}
-        <table className='noMargin'>
-          {headerNode}
-        </table>
-        <div className='ui--Table-Split'>
-          {COLUMN_INDEXES[numColumns].map((column) => (
-            <div
-              className={`ui--Table-Split-${numColumns}`}
-              key={column}
-            >
-              <table className='noMargin'>
-                <tbody className='ui--Table-Body'>
-                  {children.filter((_, i) => (i % numColumns) === column)}
-                </tbody>
-              </table>
-            </div>
-          ))}
-        </div>
-      </StyledDiv>
-    );
+function extractBodyChildren (children: React.ReactNode): [boolean, React.ReactNode] {
+  if (!Array.isArray(children)) {
+    return [!children, children];
   }
 
+  const kids = children.filter((child) => !!child);
+  const isEmpty = kids.length === 0;
+
+  return [isEmpty, isEmpty ? null : kids];
+}
+
+function Table ({ children, className = '', empty, emptySpinner, filter, footer, header, isFixed, isInline, legend, noBodyTag, withCollapsibleRows = false }: TableProps): React.ReactElement<TableProps> {
+  const [isEmpty, bodyChildren] = extractBodyChildren(children);
+
   return (
-    <StyledDiv className={`${className} ui--Table`}>
+    <div className={`ui--Table ${className}`}>
       {legend}
-      <table className={`${(isFixed && !isEmpty) ? 'isFixed' : 'isNotFixed'} ${isInline ? 'isInline' : ''}`}>
-        {headerNode}
+      <table className={`${(isFixed && !isEmpty) ? 'isFixed' : 'isNotFixed'} ${isInline ? 'isInline' : ''} highlight--bg-faint${withCollapsibleRows ? ' withCollapsibleRows' : ''}`}>
+        <Head
+          filter={filter}
+          header={header}
+          isEmpty={isEmpty}
+        />
         <Body
           empty={empty}
           emptySpinner={emptySpinner}
-          isEmpty={isEmpty}
           noBodyTag={noBodyTag}
         >
-          {children}
+          {bodyChildren}
         </Body>
         <Foot
           footer={footer}
           isEmpty={isEmpty}
         />
       </table>
-    </StyledDiv>
+    </div>
   );
 }
 
-const BASE_BORDER = 0.125;
-const BORDER_SIDE = `${BASE_BORDER * 1}rem solid var(--bg-page)`;
-const BORDER_TOP = `${BASE_BORDER * 2}rem solid var(--bg-page)`;
-const BORDER_RADIUS = `${BASE_BORDER * 4}rem`;
-
-const StyledDiv = styled.div`
+export default React.memo(styled(Table)`
   max-width: 100%;
   width: 100%;
 
-  .ui--Table-Split {
-    display: flex;
-    flex-wrap: nowrap;
-    margin-bottom: 1.5rem;
-
-    > .ui--Table-Split-3 {
-      max-width: 33.3%;
-      min-width: 33.3%;
-    }
-
-    > .ui--Table-Split-2 {
-      max-width: 50%;
-      min-width: 50%;
-    }
-  }
-
   table {
-    border-collapse: collapse;
     border-spacing: 0;
     max-width: 100%;
     overflow: hidden;
@@ -134,14 +78,23 @@ const StyledDiv = styled.div`
       table-layout: fixed;
     }
 
-    &:not(.isInline):not(.noMargin) {
+    &:not(.isInline) {
       margin-bottom: 1.5rem;
     }
 
     &.isInline {
-      tbody tr td {
-        border-top-width: 1px;
-        padding: 0.25rem 0.75rem;
+      &.highlight--bg-faint,
+      &.highlight--bg-faint::before {
+        background: transparent;
+      }
+
+      tbody tr {
+        background: transparent;
+
+        td {
+          border-top-width: 1px;
+          padding: 0.25rem 0.75rem;
+        }
       }
     }
 
@@ -172,14 +125,21 @@ const StyledDiv = styled.div`
         }
       }
     }
-  }
 
-  tbody, thead {
-    position: relative;
-    width: 100%;
+    &.withCollapsibleRows tbody tr {
+      background-color: unset;
 
-    tr {
-      width: 100%;
+      &:nth-child(4n - 2),
+      &:nth-child(4n - 3) {
+        background-color: var(--bg-table);
+      }
+    }
+
+    &:not(.withCollapsibleRows) tbody tr {
+      &.isOdd,
+      &:nth-child(odd):not(.isEven) {
+        background: var(--bg-table);
+      }
     }
   }
 
@@ -187,21 +147,17 @@ const StyledDiv = styled.div`
     position: relative;
 
     td {
-      background: var(--bg-table);
+      border-bottom: 1px solid var(--border-table);
       padding: 0.5rem 1rem;
       text-align: left;
       vertical-align: middle;
 
-      > article.mark {
-        margin-left: 0rem;
-      }
-
       &:first-child {
-        border-left: ${BORDER_SIDE};
+        border-left: 1px solid var(--border-table);
       }
 
       &:last-child {
-        border-right: ${BORDER_SIDE};
+        border-right: 1px solid var(--border-table);
       }
 
       label {
@@ -210,7 +166,7 @@ const StyledDiv = styled.div`
       }
 
       div.empty {
-        opacity: var(--opacity-light);
+        opacity: 0.6;
         padding: 0.25rem;
       }
 
@@ -222,33 +178,8 @@ const StyledDiv = styled.div`
         }
       }
 
-      &.actions {
-        padding-left: 0.35rem;
-        width: 1%;
-
-        > div {
-          display: flex;
-          align-items: center;
-          flex-wrap: nowrap;
-          justify-content: flex-end;
-
-          & > * + * {
-            margin-left: 0.35rem;
-          }
-
-          .ui--Button {
-            white-space: nowrap;
-          }
-        }
-
-        &:not(:last-child) {
-          padding-right: 0;
-        }
-      }
-
       &.address {
-        max-width: 0;
-        min-width: 15rem;
+        min-width: 11rem;
         overflow-x: hidden;
       }
 
@@ -256,13 +187,8 @@ const StyledDiv = styled.div`
         padding: 0.5rem;
       }
 
-      &.balance {
-        min-width: 20rem;
-        padding: 0.5rem 0 0.75rem;
-      }
-
       &.button {
-        padding: 0.25rem 0.35rem 0.5rem;
+        padding: 0.25rem 0.5rem;
         text-align: right;
         white-space: nowrap;
 
@@ -280,8 +206,8 @@ const StyledDiv = styled.div`
         }
       }
 
-      &.chart {
-        padding: 0;
+      &.combined {
+        border-top-width: 0;
       }
 
       &.expand {
@@ -295,19 +221,7 @@ const StyledDiv = styled.div`
       }
 
       &.hash {
-        // we actually want to use 10ch here, however in the
-        // block expand page gives different sizes to the hashes
-        min-width: 7.5rem;
-        white-space: nowrap;
-
-        > .shortHash {
-          max-width: var(--width-shorthash);
-          min-width: 3em;
-          overflow: hidden;
-          text-overflow: ellipsis;
-          white-space: nowrap;
-          width: var(--width-shorthash);
-        }
+        font: var(--font-mono);
       }
 
       &.links {
@@ -328,25 +242,12 @@ const StyledDiv = styled.div`
         padding-top: 0.125rem;
       }
 
-      &.no-pad {
-        padding: 0;
-      }
-
       &.number {
-        font-variant-numeric: tabular-nums;
         text-align: right;
       }
 
       &.relative {
         position: relative;
-
-        .absolute {
-          position: absolute;
-          right: 0.5rem;
-          // this seems aligned with expander (when zoomed in)
-          top: 0.72rem;
-          white-space: nowrap;
-        }
       }
 
       &.overflow {
@@ -366,23 +267,6 @@ const StyledDiv = styled.div`
 
       &.top {
         vertical-align: top;
-      }
-
-      &.columar {
-        vertical-align: top;
-
-        .ui--Columar .ui--Column {
-          margin: 1rem 0 0.75rem 0;
-          padding: 0;
-
-          * + h5 {
-            margin-top: 1rem;
-          }
-
-          .ui--Chart-Line {
-            padding: 0 0.5rem;
-          }
-        }
       }
 
       &.middle {
@@ -405,72 +289,41 @@ const StyledDiv = styled.div`
         text-transform: uppercase;
       }
 
+      &.favorite .ui--Icon.isSelected {
+        color: darkorange;
+      }
+
       .ui--Button-Group .ui--Button:not(.isToplevel) {
         margin: 0;
       }
     }
 
     tr {
-      &:not(.isExpanded) {
+      &:first-child {
         td {
-          border-top: ${BORDER_TOP};
+          border-top: 0.25rem solid var(--bg-page);
+        }
+
+        td:first-child {
+          border-top-left-radius: 0.25rem;
+        }
+
+        td:last-child {
+          border-top-right-radius: 0.25rem;
+        }
+      }
+
+      &:last-child {
+        td {
+          border-bottom: 1px solid var(--border-table);
 
           &:first-child {
-            border-top-left-radius: ${BORDER_RADIUS};
-            border-bottom-left-radius: ${BORDER_RADIUS};
+            border-bottom-left-radius: 0.25rem;
           }
 
-          &:last-child {
-            border-top-right-radius: ${BORDER_RADIUS};
-            border-bottom-right-radius: ${BORDER_RADIUS};
+          :last-child {
+            border-bottom-right-radius: 0.25rem;
           }
-        }
-      }
-
-      &.isExpanded {
-        &.isFirst {
-          td {
-            border-top: ${BORDER_TOP};
-
-            &:first-child {
-              border-top-left-radius: ${BORDER_RADIUS};
-            }
-
-            &:last-child {
-              border-top-right-radius: ${BORDER_RADIUS};
-            }
-          }
-        }
-
-        &.isLast {
-          td {
-            &:first-child {
-              border-bottom-left-radius: ${BORDER_RADIUS};
-            }
-
-            &:last-child {
-              border-bottom-right-radius: ${BORDER_RADIUS};
-            }
-          }
-        }
-      }
-
-      &.packedBottom {
-        td {
-          padding-bottom: 0;
-        }
-      }
-
-      &.packedTop {
-        td {
-          padding-top: 0;
-        }
-      }
-
-      &.packedAll {
-        td {
-          padding-bottom: 0;
-          padding-top: 0;
         }
       }
 
@@ -478,8 +331,17 @@ const StyledDiv = styled.div`
         background: transparent;
       }
 
+      &.noBorder td {
+        border-bottom: 1px solid transparent;
+        padding-bottom: 0 !important;
+      }
+
       &.isCollapsed {
-        display: none;
+        visibility: collapse;
+      }
+
+      &.isExpanded {
+        visibility: visible;
       }
 
       .ui--Button-Group {
@@ -497,56 +359,4 @@ const StyledDiv = styled.div`
       }
     }
   }
-
-  thead {
-    tr {
-      &:first-child {
-        th {
-          border-top: ${BORDER_TOP};
-
-          &:first-child {
-            border-top-left-radius: ${BORDER_RADIUS};
-          }
-
-          &:last-child {
-            border-top-right-radius: ${BORDER_RADIUS};
-          }
-        }
-      }
-
-      &:last-child {
-        th {
-          padding-top: 1rem;
-
-          &:first-child {
-            border-bottom-left-radius: ${BORDER_RADIUS};
-          }
-
-          &:last-child {
-            border-bottom-right-radius: ${BORDER_RADIUS};
-          }
-        }
-      }
-
-      th {
-        &:first-child {
-          border-left: ${BORDER_SIDE};
-        }
-
-        &:last-child {
-          border-right: ${BORDER_SIDE};
-        }
-      }
-    }
-  }
-`;
-
-const Table = React.memo(TableBase) as unknown as typeof TableBase & {
-  Column: typeof Column,
-  Row: typeof Row
-};
-
-Table.Column = Column;
-Table.Row = Row;
-
-export default Table;
+`);

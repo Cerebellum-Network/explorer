@@ -1,27 +1,27 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from '../styled.js';
+import Icon from '../Icon';
 
 type HeaderDef = [React.ReactNode?, string?, number?, (() => void)?];
 
 interface Props {
-  children?: React.ReactNode;
   className?: string;
   filter?: React.ReactNode;
-  header?: (false | null | undefined | HeaderDef)[];
+  header?: (null | undefined | HeaderDef)[];
   isEmpty: boolean;
 }
 
-function Head ({ children, className = '', filter, header, isEmpty }: Props): React.ReactElement<Props> | null {
+function Head ({ className = '', filter, header, isEmpty }: Props): React.ReactElement<Props> | null {
   if (!header?.length) {
     return null;
   }
 
   return (
-    <StyledThead className={`${className} ui--Table-Head`}>
+    <thead className={className}>
       {filter && (
         <tr className='filter'>
           <th colSpan={100}>{filter}</th>
@@ -36,22 +36,31 @@ function Head ({ children, className = '', filter, header, isEmpty }: Props): Re
             onClick={onClick}
           >
             {index === 0
-              ? <h1>{label}</h1>
-              : !isEmpty && label && <label>{label}</label>
+              ? (
+                <h1>
+                  <Icon
+                    className='highlight--color'
+                    icon='dot-circle'
+                  />
+                  {label}
+                </h1>
+              )
+              : isEmpty
+                ? ''
+                : label
             }
           </th>
         )}
       </tr>
-      {children}
-    </StyledThead>
+    </thead>
   );
 }
 
-const StyledThead = styled.thead`
+export default React.memo(styled(Head)`
+  position: relative;
   z-index: 1;
 
   th {
-    background: var(--bg-table);
     font: var(--font-sans);
     font-weight: var(--font-weight-normal);
     padding: 0.375rem 1rem;
@@ -59,23 +68,27 @@ const StyledThead = styled.thead`
     vertical-align: middle;
     white-space: nowrap;
 
+    h1, h2 {
+      font-size: 1.75rem;
+    }
+
     h1 {
       display: table-cell;
       vertical-align: middle;
 
-      .sub {
-        display: inline-block;
-        font-size: var(--font-size-base);
-        font-weight: var(--font-weight-normal);
-        opacity: var(--opacity-light);
-        padding-left: 1.5rem;
-        text-overflow: ellipsis;
+      .ui--Icon {
+        font-size: 1rem;
+        margin-right: 0.5rem;
         vertical-align: middle;
       }
     }
 
-    > label {
-      margin: 0 !important;
+    &:first-child {
+      border-left: 1px solid var(--border-table);
+    }
+
+    &:last-child {
+      border-right: 1px solid var(--border-table);
     }
 
     &.address {
@@ -87,12 +100,12 @@ const StyledThead = styled.thead`
       padding: 0;
     }
 
-    &.expand,
-    &.number {
+    &.expand {
       text-align: right;
     }
 
     &.isClickable {
+      border-bottom: 2px solid transparent;
       cursor: pointer;
     }
 
@@ -119,7 +132,14 @@ const StyledThead = styled.thead`
   }
 
   tr {
+    background: var(--bg-table);
     text-transform: lowercase;
+
+    &:first-child {
+      th {
+        border-top: 1px solid var(--border-table);
+      }
+    }
 
     &.filter {
       .ui.input,
@@ -127,7 +147,7 @@ const StyledThead = styled.thead`
         background: transparent;
 
         &:first-child {
-          margin-top: 0;
+          margin-top: -1px;
         }
       }
 
@@ -142,6 +162,4 @@ const StyledThead = styled.thead`
       }
     }
   }
-`;
-
-export default React.memo(Head);
+`);

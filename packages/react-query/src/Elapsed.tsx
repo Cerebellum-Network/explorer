@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-query authors & contributors
+// Copyright 2017-2022 @polkadot/react-query authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components/styled';
 import { bnToBn } from '@polkadot/util';
 
 type Ticker = (now: number) => void;
@@ -34,10 +34,16 @@ function tick (): void {
 
 function formatValue (value: number, type = 's', withDecimal = false): React.ReactNode {
   const [pre, post] = value.toFixed(1).split('.');
+  const before = pre.split('').map((d, index) => (
+    <div
+      className='digit'
+      key={index}
+    >{d}</div>
+  ));
 
   return withDecimal
-    ? <>{pre}.{post} <span className='timeUnit'>{type}</span></>
-    : <>{pre} <span className='timeUnit'>{type}</span></>;
+    ? <>{before}.<div className='digit'>{post}</div> {type}</>
+    : <>{before} {type}</>;
 }
 
 function getDisplayValue (now = 0, value: BN | Date | number = 0): React.ReactNode {
@@ -76,16 +82,15 @@ function Elapsed ({ children, className = '', value }: Props): React.ReactElemen
   }, []);
 
   return (
-    <StyledDiv className={`${className} ui--Elapsed --digits`}>
+    <div className={`ui--Elapsed ${className}`}>
       {getDisplayValue(now, value)}{children}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
-  .timeUnit {
-    font-size: var(--font-percent-tiny);
+export default React.memo(styled(Elapsed)`
+  .digit {
+    display: inline-block;
+    width: 1ch;
   }
-`;
-
-export default React.memo(Elapsed);
+`);

@@ -1,13 +1,12 @@
-// Copyright 2017-2023 @polkadot/app-calendar authors & contributors
+// Copyright 2017-2022 @polkadot/app-calendar authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EntryInfoTyped } from './types.js';
+import type { EntryInfoTyped } from './types';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components';
-
-import DayItem from './DayItem.js';
+import DayItem from './DayItem';
 
 interface Props {
   className?: string;
@@ -40,7 +39,7 @@ function DayHour ({ className = '', date, hour, index, minutes, scheduled }: Pro
   const hourStr = `${` ${hour}`.slice(-2)} ${hour >= 12 ? 'pm' : 'am'}`;
 
   return (
-    <StyledDiv className={`${className}${filtered.length ? ' hasItems' : ''}`}>
+    <div className={`${className}${filtered.length ? ' hasItems' : ''}`}>
       <div className={`hourLabel${filtered.length ? ' highlight--color' : ''}`}>{hourStr}</div>
       <div className='hourContainer'>
         {filtered.map((item, index): React.ReactNode => (
@@ -50,11 +49,11 @@ function DayHour ({ className = '', date, hour, index, minutes, scheduled }: Pro
           />
         ))}
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(DayHour)`
   align-items: center;
   display: flex;
   position: relative;
@@ -75,11 +74,11 @@ const StyledDiv = styled.div`
 
   .hourLabel {
     flex: 0;
-    font-size: var(--font-size-small);
+    font-size: 0.85rem;
     font-weight: var(--font-weight-normal);
     line-height: 1;
     min-width: 5.5rem;
-    opacity: var(--opacity-light);
+    opacity: 0.5;
     padding: 0.5rem 1rem;
     text-align: right;
     text-transform: uppercase;
@@ -92,6 +91,4 @@ const StyledDiv = styled.div`
     opacity: 1;
     padding: 0.7rem 1rem;
   }
-`;
-
-export default React.memo(DayHour);
+`);

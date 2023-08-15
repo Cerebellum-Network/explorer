@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-society authors & contributors
+// Copyright 2017-2022 @polkadot/app-society authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId, BalanceOf } from '@polkadot/types/interfaces';
@@ -6,9 +6,10 @@ import type { PalletSocietyBidKind } from '@polkadot/types/lookup';
 
 import React from 'react';
 
-import { AddressSmall, Table } from '@polkadot/react-components';
+import { AddressSmall } from '@polkadot/react-components';
+import { FormatBalance } from '@polkadot/react-query';
 
-import BidType from '../Candidates/BidType.js';
+import BidType from '../Candidates/BidType';
 
 interface Props {
   balance?: BalanceOf;
@@ -22,10 +23,12 @@ function Suspension ({ balance, bid, value }: Props): React.ReactElement<Props> 
       <td className='address all'>
         <AddressSmall value={value} />
       </td>
-      <td className='start'>
-        <BidType value={bid} />
+      <BidType value={bid} />
+      <td className='number'>
+        {balance && (
+          <FormatBalance value={balance} />
+        )}
       </td>
-      <Table.Column.Balance value={balance} />
     </tr>
   );
 }

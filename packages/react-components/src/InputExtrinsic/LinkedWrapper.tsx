@@ -1,22 +1,24 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import Labelled from '../Labelled.js';
-import { styled } from '../styled.js';
+import Labelled from '../Labelled';
 
 interface Props {
   children: React.ReactNode;
   className?: string;
+  help?: React.ReactNode;
   label: React.ReactNode;
   withLabel?: boolean;
 }
 
-function LinkedWrapper ({ children, className = '', label, withLabel }: Props): React.ReactElement<Props> {
+function LinkedWrapper ({ children, className = '', help, label, withLabel }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <Labelled
+        help={help}
         label={label}
         withLabel={withLabel}
       >
@@ -24,11 +26,11 @@ function LinkedWrapper ({ children, className = '', label, withLabel }: Props): 
           {children}
         </div>
       </Labelled>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(LinkedWrapper)`
   .ui--DropdownLinked-Items {
     .text {
       box-sizing: border-box;
@@ -60,16 +62,9 @@ const StyledDiv = styled.div`
 
   .ui--DropdownLinked-Item-text {
     flex: 1;
-    font-size: var(--font-size-small);
-    opacity: var(--opacity-light);
+    opacity: 0.5;
     overflow: hidden;
     text-align: right;
     text-overflow: ellipsis;
   }
-
-  > .ui--Labelled > label {
-    text-transform: none;
-  }
-`;
-
-export default React.memo(LinkedWrapper);
+`);

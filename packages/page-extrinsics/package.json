@@ -1,8 +1,5 @@
 {
   "bugs": "https://github.com/polkadot-js/apps/issues",
-  "engines": {
-    "node": ">=14"
-  },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-extrinsics#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/app-extrinsics",
@@ -14,10 +11,11 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.124.2-199-x",
+  "version": "0.121.2-71-x",
   "dependencies": {
-    "@polkadot/react-components": "^0.124.2-199-x",
-    "@polkadot/react-params": "^0.124.2-199-x",
-    "@polkadot/react-signer": "^0.124.2-199-x"
+    "@babel/runtime": "^7.19.0",
+    "@polkadot/react-components": "^0.121.2-71-x",
+    "@polkadot/react-params": "^0.121.2-71-x",
+    "@polkadot/react-signer": "^0.121.2-71-x"
   }
 }

@@ -1,8 +1,5 @@
 {
   "bugs": "https://github.com/polkadot-js/apps/issues",
-  "engines": {
-    "node": ">=14"
-  },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/apps#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/apps",
@@ -14,36 +11,42 @@
   },
   "sideEffects": true,
   "type": "module",
-  "version": "0.124.2-199-x",
+  "version": "0.121.2-71-x",
   "dependencies": {
-    "@polkadot/apps-config": "^0.124.2-199-x",
-    "@polkadot/apps-routing": "^0.124.2-199-x",
-    "@polkadot/dev": "^0.72.25",
-    "@polkadot/react-api": "^0.124.2-199-x",
-    "@polkadot/react-components": "^0.124.2-199-x",
-    "@polkadot/react-hooks": "^0.124.2-199-x",
-    "@polkadot/react-params": "^0.124.2-199-x",
-    "@polkadot/react-query": "^0.124.2-199-x",
-    "@polkadot/react-signer": "^0.124.2-199-x",
-    "punycode": "^2.3.0",
-    "query-string": "^8.1.0"
+    "@babel/core": "^7.19.1",
+    "@babel/polyfill": "^7.12.1",
+    "@babel/runtime": "^7.19.0",
+    "@polkadot/apps-config": "^0.121.2-71-x",
+    "@polkadot/apps-routing": "^0.121.2-71-x",
+    "@polkadot/dev": "^0.67.130",
+    "@polkadot/react-api": "^0.121.2-71-x",
+    "@polkadot/react-components": "^0.121.2-71-x",
+    "@polkadot/react-hooks": "^0.121.2-71-x",
+    "@polkadot/react-params": "^0.121.2-71-x",
+    "@polkadot/react-query": "^0.121.2-71-x",
+    "@polkadot/react-signer": "^0.121.2-71-x",
+    "punycode": "^2.1.1",
+    "query-string": "^7.1.1"
   },
   "devDependencies": {
     "@types/punycode": "^2.1.0",
     "assert": "^2.0.0",
+    "babel-loader": "^8.2.5",
     "buffer": "^6.0.3",
     "copy-webpack-plugin": "^11.0.0",
     "crypto-browserify": "^3.12.0",
-    "css-loader": "^6.7.3",
+    "css-loader": "^5.2.7",
     "empty": "^0.10.1",
+    "html-loader": "^4.1.0",
     "html-webpack-plugin": "^5.5.0",
     "https-browserify": "^1.0.0",
-    "mini-css-extract-plugin": "^2.7.5",
+    "markdown-loader": "^8.0.0",
+    "mini-css-extract-plugin": "^2.6.1",
+    "null-loader": "^4.0.1",
     "os-browserify": "^0.3.0",
     "path-browserify": "^1.0.1",
     "process": "^0.11.10",
     "stream-browserify": "^3.0.0",
-    "stream-http": "^3.2.0",
-    "ts-loader": "^9.4.2"
+    "stream-http": "^3.2.0"
   }
 }

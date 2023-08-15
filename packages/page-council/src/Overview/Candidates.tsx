@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-council authors & contributors
+// Copyright 2017-2022 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveElectionsInfo } from '@polkadot/api-derive/types';
@@ -8,25 +8,28 @@ import React, { useRef } from 'react';
 
 import { Table } from '@polkadot/react-components';
 
-import { useTranslation } from '../translate.js';
-import Candidate from './Candidate.js';
+import { useTranslation } from '../translate';
+import Candidate from './Candidate';
 
 interface Props {
   allVotes?: Record<string, AccountId[]>;
   className?: string;
   electionsInfo?: DeriveElectionsInfo;
-  hasElections: boolean;
 }
 
-function Candidates ({ allVotes = {}, electionsInfo, hasElections }: Props): React.ReactElement<Props> {
+function Candidates ({ allVotes = {}, electionsInfo }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const headerCandidatesRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('candidates'), 'start', 2]
+  const headerCandidatesRef = useRef([
+    [t('candidates'), 'start', 2],
+    [],
+    []
   ]);
 
-  const headerRunnersRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('runners up'), 'start', 2]
+  const headerRunnersRef = useRef([
+    [t('runners up'), 'start', 2],
+    [t('backing'), 'expand'],
+    [t('votes')]
   ]);
 
   return (
@@ -34,13 +37,11 @@ function Candidates ({ allVotes = {}, electionsInfo, hasElections }: Props): Rea
       <Table
         empty={electionsInfo && t<string>('No runners up found')}
         header={headerRunnersRef.current}
-        isSplit
       >
         {electionsInfo?.runnersUp.map(([accountId, balance]): React.ReactNode => (
           <Candidate
             address={accountId}
             balance={balance}
-            hasElections={hasElections}
             key={accountId.toString()}
             voters={allVotes[accountId.toString()]}
           />
@@ -49,12 +50,10 @@ function Candidates ({ allVotes = {}, electionsInfo, hasElections }: Props): Rea
       <Table
         empty={electionsInfo && t<string>('No candidates found')}
         header={headerCandidatesRef.current}
-        isSplit
       >
         {electionsInfo?.candidates.map((accountId): React.ReactNode => (
           <Candidate
             address={accountId}
-            hasElections={false}
             key={accountId.toString()}
             voters={allVotes[accountId.toString()]}
           />

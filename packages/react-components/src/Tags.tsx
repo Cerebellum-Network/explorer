@@ -1,13 +1,13 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
-import EditButton from './EditButton.js';
-import InputTags from './InputTags.js';
-import { styled } from './styled.js';
-import Tag from './Tag.js';
-import { useTranslation } from './translate.js';
+import EditButton from './EditButton';
+import InputTags from './InputTags';
+import Tag from './Tag';
+import { useTranslation } from './translate';
 
 interface Props {
   children?: React.ReactNode;
@@ -33,7 +33,7 @@ function Tags ({ children, className = '', isEditable, isEditing, onChange, onSa
           label={tag}
         />
       ))
-      : <div>{t<string>('none')}</div>,
+      : <label>{t<string>('no tags')}</label>,
     [t, value]
   );
 
@@ -46,7 +46,7 @@ function Tags ({ children, className = '', isEditable, isEditing, onChange, onSa
   );
 
   return (
-    <StyledDiv className={`${className} ui--Tags`}>
+    <div className={`ui--Tags ${className}`}>
       {withTitle && (
         <h5>{t<string>('Tags')}</h5>
       )}
@@ -75,11 +75,20 @@ function Tags ({ children, className = '', isEditable, isEditing, onChange, onSa
           : contents
       }
       {children}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Tags)`
+  h5 {
+    font-style: normal;
+    font-weight: var(--font-weight-bold);
+    font-size: 0.714rem;
+    line-height: 1rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
   label {
     display: inline-block;
   }
@@ -101,6 +110,4 @@ const StyledDiv = styled.div`
   .ui--Tag {
     margin: 0.1rem 0 0.1rem 0.571rem;
   }
-`;
-
-export default React.memo(Tags);
+`);

@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/react-params authors & contributors
+// Copyright 2017-2022 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Props } from '../types.js';
+import type { Props } from '../types';
 
 import React, { useCallback, useState } from 'react';
+import styled from 'styled-components';
 
 import { Toggle } from '@polkadot/react-components';
 import { compactAddLength } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import BaseBytes from './BaseBytes.js';
-import File from './File.js';
+import { useTranslation } from '../translate';
+import BaseBytes from './BaseBytes';
+import File from './File';
 
 function Bytes ({ className = '', defaultValue, isDisabled, isError, label, name, onChange, onEnter, onEscape, type, withLabel }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
@@ -31,23 +32,14 @@ function Bytes ({ className = '', defaultValue, isDisabled, isError, label, name
     [onChange]
   );
 
-  const toggleLabel = !isDisabled && (
-    <Toggle
-      label={t<string>('file upload')}
-      onChange={setFileInput}
-      value={isFileDrop}
-    />
-  );
-
   return (
-    <div className={`${className} --relative`}>
+    <div className={className}>
       {!isDisabled && isFileDrop
         ? (
           <File
             isDisabled={isDisabled}
             isError={isError || !isValid}
             label={label}
-            labelExtra={toggleLabel}
             onChange={_onChangeFile}
             withLabel={withLabel}
           />
@@ -58,7 +50,6 @@ function Bytes ({ className = '', defaultValue, isDisabled, isError, label, name
             isDisabled={isDisabled}
             isError={isError}
             label={label}
-            labelExtra={toggleLabel}
             length={-1}
             name={name}
             onChange={onChange}
@@ -70,9 +61,18 @@ function Bytes ({ className = '', defaultValue, isDisabled, isError, label, name
           />
         )
       }
-      {}
+      {!isDisabled && (
+        <Toggle
+          isOverlay
+          label={t<string>('file upload')}
+          onChange={setFileInput}
+          value={isFileDrop}
+        />
+      )}
     </div>
   );
 }
 
-export default React.memo(Bytes);
+export default React.memo(styled(Bytes)`
+  position: relative;
+`);

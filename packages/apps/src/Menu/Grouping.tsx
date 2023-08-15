@@ -1,13 +1,14 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Group } from './types.js';
+import type { Group } from './types';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { Icon, styled } from '@polkadot/react-components';
+import { Icon } from '@polkadot/react-components';
 
-import Item from './Item.js';
+import Item from './Item';
 
 interface Props extends Group {
   className?: string;
@@ -22,7 +23,6 @@ function Grouping ({ className = '', isActive, name, routes }: Props): React.Rea
     return (
       <Item
         className={isActive ? 'isActive' : ''}
-        classNameText='smallHide'
         isToplevel
         route={routes[0]}
       />
@@ -30,13 +30,9 @@ function Grouping ({ className = '', isActive, name, routes }: Props): React.Rea
   }
 
   return (
-    <StyledLi className={`${className} ${isActive ? 'isActive' : ''}`}>
+    <li className={`${className} ${isActive ? 'isActive' : ''}`}>
       <div className={`groupHdr ${!isActive ? 'highlight--color-contrast' : ''}`}>
-        <span className='smallHide'>{name}</span>
-        <Icon
-          className='smallShow'
-          icon={routes[0].icon}
-        />
+        <span>{name}</span>
         <Icon icon='caret-down' />
       </div>
       <ul className='groupMenu'>
@@ -47,18 +43,19 @@ function Grouping ({ className = '', isActive, name, routes }: Props): React.Rea
           />
         ))}
       </ul>
-    </StyledLi>
+    </li>
   );
 }
 
-const StyledLi = styled.li`
+export default React.memo(styled(Grouping)`
   cursor: pointer;
   position: relative;
 
   .groupHdr {
     border-radius: 0.25rem;
     padding: 0.857rem 1.375rem;
-    font-weight: var(--font-weight-normal);
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.214rem;
 
     > .ui--Icon {
@@ -68,7 +65,8 @@ const StyledLi = styled.li`
 
   &.isActive .groupHdr {
     background-color: var(--bg-tabs);
-    font-weight: var(--font-weight-normal);
+    font-size: 1rem;
+    font-weight: 400;
     margin-bottom: 0;
   }
 
@@ -117,6 +115,4 @@ const StyledLi = styled.li`
       }
     }
   }
-`;
-
-export default React.memo(Grouping);
+`);

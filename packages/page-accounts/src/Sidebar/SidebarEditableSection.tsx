@@ -1,33 +1,28 @@
-// Copyright 2017-2023 @polkadot/page-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React, { useCallback, useEffect, useMemo } from 'react';
+import React, { useCallback, useEffect } from 'react';
 
 import { Tags } from '@polkadot/react-components';
 import { useAccountInfo, useOutsideClick } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 
-import AccountMenuButtons from './AccountMenuButtons.js';
-import AddressSection from './AddressSection.js';
-import Flags from './Flags.js';
+import AccountMenuButtons from './AccountMenuButtons';
+import AddressSection from './AddressSection';
+import Flags from './Flags';
 
 interface Props {
   accountIndex: string | undefined;
   address: string;
   isBeingEdited: (arg: boolean) => void;
-  onUpdateName?: (() => void) | null;
+  onUpdateName: () => void;
   sidebarRef: React.RefObject<HTMLDivElement>;
 }
 
 function SidebarEditableSection ({ accountIndex, address, isBeingEdited, onUpdateName, sidebarRef }: Props): React.ReactElement<Props> {
   const { flags, isEditing, isEditingName, isEditingTags, name, onForgetAddress, onSaveName, onSaveTags, setIsEditingName, setIsEditingTags, setName, setTags, tags, toggleIsEditingName, toggleIsEditingTags } = useAccountInfo(address);
 
-  const refs = useMemo(
-    () => [sidebarRef],
-    [sidebarRef]
-  );
-
-  useEffect((): void => {
+  useEffect(() => {
     isBeingEdited(isEditing());
   }, [isBeingEdited, isEditing]);
 
@@ -41,13 +36,13 @@ function SidebarEditableSection ({ accountIndex, address, isBeingEdited, onUpdat
           setTags(accountOrAddress?.meta.tags ? (accountOrAddress.meta.tags as string[]).sort() : []);
           setIsEditingName(false);
           setIsEditingTags(false);
-        } catch {
+        } catch (error) {
           // ignore
         }
       }
     }, [isEditing, setName, setTags, setIsEditingName, setIsEditingTags, address]);
 
-  useOutsideClick(refs, onCancel);
+  useOutsideClick([sidebarRef], onCancel);
 
   return (
     <>
@@ -67,6 +62,7 @@ function SidebarEditableSection ({ accountIndex, address, isBeingEdited, onUpdat
           isEditable
           isEditing={isEditingTags}
           onChange={setTags}
+          size='tiny'
           value={tags}
           withEditButton={false}
           withTitle

@@ -1,15 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-parachains authors & contributors
+// Copyright 2017-2022 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AuctionInfo, Campaigns, OwnedId, Winning } from '../types.js';
+import type { AuctionInfo, Campaigns, OwnedId, Winning } from '../types';
 
 import React from 'react';
 
 import { Button } from '@polkadot/react-components';
 
-import Auction from './Auction.js';
-import Bid from './Bid.js';
-import Summary from './Summary.js';
+import Auction from './Auction';
+import Bid from './Bid';
+import Summary from './Summary';
 
 interface Props {
   auctionInfo?: AuctionInfo;

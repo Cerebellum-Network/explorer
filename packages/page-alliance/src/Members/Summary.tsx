@@ -1,15 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-alliance authors & contributors
+// Copyright 2017-2022 @polkadot/app-alliance authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Member as MemberType, Rule } from '../types.js';
+import type { Member as MemberType, Rule } from '../types';
 
 import React from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, SummaryBox } from '@polkadot/react-components';
 import { useIpfsLink } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -36,13 +36,13 @@ function Summary ({ className, members, rule }: Props): React.ReactElement<Props
               )
               : t<string>('yes')
             : t<string>('no')
-          : <span className='--tmp'>{t<string>('no')}</span>
+          : <Spinner noLabel />
         }
       </CardSummary>
       <CardSummary label={t<string>('members')}>
         {members
           ? formatNumber(members.length)
-          : <span className='--tmp'>99</span>
+          : <Spinner noLabel />
         }
       </CardSummary>
     </SummaryBox>

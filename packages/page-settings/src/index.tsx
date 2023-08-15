@@ -1,20 +1,21 @@
-// Copyright 2017-2023 @polkadot/app-settings authors & contributors
+// Copyright 2017-2022 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AppProps as Props } from '@polkadot/react-components/types';
 
 import React, { useMemo } from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Switch } from 'react-router';
 
-import { Tabs } from '@polkadot/react-components';
+import { HelpOverlay, Tabs } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
-import I18n from './I18n/index.js';
-import Metadata from './Metadata/index.js';
-import Developer from './Developer.js';
-import General from './General.js';
-import { useTranslation } from './translate.js';
-import useCounter from './useCounter.js';
+import md from './md/basics.md';
+import Developer from './Developer';
+import General from './General';
+import I18n from './I18n';
+import Metadata from './Metadata';
+import { useTranslation } from './translate';
+import useCounter from './useCounter';
 
 export { useCounter };
 
@@ -55,39 +56,29 @@ function SettingsApp ({ basePath, onStatusChange }: Props): React.ReactElement<P
 
   return (
     <main className='settings--App'>
+      <HelpOverlay md={md as string} />
       <Tabs
         basePath={basePath}
         hidden={hidden}
         items={items}
       />
-      <Routes>
-        <Route path={basePath}>
-          <Route
-            element={
-              <Developer onStatusChange={onStatusChange} />
-            }
-            path='developer'
-          />
-          <Route
-            element={
-              <I18n />
-            }
-            path='i18n'
-          />
-          <Route
-            element={
-              <Metadata />
-            }
-            path='metadata'
-          />
-          <Route
-            element={
-              <General />
-            }
-            index
+      <Switch>
+        <Route path={`${basePath}/developer`}>
+          <Developer
+            basePath={basePath}
+            onStatusChange={onStatusChange}
           />
         </Route>
-      </Routes>
+        <Route path={`${basePath}/i18n`}>
+          <I18n />
+        </Route>
+        <Route path={`${basePath}/metadata`}>
+          <Metadata />
+        </Route>
+        <Route>
+          <General />
+        </Route>
+      </Switch>
     </main>
   );
 }

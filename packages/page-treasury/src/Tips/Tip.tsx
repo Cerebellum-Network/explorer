@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-treasury authors & contributors
+// Copyright 2017-2022 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId, Balance, BlockNumber, OpenTipTo225 } from '@polkadot/types/interfaces';
@@ -6,15 +6,16 @@ import type { PalletTipsOpenTip } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
 
-import { AddressMini, AddressSmall, Checkbox, ExpanderScroll, Icon, LinkExternal, styled, TxButton } from '@polkadot/react-components';
+import { AddressMini, AddressSmall, Checkbox, ExpanderScroll, Icon, LinkExternal, TxButton } from '@polkadot/react-components';
 import { useAccounts, useApi } from '@polkadot/react-hooks';
 import { BlockToTime, FormatBalance } from '@polkadot/react-query';
 import { BN_ZERO, formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import TipEndorse from './TipEndorse.js';
-import TipReason from './TipReason.js';
+import { useTranslation } from '../translate';
+import TipEndorse from './TipEndorse';
+import TipReason from './TipReason';
 
 interface Props {
   bestNumber?: BlockNumber;
@@ -121,7 +122,7 @@ function Tip ({ bestNumber, className = '', defaultId, hash, isMember, members, 
   const recipient = who.toString();
 
   return (
-    <StyledTr className={className}>
+    <tr className={className}>
       <td className='address'>
         <AddressSmall value={who} />
       </td>
@@ -157,7 +158,7 @@ function Tip ({ bestNumber, className = '', defaultId, hash, isMember, members, 
               accountId={finder}
               className='media--1400'
               icon='times'
-              label={t<string>('Cancel')}
+              label={t('Cancel')}
               params={[hash]}
               tx={(api.tx.tips || api.tx.treasury).retractTip}
             />
@@ -207,15 +208,13 @@ function Tip ({ bestNumber, className = '', defaultId, hash, isMember, members, 
           type='tip'
         />
       </td>
-    </StyledTr>
+    </tr>
   );
 }
 
-const StyledTr = styled.tr`
+export default React.memo(styled(Tip)`
   .closingTimer {
     display: inline-block;
     padding: 0 0.5rem;
   }
-`;
-
-export default React.memo(Tip);
+`);

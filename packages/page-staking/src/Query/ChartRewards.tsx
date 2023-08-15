@@ -1,24 +1,25 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveEraRewards, DeriveOwnSlashes, DeriveStakerPoints } from '@polkadot/api-derive/types';
-import type { LineData, Props } from './types.js';
+import type { ChartInfo, LineDataEntry, Props } from './types';
 
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useMemo } from 'react';
 
+import { Chart, Spinner } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { BN, formatBalance } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import Chart from './Chart.js';
-import { balanceToNumber } from './util.js';
+import { useTranslation } from '../translate';
+import { balanceToNumber } from './util';
 
 const COLORS_REWARD = ['#8c2200', '#008c22', '#acacac'];
 
-function extractRewards (labels: string[], erasRewards: DeriveEraRewards[], ownSlashes: DeriveOwnSlashes[], allPoints: DeriveStakerPoints[], divisor: BN): LineData {
-  const slashSet = new Array<number>(labels.length);
-  const rewardSet = new Array<number>(labels.length);
-  const avgSet = new Array<number>(labels.length);
+function extractRewards (erasRewards: DeriveEraRewards[] = [], ownSlashes: DeriveOwnSlashes[] = [], allPoints: DeriveStakerPoints[] = [], divisor: BN): ChartInfo {
+  const labels: string[] = [];
+  const slashSet: LineDataEntry = [];
+  const rewardSet: LineDataEntry = [];
+  const avgSet: LineDataEntry = [];
   const [total, avgCount] = erasRewards.reduce(([total, avgCount], { era, eraReward }) => {
     const points = allPoints.find((points) => points.era.eq(era));
     const reward = points?.eraPoints.gtn(0)
@@ -45,43 +46,35 @@ function extractRewards (labels: string[], erasRewards: DeriveEraRewards[], ownS
     const avg = avgCount > 0
       ? Math.ceil(total * 100 / avgCount) / 100
       : 0;
-    const index = labels.indexOf(era.toHuman());
 
-    if (index !== -1) {
-      rewardSet[index] = reward;
-      avgSet[index] = avg;
-      slashSet[index] = slash;
-    }
+    labels.push(era.toHuman());
+    rewardSet.push(reward);
+    avgSet.push(avg);
+    slashSet.push(slash);
   });
 
-  return [slashSet, rewardSet, avgSet];
+  return {
+    chart: [slashSet, rewardSet, avgSet],
+    labels
+  };
 }
 
-function ChartRewards ({ labels, validatorId }: Props): React.ReactElement<Props> {
+function ChartRewards ({ validatorId }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
   const params = useMemo(() => [validatorId, false], [validatorId]);
   const ownSlashes = useCall<DeriveOwnSlashes[]>(api.derive.staking.ownSlashes, params);
   const erasRewards = useCall<DeriveEraRewards[]>(api.derive.staking.erasRewards);
   const stakerPoints = useCall<DeriveStakerPoints[]>(api.derive.staking.stakerPoints, params);
-  const [values, setValues] = useState<LineData>([]);
 
-  const { currency, divisor } = useMemo(
-    () => ({
-      currency: formatBalance.getDefaults().unit,
-      divisor: new BN('1'.padEnd(formatBalance.getDefaults().decimals + 1, '0'))
-    }),
-    []
-  );
+  const { currency, divisor } = useMemo(() => ({
+    currency: formatBalance.getDefaults().unit,
+    divisor: new BN('1'.padEnd(formatBalance.getDefaults().decimals + 1, '0'))
+  }), []);
 
-  useEffect(
-    () => setValues([]),
-    [validatorId]
-  );
-
-  useEffect(
-    () => erasRewards && ownSlashes && stakerPoints && setValues(extractRewards(labels, erasRewards, ownSlashes, stakerPoints, divisor)),
-    [labels, divisor, erasRewards, ownSlashes, stakerPoints]
+  const { chart, labels } = useMemo(
+    () => extractRewards(erasRewards, ownSlashes, stakerPoints, divisor),
+    [divisor, erasRewards, ownSlashes, stakerPoints]
   );
 
   const legends = useMemo(() => [
@@ -91,13 +84,20 @@ function ChartRewards ({ labels, validatorId }: Props): React.ReactElement<Props
   ], [currency, t]);
 
   return (
-    <Chart
-      colors={COLORS_REWARD}
-      labels={labels}
-      legends={legends}
-      title={t<string>('rewards & slashes')}
-      values={values}
-    />
+    <div className='staking--Chart'>
+      <h1>{t<string>('rewards & slashes')}</h1>
+      {labels.length
+        ? (
+          <Chart.Line
+            colors={COLORS_REWARD}
+            labels={labels}
+            legends={legends}
+            values={chart}
+          />
+        )
+        : <Spinner />
+      }
+    </div>
   );
 }
 

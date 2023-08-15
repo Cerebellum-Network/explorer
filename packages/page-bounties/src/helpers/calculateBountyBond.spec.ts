@@ -1,12 +1,9 @@
-// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
-
+import { calculateBountyBond } from '@polkadot/app-bounties/helpers/calculateBountyBond';
 import { TypeRegistry } from '@polkadot/types/create';
 import { BN } from '@polkadot/util';
-
-import { calculateBountyBond } from './calculateBountyBond.js';
 
 describe('Calculate bounty bond', () => {
   it('sums deposit base and deposit for each byte of description', () => {

@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId, Address } from '@polkadot/types/interfaces';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import IdentityIcon from './IdentityIcon/index.js';
-import AccountName from './AccountName.js';
-import ParentAccount from './ParentAccount.js';
-import { styled } from './styled.js';
+import AccountName from './AccountName';
+import IdentityIcon from './IdentityIcon';
+import ParentAccount from './ParentAccount';
+import { toShortAddress } from './util';
 
 interface Props {
   children?: React.ReactNode;
@@ -24,14 +25,16 @@ interface Props {
 }
 
 function AddressSmall ({ children, className = '', defaultName, onClickName, overrideName, parentAddress, toggle, value, withShortAddress = false, withSidebar = true }: Props): React.ReactElement<Props> {
+  const displayAsGrid = parentAddress || withShortAddress;
+
   return (
-    <StyledDiv className={`${className} ui--AddressSmall ${(parentAddress || withShortAddress) ? 'withPadding' : ''}`}>
-      <span className='ui--AddressSmall-icon'>
+    <div className={`ui--AddressSmall ${className}`}>
+      <div>
         <IdentityIcon value={value as Uint8Array} />
-      </span>
-      <span className='ui--AddressSmall-info'>
+      </div>
+      <div className={displayAsGrid ? 'addressGrid' : ''}>
         {parentAddress && (
-          <div className='parentName'>
+          <div className='parentAccountName'>
             <ParentAccount address={parentAddress} />
           </div>
         )}
@@ -51,66 +54,91 @@ function AddressSmall ({ children, className = '', defaultName, onClickName, ove
             className='shortAddress'
             data-testid='short-address'
           >
-            {value}
+            {toShortAddress(value)}
           </div>
         )}
-      </span>
-    </StyledDiv>
+      </div>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
-  overflow-x: hidden;
-  text-overflow: ellipsis;
+export default React.memo(styled(AddressSmall)`
   white-space: nowrap;
+  display: flex;
+  align-items: center;
 
-  &.withPadding {
-    padding: 0.75rem 0;
-  }
-
-  .ui--AddressSmall-icon {
-    .ui--IdentityIcon {
-      margin-right: 0.5rem;
-      vertical-align: middle;
-    }
-  }
-
-  .ui--AddressSmall-info {
-    position: relative;
+  .ui--IdentityIcon {
+    margin-right: 0.75rem;
     vertical-align: middle;
+  }
 
-    .parentName, .shortAddress {
-      font-size: var(--font-size-tiny);
-    }
+  .parentAccountName,
+  .shortAddress {
+    display: flex;
+    flex-direction: column;
+    align-self: center;
+  }
 
-    .parentName {
-      left: 0;
-      position: absolute;
-      top: -0.80rem;
-    }
+  .parentAccountName {
+    grid-area: parentAccountName;
+  }
 
-    .shortAddress {
-      bottom: -0.95rem;
-      color: #8B8B8B;
-      display: inline-block;
-      left: 0;
-      min-width: var(--width-shortaddr);
-      max-width: var(--width-shortaddr);
-      overflow: hidden;
-      position: absolute;
-      text-overflow: ellipsis;
-    }
+  .accountName {
+    grid-area: accountName;
+  }
+
+  .shortAddress {
+    grid-area: shortAddress;
+    color: #8B8B8B;
+    font-size: 0.75rem;
+  }
+
+  .addressGrid {
+    border: 0.031rem;
+    height: 3.438rem;
+    display: grid;
+    grid-template-columns: max-content;
+    grid-template-rows: 30% 40% 30%;
+    grid-template-areas:
+    "parentAccountName"
+    "accountName"
+    "shortAddress";
   }
 
   .ui--AccountName {
+    max-width: 26rem;
     overflow: hidden;
-    vertical-align: middle;
-    white-space: nowrap;
 
     &.withSidebar {
       cursor: help;
     }
-  }
-`;
 
-export default React.memo(AddressSmall);
+    @media only screen and (max-width: 1700px) {
+      max-width: 24rem;
+    }
+
+    @media only screen and (max-width: 1600px) {
+      max-width: 22rem;
+    }
+
+    @media only screen and (max-width: 1500px) {
+      max-width: 20rem;
+    }
+
+    @media only screen and (max-width: 1400px) {
+      max-width: 18rem;
+    }
+
+    @media only screen and (max-width: 1300px) {
+      max-width: 16rem;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      max-width: 14rem;
+    }
+
+    @media only screen and (max-width: 1200px) {
+      max-width: 12rem;
+    }
+  }
+`);

@@ -1,10 +1,10 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import Icon from './Icon.js';
-import { styled } from './styled.js';
+import { Icon } from '@polkadot/react-components';
 
 interface Props {
   onClick: () => void;
@@ -14,17 +14,17 @@ interface Props {
 
 function ExpandButton ({ className = '', expanded, onClick }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv
-      className={`${className} ui--ExpandButton`}
+    <div
+      className={`ui--ExpandButton ${className}`}
       data-testid='row-toggle'
       onClick={onClick}
     >
       <Icon icon={expanded ? 'caret-up' : 'caret-down'} />
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(ExpandButton)`
   display: inline-flex;
   align-items: center;
   justify-content: center;
@@ -33,6 +33,4 @@ const StyledDiv = styled.div`
   border: 1px solid var(--border-table);
   border-radius: 4px;
   cursor: pointer;
-`;
-
-export default React.memo(ExpandButton);
+`);

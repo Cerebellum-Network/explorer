@@ -1,9 +1,10 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from './styled.js';
+import media from './media';
 
 interface Props {
   children: React.ReactNode;
@@ -12,29 +13,21 @@ interface Props {
 
 function FilterOverlay ({ children, className }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       {children}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(FilterOverlay)`
   display: none;
   right: calc(50% - var(--width-half) + 1.5rem);
 
-  .ui--Labelled label {
-    display: none;
-  }
-
-  && .ui--Input {
-    margin: 0.29rem 0;
-  }
-
-  @media only screen and (min-width: 1150px) {
+  ${media.DESKTOP`
     display: flex;
     justify-content: flex-end;
     position: absolute;
-    top: 0;
+    top: 0rem;
 
     > div {
       max-width: 35rem !important;
@@ -47,12 +40,18 @@ const StyledDiv = styled.div`
     .ui.selection.dropdown {
       white-space: nowrap;
     }
+  `};
+
+  .ui--Labelled label {
+    display: none;
+  }
+
+  && .ui--Input {
+    margin: 0.29rem 0;
   }
 
   /* hardcoded: var(--width-full) doesn't work in media */
-  @media only screen and (max-width: 1750px) {
+  @media (max-width: 1750px) {
     right: 1.5rem;
   }
-`;
-
-export default React.memo(FilterOverlay);
+`);

@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/react-params authors & contributors
+// Copyright 2017-2022 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Props } from '../types.js';
+import type { Props } from '../types';
 
 import React, { useMemo } from 'react';
 
@@ -9,8 +9,8 @@ import { getTypeDef } from '@polkadot/types';
 import { encodeTypeDef } from '@polkadot/types/create';
 import { isUndefined } from '@polkadot/util';
 
-import findComponent from './findComponent.js';
-import Static from './Static.js';
+import findComponent from './findComponent';
+import Static from './Static';
 
 function formatJSON (input: string): string {
   return input
@@ -18,11 +18,12 @@ function formatJSON (input: string): string {
     .replace(/\\/g, '')
     .replace(/:Null/g, '')
     .replace(/:/g, ': ')
-    .replace(/,/g, ', ')
-    .replace(/^{_alias: {.*}, /, '{');
+    // .replace(/{/g, '{ ')
+    // .replace(/}/g, ' }')
+    .replace(/,/g, ', ');
 }
 
-function Param ({ className = '', defaultValue, isDisabled, isError, isOptional, name, onChange, onEnter, onEscape, overrides, registry, type }: Props): React.ReactElement<Props> | null {
+function Param ({ className = '', defaultValue, isDisabled, isError, isInOption, isOptional, name, onChange, onEnter, onEscape, overrides, registry, type }: Props): React.ReactElement<Props> | null {
   const Component = useMemo(
     () => findComponent(registry, type, overrides),
     [registry, type, overrides]
@@ -37,11 +38,11 @@ function Param ({ className = '', defaultValue, isDisabled, isError, isOptional,
           ? getTypeDef(registry.createType(type.type).toRawType())
           : type
       );
-      const fmtType = formatJSON(inner);
+      const fmtType = formatJSON(`${isDisabled && isInOption ? 'Option<' : ''}${inner}${isDisabled && isInOption ? '>' : ''}`);
 
       return `${isUndefined(name) ? '' : `${name}: `}${fmtType}${type.typeName && !fmtType.includes(type.typeName) ? ` (${type.typeName})` : ''}`;
     },
-    [name, registry, type]
+    [isDisabled, isInOption, name, registry, type]
   );
 
   if (!Component) {
@@ -52,16 +53,17 @@ function Param ({ className = '', defaultValue, isDisabled, isError, isOptional,
     ? (
       <Static
         defaultValue={defaultValue}
-        isOptional
-        label='None'
+        label={label}
+        type={type}
       />
     )
     : (
       <Component
-        className={`${className} ui--Param`}
+        className={`ui--Param ${className}`}
         defaultValue={defaultValue}
         isDisabled={isDisabled}
         isError={isError}
+        isInOption={isInOption}
         key={`${name || 'unknown'}:${label}`}
         label={label}
         name={name}

@@ -1,12 +1,11 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EndpointOption } from './types.js';
+import type { EndpointOption } from './types';
 
-import { WESTEND_GENESIS } from '../api/constants.js';
-import { chainsKaruraSVG, chainsStandardPNG } from '../ui/logos/chains/index.js';
-import { nodesBridgeHubSVG, nodesCentrifugePNG, nodesIntegriteeSVG, nodesInterlaySVG, nodesKhalaSVG, nodesKiltPNG, nodesKylinPNG, nodesMoonshadowPNG, nodesPangoroSVG, nodesStatemineSVG, nodesWestendColourSVG } from '../ui/logos/nodes/index.js';
-import { getTeleports } from './util.js';
+import { WESTEND_GENESIS } from '../api/constants';
+
+/* eslint-disable sort-keys */
 
 // The available endpoints that will show in the dropdown. For the most part (with the exception of
 // Polkadot) we try to keep this to live chains only, with RPCs hosted by the community/chain vendor
@@ -19,119 +18,89 @@ export const testParasWestend: EndpointOption[] = [
   {
     info: 'charcoal',
     paraId: 2086,
-    providers: {
-      // Centrifuge: 'wss://fullnode-collator.charcoal.centrifuge.io' // https://github.com/polkadot-js/apps/issues/8219
-    },
     text: 'Charcoal',
-    ui: {
-      logo: nodesCentrifugePNG
+    providers: {
+      Centrifuge: 'wss://fullnode-collator.charcoal.centrifuge.io'
     }
   },
   {
     info: 'integritee',
     paraId: 2081,
-    providers: {
-      // Integritee: 'wss://teerw1.integritee.network' // https://github.com/polkadot-js/apps/issues/8937
-    },
     text: 'Integritee Network',
-    ui: {
-      color: '#658ea9',
-      logo: nodesIntegriteeSVG
+    providers: {
+      Integritee: 'wss://teerw1.integritee.network'
     }
   },
   {
     info: 'interlay',
+    isUnreachable: true, // https://github.com/polkadot-js/apps/issues/6261
     paraId: 2094,
-    providers: {
-      // Interlay: 'wss://api-westend.interlay.io/parachain' // https://github.com/polkadot-js/apps/issues/6261
-    },
     text: 'Interlay',
-    ui: {
-      logo: nodesInterlaySVG
+    providers: {
+      Interlay: 'wss://api-westend.interlay.io/parachain'
     }
   },
   {
     info: 'moonshadow',
+    isUnreachable: true, // https://github.com/polkadot-js/apps/issues/6181
     paraId: 2002,
-    providers: {
-      // PureStake: 'wss://wss.moonshadow.testnet.moonbeam.network' // https://github.com/polkadot-js/apps/issues/6181
-    },
     text: 'Moonshadow',
-    ui: {
-      color: '#53cbc9',
-      logo: nodesMoonshadowPNG
+    providers: {
+      PureStake: 'wss://wss.moonshadow.testnet.moonbeam.network'
     }
   },
   {
-    homepage: 'https://darwinia.network/',
     info: 'pangoro',
+    isUnreachable: true, // https://github.com/polkadot-js/apps/issues/6530
+    homepage: 'https://darwinia.network/',
     paraId: 2102,
-    providers: {
-      // Darwinia: 'wss://pangoro-parachain-rpc.darwinia.network' // https://github.com/polkadot-js/apps/issues/6530
-    },
     text: 'Pangoro',
-    ui: {
-      color: '#4B30DD',
-      logo: nodesPangoroSVG
+    providers: {
+      Darwinia: 'wss://pangoro-parachain-rpc.darwinia.network'
     }
   },
   {
-    homepage: 'https://kylin.network/',
     info: 'westendPichiu',
+    homepage: 'https://kylin.network/',
     paraId: 2112,
-    providers: {
-      // 'Kylin Network': 'wss://westend.kylin-node.co.uk' // https://github.com/polkadot-js/apps/issues/8710
-    },
     text: 'Pichiu',
-    ui: {
-      logo: nodesKylinPNG
+    providers: {
+      'Kylin Network': 'wss://westend.kylin-node.co.uk'
     }
   },
   {
     info: 'westendStandard',
     paraId: 2094,
+    text: 'Standard ',
     providers: {
-      // 'Standard Protocol': 'wss://rpc.westend.standard.tech' // https://github.com/polkadot-js/apps/issues/8525
-    },
-    text: 'Standard',
-    ui: {
-      logo: chainsStandardPNG
+      'Standard Protocol': 'wss://rpc.westend.standard.tech'
     }
   },
   {
     info: 'karura',
+    isUnreachable: true, // https://github.com/polkadot-js/apps/issues/5830
     paraId: 2005,
-    providers: {
-      // 'Acala Foundation': 'wss://karura-westend-rpc.aca-staging.network' // https://github.com/polkadot-js/apps/issues/5830
-    },
     text: 'Wendala',
-    ui: {
-      logo: chainsKaruraSVG
+    providers: {
+      'Acala Foundation': 'wss://karura-westend-rpc.aca-staging.network'
     }
   },
   {
     info: 'whala',
+    isUnreachable: true, // https://github.com/polkadot-js/apps/issues/6181
     paraId: 2013,
-    providers: {
-      // Phala: 'wss://whala.phala.network/ws' // https://github.com/polkadot-js/apps/issues/6181
-    },
     text: 'Whala',
-    ui: {
-      color: '#03f3f3',
-      logo: nodesKhalaSVG
+    providers: {
+      Phala: 'wss://whala.phala.network/ws'
     }
   },
   {
-    homepage: 'https://www.kilt.io/',
     info: 'kilt',
+    homepage: 'https://www.kilt.io/',
     paraId: 2085,
-    providers: {
-      // 'KILT Protocol': 'wss://westend.kilt.io:9977' // https://github.com/polkadot-js/apps/issues/9059
-    },
     text: 'WILT',
-    ui: {
-      color: '#8c145a',
-      logo: nodesKiltPNG
+    providers: {
+      'KILT Protocol': 'wss://westend.kilt.io:9977'
     }
   }
 ];
@@ -140,45 +109,21 @@ export const testParasWestendCommon: EndpointOption[] = [
   {
     info: 'westmint',
     paraId: 1000,
-    providers: {
-      Dwellir: 'wss://westmint-rpc.dwellir.com',
-      'Dwellir Tunisia': 'wss://westmint-rpc-tn.dwellir.com',
-      'IBP-GeoDNS1': 'wss://sys.ibp.network/westmint',
-      'IBP-GeoDNS2': 'wss://sys.dotters.network/westmint',
-      Parity: 'wss://westmint-rpc.polkadot.io'
-    },
-    teleport: [-1],
     text: 'Westmint',
-    ui: {
-      color: '#77bb77',
-      logo: nodesStatemineSVG
-    }
+    providers: {
+      Parity: 'wss://westmint-rpc.polkadot.io',
+      Dwellir: 'wss://westmint-rpc.dwellir.com'
+    },
+    teleport: [-1]
   },
   {
     info: 'westendCollectives',
-    paraId: 1001,
+    paraId: 1002,
+    text: 'Collectives',
     providers: {
-      'IBP-GeoDNS1': 'wss://sys.ibp.network/collectives-westend',
-      'IBP-GeoDNS2': 'wss://sys.dotters.network/collectives-westend',
       Parity: 'wss://westend-collectives-rpc.polkadot.io'
     },
-    teleport: [-1],
-    text: 'Collectives',
-    ui: {
-      color: '#e6777a',
-      logo: 'fa;people-group'
-    }
-  },
-  {
-    info: 'westendBridgeHub',
-    paraId: 1002,
-    providers: {
-      Parity: 'wss://westend-bridge-hub-rpc.polkadot.io'
-    },
-    text: 'BridgeHub',
-    ui: {
-      logo: nodesBridgeHubSVG
-    }
+    teleport: [-1]
   }
 ];
 
@@ -186,23 +131,18 @@ export const testRelayWestend: EndpointOption = {
   dnslink: 'westend',
   genesisHash: WESTEND_GENESIS,
   info: 'westend',
+  text: 'Westend',
+  providers: {
+    Parity: 'wss://westend-rpc.polkadot.io',
+    OnFinality: 'wss://westend.api.onfinality.io/public-ws',
+    Pinknode: 'wss://rpc.pinknode.io/westend/explorer',
+    Dwellir: 'wss://westend-rpc.dwellir.com',
+    // 'NodeFactory(Vedran)': 'wss://westend.vedran.nodefactory.io/ws', // https://github.com/polkadot-js/apps/issues/5580
+    'light client': 'light://substrate-connect/westend'
+  },
+  teleport: [1000, 1002],
   linked: [
     ...testParasWestendCommon,
     ...testParasWestend
-  ],
-  providers: {
-    Dwellir: 'wss://westend-rpc.dwellir.com',
-    'Dwellir Tunisia': 'wss://westend-rpc-tn.dwellir.com',
-    'IBP-GeoDNS1': 'wss://rpc.ibp.network/westend',
-    'IBP-GeoDNS2': 'wss://rpc.dotters.network/westend',
-    OnFinality: 'wss://westend.api.onfinality.io/public-ws',
-    Parity: 'wss://westend-rpc.polkadot.io',
-    'light client': 'light://substrate-connect/westend'
-  },
-  teleport: getTeleports(testParasWestendCommon),
-  text: 'Westend',
-  ui: {
-    color: '#da68a7',
-    logo: nodesWestendColourSVG
-  }
+  ]
 };

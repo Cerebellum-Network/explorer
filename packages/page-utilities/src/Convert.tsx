@@ -1,5 +1,7 @@
-// Copyright 2017-2023 @polkadot/app-utilities authors & contributors
+// Copyright 2017-2022 @polkadot/app-utilities authors & contributors
 // SPDX-License-Identifier: Apache-2.0
+
+import type { Option } from '@polkadot/apps-config/settings/types';
 
 import React, { useCallback, useMemo, useState } from 'react';
 
@@ -11,7 +13,7 @@ import { useApi } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 import { base58Decode, checkAddressChecksum, encodeAddress, isAddress } from '@polkadot/util-crypto';
 
-import { useTranslation } from './translate.js';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
@@ -22,11 +24,11 @@ interface State {
   inputSS58: number;
 }
 
-function getState (input: string | null): State {
+function getState (input: string): State {
   let address: string | null = null;
   let inputSS58 = 42;
 
-  if (input && isAddress(input)) {
+  if (isAddress(input)) {
     const decoded = base58Decode(input);
     const [,,, ss58Decoded] = checkAddressChecksum(decoded);
 
@@ -47,13 +49,13 @@ function Addresses ({ className }: Props): React.ReactElement<Props> {
   const [prefix, setPrefix] = useState(-1);
 
   const setAddress = useCallback(
-    (address: string | null) =>
+    (address: string) =>
       setState(getState(address)),
     []
   );
 
   const prefixOptions = useMemo(
-    () => {
+    (): (Option | React.ReactNode)[] => {
       const network = allNetworks.find(({ prefix }) => prefix === chainSS58);
 
       return createSs58(t).map((o) =>
@@ -88,6 +90,7 @@ function Addresses ({ className }: Props): React.ReactElement<Props> {
       <div className='ui--row'>
         <Dropdown
           defaultValue={prefix}
+          help={t<string>('Override the default ss58 prefix for address generation')}
           label={t<string>('address prefix')}
           onChange={setPrefix}
           options={prefixOptions}

@@ -1,19 +1,15 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore Warned on by nodenext resolution (while package does build in bundler mode)
 import type { KeyringJson } from '@polkadot/ui-keyring/types';
 
-import electron from 'electron';
+import { app } from 'electron';
 import path from 'path';
 
-// eslint-disable-next-line @typescript-eslint/ban-ts-comment
-// @ts-ignore Warned on by nodenext resolution (while package does build in bundler mode)
 import { FileStore } from '@polkadot/ui-keyring/stores';
 
-import { IpcMainHandler } from './ipc-main-handler.js';
-import { registerIpcHandler } from './register-ipc-handler.js';
+import { IpcMainHandler } from './ipc-main-handler';
+import { registerIpcHandler } from './register-ipc-handler';
 
 const ACCOUNTS_SUBFOLDER = 'polkadot-accounts';
 
@@ -40,7 +36,7 @@ export const accountStoreIpcHandler = (fileStore: FileStore): IpcMainHandler => 
   'account-store-get': async (key: string) => new Promise((resolve) => {
     try {
       fileStore.get(safeWriteKey(key), resolve);
-    } catch {
+    } catch (err) {
       resolve(null);
     }
   }),
@@ -53,7 +49,7 @@ export const accountStoreIpcHandler = (fileStore: FileStore): IpcMainHandler => 
 });
 
 export const registerAccountStoreHandlers = (): void => {
-  const defaultStorePath = path.join(electron.app.getPath('userData'), ACCOUNTS_SUBFOLDER);
+  const defaultStorePath = path.join(app.getPath('userData'), ACCOUNTS_SUBFOLDER);
   const fileStore = new FileStore(defaultStorePath);
 
   registerIpcHandler(accountStoreIpcHandler(fileStore));

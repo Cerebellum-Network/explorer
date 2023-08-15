@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
-import Labelled from './Labelled.js';
-import { styled } from './styled.js';
+import Labelled from './Labelled';
 
 interface Props {
   children?: React.ReactNode;
   className?: string;
+  help?: React.ReactNode;
   isError?: boolean;
   isReadOnly?: boolean;
   label?: React.ReactNode;
@@ -17,7 +18,7 @@ interface Props {
   withLabel?: boolean;
 }
 
-function TextArea ({ children, className, isError, isReadOnly, label, onChange, seed, withLabel }: Props): React.ReactElement<Props> {
+function TextArea ({ children, className, help, isError, isReadOnly, label, onChange, seed, withLabel }: Props): React.ReactElement<Props> {
   const _onChange = useCallback(
     ({ target: { value } }: React.ChangeEvent<HTMLTextAreaElement>): void => {
       onChange && onChange(value);
@@ -26,8 +27,9 @@ function TextArea ({ children, className, isError, isReadOnly, label, onChange, 
   );
 
   return (
-    <StyledLabelled
+    <Labelled
       className={className}
+      help={help}
       label={label}
       withLabel={withLabel}
     >
@@ -45,11 +47,11 @@ function TextArea ({ children, className, isError, isReadOnly, label, onChange, 
         />
         {children}
       </div>
-    </StyledLabelled>
+    </Labelled>
   );
 }
 
-const StyledLabelled = styled(Labelled)`
+export default React.memo(styled(TextArea)`
   .TextAreaWithDropdown {
     display: flex;
     textarea {
@@ -94,6 +96,4 @@ const StyledLabelled = styled(Labelled)`
       }
     }
   }
-`;
-
-export default React.memo(TextArea);
+`);

@@ -1,31 +1,21 @@
-// Copyright 2017-2023 @polkadot/page-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { AccountOverrides } from '@polkadot/test-support/types';
 
 import { fireEvent, screen, within } from '@testing-library/react';
 import React from 'react';
 
 import { anAccount } from '@polkadot/test-support/creation/account';
 import { Page } from '@polkadot/test-support/pages/Page';
-import { Sidebar } from '@polkadot/test-support/pagesElements';
-import { assertText, clickButton } from '@polkadot/test-support/utils';
-import { settings } from '@polkadot/ui-settings';
+import { Sidebar } from '@polkadot/test-support/pagesElements/Sidebar';
+import { AccountOverrides } from '@polkadot/test-support/types';
+import { assertText, clickButton } from '@polkadot/test-support/utils/renderedScreenUtils';
 
-import AccountOverview from '../../src/Accounts/index.js';
-import { AccountRow } from '../pageElements/AccountRow.js';
-
-const NOOP_CHANGE = () => undefined;
-
-// set the account creation for localStorage to on
-settings.set({ ...settings.get(), storage: 'on' });
+import AccountOverview from '../../src/Accounts/index';
+import { AccountRow } from '../pageElements/AccountRow';
 
 export class AccountsPage extends Page {
   constructor () {
-    super(
-      <AccountOverview onStatusChange={NOOP_CHANGE} />,
-      'Account-'
-    );
+    super(<AccountOverview />, 'Account-');
   }
 
   async getAccountRows (): Promise<AccountRow[]> {
@@ -60,7 +50,7 @@ export class AccountsPage extends Page {
 
   async enterCreateAccountModal (): Promise<void> {
     this.render([]);
-    await clickButton('Account');
+    await clickButton('Add account');
 
     await assertText('Add an account via seed 1/3');
   }

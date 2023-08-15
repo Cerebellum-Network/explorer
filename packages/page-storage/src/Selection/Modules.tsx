@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-storage authors & contributors
+// Copyright 2017-2022 @polkadot/app-storage authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueryableStorageEntry } from '@polkadot/api/types';
-import type { RawParams, TypeDefExt } from '@polkadot/react-params/types';
+import type { RawParams } from '@polkadot/react-params/types';
 import type { StorageEntryTypeLatest } from '@polkadot/types/interfaces';
-import type { Inspect, Registry } from '@polkadot/types/types';
-import type { ComponentProps as Props } from '../types.js';
+import type { Inspect, Registry, TypeDef } from '@polkadot/types/types';
+import type { ComponentProps as Props } from '../types';
 
 import React, { useCallback, useMemo, useState } from 'react';
+import styled from 'styled-components';
 
 import { ApiPromise } from '@polkadot/api';
-import { Button, Columar, Input, InputStorage, Inspect as DecodeInspect, Output, styled } from '@polkadot/react-components';
+import { Button, Columar, Input, InputStorage, Inspect as DecodeInspect, Output } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 import Params from '@polkadot/react-params';
 import { getTypeDef } from '@polkadot/types';
@@ -18,9 +19,13 @@ import { getSiName } from '@polkadot/types/metadata/util';
 import { TypeDefInfo } from '@polkadot/types/types';
 import { compactStripLength, isHex, isNull, isUndefined, u8aToHex } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
-type ParamsType = { name?: string, type: TypeDefExt }[];
+interface TypeDefExt extends TypeDef {
+  withOptionActive?: boolean;
+}
+
+type ParamsType = { type: TypeDefExt }[];
 
 interface KeyState {
   defaultValues: RawParams | undefined | null;
@@ -60,18 +65,16 @@ function expandParams (registry: Registry, st: StorageEntryTypeLatest, isIterabl
   }
 
   return types.map((str, index) => {
-    let name: string | undefined;
     let type: TypeDefExt;
 
     if (isIterable && index === (types.length - 1)) {
-      // name = 'entryKey';
       type = getTypeDef(`Option<${str}>`);
       type.withOptionActive = true;
     } else {
       type = getTypeDef(str);
     }
 
-    return { name, type };
+    return { type };
   });
 }
 
@@ -207,13 +210,14 @@ function Modules ({ className = '', onAdd }: Props): React.ReactElement<Props> {
     [isIterable, isValid, values]
   );
 
-  const { creator: { method, section } } = key;
+  const { creator: { meta, method, section } } = key;
 
   return (
-    <StyledSection className={`${className} storage--actionrow`}>
+    <section className={`${className} storage--actionrow`}>
       <div className='storage--actionrow-value'>
         <InputStorage
           defaultValue={startValue}
+          help={meta && meta.docs.join(' ')}
           label={t<string>('selected state query')}
           onChange={_onChangeKey}
         />
@@ -261,11 +265,11 @@ function Modules ({ className = '', onAdd }: Props): React.ReactElement<Props> {
           onClick={_onAdd}
         />
       </div>
-    </StyledSection>
+    </section>
   );
 }
 
-const StyledSection = styled.section`
+export default React.memo(styled(Modules)`
   .ui--Column:last-child .ui--Labelled {
     padding-left: 0.5rem;
 
@@ -273,6 +277,4 @@ const StyledSection = styled.section`
       left: 2.05rem; /* 3.55 - 1.5 (diff from padding above) */
     }
   }
-`;
-
-export default React.memo(Modules);
+`);

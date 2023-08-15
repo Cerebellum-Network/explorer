@@ -1,31 +1,15 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ChartData, ChartOptions, TooltipItem } from 'chart.js';
-import type { BN } from '@polkadot/util';
+import type { HorizBarProps, HorizBarValue } from './types';
 
 import React, { useEffect, useState } from 'react';
 import { Bar } from 'react-chartjs-2';
 
 import { bnToBn, isNumber } from '@polkadot/util';
 
-import { alphaColor } from './utils.js';
-
-interface Value {
-  colors: string[];
-  label: string;
-  tooltip?: string;
-  value: number | BN;
-}
-
-export interface Props {
-  aspectRatio?: number;
-  className?: string;
-  max?: number;
-  showLabels?: boolean;
-  values: Value[];
-  withColors?: boolean;
-}
+import { alphaColor } from './utils';
 
 interface State {
   chartData?: ChartData;
@@ -42,7 +26,7 @@ interface Config {
   }[];
 }
 
-function calculateOptions (aspectRatio: number, values: Value[], jsonValues: string, max: number, showLabels: boolean): State {
+function calculateOptions (aspectRatio: number, values: HorizBarValue[], jsonValues: string, max: number, showLabels: boolean): State {
   const chartData = values.reduce((data, { colors: [normalColor = '#00f', hoverColor], label, value }): Config => {
     const dataset = data.datasets[0];
 
@@ -86,7 +70,7 @@ function calculateOptions (aspectRatio: number, values: Value[], jsonValues: str
   };
 }
 
-function ChartHorizBar ({ aspectRatio = 8, className = '', max = 100, showLabels = false, values }: Props): React.ReactElement<Props> | null {
+function ChartHorizBar ({ aspectRatio = 8, className = '', max = 100, showLabels = false, values }: HorizBarProps): React.ReactElement<HorizBarProps> | null {
   const [{ chartData, chartOptions, jsonValues }, setState] = useState<State>({});
 
   useEffect((): void => {
@@ -103,7 +87,7 @@ function ChartHorizBar ({ aspectRatio = 8, className = '', max = 100, showLabels
 
   // HACK on width/height to get the aspectRatio to work
   return (
-    <div className={`${className} ui--Chart-HorizBar`}>
+    <div className={className}>
       <Bar
         // eslint-disable-next-line @typescript-eslint/no-unsafe-assignment
         data={chartData as any}

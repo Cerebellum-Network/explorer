@@ -1,9 +1,9 @@
-// Copyright 2017-2023 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { useState } from 'react';
 
-import { createNamedHook } from './createNamedHook.js';
+import { createNamedHook } from './createNamedHook';
 
 const KNOWN = ['ipfs', 'ipns'];
 const SECTIONS = KNOWN.map((part) => `/${part}/`);

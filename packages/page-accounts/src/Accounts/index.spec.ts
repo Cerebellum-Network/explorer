@@ -1,30 +1,28 @@
-// Copyright 2017-2023 @polkadot/page-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/page-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import { fireEvent, screen, within } from '@testing-library/react';
 
 import { POLKADOT_GENESIS } from '@polkadot/apps-config';
 import i18next from '@polkadot/react-components/i18n';
-import { toShortAddress } from '@polkadot/react-components/util';
+import { toShortAddress } from '@polkadot/react-components/util/toShortAddress';
 import { AddressFlags } from '@polkadot/react-hooks/types';
 import { anAccountWithBalance, anAccountWithBalanceAndMeta, anAccountWithInfo, anAccountWithInfoAndMeta, anAccountWithMeta, anAccountWithStaking } from '@polkadot/test-support/creation/account';
-import { makeStakingLedger as ledger } from '@polkadot/test-support/creation/staking';
+import { makeStakingLedger as ledger } from '@polkadot/test-support/creation/stakingInfo/stakingLedger';
 import { alice, bob, MemoryStore } from '@polkadot/test-support/keyring';
 import { Table } from '@polkadot/test-support/pagesElements';
-import { balance, mockApiHooks, showBalance } from '@polkadot/test-support/utils';
+import { balance, showBalance } from '@polkadot/test-support/utils/balance';
+import { mockApiHooks } from '@polkadot/test-support/utils/mockApiHooks';
 import { u32 } from '@polkadot/types';
 import { TypeRegistry } from '@polkadot/types/create';
 import { AccountId, Multisig, ProxyDefinition, Timepoint, Voting, VotingDelegating } from '@polkadot/types/interfaces';
 import { keyring } from '@polkadot/ui-keyring';
 import { BN } from '@polkadot/util';
 
-import { AccountRow } from '../../test/pageElements/AccountRow.js';
-import { AccountsPage } from '../../test/pages/accountsPage.js';
+import { AccountRow } from '../../test/pageElements/AccountRow';
+import { AccountsPage } from '../../test/pages/accountsPage';
 
-// FIXME isSplit Table
-describe.skip('Accounts page', () => {
+describe('Accounts page', () => {
   let accountsPage: AccountsPage;
 
   beforeAll(async () => {
@@ -111,8 +109,7 @@ describe.skip('Accounts page', () => {
         { amount: balance(150), name: 'reserved' }]);
     });
 
-    // FIXME multiple tables
-    it.skip('derived account displays parent account info', async () => {
+    it('derived account displays parent account info', async () => {
       accountsPage.renderAccountsWithDefaultAddresses(
         anAccountWithMeta({ isInjected: true, name: 'ALICE', whenCreated: 200 }),
         anAccountWithMeta({ name: 'ALICE_CHILD', parentAddress: alice, whenCreated: 300 })
@@ -124,8 +121,7 @@ describe.skip('Accounts page', () => {
       await accountRows[1].assertParentAccountName('ALICE');
     });
 
-    // FIXME broken after column rework
-    it.skip('a separate column for parent account is not displayed', async () => {
+    it('a separate column for parent account is not displayed', async () => {
       accountsPage.renderDefaultAccounts(1);
       const accountsTable = await accountsPage.getTable();
 
@@ -145,11 +141,11 @@ describe.skip('Accounts page', () => {
       await accountRows[0].assertShortAddress(aliceShortAddress);
     });
 
-    it('when account is not tagged, account row details displays none info', async () => {
+    it('when account is not tagged, account row details displays no tags info', async () => {
       accountsPage.renderDefaultAccounts(1);
       const rows = await accountsPage.getAccountRows();
 
-      await rows[0].assertTags('none');
+      await rows[0].assertTags('no tags');
     });
 
     it('when account is tagged, account row details displays tags', async () => {
@@ -293,8 +289,7 @@ describe.skip('Accounts page', () => {
       await accountsTable.assertRowsOrder([3, 1, 2]);
     });
 
-    // FIXME multiple tables now
-    describe.skip('when sorting is used', () => {
+    describe('when sorting is used', () => {
       let accountsTable: Table;
 
       beforeEach(async () => {
@@ -339,11 +334,22 @@ describe.skip('Accounts page', () => {
         await accountsTable.assertRowsOrder([1, 2, 3]);
       });
 
+      it('sorts by type if asked', async () => {
+        await accountsPage.sortBy('type');
+        await accountsTable.assertRowsOrder([3, 1, 2]);
+      });
+
       it('implements stable sort', async () => {
+        // Notice that sorting by 'type' results in different order
+        // depending on the previous state.
         await accountsPage.sortBy('name');
         await accountsTable.assertRowsOrder([3, 2, 1]);
+        await accountsPage.sortBy('type');
+        await accountsTable.assertRowsOrder([3, 1, 2]);
         await accountsPage.sortBy('balances');
         await accountsTable.assertRowsOrder([1, 2, 3]);
+        await accountsPage.sortBy('type');
+        await accountsTable.assertRowsOrder([1, 3, 2]);
       });
 
       it('respects reverse button', async () => {
@@ -375,7 +381,6 @@ describe.skip('Accounts page', () => {
       mockApiHooks.setDelegations([{ asDelegating: { target: bob as unknown as AccountId } as unknown as VotingDelegating, isDelegating: true } as Voting]);
       mockApiHooks.setProxies([[[{ delegate: alice as unknown as AccountId, proxyType: { isAny: true, isGovernance: true, isNonTransfer: true, isStaking: true, toNumber: () => 1 } } as unknown as ProxyDefinition], new BN(1)]]);
     });
-
     describe('when genesis hash is not set', () => {
       beforeEach(async () => {
         accountsPage.renderAccountsWithDefaultAddresses(
@@ -491,7 +496,7 @@ describe.skip('Accounts page', () => {
       it('proxy overview', async () => {
         await accountRows[0].assertBadge('sitemap-badge');
         const badgePopup = getPopupById(/sitemap-badge-hover.*/);
-        const proxyOverviewToggle = await within(badgePopup).findByText('Manage proxies');
+        const proxyOverviewToggle = await within(badgePopup).findByText('Proxy overview');
 
         fireEvent.click(proxyOverviewToggle);
         const modal = await screen.findByTestId('modal');

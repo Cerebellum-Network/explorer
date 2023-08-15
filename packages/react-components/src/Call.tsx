@@ -1,24 +1,21 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ComponentMap } from '@polkadot/react-params/types';
 import type { ExtrinsicSignature } from '@polkadot/types/interfaces';
 import type { Codec, IExtrinsic, IMethod, TypeDef } from '@polkadot/types/types';
 import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import Params from '@polkadot/react-params';
 import { FormatBalance } from '@polkadot/react-query';
 import { Enum, getTypeDef } from '@polkadot/types';
 
-import { balanceCalls, balanceCallsOverrides } from './constants.js';
-import Static from './Static.js';
-import { styled } from './styled.js';
-import { useTranslation } from './translate.js';
+import Static from './Static';
+import { useTranslation } from './translate';
 
 export interface Props {
-  callName?: string;
   children?: React.ReactNode;
   className?: string;
   labelHash?: React.ReactNode;
@@ -27,7 +24,6 @@ export interface Props {
   onError?: () => void;
   value: IExtrinsic | IMethod;
   withBorder?: boolean;
-  withExpander?: boolean;
   withHash?: boolean;
   withSignature?: boolean;
   tip?: BN;
@@ -45,7 +41,6 @@ interface Value {
 
 interface Extracted {
   hash: string | null;
-  overrides?: ComponentMap;
   params: Param[];
   signature: string | null;
   signatureType: string | null;
@@ -62,10 +57,7 @@ function getRawSignature (value: IExtrinsic): ExtrinsicSignature | undefined {
   return (value as any)._raw?.signature?.multiSignature as ExtrinsicSignature;
 }
 
-function extractState (value: IExtrinsic | IMethod, withHash?: boolean, withSignature?: boolean, callName?: string): Extracted {
-  const overrides = callName && balanceCalls.includes(callName)
-    ? balanceCallsOverrides
-    : undefined;
+function extractState (value: IExtrinsic | IMethod, withHash?: boolean, withSignature?: boolean): Extracted {
   const params = value.meta.args.map(({ name, type }): Param => ({
     name: name.toString(),
     type: getTypeDef(type.toString())
@@ -89,97 +81,81 @@ function extractState (value: IExtrinsic | IMethod, withHash?: boolean, withSign
       : null;
   }
 
-  return { hash, overrides, params, signature, signatureType, values };
+  return { hash, params, signature, signatureType, values };
 }
 
-function Call ({ callName, children, className = '', labelHash, labelSignature, mortality, onError, tip, value, withBorder, withExpander, withHash, withSignature }: Props): React.ReactElement<Props> {
+function Call ({ children, className = '', labelHash, labelSignature, mortality, onError, tip, value, withBorder, withHash, withSignature }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const [{ hash, overrides, params, signature, signatureType, values }, setExtracted] = useState<Extracted>({ hash: null, params: [], signature: null, signatureType: null, values: [] });
+  const [{ hash, params, signature, signatureType, values }, setExtracted] = useState<Extracted>({ hash: null, params: [], signature: null, signatureType: null, values: [] });
 
   useEffect((): void => {
-    setExtracted(extractState(value, withHash, withSignature, callName));
-  }, [callName, value, withHash, withSignature]);
+    setExtracted(extractState(value, withHash, withSignature));
+  }, [value, withHash, withSignature]);
 
   return (
-    <StyledDiv className={`${className} ui--Call`}>
+    <div className={`ui--Extrinsic ${className}`}>
       <Params
         isDisabled
         onError={onError}
-        overrides={overrides}
         params={params}
         registry={value.registry}
         values={values}
         withBorder={withBorder}
-        withExpander={withExpander}
-      >
-        {children}
-        <div className='ui--Call--toplevel'>
-          {hash && (
-            <Static
-              className='hash'
-              label={labelHash || t<string>('extrinsic hash')}
-              value={hash}
-              withCopy
-            />
-          )}
-          {signature && (
-            <Static
-              className='hash'
-              label={labelSignature || t<string>('signature {{type}}', { replace: { type: signatureType ? `(${signatureType})` : '' } })}
-              value={signature}
-              withCopy
-            />
-          )}
-          {mortality && (
-            <Static
-              className='mortality'
-              label={t<string>('lifetime')}
-              value={mortality}
-            />
-          )}
-          {tip?.gtn(0) && (
-            <Static
-              className='tip'
-              label={t<string>('tip')}
-              value={<FormatBalance value={tip} />}
-            />
-          )}
-        </div>
-      </Params>
-    </StyledDiv>
+      />
+      {children}
+      <div className='ui--Extrinsic--toplevel'>
+        {signature && (
+          <Static
+            className='hash'
+            label={labelSignature || t<string>('signature {{type}}', { replace: { type: signatureType ? `(${signatureType})` : '' } })}
+            value={signature}
+            withCopy
+          />
+        )}
+        {hash && (
+          <Static
+            className='hash'
+            label={labelHash || t<string>('extrinsic hash')}
+            value={hash}
+            withCopy
+          />
+        )}
+        {mortality && (
+          <Static
+            className='mortality'
+            label={t<string>('lifetime')}
+            value={mortality}
+          />
+        )}
+        {tip?.gtn(0) && (
+          <Static
+            className='tip'
+            label={t<string>('tip')}
+            value={<FormatBalance value={tip} />}
+          />
+        )}
+      </div>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
-  .ui--Labelled.hash .ui--Static {
+export default React.memo(styled(Call)`
+  .hash .ui--Static {
     overflow: hidden;
     text-overflow: ellipsis;
     word-break: unset;
     word-wrap: unset;
-    white-space: nowrap;
   }
 
-  .ui--Call--toplevel {
-    margin-top: 0;
+  .ui--Extrinsic--toplevel {
+    margin-top: 0.75rem;
 
     .ui--Labelled {
-      &:last-child > .ui--Labelled-content > .ui--Static {
-        margin-bottom: 0;
-      }
+      padding-left: 0;
 
-      > .ui--Labelled-content > .ui--Static {
-        background: var(--bg-static-extra);
-      }
-
-      + .ui--Labelled > .ui--Labelled-content > .ui--Static {
-        margin-top: 0;
+      > label {
+        left: 1.55rem !important;
       }
     }
   }
-
-  > .ui--Params {
-    margin-top: -0.25rem;
-  }
-`;
-
-export default React.memo(Call);
+`);

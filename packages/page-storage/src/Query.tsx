@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-storage authors & contributors
+// Copyright 2017-2022 @polkadot/app-storage authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { QueryableStorageEntry } from '@polkadot/api/types';
@@ -6,12 +6,13 @@ import type { ComponentRenderer, DefaultProps, RenderFn } from '@polkadot/react-
 import type { ConstValue } from '@polkadot/react-components/InputConsts/types';
 import type { Option, Raw } from '@polkadot/types';
 import type { Registry } from '@polkadot/types/types';
-import type { QueryTypes, StorageModuleQuery } from './types.js';
+import type { QueryTypes, StorageModuleQuery } from './types';
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
 import { withCallDiv } from '@polkadot/react-api/hoc';
-import { Button, Labelled, styled } from '@polkadot/react-components';
+import { Button, Labelled } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 import valueToText from '@polkadot/react-params/valueToText';
 import { getSiName } from '@polkadot/types/metadata/util';
@@ -116,7 +117,6 @@ function getCachedComponent (registry: Registry, query: QueryTypes): CacheInstan
           params: isEntries
             ? [key.entries, ...values]
             : blockHash
-              // eslint-disable-next-line deprecation/deprecation
               ? [key.at, blockHash, ...values]
               : [key, ...values],
           withIndicator: true
@@ -170,7 +170,7 @@ function Query ({ className = '', onRemove, value }: Props): React.ReactElement<
   }
 
   return (
-    <StyledDiv className={`${className} storage--Query storage--actionrow`}>
+    <div className={`storage--Query storage--actionrow ${className}`}>
       <div className='storage--actionrow-value'>
         <Labelled
           label={
@@ -189,11 +189,11 @@ function Query ({ className = '', onRemove, value }: Props): React.ReactElement<
           onClick={_onRemove}
         />
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Query)`
   margin-bottom: 0.25em;
 
   label {
@@ -222,6 +222,4 @@ const StyledDiv = styled.div`
   .storage--actionrow-buttons {
     margin-top: -0.25rem; /* offset parent spacing for buttons */
   }
-`;
-
-export default React.memo(Query);
+`);

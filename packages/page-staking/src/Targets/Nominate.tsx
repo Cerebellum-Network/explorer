@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { StakerState } from '@polkadot/react-hooks/types';
 
 import React, { useCallback, useMemo, useState } from 'react';
+import styled from 'styled-components';
 
-import { AddressMini, Button, InputAddress, Modal, Static, styled, TxButton } from '@polkadot/react-components';
+import { AddressMini, Button, InputAddress, Modal, Static, TxButton } from '@polkadot/react-components';
 import { useApi, useToggle } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -55,7 +56,7 @@ function Nominate ({ className = '', isDisabled, ownNominators, targets }: Props
         onClick={toggleOpen}
       />
       {isOpen && (
-        <StyledModal
+        <Modal
           className={className}
           header={t<string>('Nominate validators')}
           onClose={toggleOpen}
@@ -65,6 +66,7 @@ function Nominate ({ className = '', isDisabled, ownNominators, targets }: Props
             <Modal.Columns hint={t<string>('One of your available nomination accounts, keyed by the stash. The transaction will be sent from the controller.')}>
               <InputAddress
                 filter={stashes}
+                help={t<string>('Your stash account. The transaction will be sent from the associated controller.')}
                 label={t<string>('the stash account to nominate with')}
                 onChange={_onChangeStash}
                 value={ids?.stashId}
@@ -106,13 +108,13 @@ function Nominate ({ className = '', isDisabled, ownNominators, targets }: Props
               tx={api.tx.staking.nominate}
             />
           </Modal.Actions>
-        </StyledModal>
+        </Modal>
       )}
     </>
   );
 }
 
-const StyledModal = styled(Modal)`
+export default React.memo(styled(Nominate)`
   .ui--AddressMini.padded.addressStatic {
     padding-top: 0.5rem;
 
@@ -121,6 +123,4 @@ const StyledModal = styled(Modal)`
       max-width: 10rem;
     }
   }
-`;
-
-export default React.memo(Nominate);
+`);

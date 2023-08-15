@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-treasury authors & contributors
+// Copyright 2017-2022 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Option } from '@polkadot/types';
@@ -7,12 +7,13 @@ import type { PalletTipsOpenTip } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { styled, Table, Toggle } from '@polkadot/react-components';
+import { Table, Toggle } from '@polkadot/react-components';
 import { useApi, useBestNumber, useCall } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
-import Tip from './Tip.js';
+import { useTranslation } from '../translate';
+import Tip from './Tip';
 
 interface Props {
   className?: string;
@@ -60,10 +61,10 @@ function Tips ({ className = '', defaultId, hashes, isMember, members, onSelectT
     [hashes, tipsWithHashes]
   );
 
-  const headerRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('tips'), 'start'],
-    [t<string>('finder'), 'address media--1400'],
-    [t<string>('reason'), 'start'],
+  const headerRef = useRef([
+    [t('tips'), 'start'],
+    [t('finder'), 'address media--1400'],
+    [t('reason'), 'start'],
     [undefined, 'media--1100'],
     [],
     [undefined, 'badge media--1700'],
@@ -72,7 +73,7 @@ function Tips ({ className = '', defaultId, hashes, isMember, members, onSelectT
   ]);
 
   return (
-    <StyledTable
+    <Table
       className={className}
       empty={tips && t<string>('No open tips')}
       filter={isMember && (
@@ -99,11 +100,11 @@ function Tips ({ className = '', defaultId, hashes, isMember, members, onSelectT
           tip={tip}
         />
       ))}
-    </StyledTable>
+    </Table>
   );
 }
 
-const StyledTable = styled(Table)`
+export default React.memo(styled(Tips)`
   .tipsFilter {
     text-align: right;
 
@@ -112,6 +113,4 @@ const StyledTable = styled(Table)`
       margin-top: 0.75rem;
     }
   }
-`;
-
-export default React.memo(Tips);
+`);

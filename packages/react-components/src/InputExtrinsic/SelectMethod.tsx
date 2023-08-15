@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { DropdownOptions } from '../util/types.js';
+import type { DropdownOptions } from '../util/types';
 
 import React, { useCallback } from 'react';
 
 import { ApiPromise } from '@polkadot/api';
 
-import Dropdown from '../Dropdown.js';
+import Dropdown from '../Dropdown';
 
 interface Props {
   api: ApiPromise;
@@ -34,7 +34,7 @@ function SelectMethod ({ api, className = '', defaultValue, isDisabled, isError,
 
   return (
     <Dropdown
-      className={`${className} ui--DropdownLinked-Items`}
+      className={`ui--DropdownLinked-Items ${className}`}
       defaultValue={defaultValue}
       isDisabled={isDisabled}
       isError={isError}

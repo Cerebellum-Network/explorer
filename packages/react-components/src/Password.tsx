@@ -1,15 +1,16 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
 
-import Input from './Input.js';
+import Input from './Input';
 
 interface Props {
   autoFocus?: boolean;
   children?: React.ReactNode;
   className?: string;
   defaultValue?: string;
+  help?: string;
   isDisabled?: boolean;
   isError?: boolean;
   isFull?: boolean;
@@ -24,12 +25,13 @@ interface Props {
   withLabel?: boolean;
 }
 
-function Password ({ autoFocus, children, className = '', defaultValue, isDisabled, isError, isFull, label, labelExtra, name, onChange, onEnter, onEscape, tabIndex, value, withLabel }: Props): React.ReactElement<Props> {
+function Password ({ autoFocus, children, className = '', defaultValue, help, isDisabled, isError, isFull, label, labelExtra, name, onChange, onEnter, onEscape, tabIndex, value, withLabel }: Props): React.ReactElement<Props> {
   return (
     <Input
       autoFocus={autoFocus}
-      className={`${className} ui--Password`}
+      className={`ui--Password ${className}`}
       defaultValue={defaultValue}
+      help={help}
       isDisabled={isDisabled}
       isError={isError}
       isFull={isFull}

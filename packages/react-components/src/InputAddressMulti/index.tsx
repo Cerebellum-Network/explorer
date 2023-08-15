@@ -1,22 +1,23 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { useDebounce, useNextTick } from '@polkadot/react-hooks';
+import { useDebounce, useLoadingDelay } from '@polkadot/react-hooks';
 
-import Input from '../Input.js';
-import Spinner from '../Spinner.js';
-import { styled } from '../styled.js';
-import { useTranslation } from '../translate.js';
-import Available from './Available.js';
-import Selected from './Selected.js';
+import Input from '../Input';
+import Spinner from '../Spinner';
+import { useTranslation } from '../translate';
+import Available from './Available';
+import Selected from './Selected';
 
 interface Props {
   available: string[];
   availableLabel: React.ReactNode;
   className?: string;
   defaultValue?: string[];
+  help: React.ReactNode;
   maxCount: number;
   onChange: (values: string[]) => void;
   valueLabel: React.ReactNode;
@@ -39,7 +40,7 @@ function InputAddressMulti ({ available, availableLabel, className = '', default
   const [_filter, setFilter] = useState<string>('');
   const [selected, setSelected] = useState<string[]>([]);
   const filter = useDebounce(_filter);
-  const isNextTick = useNextTick();
+  const isLoading = useLoadingDelay();
 
   useEffect((): void => {
     defaultValue && setSelected(defaultValue);
@@ -49,18 +50,18 @@ function InputAddressMulti ({ available, availableLabel, className = '', default
     selected && onChange(selected);
   }, [onChange, selected]);
 
-  const onSelect = useCallback(
+  const _onSelect = useCallback(
     (address: string) => setSelected((prev) => include(prev, address, maxCount)),
     [maxCount]
   );
 
-  const onDeselect = useCallback(
+  const _onDeselect = useCallback(
     (address: string) => setSelected((prev) => exclude(prev, address)),
     []
   );
 
   return (
-    <StyledDiv className={`${className} ui--InputAddressMulti`}>
+    <div className={`ui--InputAddressMulti ${className}`}>
       <Input
         autoFocus
         className='ui--InputAddressMulti-Input'
@@ -78,7 +79,7 @@ function InputAddressMulti ({ available, availableLabel, className = '', default
               <Selected
                 address={address}
                 key={address}
-                onDeselect={onDeselect}
+                onDeselect={_onDeselect}
               />
             ))}
           </div>
@@ -86,26 +87,26 @@ function InputAddressMulti ({ available, availableLabel, className = '', default
         <div className='ui--InputAddressMulti-column'>
           <label>{availableLabel}</label>
           <div className='ui--InputAddressMulti-items'>
-            {isNextTick
-              ? available.map((address) => (
+            {isLoading
+              ? <Spinner />
+              : available.map((address) => (
                 <Available
                   address={address}
                   filter={filter}
                   isHidden={selected?.includes(address)}
                   key={address}
-                  onSelect={onSelect}
+                  onSelect={_onSelect}
                 />
               ))
-              : <Spinner />
             }
           </div>
         </div>
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(InputAddressMulti)`
   border-top-width: 0px;
   margin-left: 2rem;
   width: calc(100% - 2rem);
@@ -159,6 +160,4 @@ const StyledDiv = styled.div`
       }
     }
   }
-`;
-
-export default React.memo(InputAddressMulti);
+`);

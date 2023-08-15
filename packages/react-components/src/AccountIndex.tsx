@@ -1,10 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveAccountInfo } from '@polkadot/api-derive/types';
 import type { AccountId, Address } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
 import { useDeriveAccountInfo, useSystemApi } from '@polkadot/react-hooks';
 
@@ -36,10 +37,14 @@ function AccountIndex ({ children, className = '', defaultValue, label, value }:
   }
 
   return (
-    <div className={`${className} ui--AccountIndex`}>
+    <div className={`ui--AccountIndex ${className}`}>
       {label || ''}<div className='account-index'>{accountIndex || defaultValue || '-'}</div>{children}
     </div>
   );
 }
 
-export default React.memo(AccountIndex);
+export default React.memo(styled(AccountIndex)`
+  .account-index {
+    font: var(--font-mono);
+  }
+`);

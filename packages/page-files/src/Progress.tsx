@@ -1,9 +1,8 @@
-// Copyright 2017-2023 @polkadot/app-files authors & contributors
+// Copyright 2017-2022 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { CSSProperties } from 'react';
-
-import { styled } from '@polkadot/react-components';
+import styled from 'styled-components';
 
 export interface Props {
   className?: string,
@@ -13,19 +12,19 @@ export interface Props {
 
 function Progress ({ className = '', progress, style }: Props) {
   return (
-    <StyledDiv
-      className={`${className} highlight--border`}
+    <div
+      className={`highlight--border ${className}`}
       style={style}
     >
       <div
         className='file-progress-bar highlight--bg'
         style={{ width: `${progress}%` }}
       />
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo<Props>(styled(Progress)`
   width: 100%;
   background: unset;
   overflow: hidden;
@@ -39,6 +38,4 @@ const StyledDiv = styled.div`
     width: 0;
     height: 100%;
   }
-`;
-
-export default React.memo<Props>(Progress);
+`);

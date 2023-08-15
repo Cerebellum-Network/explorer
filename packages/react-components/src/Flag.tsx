@@ -1,12 +1,11 @@
-// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { FlagColor } from './types.js';
-
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from './styled.js';
-import Tag from './Tag.js';
+import { Tag } from '@polkadot/react-components/index';
+import { FlagColor } from '@polkadot/react-components/types';
 
 interface FlagProps {
   className?: string;
@@ -16,19 +15,20 @@ interface FlagProps {
 
 function Flag ({ className = '', color, label }: FlagProps): React.ReactElement<FlagProps> {
   return (
-    <StyledTag
+    <Tag
       className={`${className} ${color === 'theme' ? ' highlight--color-bg highlight--bg' : ''}` }
       color={color}
+      isFlag
       label={label}
       size='tiny'
     />
   );
 }
 
-const StyledTag = styled(Tag)`
+export default React.memo(styled(Flag)`
   border-radius: 0 0.25rem 0.25rem 0;
   padding: 0.5833em 1.25em 0.5833em 1.5em;
-  font-size: var(--font-size-tiny);
+  font-size: 0.78571429rem;
   line-height: 1;
   color: #fff !important;
 
@@ -63,6 +63,4 @@ const StyledTag = styled(Tag)`
     top: 50%;
     transition: none;
   }
-`;
-
-export default React.memo(Flag);
+`);

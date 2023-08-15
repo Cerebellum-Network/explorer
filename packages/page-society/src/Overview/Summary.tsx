@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-society authors & contributors
+// Copyright 2017-2022 @polkadot/app-society authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSociety } from '@polkadot/api-derive/types';
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
-import { CardSummary, styled, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, SummaryBox } from '@polkadot/react-components';
 import { useApi, useBestNumber, useCall } from '@polkadot/react-hooks';
 import { FormatBalance } from '@polkadot/react-query';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -32,7 +33,7 @@ function Summary ({ className = '', info, payoutTotal }: Props): React.ReactElem
   );
 
   return (
-    <StyledSummaryBox className={className}>
+    <SummaryBox className={className}>
       <section className='media--1100'>
         {info && members && (
           <CardSummary label={t<string>('members')}>
@@ -82,11 +83,11 @@ function Summary ({ className = '', info, payoutTotal }: Props): React.ReactElem
           </CardSummary>
         )}
       </section>
-    </StyledSummaryBox>
+    </SummaryBox>
   );
 }
 
-const StyledSummaryBox = styled(SummaryBox)`
+export default React.memo(styled(Summary)`
   .society--header--account {
     white-space: nowrap;
 
@@ -98,6 +99,4 @@ const StyledSummaryBox = styled(SummaryBox)`
       margin-right: 0.5rem;
     }
   }
-`;
-
-export default React.memo(Summary);
+`);

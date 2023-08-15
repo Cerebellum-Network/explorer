@@ -1,25 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { useMemo } from 'react';
 
-import { createNamedHook, useKeyring } from '@polkadot/react-hooks';
-
-function merge (result: string[], input: string[], exclude?: string): string[] {
-  return input.reduce<string[]>((result, a) => {
-    if (a !== exclude && !result.includes(a)) {
-      result.push(a);
-    }
-
-    return result;
-  }, result);
-}
+import { createNamedHook, useAccounts, useAddresses } from '@polkadot/react-hooks';
 
 function useKnownAddressesImpl (exclude?: string): string[] {
-  const { accounts: { allAccounts }, addresses: { allAddresses } } = useKeyring();
+  const { allAccounts } = useAccounts();
+  const { allAddresses } = useAddresses();
 
   return useMemo(
-    () => merge(merge([], allAccounts, exclude), allAddresses, exclude),
+    () => [...allAccounts, ...allAddresses].filter((a) => a !== exclude),
     [allAccounts, allAddresses, exclude]
   );
 }

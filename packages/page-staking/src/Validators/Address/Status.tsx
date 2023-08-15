@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
-import { Badge } from '@polkadot/react-components';
+import { Badge, Icon } from '@polkadot/react-components';
 import { useAccounts } from '@polkadot/react-hooks';
 
-import MaxBadge from '../../MaxBadge.js';
+import MaxBadge from '../../MaxBadge';
 
 interface Props {
   isChilled?: boolean;
@@ -37,38 +37,25 @@ function Status ({ isChilled, isElected, isMain, isPara, isRelay, nominators = N
       {isNominating
         ? (
           <Badge
-            className='media--1100'
             color='green'
             icon='hand-paper'
           />
         )
-        : (
-          <Badge
-            className='media--1100'
-            color='transparent'
-          />
-        )
+        : <Badge color='transparent' />
       }
       {isRelay && (
         isPara
           ? (
             <Badge
-              className='media--1100'
               color='purple'
               icon='vector-square'
             />
           )
-          : (
-            <Badge
-              className='media--1100'
-              color='transparent'
-            />
-          )
+          : <Badge color='transparent' />
       )}
       {isChilled
         ? (
           <Badge
-            className='media--1000'
             color='red'
             icon='cancel'
           />
@@ -76,41 +63,21 @@ function Status ({ isChilled, isElected, isMain, isPara, isRelay, nominators = N
         : isElected
           ? (
             <Badge
-              className='media--1000'
               color='blue'
               icon='chevron-right'
             />
           )
-          : (
-            <Badge
-              className='media--1000'
-              color='transparent'
-            />
-          )
+          : <Badge color='transparent' />
       }
       {isMain && (
-        blockCount
+        blockCount || onlineMessage
           ? (
             <Badge
-              className='media--900'
               color='green'
-              info={blockCount}
+              info={blockCount || <Icon icon='envelope' />}
             />
           )
-          : onlineMessage
-            ? (
-              <Badge
-                className='media--900'
-                color='green'
-                icon='envelope'
-              />
-            )
-            : (
-              <Badge
-                className='media--900'
-                color='transparent'
-              />
-            )
+          : <Badge color='transparent' />
       )}
       <MaxBadge numNominators={nominators.length} />
     </>

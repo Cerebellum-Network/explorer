@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-contracts authors & contributors
+// Copyright 2017-2022 @polkadot/app-contracts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
@@ -13,11 +13,11 @@ import { Available } from '@polkadot/react-query';
 import { keyring } from '@polkadot/ui-keyring';
 import { BN, BN_ZERO, isNull, isWasm, stringify } from '@polkadot/util';
 
-import { ABI, InputMegaGas, InputName, MessageSignature, Params } from '../shared/index.js';
-import store from '../store.js';
-import { useTranslation } from '../translate.js';
-import useAbi from '../useAbi.js';
-import useWeight from '../useWeight.js';
+import { ABI, InputMegaGas, InputName, MessageSignature, Params } from '../shared';
+import store from '../store';
+import { useTranslation } from '../translate';
+import useAbi from '../useAbi';
+import useWeight from '../useWeight';
 
 interface Props {
   onClose: () => void;
@@ -82,42 +82,23 @@ function Upload ({ onClose }: Props): React.ReactElement {
   }, [abiName, setName]);
 
   useEffect((): void => {
-    async function dryRun () {
-      let contract: SubmittableExtrinsic<'promise'> | null = null;
-      let error: string | null = null;
+    let contract: SubmittableExtrinsic<'promise'> | null = null;
+    let error: string | null = null;
 
-      try {
-        if (code && contractAbi?.constructors[constructorIndex]?.method && value && accountId) {
-          const dryRunParams: Parameters<typeof api.call.contractsApi.instantiate> =
-            [
-              accountId,
-              contractAbi?.constructors[constructorIndex].isPayable
-                ? api.registry.createType('Balance', value)
-                : api.registry.createType('Balance', BN_ZERO),
-              weight.weightV2,
-              null,
-              { Upload: api.registry.createType('Raw', wasm) },
-              contractAbi?.constructors[constructorIndex]?.toU8a(params),
-              ''
-            ];
-
-          const dryRunResult = await api.call.contractsApi.instantiate(...dryRunParams);
-
-          contract = code.tx[contractAbi.constructors[constructorIndex].method]({
-            gasLimit: dryRunResult.gasRequired,
-            storageDepositLimit: dryRunResult.storageDeposit.isCharge ? dryRunResult.storageDeposit.asCharge : null,
-            value: contractAbi?.constructors[constructorIndex].isPayable ? value : undefined
-          }, ...params);
-        }
-      } catch (e) {
-        error = (e as Error).message;
-      }
-
-      setUploadTx(() => [contract, error]);
+    try {
+      contract = code && contractAbi?.constructors[constructorIndex]?.method && value
+        ? code.tx[contractAbi.constructors[constructorIndex].method]({
+          gasLimit: weight.weight,
+          storageDepositLimit: null,
+          value: contractAbi?.constructors[constructorIndex].isPayable ? value : undefined
+        }, ...params)
+        : null;
+    } catch (e) {
+      error = (e as Error).message;
     }
 
-    dryRun().catch((e) => console.error(e));
-  }, [accountId, wasm, api, code, contractAbi, constructorIndex, value, params, weight]);
+    setUploadTx(() => [contract, error]);
+  }, [code, contractAbi, constructorIndex, value, params, weight]);
 
   const _onAddWasm = useCallback(
     (wasm: Uint8Array, name: string): void => {
@@ -151,15 +132,16 @@ function Upload ({ onClose }: Props): React.ReactElement {
 
   return (
     <Modal
-      header={t<string>('Upload & deploy code {{info}}', { replace: { info: `${step}/2` } })}
+      header={t('Upload & deploy code {{info}}', { replace: { info: `${step}/2` } })}
       onClose={onClose}
     >
       <Modal.Content>
         {step === 1 && (
           <>
             <InputAddress
+              help={t('Specify the user account to use for this deployment. Any fees will be deducted from this account.')}
               isInput={false}
-              label={t<string>('deployment account')}
+              label={t('deployment account')}
               labelExtra={
                 <Available
                   label={t<string>('transferrable')}
@@ -185,6 +167,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
               <>
                 {!contractAbi.info.source.wasm.length && (
                   <InputFile
+                    help={t<string>('The compiled WASM for the contract that you wish to deploy. Each unique code blob will be attached with a code hash that can be used to create new instances.')}
                     isError={!isWasmValid}
                     label={t<string>('compiled contract WASM')}
                     onChange={_onAddWasm}
@@ -203,8 +186,9 @@ function Upload ({ onClose }: Props): React.ReactElement {
         {step === 2 && contractAbi && (
           <>
             <Dropdown
+              help={t<string>('The deployment constructor information for this contract, as provided by the ABI.')}
               isDisabled={contractAbi.constructors.length <= 1}
-              label={t<string>('deployment constructor')}
+              label={t('deployment constructor')}
               onChange={setConstructorIndex}
               options={constructOptions}
               value={constructorIndex}
@@ -216,6 +200,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
             />
             {contractAbi.constructors[constructorIndex].isPayable && (
               <InputBalance
+                help={t<string>('The balance to transfer from the `origin` to the newly created contract.')}
                 isError={!isValueValid}
                 isZeroable
                 label={t<string>('value')}
@@ -225,6 +210,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
             )
             }
             <InputMegaGas
+              help={t<string>('The maximum amount of gas that can be used by this deployment, if the code requires more, the deployment will fail')}
               weight={weight}
             />
             {error && (
@@ -256,7 +242,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
           extrinsic={uploadTx}
           icon='upload'
           isDisabled={!isSubmittable}
-          label={t<string>('Deploy')}
+          label={t('Deploy')}
           onClick={onClose}
           onSuccess={_onSuccess}
         />

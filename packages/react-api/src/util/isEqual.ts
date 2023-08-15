@@ -1,7 +1,7 @@
-// Copyright 2017-2023 @polkadot/react-api authors & contributors
+// Copyright 2017-2022 @polkadot/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-function flatten (_key: string | null, value?: unknown): unknown {
+function flatten (key: string | null, value?: unknown): unknown {
   return !value
     ? value
     : (value as Record<string, unknown>).$$typeof

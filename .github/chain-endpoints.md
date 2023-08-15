@@ -1,6 +1,6 @@
 ---
 title: Unavailable chain endpoints
-labels: ['ci']
+labels: ['ci', '@apps-config']
 ---
 
 cc @polkadot-js/notifications

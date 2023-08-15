@@ -1,25 +1,25 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveHeartbeats, DeriveStakingOverview } from '@polkadot/api-derive/types';
+import type { Authors } from '@polkadot/react-query/BlockAuthors';
 import type { AccountId } from '@polkadot/types/interfaces';
 import type { BN } from '@polkadot/util';
-import type { NominatedByMap, SortedTargets, ValidatorInfo } from '../types.js';
+import type { NominatedByMap, SortedTargets, ValidatorInfo } from '../types';
 
-import React, { useMemo, useRef, useState } from 'react';
+import React, { useContext, useMemo, useRef, useState } from 'react';
 
 import { Table } from '@polkadot/react-components';
-import { useApi, useBlockAuthors, useNextTick } from '@polkadot/react-hooks';
+import { useApi, useLoadingDelay } from '@polkadot/react-hooks';
+import { BlockAuthorsContext } from '@polkadot/react-query';
 
-import Filtering from '../Filtering.js';
-import Legend from '../Legend.js';
-import { useTranslation } from '../translate.js';
-import Address from './Address/index.js';
+import Filtering from '../Filtering';
+import Legend from '../Legend';
+import { useTranslation } from '../translate';
+import Address from './Address';
 
 interface Props {
   className?: string;
-  byAuthor: Record<string, string>;
-  eraPoints: Record<string, string>;
   favorites: string[];
   hasQueries: boolean;
   isIntentions?: boolean;
@@ -28,7 +28,7 @@ interface Props {
   minCommission?: BN;
   nominatedBy?: NominatedByMap;
   ownStashIds?: string[];
-  paraValidators: Record<string, boolean>;
+  paraValidators?: Record<string, boolean>;
   recentlyOnline?: DeriveHeartbeats;
   setNominators?: (nominators: string[]) => void;
   stakingOverview?: DeriveStakingOverview;
@@ -42,6 +42,8 @@ interface Filtered {
   validators?: AccountExtend[];
   waiting?: AccountExtend[];
 }
+
+const EmptyAuthorsContext: React.Context<Authors> = React.createContext<Authors>({ byAuthor: {}, eraPoints: {}, lastBlockAuthors: [], lastHeaders: [] });
 
 function filterAccounts (isOwn: boolean, accounts: string[] = [], ownStashIds: string[] = [], elected: string[], favorites: string[], without: string[]): AccountExtend[] {
   return accounts
@@ -111,9 +113,11 @@ const DEFAULT_PARAS = {};
 function CurrentList ({ className, favorites, hasQueries, isIntentions, isOwn, minCommission, nominatedBy, ownStashIds, paraValidators = DEFAULT_PARAS, recentlyOnline, stakingOverview, targets, toggleFavorite }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
   const { api } = useApi();
-  const { byAuthor, eraPoints } = useBlockAuthors();
+  const { byAuthor, eraPoints } = useContext(isIntentions ? EmptyAuthorsContext : BlockAuthorsContext);
   const [nameFilter, setNameFilter] = useState<string>('');
-  const isNextTick = useNextTick();
+
+  // we have a very large list, so we use a loading delay
+  const isLoading = useLoadingDelay();
 
   const { validators, waiting } = useMemo(
     () => getFiltered(isOwn, stakingOverview, favorites, targets.waitingIds, ownStashIds),
@@ -121,12 +125,12 @@ function CurrentList ({ className, favorites, hasQueries, isIntentions, isOwn, m
   );
 
   const list = useMemo(
-    () => isNextTick
-      ? isIntentions
+    () => isLoading
+      ? undefined
+      : isIntentions
         ? nominatedBy && waiting
-        : validators
-      : undefined,
-    [isIntentions, isNextTick, nominatedBy, validators, waiting]
+        : validators,
+    [isIntentions, isLoading, nominatedBy, validators, waiting]
   );
 
   const infoMap = useMemo(
@@ -134,20 +138,24 @@ function CurrentList ({ className, favorites, hasQueries, isIntentions, isOwn, m
     [targets]
   );
 
-  const headerRef = useRef<([React.ReactNode?, string?, number?] | false)[]>(
+  const headerRef = useRef(
     isIntentions
       ? [
-        [t<string>('intentions'), 'start', 3],
-        [t<string>('nominators'), 'expand'],
-        [t<string>('commission'), 'number'],
+        [t('intentions'), 'start', 2],
+        [t('nominators'), 'expand'],
+        [t('commission'), 'number'],
+        [],
         []
       ]
       : [
-        [t<string>('validators'), 'start', 3],
-        [t<string>('other stake'), 'expand'],
-        [t<string>('commission')],
-        [t<string>('last #')],
-        []
+        [t('validators'), 'start', 2],
+        [t('other stake'), 'expand'],
+        [t('own stake'), 'media--1100'],
+        [t('commission')],
+        [t('points')],
+        [t('last #')],
+        [],
+        [undefined, 'media--1200']
       ]
   );
 
@@ -192,7 +200,7 @@ function CurrentList ({ className, favorites, hasQueries, isIntentions, isOwn, m
           isElected={isElected}
           isFavorite={isFavorite}
           isMain={!isIntentions}
-          isPara={paraValidators[address]}
+          isPara={isIntentions ? false : paraValidators[address]}
           key={address}
           lastBlock={byAuthor[address]}
           minCommission={minCommission}

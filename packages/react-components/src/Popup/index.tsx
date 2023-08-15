@@ -1,33 +1,23 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { PopupProps } from './types.js';
+import type { PopupProps } from './types';
 
-import React, { useCallback, useEffect, useMemo, useRef } from 'react';
+import React, { useCallback, useEffect, useRef } from 'react';
+import styled from 'styled-components';
 
-import { useOutsideClick, useTheme, useToggle } from '@polkadot/react-hooks';
+import { Button } from '@polkadot/react-components/index';
+import { useOutsideClick, useToggle } from '@polkadot/react-hooks';
 
-import Button from '../Button/index.js';
-import { styled } from '../styled.js';
-import PopupWindow from './PopupWindow.js';
+import PopupWindow from './PopupWindow';
 
-function Popup ({ children, className = '', closeOnScroll, isDisabled, onCloseAction, position = 'left', value }: PopupProps) {
-  const { themeClassName } = useTheme();
+function Popup ({ children, className = '', closeOnScroll = false, isDisabled = false, onCloseAction, position = 'left', value }: PopupProps) {
   const [isOpen, toggleIsOpen, setIsOpen] = useToggle(false);
   const triggerRef = useRef<HTMLDivElement>(null);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const closeWindow = useCallback(() => setIsOpen(false), [setIsOpen]);
 
-  const closeWindow = useCallback(
-    () => setIsOpen(false),
-    [setIsOpen]
-  );
-
-  const refs = useMemo(
-    () => [triggerRef, dropdownRef],
-    [triggerRef, dropdownRef]
-  );
-
-  useOutsideClick(refs, closeWindow);
+  useOutsideClick([triggerRef, dropdownRef], closeWindow);
 
   useEffect(() => {
     if (closeOnScroll) {
@@ -44,7 +34,7 @@ function Popup ({ children, className = '', closeOnScroll, isDisabled, onCloseAc
   }, [isOpen, onCloseAction]);
 
   return (
-    <StyledDiv className={`${className} ui--Popup ${themeClassName}`}>
+    <div className={`ui--Popup ${className}`}>
       {isOpen && (
         <PopupWindow
           position={position}
@@ -55,7 +45,6 @@ function Popup ({ children, className = '', closeOnScroll, isDisabled, onCloseAc
         </PopupWindow>
       )}
       <div
-        data-testid='popup-open'
         onClick={toggleIsOpen}
         ref={triggerRef}
       >
@@ -68,15 +57,13 @@ function Popup ({ children, className = '', closeOnScroll, isDisabled, onCloseAc
           />
         )}
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Popup)`
   display: inline-flex;
   flex-direction: column;
   justify-content: center;
   position: relative;
-`;
-
-export default React.memo(Popup);
+`);

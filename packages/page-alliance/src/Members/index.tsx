@@ -1,17 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-alliance authors & contributors
+// Copyright 2017-2022 @polkadot/app-alliance authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Member as MemberType, Rule, Unscrupulous } from '../types.js';
+import type { Member as MemberType, Rule, Unscrupulous } from '../types';
 
 import React, { useRef } from 'react';
 
 import { Button, Table } from '@polkadot/react-components';
 import { useBestNumber, useToggle } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
-import Join from './Join.js';
-import Member from './Member.js';
-import Summary from './Summary.js';
+import { useTranslation } from '../translate';
+import Join from './Join';
+import Member from './Member';
+import Summary from './Summary';
 
 interface Props {
   className?: string;
@@ -28,8 +28,11 @@ function Overview ({ className, members, prime, rule, unscrupulous, voters }: Pr
   const [isJoinOpen, toggleJoin] = useToggle();
   const bestNumber = useBestNumber();
 
-  const hdrRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('members'), 'start', 3]
+  const hdrRef = useRef([
+    [t<string>('members'), 'start', 2],
+    [t<string>('deposit'), 'number'],
+    [t<string>('role'), 'number'],
+    []
   ]);
 
   return (
@@ -56,8 +59,6 @@ function Overview ({ className, members, prime, rule, unscrupulous, voters }: Pr
       <Table
         empty={members && t<string>('No members')}
         header={hdrRef.current}
-        isSplit
-        maxColumns={2}
       >
         {members && members.map((m) => (
           <Member

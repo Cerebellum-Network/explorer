@@ -1,27 +1,38 @@
-// Copyright 2017-2023 @polkadot/app-files authors & contributors
+// Copyright 2017-2022 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { TFunction } from 'i18next';
 import type { Signer } from '@polkadot/api/types';
-import type { AuthIpfsEndpoint } from './types.js';
 
 import axios, { CancelTokenSource } from 'axios';
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import styled from 'styled-components';
 
+import { createAuthIpfsEndpoints } from '@polkadot/apps-config';
 import { web3FromSource } from '@polkadot/extension-dapp';
-import { Available, Button, Dropdown, InputAddress, Label, MarkError, Modal, Password, styled } from '@polkadot/react-components';
+import { Available, Button, Dropdown, InputAddress, Label, MarkError, Modal, Password } from '@polkadot/react-components';
 import { keyring } from '@polkadot/ui-keyring';
 import { isFunction, nextTick, stringToHex, stringToU8a, u8aToHex } from '@polkadot/util';
 
-import Progress from './Progress.js';
-import { useTranslation } from './translate.js';
-import { DirFile, FileInfo, SaveFile, UploadRes } from './types.js';
+import Progress from './Progress';
+import { useTranslation } from './translate';
+import { DirFile, FileInfo, SaveFile, UploadRes } from './types';
 
 export interface Props {
   className?: string;
   file: FileInfo,
   onClose?: () => void,
   onSuccess?: (res: SaveFile) => void,
+}
+
+function ShowFile (p: { file: DirFile | File }) {
+  const f = p.file as DirFile;
+
+  return (
+    <div className='file'>
+      <Label label={f.webkitRelativePath || p.file.name} />
+      <span>{`${f.size} bytes`}</span>
+    </div>
+  );
 }
 
 interface AccountState {
@@ -36,37 +47,6 @@ interface SignerState {
 }
 
 const NOOP = (): void => undefined;
-
-function ShowFile (p: { file: DirFile | File }) {
-  const f = p.file as DirFile;
-
-  return (
-    <div className='file'>
-      <Label label={f.webkitRelativePath || p.file.name} />
-      <span>{`${f.size} bytes`}</span>
-    </div>
-  );
-}
-
-function createAuthIpfsEndpoints (t: TFunction): AuthIpfsEndpoint[] {
-  return [
-    {
-      location: t<string>('Singapore'),
-      text: t<string>('DCF'),
-      value: 'https://crustipfs.xyz'
-    },
-    {
-      location: t<string>('Seattle'),
-      text: t<string>('Crust Network'),
-      value: 'https://gw.crustfiles.app'
-    },
-    {
-      location: t<string>('Berlin'),
-      text: t<string>('⚡️ Thunder Gateway'),
-      value: 'https://gw.crustfiles.net'
-    }
-  ];
-}
 
 function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
@@ -227,8 +207,8 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
         headers: { Authorization: AuthBasic },
         maxContentLength: 100 * 1024 * 1024,
         method: 'POST',
-        onUploadProgress: ({ loaded, total }) => {
-          const percent = loaded / (total || loaded || 1);
+        onUploadProgress: (p: { loaded: number, total: number }) => {
+          const percent = p.loaded / p.total;
 
           setUpState({ progress: Math.round(percent * 99), up: true });
         },
@@ -239,7 +219,7 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
       let upRes: UploadRes;
 
       if (typeof upResult.data === 'string') {
-        const jsonStr = upResult.data.replace(/}\n{/g, '},{');
+        const jsonStr = upResult.data.replaceAll('}\n{', '},{');
         const items = JSON.parse(`[${jsonStr}]`) as UploadRes[];
         const folder = items.length - 1;
 
@@ -295,7 +275,7 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
   }, [pinEndpoints, setCurrentPinEndpoint]);
 
   return (
-    <StyledModal
+    <Modal
       className={className}
       header={t<string>('Upload File')}
       onClose={_onClose}
@@ -316,6 +296,7 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
         </Modal.Columns>
         <Modal.Columns>
           <Dropdown
+            help={t<string>('File streaming and wallet authentication will be processed by the chosen gateway.')}
             isDisabled={isBusy}
             label={t<string>('Select a Web3 IPFS Gateway')}
             onChange={_onChangeGateway}
@@ -325,6 +306,7 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
         </Modal.Columns>
         <Modal.Columns>
           <Dropdown
+            help={t<string>('Your file will be pinned to IPFS for long-term storage.')}
             isDisabled={true}
             label={t<string>('Select a Web3 IPFS Pinner')}
             onChange={_onChangePinner}
@@ -349,6 +331,7 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
           {
             !upState.up && isLocked && !isInjected &&
             <Password
+              help={t<string>('The account\'s password specified at the creation of this account.')}
               isError={false}
               label={t<string>('password')}
               onChange={setPassword}
@@ -373,11 +356,11 @@ function UploadModal ({ className, file, onClose = NOOP, onSuccess = NOOP }: Pro
           onClick={_onClickUp}
         />
       </Modal.Actions>
-    </StyledModal>
+    </Modal>
   );
 }
 
-const StyledModal = styled(Modal)`
+export default React.memo(styled(UploadModal)`
   .files {
     max-height: 300;
     overflow: auto;
@@ -397,6 +380,4 @@ const StyledModal = styled(Modal)`
     margin-top: 2rem;
     width: calc(100% - 2rem);
   }
-`;
-
-export default React.memo(UploadModal);
+`);

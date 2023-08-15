@@ -1,18 +1,18 @@
-// Copyright 2017-2023 @polkadot/app-tech-comm authors & contributors
+// Copyright 2017-2022 @polkadot/app-tech-comm authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { CollectiveType } from '@polkadot/react-hooks/types';
 import type { Hash } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Switch } from 'react-router';
 
 import { Tabs } from '@polkadot/react-components';
 import { useApi, useCall, useCollectiveMembers } from '@polkadot/react-hooks';
 
-import Overview from './Overview/index.js';
-import Proposals from './Proposals/index.js';
-import { useTranslation } from './translate.js';
+import Overview from './Overview';
+import Proposals from './Proposals';
+import { useTranslation } from './translate';
 
 interface Props {
   basePath: string;
@@ -53,34 +53,26 @@ function TechCommApp ({ basePath, className, type }: Props): React.ReactElement<
         }
         items={items}
       />
-      <Routes>
-        <Route path={basePath}>
-          <Route
-            element={
-              <Proposals
-                isMember={isMember}
-                members={members}
-                prime={prime}
-                proposalHashes={proposalHashes}
-                type={type}
-              />
-            }
-            path='proposals'
-          />
-          <Route
-            element={
-              <Overview
-                isMember={isMember}
-                members={members}
-                prime={prime}
-                proposalHashes={proposalHashes}
-                type={type}
-              />
-            }
-            index
+      <Switch>
+        <Route path={`${basePath}/proposals`}>
+          <Proposals
+            isMember={isMember}
+            members={members}
+            prime={prime}
+            proposalHashes={proposalHashes}
+            type={type}
           />
         </Route>
-      </Routes>
+        <Route path={basePath}>
+          <Overview
+            isMember={isMember}
+            members={members}
+            prime={prime}
+            proposalHashes={proposalHashes}
+            type={type}
+          />
+        </Route>
+      </Switch>
     </main>
   );
 }

@@ -1,19 +1,20 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { SortedTargets } from '../../types.js';
-import type { NominateInfo } from './types.js';
+import type { SortedTargets } from '../../types';
+import type { NominateInfo } from './types';
 
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { InputAddressMulti, MarkWarning, Modal, styled } from '@polkadot/react-components';
+import { InputAddressMulti, MarkWarning, Modal } from '@polkadot/react-components';
 import { useApi, useFavorites } from '@polkadot/react-hooks';
 
-import { MAX_NOMINATIONS, STORE_FAVS_BASE } from '../../constants.js';
-import { useTranslation } from '../../translate.js';
-import PoolInfo from './PoolInfo.js';
-import SenderInfo from './SenderInfo.js';
+import { MAX_NOMINATIONS, STORE_FAVS_BASE } from '../../constants';
+import { useTranslation } from '../../translate';
+import PoolInfo from './PoolInfo';
+import SenderInfo from './SenderInfo';
 
 interface Props {
   className?: string;
@@ -63,7 +64,7 @@ function Nominate ({ className = '', controllerId, nominating, onChange, poolId,
     : MAX_NOMINATIONS;
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       {withSenders && (
         poolId
           ? (
@@ -91,17 +92,18 @@ function Nominate ({ className = '', controllerId, nominating, onChange, poolId,
           available={available}
           availableLabel={t<string>('candidate accounts')}
           defaultValue={nominating}
+          help={t<string>('Filter available candidates based on name, address or short account index.')}
           maxCount={maxNominations}
           onChange={setSelected}
           valueLabel={t<string>('nominated accounts')}
         />
         <MarkWarning content={t<string>('You should trust your nominations to act competently and honest; basing your decision purely on their current profitability could lead to reduced profits or even loss of funds.')} />
       </Modal.Columns>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Nominate)`
   article.warning {
     margin-top: 0;
   }
@@ -167,6 +169,4 @@ const StyledDiv = styled.div`
       }
     }
   }
-`;
-
-export default React.memo(Nominate);
+`);

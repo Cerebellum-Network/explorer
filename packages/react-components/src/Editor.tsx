@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Something is seriously going wrong here...
@@ -9,8 +9,7 @@
 
 import CodeFlask from 'codeflask';
 import React, { useEffect, useRef, useState } from 'react';
-
-import { styled } from './styled.js';
+import styled from 'styled-components';
 
 interface Props {
   className?: string;
@@ -62,14 +61,14 @@ function Editor ({ className = '', code, isValid, onEdit }: Props): React.ReactE
   }, [code]);
 
   return (
-    <StyledDiv
-      className={`${className} ui-Editor ${isValid === false ? 'invalid' : ''}`}
+    <div
+      className={`ui-Editor ${className}${isValid === false ? ' invalid' : ''}`}
       id={editorId}
     />
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Editor)`
   .codeflask {
     border: 1px solid var(--border-input);
     background: transparent;
@@ -81,6 +80,4 @@ const StyledDiv = styled.div`
       border-color: #e0b4b4;
     }
   }
-`;
-
-export default React.memo(Editor);
+`);

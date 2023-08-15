@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-democracy authors & contributors
+// Copyright 2017-2022 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveProposalExternal } from '@polkadot/api-derive/types';
 
 import React from 'react';
 
-import { AddressMini, Button, Columar, ExpandButton, LinkExternal, Table } from '@polkadot/react-components';
-import { useCollectiveMembers, useToggle } from '@polkadot/react-hooks';
+import { AddressMini, Button, LinkExternal } from '@polkadot/react-components';
+import { useCollectiveMembers } from '@polkadot/react-hooks';
+import { FormatBalance } from '@polkadot/react-query';
 
-import Fasttrack from './Fasttrack.js';
-import PreImageButton from './PreImageButton.js';
-import ProposalCell from './ProposalCell.js';
+import Fasttrack from './Fasttrack';
+import PreImageButton from './PreImageButton';
+import ProposalCell from './ProposalCell';
 
 interface Props {
   className?: string;
@@ -19,57 +20,42 @@ interface Props {
 
 function External ({ className = '', value: { image, imageHash, threshold } }: Props): React.ReactElement<Props> | null {
   const { isMember, members } = useCollectiveMembers('technicalCommittee');
-  const [isExpanded, toggleIsExpanded] = useToggle(false);
 
   return (
-    <>
-      <tr className={`${className} isExpanded isFirst ${isExpanded ? '' : 'isLast'}`}>
-        <ProposalCell
-          imageHash={imageHash}
-          proposal={image?.proposal}
-        />
-        <td className='address'>
-          {image && (
-            <AddressMini value={image.proposer} />
+    <tr className={className}>
+      <ProposalCell
+        imageHash={imageHash}
+        proposal={image?.proposal}
+      />
+      <td className='address'>
+        {image && (
+          <AddressMini value={image.proposer} />
+        )}
+      </td>
+      <td className='number'>
+        {image && <FormatBalance value={image.balance} />}
+      </td>
+      <td className='button'>
+        <Button.Group>
+          {!image?.proposal && (
+            <PreImageButton imageHash={imageHash} />
           )}
-        </td>
-        <Table.Column.Balance value={image?.balance} />
-        <td className='actions'>
-          <Button.Group>
-            {!image?.proposal && (
-              <PreImageButton imageHash={imageHash} />
-            )}
-            {threshold && isMember && (
-              <Fasttrack
-                imageHash={imageHash}
-                members={members}
-                threshold={threshold}
-              />
-            )}
-            <ExpandButton
-              expanded={isExpanded}
-              onClick={toggleIsExpanded}
+          {threshold && isMember && (
+            <Fasttrack
+              imageHash={imageHash}
+              members={members}
+              threshold={threshold}
             />
-          </Button.Group>
-        </td>
-      </tr>
-      <tr className={`${className} ${isExpanded ? 'isExpanded isLast' : 'isCollapsed'}`}>
-        <td
-          className='columar'
-          colSpan={100}
-        >
-          <Columar is100>
-            <Columar.Column>
-              <LinkExternal
-                data={imageHash}
-                type='democracyExternal'
-                withTitle
-              />
-            </Columar.Column>
-          </Columar>
-        </td>
-      </tr>
-    </>
+          )}
+        </Button.Group>
+      </td>
+      <td className='links media--1000'>
+        <LinkExternal
+          data={imageHash}
+          type='external'
+        />
+      </td>
+    </tr>
   );
 }
 

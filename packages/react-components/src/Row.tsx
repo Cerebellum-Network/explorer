@@ -1,127 +1,20 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AccountId, AccountIndex, Address } from '@polkadot/types/interfaces';
-
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
 import { useToggle } from '@polkadot/react-hooks';
 
-import EditButton from './EditButton.js';
-import Input from './Input.js';
-import { styled } from './styled.js';
-import Tags from './Tags.js';
+import EditButton from './EditButton';
+import Input from './Input';
+import Tags from './Tags';
 
-export interface RowProps {
-  address?: AccountId | AccountIndex | Address | string | null;
-  buttons?: React.ReactNode;
-  children?: React.ReactNode;
-  className?: string;
-  defaultName?: string | null;
-  details?: React.ReactNode;
-  icon?: React.ReactNode;
-  iconInfo?: React.ReactNode;
-  isDisabled?: boolean;
-  isInline?: boolean;
-  isEditableName?: boolean;
-  isEditableTags?: boolean;
-  isShortAddr?: boolean;
-  name?: string;
-  onChangeName?: (_: string) => void;
-  onChangeTags?: (_: string[]) => void;
-  onSaveName?: () => void;
-  onSaveTags?: () => void;
-  tags?: string[];
-}
-
-function Row ({ address, buttons, children, className = '', defaultName, details, icon, iconInfo, isDisabled, isEditableName, isEditableTags, isInline, isShortAddr = true, name, onChangeName, onChangeTags, onSaveName, onSaveTags, tags }: RowProps): React.ReactElement<RowProps> {
-  const [isEditingName, toggleIsEditingName] = useToggle();
-  const [isEditingTags, toggleIsEditingTags] = useToggle();
-
-  const _onSaveName = useCallback((): void => {
-    onSaveName && onSaveName();
-    toggleIsEditingName();
-  }, [onSaveName, toggleIsEditingName]);
-
-  return (
-    <StyledDiv className={`${className} ui--Row ${isDisabled ? 'isDisabled' : ''} ${isInline ? 'isInline' : ''}`}>
-      <div className='ui--Row-base'>
-        {icon && (
-          <div className='ui--Row-icon'>
-            {icon}
-            {iconInfo && (
-              <div className='ui--Row-icon-info'>
-                {iconInfo}
-              </div>
-            )}
-          </div>
-        )}
-        <div className='ui--Row-details'>
-          {(name || defaultName) && (
-            isEditableName && isEditingName
-              ? (
-                <Input
-                  autoFocus
-                  defaultValue={name || defaultName}
-                  isInPlaceEditor
-                  onBlur={_onSaveName}
-                  onChange={onChangeName}
-                  onEnter
-                  withLabel={false}
-                />
-              )
-              : (
-                <div className='ui--Row-name'>
-                  {
-                    isEditableName
-                      ? (
-                        <EditButton onClick={toggleIsEditingName}>
-                          {name || defaultName}
-                        </EditButton>
-                      )
-                      : name || defaultName
-                  }
-                </div>
-              )
-          )}
-          {address && (
-            <div className={`ui--Row-address ${isShortAddr ? 'shortAddr' : ''}`}>
-              {address}
-            </div>
-          )}
-          {details}
-          {tags && (
-            <Tags
-              className='ui--Row-tags'
-              isEditable={isEditableTags}
-              isEditing={isEditingTags}
-              onChange={onChangeTags}
-              onSave={onSaveTags}
-              onToggleIsEditing={toggleIsEditingTags}
-              value={tags}
-            />
-          )}
-        </div>
-        {buttons && (
-          <div className='ui--Row-buttons'>
-            {buttons}
-          </div>
-        )}
-      </div>
-      {children && (
-        <div className='ui--Row-children'>
-          {children}
-        </div>
-      )}
-    </StyledDiv>
-  );
-}
-
-const StyledDiv = styled.div`
+export const styles = `
   text-align: left;
 
   &.isDisabled {
-    opacity: var(--opacity-light);
+    opacity: 0.6;
 
     .ui--IdentityIcon  {
       filter: grayscale(100%);
@@ -140,7 +33,7 @@ const StyledDiv = styled.div`
     .ui--Row-accountId,
     .ui--Row-icon {
       filter: grayscale(100);
-      opacity: var(--opacity-light);
+      opacity: 0.5;
     }
   }
 
@@ -186,16 +79,10 @@ const StyledDiv = styled.div`
 
   .ui--Row-address,
   .ui--Row-accountIndex {
+    font-family: monospace;
+    font-size: 1.25em;
     padding: 0;
     margin-bottom: 0.25rem;
-
-    &.shortAddr {
-      min-width: var(--width-shortaddr);
-      max-width: var(--width-shortaddr);
-      opacity: var(--opacity-light);
-      overflow: hidden;
-      text-overflow: ellipsis;
-    }
   }
 
   .ui--Row-name {
@@ -243,7 +130,7 @@ const StyledDiv = styled.div`
         border-radius: .5em;
         border-style: dashed;
         color: grey;
-        font-size: var(--font-size-tiny);
+        font-size: x-small;
         padding: .1em 0.3em 0.1em 0.3em;
         margin-top: .2em;
       }
@@ -259,4 +146,113 @@ const StyledDiv = styled.div`
   }
 `;
 
-export default React.memo(Row);
+export interface RowProps {
+  address?: string;
+  buttons?: React.ReactNode;
+  children?: React.ReactNode;
+  className?: string;
+  defaultName?: string;
+  details?: React.ReactNode;
+  icon?: React.ReactNode;
+  iconInfo?: React.ReactNode;
+  isDisabled?: boolean;
+  isInline?: boolean;
+  isEditableName?: boolean;
+  isEditableTags?: boolean;
+  name?: string;
+  onChangeName?: (_: string) => void;
+  onChangeTags?: (_: string[]) => void;
+  onSaveName?: () => void;
+  onSaveTags?: () => void;
+  tags?: string[];
+}
+
+function Row ({ address, buttons, children, className = '', defaultName, details, icon, iconInfo, isDisabled, isEditableName, isEditableTags, isInline, name, onChangeName, onChangeTags, onSaveName, onSaveTags, tags }: RowProps): React.ReactElement<RowProps> {
+  const [isEditingName, toggleIsEditingName] = useToggle();
+  const [isEditingTags, toggleIsEditingTags] = useToggle();
+
+  const _onSaveName = useCallback((): void => {
+    onSaveName && onSaveName();
+    toggleIsEditingName();
+  }, [onSaveName, toggleIsEditingName]);
+
+  return (
+    <div
+      className={`ui--Row${isDisabled ? ' isDisabled' : ''}${isInline ? ' isInline' : ''} ${className}`}
+    >
+      <div className='ui--Row-base'>
+        {icon && (
+          <div className='ui--Row-icon'>
+            {icon}
+            {iconInfo && (
+              <div className='ui--Row-icon-info'>
+                {iconInfo}
+              </div>
+            )}
+          </div>
+        )}
+        <div className='ui--Row-details'>
+          {(name || defaultName) && (
+            isEditableName && isEditingName
+              ? (
+                <Input
+                  autoFocus
+                  defaultValue={name || defaultName}
+                  isInPlaceEditor
+                  onBlur={_onSaveName}
+                  onChange={onChangeName}
+                  onEnter
+                  withLabel={false}
+                />
+              )
+              : (
+                <div className='ui--Row-name'>
+                  {
+                    isEditableName
+                      ? (
+                        <EditButton onClick={toggleIsEditingName}>
+                          {name || defaultName}
+                        </EditButton>
+                      )
+                      : name || defaultName
+                  }
+                </div>
+              )
+          )}
+          {address && (
+            <div className='ui--Row-address'>
+              {address}
+            </div>
+          )}
+          {details}
+          {tags && (
+            <Tags
+              className='ui--Row-tags'
+              isEditable={isEditableTags}
+              isEditing={isEditingTags}
+              onChange={onChangeTags}
+              onSave={onSaveTags}
+              onToggleIsEditing={toggleIsEditingTags}
+              size='tiny'
+              value={tags}
+            />
+          )}
+        </div>
+        {buttons && (
+          <div className='ui--Row-buttons'>
+            {buttons}
+          </div>
+        )}
+      </div>
+      {children && (
+        <div className='ui--Row-children'>
+          {children}
+        </div>
+      )}
+    </div>
+  );
+}
+
+export default React.memo(styled(Row)`${
+  styles
+}`);

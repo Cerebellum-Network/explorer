@@ -1,14 +1,13 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import CrustPinner from '@crustio/crust-pin';
-import PinataSDK from '@pinata/sdk';
+import pinataSDK from '@pinata/sdk';
 import cloudflare from 'dnslink-cloudflare';
-import fs from 'node:fs';
+import fs from 'fs';
 
-import { execSync } from '@polkadot/dev/scripts/util.mjs';
+import { execSync } from '@polkadot/dev/scripts/execute.mjs';
 
-// @ts-ignore
 import { createWsEndpoints } from '../packages/apps-config/build/endpoints/index.js';
 
 console.log('$ scripts/ipfsUpload.mjs', process.argv.slice(2).join(' '));
@@ -23,18 +22,9 @@ const PINMETA = { name: DOMAIN };
 
 const repo = `https://${process.env.GH_PAT}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
 
-async function wait (delay = 2500) {
-  return new Promise((resolve) => {
-    setTimeout(() => resolve(undefined), delay);
-  });
-}
-
 function createPinata () {
   try {
-    return new PinataSDK({
-      pinataApiKey: process.env.PINATA_API_KEY,
-      pinataSecretApiKey: process.env.PINATA_SECRET_KEY
-    });
+    return pinataSDK(process.env.PINATA_API_KEY, process.env.PINATA_SECRET_KEY);
   } catch {
     console.error('Unable to create Pinata');
   }
@@ -108,8 +98,6 @@ async function pin () {
 
   console.log(`Pinned ${result.IpfsHash}`);
 
-  await wait();
-
   return result.IpfsHash;
 }
 
@@ -122,27 +110,20 @@ async function unpin (exclude) {
 
   const result = await pinata.pinList({ metadata: PINMETA, status: 'pinned' });
 
-  await wait();
-
-  console.log('Available Pinata pins', result.rows);
-
   if (result.count > 1) {
-    const hashes = result.rows
+    const filtered = result.rows
       .map((r) => r.ipfs_pin_hash)
       .filter((hash) => hash !== exclude);
 
-    for (let i = 0; i < hashes.length; i++) {
-      const hash = hashes[i];
-
-      try {
-        await pinata.unpin(hash);
-
-        console.log(`Unpinned ${hash}`);
-      } catch (error) {
-        console.error(`Failed unpinning ${hash}`, error);
-      }
-
-      await wait();
+    if (filtered.length) {
+      await Promise.all(
+        filtered.map((hash) =>
+          pinata
+            .unpin(hash)
+            .then(() => console.log(`Unpinned ${hash}`))
+            .catch(console.error)
+        )
+      );
     }
   }
 }
@@ -163,22 +144,12 @@ async function dnslink (hash) {
         .join('.')
     );
 
-  for (let i = 0; i < records.length; i++) {
-    const record = records[i];
-
-    try {
-      await cloudflare(
-        { token: process.env.CF_API_TOKEN },
-        { link: `/ipfs/${hash}`, record, zone: DOMAIN }
-      );
-
-      console.log(`Updated dnslink ${record}`);
-    } catch (error) {
-      console.error(`Failed updating dnslink ${record}`, error);
-    }
-
-    await wait();
-  }
+  await Promise.all(records.map((record) =>
+    cloudflare(
+      { token: process.env.CF_API_TOKEN },
+      { link: `/ipfs/${hash}`, record, zone: DOMAIN }
+    )
+  ));
 
   console.log(`Dnslink ${hash} for ${records.join(', ')}`);
 }

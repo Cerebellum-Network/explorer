@@ -1,13 +1,11 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { OverrideBundleDefinition } from '@polkadot/types/types';
 
-import eqDefs from '@equilab/definitions';
+import { genshiro } from '@equilab/definitions';
 
-import { createCustomAccount, u64FromCurrency } from './equilibrium.js';
-
-const { genshiro } = eqDefs;
+import { createCustomAccount, u64FromCurrency } from './equilibrium';
 
 const definitions: OverrideBundleDefinition = {
   derives: {

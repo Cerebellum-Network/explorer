@@ -1,7 +1,5 @@
-// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-/// <reference types="@polkadot/dev-test/globals.d.ts" />
 
 import '@polkadot/react-components/i18n';
 
@@ -10,15 +8,15 @@ import React, { Suspense } from 'react';
 import { MemoryRouter } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
 
+import BountiesApp from '@polkadot/app-bounties/index';
 import { lightTheme } from '@polkadot/apps/themes';
-import { ApiCtxRoot } from '@polkadot/react-api';
+import { Api } from '@polkadot/react-api';
 import { createApi } from '@polkadot/test-support/api';
-import { aliceSigner, MemoryStore } from '@polkadot/test-support/keyring';
+import { MemoryStore } from '@polkadot/test-support/keyring';
+import { aliceSigner } from '@polkadot/test-support/keyring/signers';
 import { WaitForApi } from '@polkadot/test-support/react';
-import { execute } from '@polkadot/test-support/transaction';
+import { execute } from '@polkadot/test-support/transaction/execute';
 import { BN } from '@polkadot/util';
-
-import BountiesApp from './index.js';
 
 const SUBSTRATE_PORT = Number.parseInt(process.env.TEST_SUBSTRATE_PORT || '30333');
 
@@ -29,7 +27,7 @@ const renderBounties = () => {
     <Suspense fallback='...'>
       <MemoryRouter>
         <ThemeProvider theme={lightTheme}>
-          <ApiCtxRoot
+          <Api
             apiUrl={`ws://127.0.0.1:${SUBSTRATE_PORT}`}
             isElectron={false}
             store={memoryStore}
@@ -39,14 +37,14 @@ const renderBounties = () => {
                 <BountiesApp basePath='/bounties' />
               </div>
             </WaitForApi>
-          </ApiCtxRoot>
+          </Api>
         </ThemeProvider>
       </MemoryRouter>
     </Suspense>
   );
 };
 
-describe.skip('--SLOW--: Bounties', () => {
+describe('--SLOW--: Bounties', () => {
   it('list shows an existing bounty', async () => {
     const api = await createApi();
 
