@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/test-supports authors & contributors
+// Copyright 2017-2022 @polkadot/test-supports authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { DeriveBalancesAll, DeriveStakingAccount } from '@polkadot/api-derive/types';
@@ -15,5 +15,3 @@ export interface AccountOverrides {
   staking?: Override<DeriveStakingAccount>;
   info?: Override<UseAccountInfo>;
 }
-
-export type WaitOptions = { interval?: number, timeout?: number };

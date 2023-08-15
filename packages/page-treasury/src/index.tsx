@@ -1,19 +1,20 @@
-// Copyright 2017-2023 @polkadot/app-treasury authors & contributors
+// Copyright 2017-2022 @polkadot/app-treasury authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useMemo } from 'react';
-import { Route, Routes } from 'react-router';
+import { Route, Switch } from 'react-router';
 
-import { Tabs } from '@polkadot/react-components';
+import { HelpOverlay, Tabs } from '@polkadot/react-components';
 import { useApi, useCollectiveMembers } from '@polkadot/react-hooks';
 import { isFunction } from '@polkadot/util';
 
-import Overview from './Overview/index.js';
-import Tips from './Tips/index.js';
-import { useTranslation } from './translate.js';
-import useTipHashes from './useTipHashes.js';
+import basicMd from './md/basic.md';
+import Overview from './Overview';
+import Tips from './Tips';
+import { useTranslation } from './translate';
+import useTipHashes from './useTipHashes';
 
-export { default as useCounter } from './useCounter.js';
+export { default as useCounter } from './useCounter';
 
 interface Props {
   basePath: string;
@@ -47,33 +48,26 @@ function TreasuryApp ({ basePath }: Props): React.ReactElement<Props> {
 
   return (
     <main className='treasury--App'>
+      <HelpOverlay md={basicMd as string} />
       <Tabs
         basePath={basePath}
         items={items}
       />
-      <Routes>
-        <Route path={basePath}>
-          <Route
-            element={
-              <Tips
-                hashes={tipHashes}
-                isMember={isMember}
-                members={members}
-              />
-            }
-            path='tips'
-          />
-          <Route
-            element={
-              <Overview
-                isMember={isMember}
-                members={members}
-              />
-            }
-            index
+      <Switch>
+        <Route path={`${basePath}/tips`}>
+          <Tips
+            hashes={tipHashes}
+            isMember={isMember}
+            members={members}
           />
         </Route>
-      </Routes>
+        <Route>
+          <Overview
+            isMember={isMember}
+            members={members}
+          />
+        </Route>
+      </Switch>
     </main>
   );
 }

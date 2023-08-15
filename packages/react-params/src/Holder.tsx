@@ -1,52 +1,41 @@
-// Copyright 2017-2023 @polkadot/react-params authors & contributors
+// Copyright 2017-2022 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
-
-import { styled } from '@polkadot/react-components';
+import styled from 'styled-components';
 
 interface Props {
   children?: React.ReactNode;
   className?: string;
   withBorder?: boolean;
-  withExpander?: boolean;
   withPadding?: boolean;
 }
 
-function Holder ({ children, className = '', withBorder, withExpander, withPadding }: Props): React.ReactElement<Props> {
+function Holder ({ children, className = '', withBorder, withPadding }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={`${className} ui--Params ${withBorder ? 'withBorder' : ''} ${withPadding ? 'withPadding' : ''} ${withExpander ? 'withExpander' : ''}`}>
+    <div className={`ui--Params ${className} ${withBorder ? 'withBorder' : 'withoutBorder'} ${withPadding ? 'withPadding' : ''}`}>
       {children}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Holder)`
   &.withBorder {
-    padding-left: 2rem;
-
-    .ui--Params-Content {
-      border-left: 1px dashed var(--border-input);
-
-      .ui--Params.withBorder {
-        padding-left: 0;
-      }
-    }
+    border-left: 0.25rem solid #f2f2f2;
   }
 
-  &.withExpander {
-    padding-left: 0.25rem;
+  &.withoutBorder {
+    margin-left: -1.75rem;
+    padding: 0;
   }
 
   &.withPadding {
     padding-left: 4rem;
   }
 
-  .ui--Param-composite .ui--row,
-  .ui--Param-composite .ui--row .ui--InputAddressSimple {
-    & > .ui--Labelled > label {
-      text-transform: none !important;
-    }
+  .ui--Param .ui--Labelled label {
+    text-transform: none !important;
+    font: var(--font-mono);
   }
 
   .ui--row {
@@ -54,20 +43,17 @@ const StyledDiv = styled.div`
   }
 
   .ui--Param-Address {
+    font: var(--font-mono);
   }
 
   .ui--Params-Content {
     box-sizing: border-box;
-    padding: 0;
-
-    .ui--Params-Content {
-      margin-left: 2rem;
-    }
+    padding: 0 0 0 1.75rem;
   }
 
   .ui--Param-text {
     display: inline-block;
-    font-size: var(--font-size-base);
+    font-size: 1rem;
     line-height: 1.714rem;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -107,6 +93,4 @@ const StyledDiv = styled.div`
       right: 3.5rem;
     }
   }
-`;
-
-export default React.memo(Holder);
+`);

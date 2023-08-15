@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-democracy authors & contributors
+// Copyright 2017-2022 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
@@ -7,9 +7,9 @@ import React from 'react';
 
 import { CardSummary, SummaryBox } from '@polkadot/react-components';
 import { useApi, useBestNumber, useCall, useCallMulti } from '@polkadot/react-hooks';
-import { BN_ONE, BN_THREE, BN_TWO, formatNumber } from '@polkadot/util';
+import { BN_ONE, formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   referendumCount?: number;
@@ -33,38 +33,27 @@ function Summary ({ referendumCount }: Props): React.ReactElement<Props> {
     <SummaryBox>
       <section>
         <CardSummary label={t<string>('proposals')}>
-          {activeProposals
-            ? formatNumber(activeProposals.length)
-            : <span className='--tmp'>99</span>}
+          {formatNumber(activeProposals?.length)}
         </CardSummary>
         <CardSummary label={t<string>('total')}>
-          {publicPropCount
-            ? formatNumber(publicPropCount)
-            : <span className='--tmp'>99</span>}
+          {formatNumber(publicPropCount)}
         </CardSummary>
       </section>
       <section>
         <CardSummary label={t<string>('referenda')}>
-          {referendumCount !== undefined
-            ? formatNumber(referendumCount)
-            : <span className='--tmp'>99</span>}
+          {formatNumber(referendumCount || 0)}
         </CardSummary>
         <CardSummary label={t<string>('total')}>
-          {referendumTotal
-            ? formatNumber(referendumTotal)
-            : <span className='--tmp'>99</span>}
+          {formatNumber(referendumTotal || 0)}
         </CardSummary>
       </section>
-      {api.consts.democracy.launchPeriod && (
+      {bestNumber && (
         <section className='media--1100'>
           <CardSummary
             label={t<string>('launch period')}
             progress={{
-              isBlurred: !bestNumber,
               total: api.consts.democracy.launchPeriod,
-              value: bestNumber
-                ? bestNumber.mod(api.consts.democracy.launchPeriod).iadd(BN_ONE)
-                : api.consts.democracy.launchPeriod.mul(BN_TWO).div(BN_THREE),
+              value: bestNumber.mod(api.consts.democracy.launchPeriod).iadd(BN_ONE),
               withTime: true
             }}
           />

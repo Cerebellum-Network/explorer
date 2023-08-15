@@ -1,14 +1,13 @@
-// Copyright 2017-2023 @polkadot/react-api authors & contributors
+// Copyright 2017-2022 @polkadot/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { WellKnownChain } from '@substrate/connect';
+import { ScProvider } from '@polkadot/api';
 
-import { specs as kusama } from './kusama/index.js';
-import { specs as polkadot } from './polkadot/index.js';
+import { specs as kusama } from './kusama';
 
 export const lightSpecs: Record<string, Record<string, string>> =
   Object
-    .entries({ kusama, polkadot })
+    .entries({ kusama })
     .reduce((all: Record<string, Record<string, string>>, [r, v]) => {
       all[r] = v.reduce((specs: Record<string, string>, k) => {
         specs[k] = `./light/${r}/${k}.json`;
@@ -20,8 +19,8 @@ export const lightSpecs: Record<string, Record<string, string>> =
     }, {});
 
 export const relaySpecs: Record<string, string> = {
-  kusama: WellKnownChain.ksmcc3,
-  polkadot: WellKnownChain.polkadot,
-  rococo: WellKnownChain.rococo_v2_2,
-  westend: WellKnownChain.westend2
+  kusama: ScProvider.WellKnownChain.ksmcc3,
+  polkadot: ScProvider.WellKnownChain.polkadot,
+  rococo: ScProvider.WellKnownChain.rococo_v2_2,
+  westend: ScProvider.WellKnownChain.westend2
 };

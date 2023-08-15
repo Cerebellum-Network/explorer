@@ -1,15 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-rpc authors & contributors
+// Copyright 2017-2022 @polkadot/app-rpc authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
 
 import React, { useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { InputAddress, Labelled, styled } from '@polkadot/react-components';
+import { InputAddress, Labelled } from '@polkadot/react-components';
 import { Nonce } from '@polkadot/react-query';
 import { BN_ZERO } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -28,7 +29,7 @@ function Account ({ className = '', defaultValue, isError, onChange }: Props): R
   }, [accountId, accountNonce, onChange]);
 
   return (
-    <StyledDiv className={`${className} ui--row`}>
+    <div className={`ui--row ${className}`}>
       <div className='large'>
         <InputAddress
           defaultValue={defaultValue}
@@ -51,13 +52,11 @@ function Account ({ className = '', defaultValue, isError, onChange }: Props): R
           />
         </Labelled>
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Account)`
   box-sizing: border-box;
   padding-left: 2em;
-`;
-
-export default React.memo(Account);
+`);

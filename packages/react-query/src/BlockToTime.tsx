@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/react-query authors & contributors
+// Copyright 2017-2022 @polkadot/react-query authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
 import type { BN } from '@polkadot/util';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components/styled';
 import { useBlockTime } from '@polkadot/react-hooks';
 
 interface Props {
@@ -26,18 +26,18 @@ function BlockToTime ({ api, children, className = '', isInline, label, value }:
   }
 
   return (
-    <StyledDiv className={`${className} ui--BlockToTime ${isInline ? 'isInline' : ''}`}>
+    <div className={`${className}${isInline ? ' isInline' : ''}`}>
       {label || ''}{text.split(' ').map((v, index) =>
         <span
           className={index % 2 ? 'timeUnits' : undefined}
           key={index}
         >{v}</span>
       )}{children}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(BlockToTime)`
   &.isInline {
     display: inline-block;
   }
@@ -47,8 +47,6 @@ const StyledDiv = styled.div`
   }
 
   span.timeUnits {
-    font-size: var(--font-percent-tiny);
+    font-size: 0.825em;
   }
-`;
-
-export default React.memo(BlockToTime);
+`);

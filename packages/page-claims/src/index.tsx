@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-claims authors & contributors
+// Copyright 2017-2022 @polkadot/app-claims authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AppProps as Props } from '@polkadot/react-components/types';
@@ -8,21 +8,22 @@ import type { EcdsaSignature, EthereumAddress, StatementKind } from '@polkadot/t
 import React, { useCallback, useEffect, useRef, useState } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
 import { Trans } from 'react-i18next';
+import styled from 'styled-components';
 
-import { Button, Card, Columar, Input, InputAddress, styled, Tabs, Tooltip } from '@polkadot/react-components';
+import { Button, Card, Columar, Input, InputAddress, Tabs, Tooltip } from '@polkadot/react-components';
 import { TokenUnit } from '@polkadot/react-components/InputNumber';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { u8aToHex, u8aToString } from '@polkadot/util';
 import { decodeAddress } from '@polkadot/util-crypto';
 
-import AttestDisplay from './Attest.js';
-import ClaimDisplay from './Claim.js';
-import Statement from './Statement.js';
-import { useTranslation } from './translate.js';
-import { getStatement, recoverFromJSON } from './util.js';
-import Warning from './Warning.js';
+import AttestDisplay from './Attest';
+import ClaimDisplay from './Claim';
+import Statement from './Statement';
+import { useTranslation } from './translate';
+import { getStatement, recoverFromJSON } from './util';
+import Warning from './Warning';
 
-export { default as useCounter } from './useCounter.js';
+export { default as useCounter } from './useCounter';
 
 enum Step {
   Account = 0,
@@ -199,13 +200,14 @@ function ClaimsApp ({ basePath }: Props): React.ReactElement<Props> {
       <Columar>
         <Columar.Column>
           <Card withBottomMargin>
-            <h2>{t<string>('1. Select your {{chain}} account', {
+            <h3>{t<string>('1. Select your {{chain}} account', {
               replace: {
                 chain: systemChain
               }
-            })}</h2>
+            })}</h3>
             <InputAddress
               defaultValue={accountId}
+              help={t<string>('The account you want to claim to.')}
               label={t<string>('claim to account')}
               onChange={setAccountId}
               type='all'
@@ -229,10 +231,11 @@ function ClaimsApp ({ basePath }: Props): React.ReactElement<Props> {
             // to be able to know the statement kind so that the users can sign it
             (step >= Step.ETHAddress && !isPreclaimed && !isOldClaimProcess) && (
               <Card withBottomMargin>
-                <h2>{t<string>('2. Enter the ETH address from the sale.')}</h2>
+                <h3>{t<string>('2. Enter the ETH address from the sale.')}</h3>
                 <Input
                   autoFocus
                   className='full'
+                  help={t<string>('The Ethereum address you used during the pre-sale (starting by "0x")')}
                   label={t<string>('Pre-sale ethereum address')}
                   onChange={onChangeEthereumAddress}
                   value={ethereumAddress || ''}
@@ -251,7 +254,7 @@ function ClaimsApp ({ basePath }: Props): React.ReactElement<Props> {
             )}
           {(step >= Step.Sign && !isPreclaimed) && (
             <Card>
-              <h2>{t<string>('{{step}}. Sign with your ETH address', { replace: { step: isOldClaimProcess ? '2' : '3' } })}</h2>
+              <h3>{t<string>('{{step}}. Sign with your ETH address', { replace: { step: isOldClaimProcess ? '2' : '3' } })}</h3>
               {!isOldClaimProcess && (
                 <Statement
                   kind={statementKind}
@@ -295,7 +298,7 @@ function ClaimsApp ({ basePath }: Props): React.ReactElement<Props> {
           )}
         </Columar.Column>
         <Columar.Column>
-          {accountId && (step >= Step.Claim) && (
+          {(step >= Step.Claim) && (
             isPreclaimed
               ? (
                 <AttestDisplay

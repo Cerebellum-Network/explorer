@@ -1,33 +1,31 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
 
-import React, { useMemo, useState } from 'react';
+import React, { useContext, useMemo, useState } from 'react';
+import styled, { ThemeContext } from 'styled-components';
 
-import { useTheme } from '@polkadot/react-hooks';
-
-import Icon from './Icon.js';
-import { styled } from './styled.js';
-import Tooltip from './Tooltip.js';
+import Icon from './Icon';
+import Tooltip from './Tooltip';
+import { ThemeDef } from './types';
 
 interface Props {
   className?: string;
-  color?: 'blue' | 'counter' | 'gray' | 'green' | 'highlight' | 'normal' | 'orange' | 'purple' | 'red' | 'transparent' | 'white';
+  color?: 'blue' | 'gray' | 'green' | 'highlight' | 'normal' | 'orange' | 'purple' | 'red' | 'transparent' | 'white';
   hover?: React.ReactNode;
   hoverAction?: React.ReactNode;
   icon?: IconName;
   info?: React.ReactNode;
-  isBlock?: boolean;
   isSmall?: boolean;
   onClick?: () => void;
 }
 
 let badgeId = 0;
 
-function Badge ({ className = '', color = 'normal', hover, hoverAction, icon, info, isBlock, isSmall, onClick }: Props): React.ReactElement<Props> | null {
+function Badge ({ className = '', color = 'normal', hover, hoverAction, icon, info, isSmall, onClick }: Props): React.ReactElement<Props> | null {
   const badgeTestId = `${icon ? `${icon}-` : ''}badge`;
-  const { theme } = useTheme();
+  const { theme } = useContext(ThemeContext as React.Context<ThemeDef>);
 
   const [trigger] = useState(() => `${badgeTestId}-hover-${Date.now()}-${badgeId++}`);
   const extraProps = hover
@@ -48,9 +46,9 @@ function Badge ({ className = '', color = 'normal', hover, hoverAction, icon, in
   ), [color, hover, hoverAction, onClick]);
 
   return (
-    <StyledDiv
+    <div
       {...extraProps}
-      className={`${className} ui--Badge ${hover ? 'isTooltip' : ''} ${isBlock ? 'isBlock' : ''} ${isSmall ? 'isSmall' : ''} ${onClick ? 'isClickable' : ''} ${isHighlight ? 'highlight--bg' : ''} ${color}Color ${icon ? 'withIcon' : ''} ${info ? 'withInfo' : ''} ${hoverAction ? 'withAction' : ''} ${theme}Theme`}
+      className={`ui--Badge${hover ? ' isTooltip' : ''}${isSmall ? ' isSmall' : ''}${onClick ? ' isClickable' : ''}${isHighlight ? ' highlight--bg' : ''} ${color}Color ${className}${icon ? ' withIcon' : ''}${info ? ' withInfo' : ''}${hoverAction ? ' withAction' : ''} ${theme}Theme `}
       data-testid={badgeTestId}
       onClick={hoverAction ? undefined : onClick}
     >
@@ -67,43 +65,38 @@ function Badge ({ className = '', color = 'normal', hover, hoverAction, icon, in
       {hover && (
         <Tooltip
           className='accounts-badge'
-          isClickable={!!hoverAction}
+          clickable={!!hoverAction}
           text={hoverContent}
           trigger={trigger}
         />
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-// FIXME We really need to get rid of the px sizing here
-const StyledDiv = styled.div`
+export default React.memo(styled(Badge)`
   border-radius: 16px;
   box-sizing: border-box;
   color: #eeedec;
   display: inline-block;
-  font-size: var(--font-size-tiny);
-  height: 20px;
-  line-height: 20px;
+  font-size: 12px;
+  height: 22px;
+  line-height: 22px;
   margin-right: 0.43rem;
-  min-width: 20px;
+  min-width: 22px;
   padding: 0 4px;
   overflow: hidden;
   text-align: center;
   vertical-align: middle;
-  width: 20px;
+  width: 22px;
 
   &.isTooltip {
     cursor: help;
   }
 
-  &.isBlock {
-    display: block;
-  }
-
   .ui--Icon {
     cursor: inherit;
-    margin-top: 4px;
+    margin-top: 5px;
     vertical-align: top;
     width: 1em;
   }
@@ -223,6 +216,4 @@ const StyledDiv = styled.div`
   .action-icon {
     margin-left: 4px;
   }
-`;
-
-export default React.memo(Badge);
+`);

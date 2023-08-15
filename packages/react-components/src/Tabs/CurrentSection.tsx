@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { IconName } from '@fortawesome/fontawesome-svg-core';
 import React from 'react';
+import styled from 'styled-components';
 
-import Icon from '../Icon.js';
-import { styled } from '../styled.js';
+import Icon from '../Icon';
 
 interface Props {
   className?: string;
@@ -15,17 +15,17 @@ interface Props {
 
 function CurrentSection ({ className = '', icon, text }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={`${className} active-tab`}>
+    <div className={`${className} active-tab`}>
       <Icon icon={icon} />
       <span>{text}</span>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(CurrentSection)`
   margin: 0 2.5rem 0 1.5rem;
-  font-weight: var(--font-weight-normal);
-  font-size: var(--font-size-base);
+  font-weight: 400;
+  font-size: 1rem;
   line-height: 1.57rem;
   min-width: max-content;
   height: 100%;
@@ -42,6 +42,4 @@ const StyledDiv = styled.div`
   @media only screen and (max-width: 900px) {
     margin: 0 1.5rem;
   }
-`;
-
-export default React.memo(CurrentSection);
+`);

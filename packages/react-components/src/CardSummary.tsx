@@ -1,22 +1,21 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { UInt } from '@polkadot/types';
 import type { BN } from '@polkadot/util';
 
 import React from 'react';
+import styled from 'styled-components';
 
 import { BlockToTime } from '@polkadot/react-query';
 import { BN_HUNDRED, formatNumber, isUndefined } from '@polkadot/util';
 
-import Labelled from './Labelled.js';
-import Progress from './Progress.js';
-import { styled } from './styled.js';
+import Labelled from './Labelled';
+import Progress from './Progress';
 
 interface ProgressProps {
   hideGraph?: boolean;
   hideValue?: boolean;
-  isBlurred?: boolean;
   isPercent?: boolean;
   total?: BN | UInt;
   value?: BN | UInt;
@@ -26,11 +25,12 @@ interface ProgressProps {
 interface Props {
   children?: React.ReactNode;
   className?: string;
+  help?: React.ReactNode;
   label: React.ReactNode;
   progress?: ProgressProps;
 }
 
-function CardSummary ({ children, className = '', label, progress }: Props): React.ReactElement<Props> | null {
+function CardSummary ({ children, className = '', help, label, progress }: Props): React.ReactElement<Props> | null {
   const value = progress && progress.value;
   const total = progress && progress.total;
   const left = progress && !isUndefined(value) && !isUndefined(total) && value.gten(0) && total.gtn(0)
@@ -57,11 +57,12 @@ function CardSummary ({ children, className = '', label, progress }: Props): Rea
   const testidSuffix = (label ?? '').toString();
 
   return (
-    <StyledArticle
+    <article
       className={className}
       data-testid={`card-summary:${testidSuffix}`}
     >
       <Labelled
+        help={help}
         isSmall
         label={label}
       >
@@ -69,10 +70,7 @@ function CardSummary ({ children, className = '', label, progress }: Props): Rea
           progress && !progress.hideValue && (
             <>
               {isTimed && !children && (
-                <BlockToTime
-                  className={progress.isBlurred ? '--tmp' : ''}
-                  value={progress.total}
-                />
+                <BlockToTime value={progress.total} />
               )}
               <div className={isTimed ? 'isSecondary' : 'isPrimary'}>
                 {!left || isUndefined(progress.total)
@@ -85,7 +83,7 @@ function CardSummary ({ children, className = '', label, progress }: Props): Rea
                     }`
                     : (
                       <BlockToTime
-                        className={`${progress.isBlurred ? '--tmp' : ''} timer`}
+                        className='timer'
                         value={progress.total.sub(progress.value)}
                       />
                     )
@@ -96,11 +94,11 @@ function CardSummary ({ children, className = '', label, progress }: Props): Rea
         }
       </Labelled>
       {progress && !progress.hideGraph && <Progress {...progress} />}
-    </StyledArticle>
+    </article>
   );
 }
 
-const StyledArticle = styled.article`
+export default React.memo(styled(CardSummary)`
   align-items: center;
   background: transparent !important;
   border: none !important;
@@ -121,15 +119,11 @@ const StyledArticle = styled.article`
   }
 
   > .ui--Labelled {
-    font-size: var(--font-size-h1);
-    font-weight: var(--font-weight-header);
+    font-size: 1.75rem;
+    font-weight: var(--font-weight-light);
     position: relative;
     line-height: 1;
     text-align: right;
-
-    > .ui--Labelled-content {
-      color: var(--color-header);
-    }
 
     > * {
       margin: 0.25rem 0;
@@ -143,8 +137,12 @@ const StyledArticle = styled.article`
       }
     }
 
+    > label {
+      font-size: 0.95rem;
+    }
+
     .isSecondary {
-      font-size: var(--font-size-base);
+      font-size: 1rem;
       font-weight: var(--font-weight-normal);
 
       .timer {
@@ -161,6 +159,4 @@ const StyledArticle = styled.article`
       font-size: 1.4rem;
     }
   }
-`;
-
-export default React.memo(CardSummary);
+`);

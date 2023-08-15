@@ -1,14 +1,13 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { ExternalDef } from './types.js';
 
-import { externalCommonwealthPNG } from '../ui/logos/external/index.js';
+import { externalLogos } from '../ui/logos';
 
 const HASH_PATHS = ['proposal/councilmotion'];
 
-export const Commonwealth: ExternalDef = {
+export default {
   chains: {
     Edgeware: 'edgeware',
     Kulupu: 'kulupu',
@@ -17,15 +16,13 @@ export const Commonwealth: ExternalDef = {
   },
   create: (chain: string, path: string, data: BN | number | string, hash?: string): string =>
     `https://commonwealth.im/${chain}/${path}/${HASH_PATHS.includes(path) ? (hash || '') : data.toString()}`,
-  homepage: 'https://commonwealth.im/',
   isActive: true,
+  logo: externalLogos.commonwealth as string,
   paths: {
     council: 'proposal/councilmotion',
-    democracyProposal: 'proposal/democracyproposal',
-    democracyReferendum: 'proposal/referendum',
+    proposal: 'proposal/democracyproposal',
+    referendum: 'proposal/referendum',
     treasury: 'proposal/treasuryproposal'
   },
-  ui: {
-    logo: externalCommonwealthPNG
-  }
+  url: 'https://commonwealth.im/'
 };

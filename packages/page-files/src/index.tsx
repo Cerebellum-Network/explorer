@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-files authors & contributors
+// Copyright 2017-2022 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { KeyedEvent } from '@polkadot/react-query/types';
 
 import React, { useRef } from 'react';
 
-import { Tabs } from '@polkadot/react-components';
+import { HelpOverlay, Tabs } from '@polkadot/react-components';
 
-import CrustFiles from './CrustFiles.js';
-import { useTranslation } from './translate.js';
+import basicMd from '../README.md';
+import CrustFiles from './CrustFiles';
+import { useTranslation } from './translate';
 
 interface Props {
   basePath: string;
@@ -28,6 +29,7 @@ function FilesApp ({ basePath, className }: Props): React.ReactElement<Props> {
 
   return (
     <main className={className}>
+      <HelpOverlay md={basicMd as string} />
       <Tabs
         basePath={basePath}
         items={itemsRef.current}

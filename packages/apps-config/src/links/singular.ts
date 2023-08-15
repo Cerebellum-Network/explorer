@@ -1,10 +1,9 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { ExternalDef } from './types.js';
 
-import { externalSingularSVG } from '../ui/logos/external/index.js';
+import { externalLogos } from '../ui/logos';
 
 const getNetwork = (_chain: string) => {
   switch (_chain) {
@@ -15,19 +14,16 @@ const getNetwork = (_chain: string) => {
   }
 };
 
-export const Singular: ExternalDef = {
+export default {
   chains: {
     Kusama: 'kusama',
     Statemine: 'statemine'
   },
-  create: (_chain: string, _path: string, data: BN | number | string): string =>
-    `https://singular.app/space/${getNetwork(_chain)}${data.toString()}`,
-  homepage: 'https://singular.app',
+  create: (_chain: string, _path: string, data: BN | number | string): string => `https://singular.app/space/${getNetwork(_chain)}${data.toString()}`,
   isActive: true,
+  logo: externalLogos.singular as string,
   paths: {
     address: 'account'
   },
-  ui: {
-    logo: externalSingularSVG
-  }
+  url: 'https://singular.app'
 };

@@ -1,17 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ApiPromise } from '@polkadot/api';
 import type { SlashingSpans } from '@polkadot/types/interfaces';
-import type { NominatedBy as NominatedByType } from '../../types.js';
+import type { NominatedBy as NominatedByType } from '../../types';
 
 import React, { useMemo } from 'react';
 
 import { AddressMini, ExpanderScroll } from '@polkadot/react-components';
-import { useApi } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../../translate.js';
+import { useTranslation } from '../../translate';
 
 interface Props {
   nominators?: NominatedByType[];
@@ -37,13 +35,12 @@ function extractFunction (all: string[]): null | [number, () => React.ReactNode[
     : null;
 }
 
-function extractChilled (api: ApiPromise, nominators: NominatedByType[] = [], slashingSpans?: SlashingSpans | null): Chilled {
-  // NOTE With the introduction of the SlashReported event,
-  // nominators are not auto-chilled on validator slash
-  const chilled = slashingSpans && !api.events.staking.SlashReported
+function extractChilled (nominators: NominatedByType[] = [], slashingSpans?: SlashingSpans | null): Chilled {
+  const chilled = slashingSpans
     ? nominators
       .filter(({ submittedIn }) =>
-        slashingSpans.lastNonzeroSlash.gt(submittedIn)
+        !slashingSpans.lastNonzeroSlash.isZero() &&
+        slashingSpans.lastNonzeroSlash.gte(submittedIn)
       )
       .map(({ nominatorId }) => nominatorId)
     : [];
@@ -60,11 +57,10 @@ function extractChilled (api: ApiPromise, nominators: NominatedByType[] = [], sl
 
 function NominatedBy ({ nominators, slashingSpans }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const { api } = useApi();
 
   const { active, chilled } = useMemo(
-    () => extractChilled(api, nominators, slashingSpans),
-    [api, nominators, slashingSpans]
+    () => extractChilled(nominators, slashingSpans),
+    [nominators, slashingSpans]
   );
 
   return (

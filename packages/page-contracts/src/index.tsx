@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-contracts authors & contributors
+// Copyright 2017-2022 @polkadot/app-contracts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AppProps as Props } from '@polkadot/react-components/types';
 
 import React, { useRef } from 'react';
 
-import { Tabs } from '@polkadot/react-components';
+import { useTranslation } from '@polkadot/app-contracts/translate';
+import { HelpOverlay, Tabs } from '@polkadot/react-components';
 
-import Contracts from './Contracts/index.js';
-import { useTranslation } from './translate.js';
+import introMd from './md/intro.md';
+import Contracts from './Contracts';
 
 function ContractsApp ({ basePath, className = '' }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
@@ -17,12 +18,13 @@ function ContractsApp ({ basePath, className = '' }: Props): React.ReactElement<
     {
       isRoot: true,
       name: 'contracts',
-      text: t<string>('Contracts')
+      text: t('Contracts')
     }
   ]);
 
   return (
-    <main className={`${className} contracts--App`}>
+    <main className={`contracts--App ${className}`}>
+      <HelpOverlay md={introMd as string} />
       <Tabs
         basePath={basePath}
         items={itemsRef.current}

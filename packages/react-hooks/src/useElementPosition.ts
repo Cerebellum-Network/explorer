@@ -1,12 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2022 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useEffect, useState } from 'react';
 
-import { createNamedHook } from './createNamedHook.js';
-import { useIsMountedRef } from './useIsMountedRef.js';
-import { useScroll } from './useScroll.js';
-import { useWindowSize } from './useWindowSize.js';
+import { createNamedHook } from './createNamedHook';
+import { useScroll } from './useScroll';
+import { useWindowSize } from './useWindowSize';
 
 export interface ElementPosition {
   x: number,
@@ -17,12 +16,11 @@ export interface ElementPosition {
 
 function useElementPositionImpl (ref: React.MutableRefObject<HTMLElement | undefined | null>): ElementPosition | undefined {
   const [elementPosition, setElementPosition] = useState<ElementPosition>();
-  const mountedRef = useIsMountedRef();
   const windowSize = useWindowSize();
   const scrollY = useScroll();
 
   useEffect(() => {
-    if (mountedRef.current && ref && ref.current) {
+    if (ref && ref.current) {
       const { height, width, x, y } = ref.current.getBoundingClientRect();
 
       setElementPosition({
@@ -32,7 +30,7 @@ function useElementPositionImpl (ref: React.MutableRefObject<HTMLElement | undef
         y
       });
     }
-  }, [mountedRef, ref, scrollY, windowSize]);
+  }, [ref, scrollY, windowSize]);
 
   return elementPosition;
 }

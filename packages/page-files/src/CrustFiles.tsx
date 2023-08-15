@@ -1,18 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-files authors & contributors
+// Copyright 2017-2022 @polkadot/app-files authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ActionStatusBase } from '@polkadot/react-components/Status/types';
-
 import FileSaver from 'file-saver';
-import React, { useCallback, useRef, useState } from 'react';
+import React, { useCallback, useContext, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { Badge, Button, CopyButton, Icon, styled, Table } from '@polkadot/react-components';
-import { useQueue } from '@polkadot/react-hooks';
+import { Badge, Button, CopyButton, Icon, StatusContext, Table } from '@polkadot/react-components';
+import { ActionStatusBase, QueueProps } from '@polkadot/react-components/Status/types';
 
-import { useFiles } from './hooks.js';
-import { useTranslation } from './translate.js';
-import { DirFile, FileInfo, SaveFile } from './types.js';
-import UploadModal from './UploadModal.js';
+import { useFiles } from './hooks';
+import { useTranslation } from './translate';
+import { DirFile, FileInfo, SaveFile } from './types';
+import UploadModal from './UploadModal';
 
 const MCopyButton = styled(CopyButton)`
   .copySpan {
@@ -36,7 +35,7 @@ const ItemFile = styled.tr`
 
 const shortStr = (name: string, count = 6): string => {
   if (name.length > (count * 2)) {
-    return `${name.substring(0, count)}...${name.substring(name.length - count)}`;
+    return `${name.substr(0, count)}...${name.substr(name.length - count)}`;
   }
 
   return name;
@@ -63,7 +62,7 @@ export interface Props {
 
 function CrustFiles ({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const { queueAction } = useQueue();
+  const { queueAction } = useContext<QueueProps>(StatusContext);
   const [showUpMode, setShowUpMode] = useState(false);
   const wFiles = useFiles();
   const [file, setFile] = useState<FileInfo | undefined>(undefined);
@@ -92,7 +91,7 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
     if (files.length > 2000) {
       queueAction({
         action: 'Upload Folder',
-        message: t<string>('Please do not upload more than 2000 files'),
+        message: t('Please do not upload more than 2000 files'),
         status: 'error'
       });
 
@@ -102,7 +101,7 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
     if (files.length === 0) {
       queueAction({
         action: 'Upload Folder',
-        message: t<string>('Please select non-empty folder'),
+        message: t('Please select non-empty folder'),
         status: 'error'
       });
 
@@ -141,7 +140,7 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
   const _onImportResult = useCallback<(m: string, s?: ActionStatusBase['status']) => void>(
     (message, status = 'queued') => {
       queueAction && queueAction({
-        action: t<string>('Import files'),
+        action: t('Import files'),
         message,
         status
       });
@@ -158,7 +157,7 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
   }, [importInputRef]);
   const _onInputImportFile = useCallback<FunInputFile>((e) => {
     try {
-      _onImportResult(t<string>('Importing'));
+      _onImportResult(t('Importing'));
       const fileReader = new FileReader();
       const files = e.target.files;
 
@@ -169,14 +168,14 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
       fileReader.readAsText(files[0], 'UTF-8');
 
       if (!(/(.json)$/i.test(e.target.value))) {
-        return _onImportResult(t<string>('file error'), 'error');
+        return _onImportResult(t('file error'), 'error');
       }
 
       fileReader.onload = (e) => {
         const _list = JSON.parse(e.target?.result as string) as SaveFile[];
 
         if (!Array.isArray(_list)) {
-          return _onImportResult(t<string>('file content error'), 'error');
+          return _onImportResult(t('file content error'), 'error');
         }
 
         const fitter: SaveFile[] = [];
@@ -192,10 +191,10 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
         const filterOld = wFiles.files.filter((item) => !mapImport[item.Hash]);
 
         wFiles.setFiles([...fitter, ...filterOld]);
-        _onImportResult(t<string>('Import Success'), 'success');
+        _onImportResult(t('Import Success'), 'success');
       };
-    } catch {
-      _onImportResult(t<string>('file content error'), 'error');
+    } catch (e) {
+      _onImportResult(t('file content error'), 'error');
     }
   }, [wFiles, _onImportResult, t]);
 
@@ -213,11 +212,10 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
   const _export = useCallback(() => {
     const blob = new Blob([JSON.stringify(wFiles.files)], { type: 'application/json; charset=utf-8' });
 
-    // eslint-disable-next-line deprecation/deprecation
     FileSaver.saveAs(blob, 'files.json');
   }, [wFiles]);
 
-  return <StyledMain className={className}>
+  return <main className={className}>
     <header></header>
     <input
       onChange={_onInputFile}
@@ -242,29 +240,29 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
       <div className='uploadBtn'>
         <Button
           icon={'upload'}
-          label={t<string>('Upload')}
+          label={t('Upload')}
           onClick={Noop}
         />
         <div className='uploadMenu'>
           <div
             className='menuItem'
             onClick={onClickUpFile}
-          >{t<string>('File')}</div>
+          >{t('File')}</div>
           <div
             className='menuItem'
             onClick={onClickUpFolder}
-          >{t<string>('Folder')}</div>
+          >{t('Folder')}</div>
         </div>
       </div>
       <div style={{ flex: 1 }} />
       <Button
         icon={'file-import'}
-        label={t<string>('Import')}
+        label={t('Import')}
         onClick={_clickImport}
       />
       <Button
         icon={'file-export'}
-        label={t<string>('Export')}
+        label={t('Export')}
         onClick={_export}
       />
     </div>
@@ -272,12 +270,12 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
       empty={t<string>('No files')}
       emptySpinner={t<string>('Loading')}
       header={[
-        [t<string>('files'), 'start', 2],
-        [t<string>('file cid'), 'expand', 2],
+        [t('files'), 'start', 2],
+        [t('file cid'), 'expand', 2],
         [undefined, 'start'],
-        [t<string>('file size'), 'expand', 2],
-        [t<string>('status'), 'expand'],
-        [t<string>('action'), 'expand'],
+        [t('file size'), 'expand', 2],
+        [t('status'), 'expand'],
+        [t('action'), 'expand'],
         []
       ]}
     >
@@ -322,7 +320,7 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
               href={'https://apps.crust.network/?rpc=wss%3A%2F%2Frpc.crust.network#/storage_files'}
               rel='noreferrer'
               target='_blank'
-            >{t<string>('View status in Crust')}</a>
+            >{t('View status in Crust')}</a>
           </td>
           <td
             className='end'
@@ -352,12 +350,12 @@ function CrustFiles ({ className }: Props): React.ReactElement<Props> {
       )}
     </Table>
     <div>
-      {t<string>('Note: The file list is cached locally, switching browsers or devices will not keep displaying the original browser information.')}
+      {t('Note: The file list is cached locally, switching browsers or devices will not keep displaying the original browser information.')}
     </div>
-  </StyledMain>;
+  </main>;
 }
 
-const StyledMain = styled.main`
+export default React.memo(styled(CrustFiles)`
   h1 {
     text-transform: unset !important;
   }
@@ -397,6 +395,4 @@ const StyledMain = styled.main`
       }
     }
   }
-`;
-
-export default React.memo(CrustFiles);
+`);

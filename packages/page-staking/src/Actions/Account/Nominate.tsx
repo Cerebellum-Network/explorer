@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { SortedTargets } from '../../types.js';
-import type { NominateInfo } from '../partials/types.js';
+import type { SortedTargets } from '../../types';
+import type { NominateInfo } from '../partials/types';
 
 import React, { useState } from 'react';
+import styled from 'styled-components';
 
-import { Modal, styled, TxButton } from '@polkadot/react-components';
+import { Modal, TxButton } from '@polkadot/react-components';
 
-import { useTranslation } from '../../translate.js';
-import NominatePartial from '../partials/Nominate.js';
+import { useTranslation } from '../../translate';
+import NominatePartial from '../partials/Nominate';
 
 interface Props {
   className?: string;
@@ -27,7 +28,7 @@ function Nominate ({ className = '', controllerId, nominating, onClose, poolId, 
   const [{ nominateTx }, setTx] = useState<NominateInfo>({});
 
   return (
-    <StyledModal
+    <Modal
       className={className}
       header={t<string>('Nominate Validators')}
       onClose={onClose}
@@ -55,17 +56,15 @@ function Nominate ({ className = '', controllerId, nominating, onClose, poolId, 
           onStart={onClose}
         />
       </Modal.Actions>
-    </StyledModal>
+    </Modal>
   );
 }
 
-const StyledModal = styled(Modal)`
+export default React.memo(styled(Nominate)`
   .nominatePartial {
     .ui--Static .ui--AddressMini .ui--AddressMini-info {
       max-width: 10rem;
       min-width: 10rem;
     }
   }
-`;
-
-export default React.memo(Nominate);
+`);

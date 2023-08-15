@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/react-api authors & contributors
+// Copyright 2017-2022 @polkadot/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { BaseProps } from '../types.js';
-import type { DefaultProps, Options } from './types.js';
+import type { BaseProps } from '../types';
+import type { DefaultProps, Options } from './types';
 
 import React from 'react';
 
-import withCall from './call.js';
+import withCall from './call';
 
 interface Props<T> extends BaseProps<T> {
   callResult?: T;

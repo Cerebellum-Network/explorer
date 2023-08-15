@@ -1,17 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { BagMap } from './types.js';
+import type { BagMap } from './types';
 
 import React, { useMemo } from 'react';
 
-import { CardSummary, SummaryBox } from '@polkadot/react-components';
+import { CardSummary, Spinner, SummaryBox } from '@polkadot/react-components';
 import { useCall } from '@polkadot/react-hooks';
 import { formatNumber, isNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import useQueryModule from './useQueryModule.js';
+import { useTranslation } from '../translate';
+import useQueryModule from './useQueryModule';
 
 interface Props {
   bags?: unknown[];
@@ -34,20 +34,20 @@ function Summary ({ bags, className = '', mapOwn }: Props): React.ReactElement<P
       <CardSummary label={t<string>('total bags')}>
         {bags
           ? formatNumber(bags.length)
-          : <span className='--tmp'>99</span>
+          : <Spinner noLabel />
         }
       </CardSummary>
       <section>
         <CardSummary label={t<string>('total nodes')}>
           {mapOwn
             ? formatNumber(total)
-            : <span className='--tmp'>99</span>
+            : <Spinner noLabel />
           }
         </CardSummary>
         <CardSummary label={t<string>('my nodes')}>
           {isNumber(myCount)
             ? formatNumber(myCount)
-            : <span className='--tmp'>99</span>
+            : '-'
           }
         </CardSummary>
       </section>

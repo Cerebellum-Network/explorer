@@ -1,17 +1,18 @@
-// Copyright 2017-2023 @polkadot/app-nfts authors & contributors
+// Copyright 2017-2022 @polkadot/app-nfts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { CollectionInfo, CollectionInfoComplete } from '../types.js';
+import type { CollectionInfo, CollectionInfoComplete } from '../types';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { Dropdown, styled, Table } from '@polkadot/react-components';
+import { Dropdown, Table } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import Item from './Item.js';
-import useAccountItems from './useAccountItems.js';
-import useItemsInfos from './useItemsInfos.js';
+import { useTranslation } from '../translate';
+import Item from './Item';
+import useAccountItems from './useAccountItems';
+import useItemsInfos from './useItemsInfos';
 
 interface Props {
   className?: string;
@@ -20,7 +21,7 @@ interface Props {
 
 function AccountItems ({ className, infos = [] }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const NO_NAME = ` - ${t<string>('no name')} -`;
+  const NO_NAME = ` - ${t('no name')} -`;
 
   const [infoIndex, setInfoIndex] = useState(0);
   const [info, setInfo] = useState<CollectionInfoComplete | null>(null);
@@ -53,9 +54,9 @@ function AccountItems ({ className, infos = [] }: Props): React.ReactElement<Pro
     [completeInfos, NO_NAME]
   );
 
-  const headerRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('items'), 'start', 2],
-    [t<string>('owner'), 'address media--1000']
+  const headerRef = useRef([
+    [t('items'), 'start', 2],
+    [t('owner'), 'address media--1000']
   ]);
 
   useEffect((): void => {
@@ -67,7 +68,7 @@ function AccountItems ({ className, infos = [] }: Props): React.ReactElement<Pro
   }, [completeInfos, infoIndex]);
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <Table
         empty={!info && accountItems && t<string>('No accounts with items found for the collection')}
         filter={collectionOptions.length
@@ -92,14 +93,12 @@ function AccountItems ({ className, infos = [] }: Props): React.ReactElement<Pro
           />
         ))}
       </Table>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(AccountItems)`
   table {
     overflow: auto;
   }
-`;
-
-export default React.memo(AccountItems);
+`);

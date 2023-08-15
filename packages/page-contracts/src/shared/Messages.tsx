@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ContractPromise } from '@polkadot/api-contract';
@@ -7,14 +7,15 @@ import type { Option } from '@polkadot/types';
 import type { ContractInfo } from '@polkadot/types/interfaces';
 
 import React, { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
 import { Abi } from '@polkadot/api-contract';
-import { Expander, styled } from '@polkadot/react-components';
+import { Expander } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import Message from './Message.js';
+import { useTranslation } from '../translate';
+import Message from './Message';
 
 export interface Props {
   className?: string;
@@ -49,7 +50,7 @@ function Messages ({ className = '', contract, contractAbi: { constructors, info
   const { api } = useApi();
   const optInfo = useCall<Option<ContractInfo>>(contract && api.query.contracts.contractInfoOf, [contract?.address]);
   const [isUpdating, setIsUpdating] = useState(false);
-  const [lastResults, setLastResults] = useState<(ContractCallOutcome | undefined)[]>([]);
+  const [lastResults, setLastResults] = useState<(ContractCallOutcome | void)[]>([]);
 
   const _onExpander = useCallback(
     (isOpen: boolean): void => {
@@ -62,16 +63,13 @@ function Messages ({ className = '', contract, contractAbi: { constructors, info
     (): void => {
       optInfo && contract &&
         Promise
-          .all(
-            messages.map((m) =>
-              m.isMutating || m.args.length !== 0
-                ? Promise.resolve(undefined)
-                : contract
-                  .query[m.method](READ_ADDR, { gasLimit: -1, value: 0 })
-                  .catch((e: Error) => console.error(`contract.query.${m.method}:: ${e.message}`))
-                  .then(() => undefined)
-            )
-          )
+          .all(messages.map((m) =>
+            m.isMutating || m.args.length !== 0
+              ? Promise.resolve(undefined)
+              : contract
+                .query[m.method](READ_ADDR, { gasLimit: -1, value: 0 })
+                .catch((e: Error) => console.error(`contract.query.${m.method}:: ${e.message}`))
+          ))
           .then(setLastResults)
           .catch(console.error);
     },
@@ -83,7 +81,8 @@ function Messages ({ className = '', contract, contractAbi: { constructors, info
   }, [_onRefresh, contract, isUpdating, optInfo, trigger]);
 
   const _setMessageResult = useCallback(
-    (_messageIndex: number, _result?: ContractCallOutcome): void => {
+    // eslint-disable-next-line @typescript-eslint/no-unused-vars
+    (messageIndex: number, result?: ContractCallOutcome): void => {
       // ignore
     },
     []
@@ -95,7 +94,7 @@ function Messages ({ className = '', contract, contractAbi: { constructors, info
   );
 
   return (
-    <StyledDiv className={`${className} ui--Messages ${isLabelled ? 'isLabelled' : ''}`}>
+    <div className={`ui--Messages ${className}${isLabelled ? ' isLabelled' : ''}`}>
       {withConstructors && (
         <Expander summary={t<string>('Constructors ({{count}})', { replace: { count: constructors.length } })}>
           {sortMessages(constructors).map(([message, index]) => (
@@ -127,11 +126,11 @@ function Messages ({ className = '', contract, contractAbi: { constructors, info
       {withWasm && source.wasm.length !== 0 && (
         <div>{t<string>('{{size}} WASM bytes', { replace: { size: formatNumber(source.wasm.length) } })}</div>
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Messages)`
   padding-bottom: 0.75rem !important;
 
   &.isLabelled {
@@ -142,6 +141,4 @@ const StyledDiv = styled.div`
     padding: 1rem 1rem 0.5rem;
     width: 100%;
   }
-`;
-
-export default React.memo(Messages);
+`);

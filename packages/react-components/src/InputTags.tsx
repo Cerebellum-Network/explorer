@@ -1,14 +1,13 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
-
-import type { ThemeDef } from '@polkadot/react-hooks/ctx/types';
 
 import React, { useContext } from 'react';
 import store from 'store';
-import { ThemeContext } from 'styled-components';
+import styled, { ThemeContext } from 'styled-components';
 
-import Dropdown from './Dropdown.js';
-import { styled } from './styled.js';
+import { ThemeDef } from '@polkadot/react-components/types';
+
+import Dropdown from './Dropdown';
 
 interface Option {
   key: string;
@@ -20,6 +19,7 @@ interface Props {
   allowAdd?: boolean;
   className?: string;
   defaultValue?: string[];
+  help?: React.ReactNode;
   isDisabled?: boolean;
   isError?: boolean;
   label?: React.ReactNode;
@@ -56,14 +56,15 @@ function onAddTag (value: string): void {
   saveTags(tags);
 }
 
-function InputTags ({ allowAdd = true, className = '', defaultValue, isDisabled, isError, label, onBlur, onChange, onClose, placeholder, searchInput, value, withLabel }: Props): React.ReactElement<Props> {
+function InputTags ({ allowAdd = true, className = '', defaultValue, help, isDisabled, isError, label, onBlur, onChange, onClose, placeholder, searchInput, value, withLabel }: Props): React.ReactElement<Props> {
   const { theme } = useContext(ThemeContext as React.Context<ThemeDef>);
 
   return (
-    <StyledDropdown
+    <Dropdown
       allowAdd={allowAdd && !isDisabled}
-      className={`${className} ui--InputTags ${theme}Theme`}
+      className={`ui--InputTags ${theme}Theme ${className}`}
       defaultValue={defaultValue}
+      help={help}
       isDisabled={isDisabled}
       isError={isError}
       isMultiple
@@ -81,14 +82,14 @@ function InputTags ({ allowAdd = true, className = '', defaultValue, isDisabled,
   );
 }
 
-const StyledDropdown = styled(Dropdown)`
+export default React.memo(styled(InputTags)`
   && .ui.label {
     border: none;
     border-radius: 0.25rem;
     box-shadow: none;
     color: #fff;
     display: inline-block;
-    font-size: var(--font-size-small);
+    font-size: 0.857rem;
     font-weight: var(--font-weight-normal);
     line-height: 1.143rem;
     margin: 0.125rem 0.125rem;
@@ -105,6 +106,4 @@ const StyledDropdown = styled(Dropdown)`
   &&.darkTheme .ui.label {
     background-color: rgba(255, 255, 255, 0.08);
   }
-`;
-
-export default React.memo(InputTags);
+`);

@@ -1,12 +1,11 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { ExternalDef } from './types.js';
 
-import { externalSubidSVG } from '../ui/logos/external/index.js';
+import { externalLogos } from '../ui/logos';
 
-export const SubId: ExternalDef = {
+export default {
   chains: {
     Altair: 'altair',
     Bifrost: 'bifrost',
@@ -26,12 +25,10 @@ export const SubId: ExternalDef = {
   },
   create: (_chain: string, _path: string, data: BN | number | string): string =>
     `https://sub.id/${data.toString()}`,
-  homepage: 'https://sub.id',
   isActive: true,
+  logo: externalLogos.subid as string,
   paths: {
     address: 'account'
   },
-  ui: {
-    logo: externalSubidSVG
-  }
+  url: 'https://sub.id'
 };

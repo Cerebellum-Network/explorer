@@ -1,16 +1,16 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ItemRoute } from './types.js';
+import type { ItemRoute } from './types';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { Badge, Icon, styled } from '@polkadot/react-components';
+import { Badge, Icon } from '@polkadot/react-components';
 import { useToggle } from '@polkadot/react-hooks';
 
 interface Props {
   className?: string;
-  classNameText?: string;
   isLink?: boolean;
   isToplevel?: boolean;
   route: ItemRoute;
@@ -18,12 +18,12 @@ interface Props {
 
 const DUMMY_COUNTER = () => 0;
 
-function Item ({ className = '', classNameText, isLink, isToplevel, route: { Modal, href, icon, name, text, useCounter = DUMMY_COUNTER } }: Props): React.ReactElement<Props> {
+function Item ({ className = '', isLink, isToplevel, route: { Modal, href, icon, name, text, useCounter = DUMMY_COUNTER } }: Props): React.ReactElement<Props> {
   const [isModalVisible, toggleModal] = useToggle();
   const count = useCounter();
 
   return (
-    <StyledLi className={`${className} ui--MenuItem ${count ? 'withCounter' : ''} ${isLink ? 'isLink' : ''} ${isToplevel ? 'topLevel highlight--color-contrast' : ''}`}>
+    <li className={`ui--MenuItem ${className}${count ? ' withCounter' : ''} ${isLink ? 'isLink' : ''} ${isToplevel ? 'topLevel  highlight--color-contrast' : ''}`}>
       <a
         href={Modal ? undefined : (href || `#/${name}`)}
         onClick={Modal ? toggleModal : undefined}
@@ -31,10 +31,10 @@ function Item ({ className = '', classNameText, isLink, isToplevel, route: { Mod
         target={href ? '_blank' : undefined}
       >
         <Icon icon={icon} />
-        <span className={classNameText}>{text}</span>
+        {text}
         {!!count && (
           <Badge
-            color='white'
+            color={'white'}
             info={count}
           />
         )}
@@ -42,17 +42,18 @@ function Item ({ className = '', classNameText, isLink, isToplevel, route: { Mod
       {Modal && isModalVisible && (
         <Modal onClose={toggleModal} />
       )}
-    </StyledLi>
+    </li>
   );
 }
 
-const StyledLi = styled.li`
+export default React.memo(styled(Item)`
   cursor: pointer;
   position: relative;
   white-space: nowrap;
 
   &.topLevel {
-    font-weight: var(--font-weight-normal);
+    font-size: 1rem;
+    font-weight: 400;
     line-height: 1.214rem;
     border-radius: 0.15rem;
 
@@ -63,7 +64,8 @@ const StyledLi = styled.li`
     }
 
     &.isActive.highlight--color-contrast {
-      font-weight: var(--font-weight-normal);
+      font-size: 1.15rem;
+      font-weight: 400;
       color: var(--color-text);
 
       a {
@@ -98,6 +100,8 @@ const StyledLi = styled.li`
     display: block;
     padding: 0.5rem 1.15rem 0.57rem;
     text-decoration: none;
+    font-weight: 400;
+    font-size: 1rem;
     line-height: 1.5rem;
   }
 
@@ -109,6 +113,4 @@ const StyledLi = styled.li`
   .ui--Icon {
     margin-right: 0.5rem;
   }
-`;
-
-export default React.memo(Item);
+`);

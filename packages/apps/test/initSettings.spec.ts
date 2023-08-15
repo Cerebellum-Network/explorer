@@ -1,7 +1,7 @@
 // Copyright 2017-2021 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import { validateURL } from '../src/initSettings.js';
+import { validateURL } from '../src/initSettings';
 
 describe('Test validateURL function', () => {
   test.each([

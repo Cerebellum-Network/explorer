@@ -1,10 +1,10 @@
-// Copyright 2017-2023 @polkadot/app-contracts authors & contributors
+// Copyright 2017-2022 @polkadot/app-contracts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Hash } from '@polkadot/types/interfaces';
-import type { CodeJson, CodeStored } from './types.js';
+import type { CodeJson, CodeStored } from './types';
 
-import { EventEmitter } from 'eventemitter3';
+import EventEmitter from 'eventemitter3';
 import store from 'store';
 
 import { Abi } from '@polkadot/api-contract';

@@ -1,21 +1,21 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
-import Button from './Button/index.js';
-import { styled } from './styled.js';
+import { Button } from '@polkadot/react-components';
 
 interface Option {
   isDisabled?: boolean;
   text: string;
-  value: string | number;
+  value: number;
 }
 
 interface Props {
   className?: string;
-  onChange: (index: number, value: string | number) => void;
-  options: (Option | null | undefined | false)[];
+  onChange: (index: number) => void;
+  options: (Option | null | false)[];
   value: number;
 }
 
@@ -23,26 +23,21 @@ interface ToggleProps {
   index: number;
   isDisabled?: boolean;
   isSelected: boolean;
-  onChange: (index: number, value: string | number) => void;
+  onChange: (index: number) => void;
   text: string;
-  value: string | number;
 }
 
-function ToggleIndex ({ index, isDisabled, isSelected, onChange, text, value }: ToggleProps): React.ReactElement<ToggleProps> {
+function ToggleIndex ({ index, isDisabled, isSelected, onChange, text }: ToggleProps): React.ReactElement<ToggleProps> {
   const _onClick = useCallback(
     (): void => {
-      !isDisabled && onChange(index, value);
+      !isDisabled && onChange(index);
     },
-    [isDisabled, index, onChange, value]
+    [isDisabled, index, onChange]
   );
 
   return (
     <Button
-      icon={
-        isSelected
-          ? 'check'
-          : 'circle'
-      }
+      icon={isSelected ? 'check' : 'circle'}
       isBasic
       isDisabled={isDisabled}
       isSelected={isSelected}
@@ -66,8 +61,8 @@ function ToggleGroup ({ className = '', onChange, options, value }: Props): Reac
   }
 
   return (
-    <StyledDiv className={`${className} ui--ToggleGroup`}>
-      {available.map(({ isDisabled, text, value: optValue }, index): React.ReactNode => (
+    <div className={`ui--ToggleGroup ${className}`}>
+      {available.map(({ isDisabled, text }, index): React.ReactNode => (
         <ToggleIndexMemo
           index={index}
           isDisabled={isDisabled}
@@ -75,14 +70,13 @@ function ToggleGroup ({ className = '', onChange, options, value }: Props): Reac
           key={index}
           onChange={onChange}
           text={text}
-          value={optValue}
         />
       ))}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(ToggleGroup)`
   display: inline-block;
   margin-right: 1.5rem;
 
@@ -103,6 +97,4 @@ const StyledDiv = styled.div`
       width: 1em;
     }
   }
-`;
-
-export default React.memo(ToggleGroup);
+`);

@@ -1,16 +1,14 @@
-// Copyright 2017-2023 @polkadot/app-referenda authors & contributors
+// Copyright 2017-2022 @polkadot/app-referenda authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ReferendumProps as Props } from '../types.js';
+import type { ReferendumProps as Props } from '../types';
 
 import React, { useMemo } from 'react';
-
-import RefEnd from './RefEnd.js';
 
 function RefOther ({ value: { info } }: Props): React.ReactElement<Props> {
   const when = useMemo(
     () => info.isKilled
-      ? info.asKilled
+      ? new Date(info.asKilled.toNumber())
       : null,
     [info]
   );
@@ -18,13 +16,20 @@ function RefOther ({ value: { info } }: Props): React.ReactElement<Props> {
   return (
     <>
       <td
-        className='all no-pad'
-        colSpan={5}
+        className='number'
+        colSpan={2}
       />
-      <RefEnd
-        label={info.type}
-        when={when}
-      />
+      <td
+        className='number'
+        colSpan={2}
+      >
+        {when && (
+          when.toUTCString()
+        )}
+      </td>
+      <td className='number'>
+        {info.type}
+      </td>
     </>
   );
 }

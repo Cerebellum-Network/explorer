@@ -1,20 +1,21 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AccountId32 } from '@polkadot/types/interfaces';
 import type { PalletBagsListListBag } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
-import type { ListNode, StashNode } from './types.js';
+import type { ListNode, StashNode } from './types';
 
 import React, { useEffect, useState } from 'react';
 
-import { AddressMini, Table } from '@polkadot/react-components';
+import { AddressMini, Spinner } from '@polkadot/react-components';
+import { FormatBalance } from '@polkadot/react-query';
 import { formatNumber } from '@polkadot/util';
 
-import Rebag from './Rebag.js';
-import Stash from './Stash.js';
-import useBagEntries from './useBagEntries.js';
-import useBonded from './useBonded.js';
+import Rebag from './Rebag';
+import Stash from './Stash';
+import useBagEntries from './useBagEntries';
+import useBonded from './useBonded';
 
 interface Props {
   bagLower: BN;
@@ -62,10 +63,10 @@ function Bag ({ bagLower, bagUpper, info, nodesOwn }: Props): React.ReactElement
   return (
     <tr>
       <td className='number' />
-      <Table.Column.Balance value={bagUpper} />
-      <Table.Column.Balance value={bagLower} />
-      <td className='address'>{info.head.isSome && <AddressMini value={info.head.unwrap()} />}</td>
-      <td className='address'>{info.tail.isSome && <AddressMini value={info.tail.unwrap()} />}</td>
+      <td className='number'><FormatBalance value={bagUpper} /></td>
+      <td className='number'><FormatBalance value={bagLower} /></td>
+      <td className='address'>{info.head.isSome && <AddressMini value={info.head} />}</td>
+      <td className='address'>{info.tail.isSome && <AddressMini value={info.tail} />}</td>
       <td className='address'>
         {nodesOwn?.map(({ stashId }) => (
           <Stash
@@ -80,7 +81,7 @@ function Bag ({ bagLower, bagUpper, info, nodesOwn }: Props): React.ReactElement
       </td>
       <td className='number'>
         {isLoading
-          ? <span className='--tmp'>99</span>
+          ? <Spinner noLabel />
           : list.length
             ? formatNumber(list.length)
             : null

@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-contracts authors & contributors
+// Copyright 2017-2022 @polkadot/app-contracts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
@@ -14,11 +14,11 @@ import { keyring } from '@polkadot/ui-keyring';
 import { BN, BN_ZERO, isHex, stringify } from '@polkadot/util';
 import { randomAsHex } from '@polkadot/util-crypto';
 
-import { ABI, InputMegaGas, InputName, MessageSignature, Params } from '../shared/index.js';
-import store from '../store.js';
-import { useTranslation } from '../translate.js';
-import useAbi from '../useAbi.js';
-import useWeight from '../useWeight.js';
+import { ABI, InputMegaGas, InputName, MessageSignature, Params } from '../shared';
+import store from '../store';
+import { useTranslation } from '../translate';
+import useAbi from '../useAbi';
+import useWeight from '../useWeight';
 
 interface Props {
   codeHash: string;
@@ -79,14 +79,14 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
       if (blueprint && contractAbi?.constructors[constructorIndex]?.method) {
         try {
           return blueprint.tx[contractAbi.constructors[constructorIndex].method]({
-            gasLimit: weight.isWeightV2 ? weight.weightV2 : weight.weight,
+            gasLimit: weight.weight,
             salt: withSalt
               ? salt
               : null,
             storageDepositLimit: null,
             value: contractAbi?.constructors[constructorIndex].isPayable ? value : undefined
           }, ...params);
-        } catch {
+        } catch (error) {
           return null;
         }
       }
@@ -118,13 +118,14 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
 
   return (
     <Modal
-      header={t<string>('Deploy a contract')}
+      header={t('Deploy a contract')}
       onClose={onClose}
     >
       <Modal.Content>
         <InputAddress
+          help={t('Specify the user account to use for this deployment. Any fees will be deducted from this account.')}
           isInput={false}
-          label={t<string>('deployment account')}
+          label={t('deployment account')}
           labelExtra={
             <Available
               label={t<string>('transferrable')}
@@ -155,8 +156,9 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
         {contractAbi && (
           <>
             <Dropdown
+              help={t<string>('The deployment constructor information for this contract, as provided by the ABI.')}
               isDisabled={contractAbi.constructors.length <= 1}
-              label={t<string>('deployment constructor')}
+              label={t('deployment constructor')}
               onChange={setConstructorIndex}
               options={constructOptions}
               value={constructorIndex}
@@ -170,6 +172,7 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
         )}
         {contractAbi?.constructors[constructorIndex].isPayable && (
           <InputBalance
+            help={t<string>('The balance to transfer from the `origin` to the newly created contract.')}
             isError={!isValueValid}
             isZeroable
             label={t<string>('value')}
@@ -178,20 +181,22 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
           />
         )}
         <Input
+          help={t<string>('A hex or string value that acts as a salt for this deployment.')}
           isDisabled={!withSalt}
           label={t<string>('unique deployment salt')}
-          labelExtra={
-            <Toggle
-              label={t<string>('use deployment salt')}
-              onChange={setWithSalt}
-              value={withSalt}
-            />
-          }
           onChange={setSalt}
           placeholder={t<string>('0x prefixed hex, e.g. 0x1234 or ascii data')}
           value={withSalt ? salt : t<string>('<none>')}
-        />
+        >
+          <Toggle
+            isOverlay
+            label={t<string>('use deployment salt')}
+            onChange={setWithSalt}
+            value={withSalt}
+          />
+        </Input>
         <InputMegaGas
+          help={t<string>('The maximum amount of gas that can be used by this deployment, if the code requires more, the deployment will fail.')}
           weight={weight}
         />
       </Modal.Content>
@@ -201,7 +206,7 @@ function Deploy ({ codeHash, constructorIndex = 0, onClose, setConstructorIndex 
           extrinsic={initTx}
           icon='upload'
           isDisabled={!isValid || !initTx}
-          label={t<string>('Deploy')}
+          label={t('Deploy')}
           onClick={onClose}
           onSuccess={_onSuccess}
           withSpinner

@@ -1,15 +1,16 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { AbiConstructor, AbiMessage, ContractCallOutcome } from '@polkadot/api-contract/types';
 
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
-import { Button, Output, styled } from '@polkadot/react-components';
+import { Button, Output } from '@polkadot/react-components';
 import valueToText from '@polkadot/react-params/valueToText';
 
-import { useTranslation } from '../translate.js';
-import MessageSignature from './MessageSignature.js';
+import { useTranslation } from '../translate';
+import MessageSignature from './MessageSignature';
 
 export interface Props {
   className?: string;
@@ -47,7 +48,7 @@ function Message ({ className = '', index, lastResult, message, onSelect }: Prop
   );
 
   return (
-    <StyledDiv
+    <div
       className={`${className} ${!onSelect ? 'exempt-hover' : ''} ${message.isConstructor ? 'constructor' : ''}`}
       key={`${message.identifier}-${index}`}
     >
@@ -95,11 +96,11 @@ function Message ({ className = '', index, lastResult, message, onSelect }: Prop
           {valueToText('Text', lastResult.output)}
         </Output>
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Message)`
   align-items: center;
   border-radius: 0.25rem;
   display: flex;
@@ -116,7 +117,7 @@ const StyledDiv = styled.div`
     margin-left: 1.5rem;
 
     .docs {
-      font-size: var(--font-size-small);
+      font-size: 0.9rem;
       font-weight: var(--font-weight-normal);
     }
   }
@@ -128,6 +129,4 @@ const StyledDiv = styled.div`
   &+& {
     margin-top: 0.5rem;
   }
-`;
-
-export default React.memo(Message);
+`);

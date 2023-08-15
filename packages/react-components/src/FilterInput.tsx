@@ -1,10 +1,10 @@
-// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import Input from './Input.js';
-import { styled } from './styled.js';
+import { Input } from '@polkadot/react-components/index';
 
 interface Props {
   className?: string;
@@ -15,7 +15,7 @@ interface Props {
 
 function Filter ({ className = '', filterOn, label, setFilter }: Props) {
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <Input
         autoFocus
         isFull
@@ -23,17 +23,19 @@ function Filter ({ className = '', filterOn, label, setFilter }: Props) {
         onChange={setFilter}
         value={filterOn}
       />
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Filter)`
   width: 29.5rem;
+
+  :not(:only-child) {
+    margin-left: 1.5rem;
+  }
 
   .ui--Input {
     margin: 0;
     height: 3.893rem;
   }
-`;
-
-export default React.memo(Filter);
+`);

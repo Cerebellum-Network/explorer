@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-society authors & contributors
+// Copyright 2017-2022 @polkadot/app-society authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
@@ -8,7 +8,7 @@ import React, { useState } from 'react';
 import { InputAddress, InputBalance, Modal, TxButton } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   onClose: () => void;
@@ -29,6 +29,7 @@ function BidNew ({ onClose }: Props): React.ReactElement<Props> {
       <Modal.Content>
         <Modal.Columns hint={t<string>('Your candidate/bid account. Once accepted this account will become a member.')}>
           <InputAddress
+            help={t<string>('The actual account you wish to submit the bid with')}
             label={t<string>('bid account')}
             onChange={setAccount}
             type='account'
@@ -37,6 +38,7 @@ function BidNew ({ onClose }: Props): React.ReactElement<Props> {
         <Modal.Columns hint={t<string>('The amount to tie to your bid. The lowest bidder moves forward.')}>
           <InputBalance
             autoFocus
+            help={t<string>('The amount to associate with your bid, should be less than the pot.')}
             label={t<string>('bid amount')}
             onChange={setAmount}
           />

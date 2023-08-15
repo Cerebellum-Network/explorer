@@ -1,12 +1,12 @@
-// Copyright 2017-2023 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2022 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { useMemo } from 'react';
 
 import { BN, bnToBn } from '@polkadot/util';
 
-import { createNamedHook } from './createNamedHook.js';
-import { useBlockInterval } from './useBlockInterval.js';
+import { createNamedHook } from './createNamedHook';
+import { useBlockInterval } from './useBlockInterval';
 
 export const A_DAY = new BN(24 * 60 * 60 * 1000);
 

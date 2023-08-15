@@ -1,25 +1,25 @@
-// Copyright 2017-2023 @polkadot/app-explorer authors & contributors
+// Copyright 2017-2022 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
-import type { BlockNumber, DispatchInfo, Extrinsic } from '@polkadot/types/interfaces';
+import type { KeyedEvent } from '@polkadot/react-query/types';
+import type { BlockNumber, DispatchInfo, Extrinsic, Weight } from '@polkadot/types/interfaces';
 import type { ICompact, INumber } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
-import { AddressMini, CallExpander, LinkExternal, styled } from '@polkadot/react-components';
-import { convertWeight } from '@polkadot/react-hooks/useWeight';
+import { AddressMini, Call, Expander, LinkExternal } from '@polkadot/react-components';
 import { BN, formatNumber } from '@polkadot/util';
 
-import Event from '../Event.js';
-import { useTranslation } from '../translate.js';
+import Event from '../Event';
+import { useTranslation } from '../translate';
 
 interface Props {
   blockNumber?: BlockNumber;
   className?: string;
   events?: KeyedEvent[] | null;
   index: number;
-  maxBlockWeight?: BN;
+  maxBlockWeight?: Weight;
   value: Extrinsic;
   withLink: boolean;
 }
@@ -36,7 +36,7 @@ function getEra ({ era }: Extrinsic, blockNumber?: BlockNumber): [number, number
   return null;
 }
 
-function filterEvents (index: number, events?: KeyedEvent[] | null, maxBlockWeight?: BN): [DispatchInfo | undefined, BN | undefined, number, KeyedEvent[]] {
+function filterEvents (index: number, events?: KeyedEvent[] | null, maxBlockWeight?: Weight): [DispatchInfo | undefined, number, KeyedEvent[]] {
   const filtered = events
     ? events.filter(({ record: { phase } }) =>
       phase.isApplyExtrinsic &&
@@ -52,13 +52,11 @@ function filterEvents (index: number, events?: KeyedEvent[] | null, maxBlockWeig
       ? infoRecord.record.event.data[0] as DispatchInfo
       : infoRecord.record.event.data[1] as DispatchInfo
     : undefined;
-  const weight = dispatchInfo && convertWeight(dispatchInfo.weight);
 
   return [
     dispatchInfo,
-    weight && weight.v1Weight,
-    weight && maxBlockWeight
-      ? weight.v1Weight.mul(BN_TEN_THOUSAND).div(maxBlockWeight).toNumber() / 100
+    dispatchInfo && maxBlockWeight
+      ? dispatchInfo.weight.mul(BN_TEN_THOUSAND).div(maxBlockWeight).toNumber() / 100
       : 0,
     filtered
   ];
@@ -74,7 +72,7 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
     [value, withLink]
   );
 
-  const { method, section } = useMemo(
+  const { meta, method, section } = useMemo(
     () => value.registry.findMetaCall(value.callIndex),
     [value]
   );
@@ -106,13 +104,13 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
     [blockNumber, t, value]
   );
 
-  const [, weight, weightPercentage, thisEvents] = useMemo(
+  const [dispatchInfo, weightPercentage, thisEvents] = useMemo(
     () => filterEvents(index, events, maxBlockWeight),
     [index, events, maxBlockWeight]
   );
 
   return (
-    <StyledTr
+    <tr
       className={className}
       key={`extrinsic:${index}`}
     >
@@ -120,14 +118,19 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
         className='top'
         colSpan={2}
       >
-        <CallExpander
-          className='details'
-          mortality={mortality}
-          tip={value.tip?.toBn()}
-          value={value}
-          withHash
-          withSignature
-        />
+        <Expander
+          summary={`${section}.${method}`}
+          summaryMeta={meta}
+        >
+          <Call
+            className='details'
+            mortality={mortality}
+            tip={value.tip?.toBn()}
+            value={value}
+            withHash
+            withSignature
+          />
+        </Expander>
         {link && (
           <a
             className='isDecoded'
@@ -149,9 +152,9 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
         )}
       </td>
       <td className='top number media--1400'>
-        {weight && (
+        {dispatchInfo && (
           <>
-            <>{formatNumber(weight)}</>
+            <>{formatNumber(dispatchInfo.weight)}</>
             <div>{weightPercentage.toFixed(2)}%</div>
           </>
         )}
@@ -175,25 +178,25 @@ function ExtrinsicDisplay ({ blockNumber, className = '', events, index, maxBloc
             : null
         }
       </td>
-    </StyledTr>
+    </tr>
   );
 }
 
-const StyledTr = styled.tr`
+export default React.memo(styled(ExtrinsicDisplay)`
   .explorer--BlockByHash-event+.explorer--BlockByHash-event {
     margin-top: 0.75rem;
   }
 
   .explorer--BlockByHash-nonce {
-    font-size: var(--font-size-small);
+    font-size: 0.75rem;
     margin-left: 2.25rem;
     margin-top: -0.5rem;
-    opacity: var(--opacity-light);
+    opacity: 0.6;
     text-align: left;
   }
 
   .explorer--BlockByHash-unsigned {
-    opacity: var(--opacity-light);
+    opacity: 0.6;
     font-weight: var(--font-weight-normal);
   }
 
@@ -204,6 +207,4 @@ const StyledTr = styled.tr`
     text-overflow: ellipsis;
     white-space: nowrap;
   }
-`;
-
-export default React.memo(ExtrinsicDisplay);
+`);

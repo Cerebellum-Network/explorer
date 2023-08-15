@@ -1,15 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-calendar authors & contributors
+// Copyright 2017-2022 @polkadot/app-calendar authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { DateState, EntryInfo } from './types.js';
+import type { DateState, EntryInfo } from './types';
 
 import React, { useMemo, useRef } from 'react';
+import styled from 'styled-components';
 
-import { Button, styled } from '@polkadot/react-components';
+import { Button } from '@polkadot/react-components';
 
-import { DAYS, MONTHS } from './constants.js';
-import MonthDay from './MonthDay.js';
-import { useTranslation } from './translate.js';
+import { DAYS, MONTHS } from './constants';
+import MonthDay from './MonthDay';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
@@ -41,7 +42,7 @@ function Month ({ className, hasNextMonth, lastDay, now, scheduled, setDay, setN
   );
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <h1>
         <div>{monthRef.current[dateMonth.getMonth()]} {dateMonth.getFullYear()}</div>
         <Button.Group>
@@ -77,11 +78,11 @@ function Month ({ className, hasNextMonth, lastDay, now, scheduled, setDay, setN
           ))}
         </div>
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Month)`
   flex: 0;
   max-width: max-content;
 
@@ -108,7 +109,7 @@ const StyledDiv = styled.div`
 
     .dayOfWeek {
       > * {
-        font-size: var(--font-size-tiny);
+        font-size: 0.7em;
         font-weight: var(--font-weight-normal);
         letter-spacing: 0.1em;
         text-align: center;
@@ -123,6 +124,4 @@ const StyledDiv = styled.div`
       justify-content: space-between;
     }
   }
-`;
-
-export default React.memo(Month);
+`);

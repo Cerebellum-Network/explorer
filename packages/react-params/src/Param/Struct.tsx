@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/react-params authors & contributors
+// Copyright 2017-2022 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Props, RawParam } from '../types.js';
+import type { Props, RawParam } from '../types';
 
 import React, { useCallback, useState } from 'react';
 
 import { Struct } from '@polkadot/types';
 import { isCodec } from '@polkadot/util';
 
-import Params from '../index.js';
-import Base from './Base.js';
-import useParamDefs from './useParamDefs.js';
+import Params from '../';
+import Base from './Base';
+import Static from './Static';
+import useParamDefs from './useParamDefs';
 
 function extractValues ({ isValid, value }: RawParam): RawParam[] | undefined {
   return (isValid && isCodec(value) && value instanceof Struct)
@@ -25,10 +26,6 @@ function StructParam (props: Props): React.ReactElement<Props> {
 
   const _onChangeParams = useCallback(
     (values: RawParam[]): void => {
-      if (isDisabled) {
-        return;
-      }
-
       onChange && onChange({
         isValid: values.reduce((result: boolean, { isValid }) => result && isValid, true),
         value: params.reduce((value: Record<string, unknown>, { name }, index): Record<string, unknown> => {
@@ -38,8 +35,12 @@ function StructParam (props: Props): React.ReactElement<Props> {
         }, {})
       });
     },
-    [isDisabled, params, onChange]
+    [params, onChange]
   );
+
+  if (isDisabled) {
+    return <Static {...props} />;
+  }
 
   return (
     <div className='ui--Params-Struct'>
@@ -49,7 +50,6 @@ function StructParam (props: Props): React.ReactElement<Props> {
         withLabel={withLabel}
       />
       <Params
-        isDisabled={isDisabled}
         onChange={_onChangeParams}
         overrides={overrides}
         params={params}

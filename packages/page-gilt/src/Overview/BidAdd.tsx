@@ -1,7 +1,6 @@
-// Copyright 2017-2023 @polkadot/app-gilt authors & contributors
+// Copyright 2017-2022 @polkadot/app-gilt authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { u32, u128 } from '@polkadot/types';
 import type { BN } from '@polkadot/util';
 
 import React, { useMemo, useState } from 'react';
@@ -11,7 +10,7 @@ import { useApi, useToggle } from '@polkadot/react-hooks';
 import { Available } from '@polkadot/react-query';
 import { BN_ONE } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -36,8 +35,8 @@ function Bid ({ className, isDisabled, proxies }: Props): React.ReactElement<Pro
   );
 
   const proxiedAccounts = Object.keys(proxies);
-  const isAmountError = !amount || amount.isZero() || amount.lt(api.consts.gilt.minFreeze as u128);
-  const isDurationError = !duration || !duration.gte(BN_ONE) || duration.gt(api.consts.gilt.queueCount as u128);
+  const isAmountError = !amount || amount.isZero() || amount.lt(api.consts.gilt.minFreeze);
+  const isDurationError = !duration || !duration.gte(BN_ONE) || duration.gt(api.consts.gilt.queueCount);
 
   return (
     <>
@@ -58,6 +57,7 @@ function Bid ({ className, isDisabled, proxies }: Props): React.ReactElement<Pro
             <Modal.Columns hint={t<string>('This account will make the bid for the gilt and pay all associated fees.')}>
               <InputAddress
                 filter={proxiedAccounts}
+                help={t<string>('The account you want to register the bid from')}
                 label={t<string>('use proxied account')}
                 labelExtra={
                   <Available
@@ -71,6 +71,7 @@ function Bid ({ className, isDisabled, proxies }: Props): React.ReactElement<Pro
               {accountId && (
                 <InputAddress
                   filter={proxies[accountId]}
+                  help={t<string>('The associated proxy to use for this account')}
                   label={t<string>('send via proxy')}
                   onChange={setProxyId}
                   type='account'
@@ -80,14 +81,15 @@ function Bid ({ className, isDisabled, proxies }: Props): React.ReactElement<Pro
             <Modal.Columns hint={t<string>('The amount you wish to lock for the duration. It needs to be more than the gilt minimum.')}>
               <InputBalance
                 autoFocus
-                defaultValue={api.consts.gilt.minFreeze as u128}
+                defaultValue={api.consts.gilt.minFreeze}
                 isError={isAmountError}
                 isZeroable={false}
                 label={t<string>('bid amount')}
                 onChange={setAmount}
               />
               <InputBalance
-                defaultValue={api.consts.gilt.minFreeze as u128}
+                defaultValue={api.consts.gilt.minFreeze}
+                help={t<string>('The minimum amount that is allowed as a bid')}
                 isDisabled
                 label={t<string>('minimum freeze amount')}
               />
@@ -101,7 +103,7 @@ function Bid ({ className, isDisabled, proxies }: Props): React.ReactElement<Pro
                 onChange={setDuration}
               />
               <InputNumber
-                defaultValue={api.consts.gilt.queueCount as u32}
+                defaultValue={api.consts.gilt.queueCount}
                 isDisabled
                 label={t<string>('maximum lock periods')}
               />

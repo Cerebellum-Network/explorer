@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { CodeStored } from '../types.js';
+import type { CodeStored } from '../types';
 
 import React, { useCallback, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { Icon, styled } from '@polkadot/react-components';
+import { Icon } from '@polkadot/react-components';
 import Row from '@polkadot/react-components/Row';
 
-import contracts from '../store.js';
+import contracts from '../store';
 
 interface Props {
   buttons?: React.ReactNode;
@@ -52,7 +53,7 @@ function CodeRow ({ buttons, children, className, code: { json }, isInline, with
   );
 
   return (
-    <StyledRow
+    <Row
       buttons={buttons}
       className={className}
       icon={
@@ -66,14 +67,14 @@ function CodeRow ({ buttons, children, className, code: { json }, isInline, with
       onChangeTags={setTags}
       onSaveName={_onSaveName}
       onSaveTags={_onSaveTags}
-      tags={withTags ? tags : undefined}
+      tags={withTags && tags}
     >
       {children}
-    </StyledRow>
+    </Row>
   );
 }
 
-const StyledRow = styled(Row)`
+export default React.memo(styled(CodeRow)`
   .ui--CodeRow-icon {
     margin-right: -0.5em;
     background: #eee;
@@ -85,6 +86,4 @@ const StyledRow = styled(Row)`
     justify-content: center;
     align-items: center;
   }
-`;
-
-export default React.memo(CodeRow);
+`);

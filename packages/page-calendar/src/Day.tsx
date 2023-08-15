@@ -1,23 +1,24 @@
-// Copyright 2017-2023 @polkadot/app-calendar authors & contributors
+// Copyright 2017-2022 @polkadot/app-calendar authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { EntryInfoTyped } from './types.js';
+import type { EntryInfo } from './types';
 
 import React, { useCallback, useMemo, useRef } from 'react';
+import styled from 'styled-components';
 
-import { Button, styled } from '@polkadot/react-components';
+import { Button } from '@polkadot/react-components';
 
-import { MONTHS } from './constants.js';
-import DayHour from './DayHour.js';
-import DayTime from './DayTime.js';
-import { useTranslation } from './translate.js';
+import { MONTHS } from './constants';
+import DayHour from './DayHour';
+import DayTime from './DayTime';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
   date: Date;
   hasNextDay: boolean;
   now: Date;
-  scheduled: EntryInfoTyped[];
+  scheduled: EntryInfo[];
   setNextDay: () => void;
   setPrevDay: () => void;
   setView: (v: boolean) => void;
@@ -53,7 +54,7 @@ function Day ({ className, date, hasNextDay, now, scheduled, setNextDay, setPrev
   );
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <h1>
         <div>
           <Button
@@ -88,11 +89,11 @@ function Day ({ className, date, hasNextDay, now, scheduled, setNextDay, setPrev
           />
         )}
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Day)`
   flex: 1;
 
   .dayHeader {
@@ -106,6 +107,4 @@ const StyledDiv = styled.div`
   .hoursContainer {
     z-index: 1;
   }
-`;
-
-export default React.memo(Day);
+`);

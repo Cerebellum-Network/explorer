@@ -1,13 +1,14 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Group } from './types.js';
+import type { Group } from './types';
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
-import { Icon, styled } from '@polkadot/react-components';
+import { Icon } from '@polkadot/react-components';
 
-import Network from './Network.js';
+import Network from './Network';
 
 interface Props {
   affinities: Record<string, string>;
@@ -16,7 +17,7 @@ interface Props {
   className?: string;
   index: number;
   isSelected: boolean;
-  setApiUrl: (network: string, apiUrl: string) => void;
+  setApiUrl: (apiUrl: string) => void;
   setGroup: (groupIndex: number) => void;
   value: Group;
 }
@@ -33,7 +34,7 @@ function GroupDisplay ({ affinities, apiUrl, children, className = '', index, is
   );
 
   return (
-    <StyledDiv className={`${className}${isSelected ? ' isSelected' : ''}`}>
+    <div className={`${className}${isSelected ? ' isSelected' : ''}`}>
       <div
         className={`groupHeader${isSpaced ? ' isSpaced' : ''}`}
         onClick={_setGroup}
@@ -57,11 +58,11 @@ function GroupDisplay ({ affinities, apiUrl, children, className = '', index, is
           {children}
         </>
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(GroupDisplay)`
   .groupHeader {
     border-radius: 0.25rem;
     cursor: pointer;
@@ -86,6 +87,4 @@ const StyledDiv = styled.div`
   .groupNetworks {
     padding: 0.25rem 0 0.5rem 1rem;
   }
-`;
-
-export default React.memo(GroupDisplay);
+`);

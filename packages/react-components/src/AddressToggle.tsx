@@ -1,14 +1,14 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
 import { useApi, useDeriveAccountInfo } from '@polkadot/react-hooks';
 
-import { checkVisibility } from './util/index.js';
-import AddressMini from './AddressMini.js';
-import { styled } from './styled.js';
-import Toggle from './Toggle.js';
+import AddressMini from './AddressMini';
+import Toggle from './Toggle';
+import { checkVisibility } from './util';
 
 interface Props {
   address: string;
@@ -35,8 +35,8 @@ function AddressToggle ({ address, className = '', filter, isHidden, noToggle, o
   );
 
   return (
-    <StyledDiv
-      className={`${className} ui--AddressToggle ${(value || noToggle) ? 'isAye' : 'isNay'} ${isHidden || !isVisible ? 'isHidden' : ''}`}
+    <div
+      className={`ui--AddressToggle ${className}${(value || noToggle) ? ' isAye' : ' isNay'}${isHidden || !isVisible ? ' isHidden' : ''}`}
       onClick={_onClick}
     >
       <AddressMini
@@ -52,11 +52,11 @@ function AddressToggle ({ address, className = '', filter, isHidden, noToggle, o
           />
         </div>
       )}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(AddressToggle)`
   align-items: flex-start;
   border: 1px solid transparent; /* #eee */
   border-radius: 0.25rem;
@@ -71,7 +71,7 @@ const StyledDiv = styled.div`
 
   .ui--AddressToggle-address {
     filter: grayscale(100%);
-    opacity: var(--opacity-light);
+    opacity: 0.5;
   }
 
   &:hover {
@@ -104,6 +104,4 @@ const StyledDiv = styled.div`
       opacity: 1;
     }
   }
-`;
-
-export default React.memo(AddressToggle);
+`);

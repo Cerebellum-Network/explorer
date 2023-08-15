@@ -1,22 +1,23 @@
-// Copyright 2017-2023 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2022 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Nominations, ValidatorPrefs } from '@polkadot/types/interfaces';
 import type { KeyringJson$Meta } from '@polkadot/ui-keyring/types';
-import type { AddressFlags, AddressIdentity, UseAccountInfo } from './types.js';
+import type { AddressFlags, AddressIdentity, UseAccountInfo } from './types';
 
-import { useCallback, useEffect, useMemo, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 
 import { keyring } from '@polkadot/ui-keyring';
 import { isFunction, isHex } from '@polkadot/util';
 
-import { createNamedHook } from './createNamedHook.js';
-import { useApi } from './useApi.js';
-import { useCall } from './useCall.js';
-import { useDeriveAccountFlags } from './useDeriveAccountFlags.js';
-import { useDeriveAccountInfo } from './useDeriveAccountInfo.js';
-import { useKeyring } from './useKeyring.js';
-import { useToggle } from './useToggle.js';
+import { createNamedHook } from './createNamedHook';
+import { useAccounts } from './useAccounts';
+import { useAddresses } from './useAddresses';
+import { useApi } from './useApi';
+import { useCall } from './useCall';
+import { useDeriveAccountFlags } from './useDeriveAccountFlags';
+import { useDeriveAccountInfo } from './useDeriveAccountInfo';
+import { useToggle } from './useToggle';
 
 const IS_NONE = {
   isCouncil: false,
@@ -40,7 +41,8 @@ const IS_NONE = {
 
 function useAccountInfoImpl (value: string | null, isContract = false): UseAccountInfo {
   const { api } = useApi();
-  const { accounts: { isAccount }, addresses: { isAddress } } = useKeyring();
+  const { isAccount } = useAccounts();
+  const { isAddress } = useAddresses();
   const accountInfo = useDeriveAccountInfo(value);
   const accountFlags = useDeriveAccountFlags(value);
   const nominator = useCall<Nominations>(api.query.staking?.nominators, [value]);
@@ -138,7 +140,7 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
         setMeta(accountOrAddress?.meta);
         setName(accountOrAddress?.meta.name || '');
         setSortedTags(accountOrAddress?.meta.tags ? (accountOrAddress.meta.tags as string[]).sort() : []);
-      } catch {
+      } catch (error) {
         // ignore
       }
     }
@@ -167,7 +169,7 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
           const pair = keyring.getPair(value);
 
           pair && keyring.saveAccountMeta(pair, meta);
-        } catch {
+        } catch (error) {
           const pair = keyring.getAddress(value);
 
           if (pair) {
@@ -200,7 +202,7 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
           const currentKeyring = keyring.getPair(value);
 
           currentKeyring && keyring.saveAccountMeta(currentKeyring, meta);
-        } catch {
+        } catch (error) {
           keyring.saveAddress(value, meta);
         }
       }
@@ -247,7 +249,7 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
 
   const isEditing = useCallback(() => isEditingName || isEditingTags, [isEditingName, isEditingTags]);
 
-  return useMemo(() => ({
+  return {
     accountIndex,
     flags,
     genesisHash,
@@ -269,7 +271,7 @@ function useAccountInfoImpl (value: string | null, isContract = false): UseAccou
     tags,
     toggleIsEditingName,
     toggleIsEditingTags
-  }), [accountIndex, flags, genesisHash, identity, isEditing, isEditingName, isEditingTags, meta, name, onForgetAddress, onSaveName, onSaveTags, onSetGenesisHash, setIsEditingName, setIsEditingTags, setName, setTags, tags, toggleIsEditingName, toggleIsEditingTags, value]);
+  };
 }
 
 export const useAccountInfo = createNamedHook('useAccountInfo', useAccountInfoImpl);

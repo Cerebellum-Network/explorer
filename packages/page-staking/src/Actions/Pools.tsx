@@ -1,10 +1,9 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSessionProgress } from '@polkadot/api-derive/types';
-import type { OwnPool } from '@polkadot/app-staking2/Pools/types';
 import type { PalletStakingUnappliedSlash } from '@polkadot/types/lookup';
-import type { SortedTargets } from '../types.js';
+import type { OwnPool, SortedTargets } from '../types';
 
 import React, { useRef } from 'react';
 
@@ -12,8 +11,8 @@ import { Table } from '@polkadot/react-components';
 import { useApi, useCall } from '@polkadot/react-hooks';
 import { BN } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import Pool from './Pool/index.js';
+import { useTranslation } from '../translate';
+import Pool from './Pool';
 
 interface Props {
   allSlashes: [BN, PalletStakingUnappliedSlash[]][];
@@ -29,11 +28,11 @@ function Pools ({ className, list, targets }: Props): React.ReactElement<Props> 
   const { api } = useApi();
   const sessionProgress = useCall<DeriveSessionProgress>(api.derive.session.progress);
 
-  const hdrRef = useRef<[React.ReactNode?, string?, number?][]>([
-    [t<string>('pools'), 'start', 2],
-    [t<string>('account'), 'address'],
-    [t<string>('bonded')],
-    [t<string>('claimable')],
+  const hdrRef = useRef([
+    [t('pools'), 'start', 2],
+    [t('account'), 'address'],
+    [t('bonded')],
+    [t('claimable')],
     [],
     []
   ]);

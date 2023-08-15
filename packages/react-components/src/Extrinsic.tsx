@@ -1,19 +1,18 @@
-// Copyright 2017-2023 @polkadot/app-extrinsics authors & contributors
+// Copyright 2017-2022 @polkadot/app-extrinsics authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { SubmittableExtrinsic, SubmittableExtrinsicFunction } from '@polkadot/api/types';
-import type { ComponentMap, RawParam } from '@polkadot/react-params/types';
+import type { RawParam } from '@polkadot/react-params/types';
 import type { TypeDef } from '@polkadot/types/types';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 
 import Params from '@polkadot/react-params';
 import { getTypeDef } from '@polkadot/types/create';
-import { isUndefined, objectSpread } from '@polkadot/util';
+import { isUndefined } from '@polkadot/util';
 
-import InputExtrinsic from './InputExtrinsic/index.js';
-import paramComponents from './Params/index.js';
-import { balanceCalls, balanceCallsOverrides } from './constants.js';
+import InputExtrinsic from './InputExtrinsic';
+import paramComponents from './Params';
 
 interface Props {
   className?: string;
@@ -43,8 +42,6 @@ interface CallState {
   },
   values: RawParam[];
 }
-
-const allComponents = objectSpread<ComponentMap>({}, paramComponents, balanceCallsOverrides);
 
 function isValuesValid (params: ParamDef[], values: RawParam[]): boolean {
   return values.reduce((isValid, value): boolean =>
@@ -98,13 +95,6 @@ function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isEr
     onChange(method);
   }, [extrinsic, onChange, onError, values]);
 
-  const overrides = useMemo(
-    () => balanceCalls.includes(`${extrinsic.fn.section}.${extrinsic.fn.method}`)
-      ? allComponents
-      : paramComponents,
-    [extrinsic]
-  );
-
   const _onChangeMethod = useCallback(
     (fn: SubmittableExtrinsicFunction<'promise'>) =>
       setDisplay((prev): CallState =>
@@ -121,13 +111,14 @@ function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isEr
     []
   );
 
-  const { fn: { method, section }, params } = extrinsic;
+  const { fn: { meta, method, section }, params } = extrinsic;
 
   return (
     <div className='extrinsics--Extrinsic'>
       <InputExtrinsic
         defaultValue={defaultValue}
         filter={filter}
+        help={meta?.docs.join(' ')}
         isDisabled={isDisabled}
         isError={isError}
         isPrivate={isPrivate}
@@ -140,7 +131,7 @@ function ExtrinsicDisplay ({ defaultArgs, defaultValue, filter, isDisabled, isEr
         onChange={_setValues}
         onEnter={onEnter}
         onEscape={onEscape}
-        overrides={overrides}
+        overrides={paramComponents}
         params={params}
         values={values}
       />

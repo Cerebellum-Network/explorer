@@ -1,12 +1,11 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { ExternalDef } from './types.js';
 
-import { externalSubscanPNG } from '../ui/logos/external/index.js';
+import { externalLogos } from '../ui/logos';
 
-export const Subscan: ExternalDef = {
+export default {
   chains: {
     Acala: 'acala',
     'Acala Mandala TC5': 'acala-testnet',
@@ -14,45 +13,44 @@ export const Subscan: ExternalDef = {
     Altair: 'altair',
     Arctic: 'arctic',
     Astar: 'astar',
-    'Bajun Kusama': 'bajun',
     Basilisk: 'basilisk',
     Bifrost: 'bifrost-kusama',
     'Bifrost Polkadot': 'bifrost',
-    'Calamari Parachain': 'calamari',
-    Centrifuge: 'centrifuge',
+    Calamari: 'calamari',
+    'Centrifuge Mainnet': 'centrifuge',
     ChainX: 'chainx',
     Clover: 'clv',
-    'Composable Finance': 'composable',
-    Crab2: 'crab',
+    'Crab Parachain': 'crab-parachain',
     Crust: 'crust',
+    'Crust Collator': 'shadow',
     'Crust Maxwell': 'maxwell',
-    'Crust Shadow': 'shadow',
     Darwinia: 'darwinia',
+    'Darwinia Crab': 'crab',
     'Darwinia Parachain': 'darwinia-parachain',
     'DataHighway Tanganika Kusama Parachain': 'datahighway',
     Dock: 'dock',
-    'Dolphin Parachain Testnet': 'dolphin',
     Edgeware: 'edgeware',
     Efinity: 'efinity',
-    'Encointer on Kusama': 'encointer',
-    'Equilibrium parachain': 'equilibrium',
+    'Encointer-parachain': 'encointer',
+    Equilibrium: 'equilibrium',
     Genshiro: 'genshiro',
     HydraDX: 'hydradx',
-    'Integritee Network (Kusama)': 'integritee',
+    'Integritee Collator': 'integritee',
     Interlay: 'interlay',
     'KILT Peregrine': 'kilt-testnet',
     'KILT Spiritnet': 'spiritnet',
     Karura: 'karura',
     Khala: 'khala',
+    Kintsugi: 'kintsugi',
+    Kulupu: 'kulupu',
     Kusama: 'kusama',
+    Litentry: 'litentry',
     Litmus: 'litmus',
-    'Mangata Kusama Mainnet': 'mangatax',
-    'Moonbase Alpha': 'moonbase',
+    Moonbase: 'moonbase',
     Moonbeam: 'moonbeam',
     Moonriver: 'moonriver',
     'Nodle Parachain': 'nodle',
-    'OriginTrail Parachain': 'origintrail',
-    'OriginTrail Parachain Testnet': 'origintrail-testnet',
+    'OAK Network': 'oak',
     Pangolin: 'pangolin',
     'Pangolin Parachain': 'pangolin-parachain',
     Pangoro: 'pangoro',
@@ -64,44 +62,37 @@ export const Subscan: ExternalDef = {
     Polkadex: 'polkadex',
     Polkadot: 'polkadot',
     Polymesh: 'polymesh',
-    'Polymesh Testnet': 'polymesh-testnet',
     'QUARTZ by UNIQUE': 'quartz',
     Robonomics: 'robonomics',
-    Rockmine: 'rockmine',
     Rococo: 'rococo',
     SORA: 'sora',
+    Shibuya: 'shibuya',
     'Shibuya Testnet': 'shibuya',
     Shiden: 'shiden',
     Stafi: 'stafi',
     Statemine: 'statemine',
     Statemint: 'statemint',
-    'Subspace Gemini 2a': 'subspace',
+    Subgame: 'subgame',
     'Turing Network': 'turing',
     UNIQUE: 'unique',
     Westend: 'westend',
-    Zeitgeist: 'zeitgeist',
-    kintsugi: 'kintsugi'
+    Zeitgeist: 'zeitgeist'
   },
   create: (chain: string, path: string, data: BN | number | string): string =>
     `https://${chain}.subscan.io/${path}/${data.toString()}`,
-  homepage: 'https://subscan.io/',
   isActive: true,
+  logo: externalLogos.subscan as string,
   paths: {
     address: 'account',
     block: 'block',
     bounty: 'bounty',
     council: 'council',
-    democracyProposal: 'democracy_proposal',
-    democracyReferendum: 'referenda',
     extrinsic: 'extrinsic',
-    fellowshipReferenda: 'fellowship',
-    referenda: 'referenda_v2',
+    proposal: 'democracy_proposal',
+    referendum: 'referenda',
     techcomm: 'tech',
-    tip: 'treasury_tip',
     treasury: 'treasury',
     validator: 'validator'
   },
-  ui: {
-    logo: externalSubscanPNG
-  }
+  url: 'https://subscan.io/'
 };

@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Codec } from '@polkadot/types/types';
@@ -7,8 +7,8 @@ import React from 'react';
 
 import { AddressSmall } from '@polkadot/react-components';
 
-import Description from './Description.js';
-import { useTranslation } from './translate.js';
+import Description from './Description';
+import { useTranslation } from './translate';
 
 interface Props {
   curator: Codec;

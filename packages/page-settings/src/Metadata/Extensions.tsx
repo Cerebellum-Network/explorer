@@ -1,18 +1,18 @@
-// Copyright 2017-2023 @polkadot/app-settings authors & contributors
+// Copyright 2017-2022 @polkadot/app-settings authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ChainInfo } from '../types.js';
+import type { ChainInfo } from '../types';
 
 import React, { useCallback, useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { knownExtensions } from '@polkadot/apps-config';
-import { externalEmptySVG } from '@polkadot/apps-config/ui/logos/external';
-import { Button, Dropdown, Spinner, styled, Table } from '@polkadot/react-components';
+import { emptyLogos, extensionLogos } from '@polkadot/apps-config';
+import { Button, Dropdown, Spinner, Table } from '@polkadot/react-components';
 import { useToggle } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
-import useExtensions from '../useExtensions.js';
-import iconOption from './iconOption.js';
+import { useTranslation } from '../translate';
+import useExtensions from '../useExtensions';
+import iconOption from './iconOption';
 
 interface Props {
   chainInfo: ChainInfo | null;
@@ -24,14 +24,11 @@ function Extensions ({ chainInfo, className }: Props): React.ReactElement<Props>
   const { extensions } = useExtensions();
   const [selectedIndex, setSelectedIndex] = useState(0);
   const [isBusy, toggleBusy] = useToggle();
-
   const options = useMemo(
     () => (extensions || []).map(({ extension: { name, version } }, value) =>
-      iconOption(`${name} ${version}`, value, knownExtensions[name]?.ui.logo || externalEmptySVG)
-    ),
+      iconOption(`${name} ${version}`, value, extensionLogos[name] || emptyLogos.empty)),
     [extensions]
   );
-
   const _updateMeta = useCallback(
     (): void => {
       if (chainInfo && extensions?.[selectedIndex]) {
@@ -47,12 +44,12 @@ function Extensions ({ chainInfo, className }: Props): React.ReactElement<Props>
     [chainInfo, extensions, selectedIndex, toggleBusy]
   );
 
-  const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
-    [t<string>('Extensions'), 'start']
+  const headerRef = useRef([
+    [t('Extensions'), 'start']
   ]);
 
   return (
-    <StyledTable
+    <Table
       className={className}
       empty={t<string>('No Upgradable extensions')}
       header={headerRef.current}
@@ -60,7 +57,7 @@ function Extensions ({ chainInfo, className }: Props): React.ReactElement<Props>
       {extensions
         ? options.length !== 0 && (
           <>
-            <tr className='isExpanded isFirst'>
+            <tr className='noBorder'>
               <td>
                 <Dropdown
                   label={t<string>('upgradable extensions')}
@@ -70,7 +67,7 @@ function Extensions ({ chainInfo, className }: Props): React.ReactElement<Props>
                 />
               </td>
             </tr>
-            <tr className='isExpanded isLast'>
+            <tr className='isOdd'>
               <td>
                 <Button.Group>
                   <Button
@@ -86,14 +83,12 @@ function Extensions ({ chainInfo, className }: Props): React.ReactElement<Props>
         )
         : <Spinner />
       }
-    </StyledTable>
+    </Table>
   );
 }
 
-const StyledTable = styled(Table)`
+export default React.memo(styled(Extensions)`
   table {
     overflow: visible;
   }
-`;
-
-export default React.memo(Extensions);
+`);

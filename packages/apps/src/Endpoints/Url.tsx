@@ -1,9 +1,10 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
-import { styled, Toggle } from '@polkadot/react-components';
+import { Toggle } from '@polkadot/react-components';
 
 interface Props {
   apiUrl: string;
@@ -20,7 +21,7 @@ function Url ({ apiUrl, className, label, setApiUrl, url }: Props): React.ReactE
   );
 
   return (
-    <StyledToggle
+    <Toggle
       className={className}
       isRadio
       label={label}
@@ -30,7 +31,7 @@ function Url ({ apiUrl, className, label, setApiUrl, url }: Props): React.ReactE
   );
 }
 
-const StyledToggle = styled(Toggle)`
+export default React.memo(styled(Url)`
   padding: 0.25rem;
   text-align: right;
 
@@ -40,6 +41,4 @@ const StyledToggle = styled(Toggle)`
     overflow: hidden;
     text-overflow: ellipsis;
   }
-`;
-
-export default React.memo(Url);
+`);

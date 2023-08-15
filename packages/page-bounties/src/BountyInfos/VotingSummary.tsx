@@ -1,17 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-bounties authors & contributors
+// Copyright 2017-2022 @polkadot/app-bounties authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveCollectiveProposal } from '@polkadot/api-derive/types';
 import type { BountyStatus } from '@polkadot/types/interfaces';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components';
+import VotingDescriptionInfo from '@polkadot/app-bounties/BountyInfos/VotingDescriptionInfo';
 import { useCollectiveMembers } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
-import VotingDescriptionInfo from './VotingDescriptionInfo.js';
-import VotingLink from './VotingLink.js';
+import { useTranslation } from '../translate';
+import VotingLink from './VotingLink';
 
 interface Props {
   className?: string;
@@ -30,12 +30,12 @@ function VotingSummary ({ className, proposal, status }: Props): JSX.Element {
   return (
     <>
       {proposal && (
-        <StyledDiv
+        <div
           className={className}
           data-testid='voting-summary'
         >
-          <div className='voting-summary-text'><span>{t<string>('Aye')}</span> <b>{ayes}/{threshold}</b></div>
-          <div className='voting-summary-text'><span>{t<string>('Nay')}</span> <b>{nays}/{nayThreshold}</b></div>
+          <div className='voting-summary-text'><span>{t('Aye')}</span> <b>{ayes}/{threshold}</b></div>
+          <div className='voting-summary-text'><span>{t('Nay')}</span> <b>{nays}/{nayThreshold}</b></div>
           <div className='link-info'>
             <VotingLink />
             <VotingDescriptionInfo
@@ -43,15 +43,15 @@ function VotingSummary ({ className, proposal, status }: Props): JSX.Element {
               status={status}
             />
           </div>
-        </StyledDiv>
+        </div>
       )}
     </>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(VotingSummary)`
   .voting-summary-text {
-    font-size: var(--font-size-small);
+    font-size: 0.85rem;
     line-height: 1.5rem;
     color: var(--color-label);
 
@@ -67,6 +67,4 @@ const StyledDiv = styled.div`
     align-items: center;
     line-height: 1.5rem;
   }
-`;
-
-export default React.memo(VotingSummary);
+`);

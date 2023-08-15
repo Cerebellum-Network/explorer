@@ -1,17 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { KeypairType } from '@polkadot/util-crypto/types';
 
-import React, { useCallback, useEffect, useMemo, useRef, useState } from 'react';
+import React, { useCallback, useContext, useEffect, useMemo, useRef, useState } from 'react';
 
-import { Button, Dropdown, Input, MarkWarning, Modal } from '@polkadot/react-components';
-import { useQueue } from '@polkadot/react-hooks';
+import { Button, Dropdown, Input, MarkWarning, Modal, StatusContext } from '@polkadot/react-components';
 import { keyring } from '@polkadot/ui-keyring';
 import { assert, u8aToHex } from '@polkadot/util';
 import { keyExtractSuri, mnemonicValidate } from '@polkadot/util-crypto';
 
-import { useTranslation } from '../../translate.js';
+import { useTranslation } from '../../translate';
 
 interface Props {
   onClose: () => void;
@@ -29,7 +28,7 @@ const EMPTY_KEY = '0x';
 
 function InjectKeys ({ onClose }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
-  const { queueRpc } = useQueue();
+  const { queueRpc } = useContext(StatusContext);
   // this needs to align with what is set as the first value in `type`
   const [crypto, setCrypto] = useState<KeypairType>('sr25519');
   const [publicKey, setPublicKey] = useState(EMPTY_KEY);
@@ -55,7 +54,7 @@ function InjectKeys ({ onClose }: Props): React.ReactElement<Props> | null {
       assert(mnemonicValidate(phrase), 'Invalid mnemonic phrase');
 
       setPublicKey(u8aToHex(keyring.createFromUri(suri, {}, crypto).publicKey));
-    } catch {
+    } catch (error) {
       setPublicKey(EMPTY_KEY);
     }
   }, [crypto, suri]);

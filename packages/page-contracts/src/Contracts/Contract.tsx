@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ContractPromise } from '@polkadot/api-contract';
@@ -6,17 +6,18 @@ import type { ContractCallOutcome } from '@polkadot/api-contract/types';
 import type { ActionStatus } from '@polkadot/react-components/Status/types';
 import type { Option } from '@polkadot/types';
 import type { ContractInfo } from '@polkadot/types/interfaces';
-import type { ContractLink } from './types.js';
+import type { ContractLink } from './types';
 
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
-import { AddressInfo, AddressMini, Button, Forget, styled } from '@polkadot/react-components';
+import { AddressInfo, AddressMini, Button, Forget } from '@polkadot/react-components';
 import { useApi, useCall, useToggle } from '@polkadot/react-hooks';
 import { keyring } from '@polkadot/ui-keyring';
 import { isUndefined } from '@polkadot/util';
 
-import Messages from '../shared/Messages.js';
-import { useTranslation } from '../translate.js';
+import Messages from '../shared/Messages';
+import { useTranslation } from '../translate';
 
 interface Props {
   className?: string;
@@ -64,7 +65,7 @@ function Contract ({ className, contract, index, links, onCall }: Props): React.
   );
 
   return (
-    <StyledTr className={className}>
+    <tr className={className}>
       <td className='address top'>
         {isForgetOpen && (
           <Forget
@@ -100,6 +101,7 @@ function Contract ({ className, contract, index, links, onCall }: Props): React.
           address={contract.address}
           withBalance
           withBalanceToggle
+          withExtended={false}
         />
       </td>
       <td className='start together'>
@@ -115,14 +117,12 @@ function Contract ({ className, contract, index, links, onCall }: Props): React.
           onClick={toggleIsForgetOpen}
         />
       </td>
-    </StyledTr>
+    </tr>
   );
 }
 
-const StyledTr = styled.tr`
+export default React.memo(styled(Contract)`
   td.top a+a {
     margin-left: 0.75rem;
   }
-`;
-
-export default React.memo(Contract);
+`);

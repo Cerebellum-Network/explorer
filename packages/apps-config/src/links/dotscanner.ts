@@ -1,25 +1,22 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2022 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
-import type { ExternalDef } from './types.js';
 
-import { externalDotscannerPNG } from '../ui/logos/external/index.js';
+import { externalLogos } from '../ui/logos';
 
-export const DotScanner: ExternalDef = {
+export default {
   chains: {
     Kusama: 'kusama',
     Polkadot: 'polkadot'
   },
   create: (chain: string, path: string, data: BN | number | string): string =>
     `https://dotscanner.com/${chain}/${path}/${data.toString()}?utm_source=polkadotjs`,
-  homepage: 'https://dotscanner.com/',
   isActive: true,
+  logo: externalLogos.dotscanner as string,
   paths: {
     address: 'account',
     block: 'block'
   },
-  ui: {
-    logo: externalDotscannerPNG
-  }
+  url: 'https://dotscanner.com/'
 };

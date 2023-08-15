@@ -1,18 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-claims authors & contributors
+// Copyright 2017-2022 @polkadot/app-claims authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { StatementKind } from '@polkadot/types/interfaces';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components';
-
-import { useTranslation } from './translate.js';
-import { getStatement } from './util.js';
+import { useTranslation } from './translate';
+import { getStatement } from './util';
 
 export interface Props {
   className?: string;
-  kind?: StatementKind | null;
+  kind?: StatementKind;
   systemChain: string;
 }
 
@@ -28,7 +27,7 @@ function StatementFullText ({ statementUrl, systemChain }: { statementUrl?: stri
         : null;
 
     default:
-      return <p>{t<string>('Warning: we did not find any attest statement for {{chain}}', { replace: { chain: systemChain } })}</p>;
+      return <p>{t('Warning: we did not find any attest statement for {{chain}}', { replace: { chain: systemChain } })}</p>;
   }
 }
 
@@ -41,8 +40,8 @@ function Statement ({ className, kind, systemChain }: Props): React.ReactElement
   }
 
   return (
-    <StyledDiv className={className}>
-      {t<string>('Please read these terms and conditions carefully. By submitting this statement, you are deemed to have accepted these Terms and Conditions. If you do not agree to these terms, please refrain from accessing or proceeding. You can also find them at:')}
+    <div className={className}>
+      {t('Please read these terms and conditions carefully. By submitting this statement, you are deemed to have accepted these Terms and Conditions. If you do not agree to these terms, please refrain from accessing or proceeding. You can also find them at:')}
       <a
         className='statementUrl'
         href={statementUrl}
@@ -55,11 +54,11 @@ function Statement ({ className, kind, systemChain }: Props): React.ReactElement
           systemChain={systemChain}
         />
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Statement)`
   .statement{
     border: 1px solid #c2c2c2;
     background: #f2f2f2;
@@ -83,6 +82,4 @@ const StyledDiv = styled.div`
   .statementUrl{
     margin-left: 0.3rem
   }
-`;
-
-export default React.memo(Statement);
+`);

@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import spinnerSrc from './Spinner.png.js';
-import { styled } from './styled.js';
-import { useTranslation } from './translate.js';
+import spinnerSrc from './Spinner.png';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
@@ -14,21 +14,26 @@ interface Props {
   variant?: 'app' | 'appPadded' | 'cover' | 'push' | 'mini';
 }
 
+// prefetch
+const img = new Image();
+
+img.src = spinnerSrc as string;
+
 function Spinner ({ className = '', label, noLabel, variant = 'app' }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
 
   return (
-    <StyledSpinner className={`${className} ui--Spinner variant-${variant}`}>
+    <div className={`${className} ui--Spinner variant-${variant}`}>
       <img
         className={variant === 'push' ? '' : 'highlight--bg highlight--border'}
-        src={spinnerSrc}
+        src={spinnerSrc as string}
       />
-      {!noLabel && variant.startsWith('app') && <div className='text'>{label || t<string>('Retrieving data')}</div>}
-    </StyledSpinner>
+      {!noLabel && variant.startsWith('app') && <div className='text'>{label || t('Retrieving data')}</div>}
+    </div>
   );
 }
 
-const StyledSpinner = styled.div`
+export default React.memo(styled(Spinner)`
   display: block;
   line-height: 1rem;
   margin: 0 auto;
@@ -58,12 +63,10 @@ const StyledSpinner = styled.div`
   .text {
     color: inherit !important;
     margin: 0.25rem auto 1.5rem auto;
-    opacity: var(--opacity-light);
+    opacity: 0.6;
 
     div+div {
       margin-top: 0.25rem;
     }
   }
-`;
-
-export default React.memo(Spinner);
+`);

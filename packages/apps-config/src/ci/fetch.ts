@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { fetch } from '@polkadot/x-fetch';
 
-function fetchWithTimeout (url: string, timeout = 2_000): Promise<Response | null> {
-  let controller: AbortController | null = new AbortController();
-  let timeoutId: null | ReturnType<typeof setTimeout> = null;
+function fetchWithTimeout (url: string, timeout = 2000): Promise<Response | null> {
+  const controller = new AbortController();
+  let id: null | ReturnType<typeof setTimeout> = null;
 
   // This is a weird mess, however we seem to have issues with Jest & hanging connections
   // in the case where things are (possibly) aborted. So we just swallow/log everything
@@ -18,21 +18,20 @@ function fetchWithTimeout (url: string, timeout = 2_000): Promise<Response | nul
         return null;
       }),
       new Promise<null>((resolve): void => {
-        timeoutId = setTimeout((): void => {
-          timeoutId = null;
-          controller?.abort();
+        id = setTimeout((): void => {
+          id = null;
+          controller.abort();
 
           resolve(null);
         }, timeout);
       })
     ])
-    .finally(() => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+    .then((response): Response | null => {
+      if (id) {
+        clearTimeout(id);
       }
 
-      controller = null;
-      timeoutId = null;
+      return response;
     });
 }
 

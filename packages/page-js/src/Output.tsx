@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/app-js authors & contributors
+// Copyright 2017-2022 @polkadot/app-js authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Log } from './types.js';
+import type { Log } from './types';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components';
 import { isError, isNull, isUndefined } from '@polkadot/util';
 
 interface Props {
@@ -61,7 +61,7 @@ const renderEntry = ({ args, type }: Log, index: number): React.ReactNode => {
 
 function Output ({ children, className = '', logs }: Props): React.ReactElement<Props> {
   return (
-    <StyledArticle className={`${className} container`}>
+    <article className={`container ${className}`}>
       <div className='logs-wrapper'>
         <div className='logs-container'>
           <pre className='logs-content'>
@@ -70,11 +70,11 @@ function Output ({ children, className = '', logs }: Props): React.ReactElement<
         </div>
       </div>
       {children}
-    </StyledArticle>
+    </article>
   );
 }
 
-const StyledArticle = styled.article`
+export default React.memo(styled(Output)`
   background-color: #4e4e4e;
   color: #ffffff;
   display: flex;
@@ -111,6 +111,4 @@ const StyledArticle = styled.article`
       color: #f88;
     }
   }
-`;
-
-export default React.memo(Output);
+`);

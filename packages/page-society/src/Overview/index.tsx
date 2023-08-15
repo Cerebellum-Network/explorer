@@ -1,17 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-society authors & contributors
+// Copyright 2017-2022 @polkadot/app-society authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveSociety } from '@polkadot/api-derive/types';
 import type { BN } from '@polkadot/util';
-import type { MapMember } from '../types.js';
+import type { MapMember } from '../types';
 
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from '@polkadot/react-components';
-
-import Defender from './Defender.js';
-import Members from './Members.js';
-import Summary from './Summary.js';
+import Defender from './Defender';
+import Members from './Members';
+import Summary from './Summary';
 
 interface Props {
   className?: string;
@@ -24,7 +23,7 @@ interface Props {
 
 function Overview ({ className, info, isMember, mapMembers, ownMembers, payoutTotal }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <Summary
         info={info}
         payoutTotal={payoutTotal}
@@ -35,14 +34,12 @@ function Overview ({ className, info, isMember, mapMembers, ownMembers, payoutTo
         ownMembers={ownMembers}
       />
       <Members mapMembers={mapMembers} />
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Overview)`
   .overviewSection {
     margin-bottom: 1.5rem;
   }
-`;
-
-export default React.memo(Overview);
+`);

@@ -1,14 +1,15 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Network } from './types.js';
+import type { Network } from './types';
 
 import React, { useCallback, useMemo } from 'react';
+import styled from 'styled-components';
 
-import { ChainImg, styled } from '@polkadot/react-components';
+import { ChainImg } from '@polkadot/react-components';
 
-import { useTranslation } from '../translate.js';
-import Url from './Url.js';
+import { useTranslation } from '../translate';
+import Url from './Url';
 
 interface Props {
   affinity?: string; // unused - previous selection
@@ -18,7 +19,7 @@ interface Props {
   value: Network;
 }
 
-function NetworkDisplay ({ apiUrl, className = '', setApiUrl, value: { isChild, isRelay, isUnreachable, name, nameRelay: relay, paraId, providers, ui } }: Props): React.ReactElement<Props> {
+function NetworkDisplay ({ apiUrl, className = '', setApiUrl, value: { icon, isChild, isRelay, isUnreachable, name, nameRelay: relay, paraId, providers } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const isSelected = useMemo(
     () => providers.some(({ url }) => url === apiUrl),
@@ -40,7 +41,7 @@ function NetworkDisplay ({ apiUrl, className = '', setApiUrl, value: { isChild, 
   );
 
   return (
-    <StyledDiv className={`${className}${isSelected ? ' isSelected highlight--border' : ''}${isUnreachable ? ' isUnreachable' : ''}`}>
+    <div className={`${className}${isSelected ? ' isSelected highlight--border' : ''}${isUnreachable ? ' isUnreachable' : ''}`}>
       <div
         className={`endpointSection${isChild ? ' isChild' : ''}`}
         onClick={isUnreachable ? undefined : _selectUrl}
@@ -48,7 +49,7 @@ function NetworkDisplay ({ apiUrl, className = '', setApiUrl, value: { isChild, 
         <ChainImg
           className='endpointIcon'
           isInline
-          logo={ui.logo || 'empty'}
+          logo={icon === 'local' ? 'empty' : (icon || 'empty')}
           withoutHl
         />
         <div className='endpointValue'>
@@ -76,11 +77,11 @@ function NetworkDisplay ({ apiUrl, className = '', setApiUrl, value: { isChild, 
           url={url}
         />
       ))}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(NetworkDisplay)`
   border-left: 0.25rem solid transparent;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -89,7 +90,7 @@ const StyledDiv = styled.div`
   position: relative;
 
   &.isUnreachable {
-    opacity: var(--opacity-light);
+    opacity: 0.5;
   }
 
   &.isSelected,
@@ -103,10 +104,6 @@ const StyledDiv = styled.div`
     justify-content: flex-start;
     position: relative;
 
-    &+.ui--Toggle {
-      margin-top: 1rem;
-    }
-
     &.isChild .endpointIcon {
       margin-left: 1.25rem;
     }
@@ -117,18 +114,9 @@ const StyledDiv = styled.div`
 
     .endpointValue {
       .endpointExtra {
-        font-size: var(--font-size-small);
-        opacity: var(--opacity-light);
+        font-size: 0.75rem;
+        opacity: 0.8;
       }
     }
   }
-
-  // we jiggle our labels somewhat...
-  label {
-    font-size: var(--font-size-small);
-    font-weight: var(--font-weight-normal);
-    text-transform: none;
-  }
-`;
-
-export default React.memo(NetworkDisplay);
+`);

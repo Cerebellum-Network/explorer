@@ -1,8 +1,5 @@
 {
   "bugs": "https://github.com/polkadot-js/apps/issues",
-  "engines": {
-    "node": ">=14"
-  },
   "homepage": "https://github.com/polkadot-js/apps/tree/master/packages/page-contracts#readme",
   "license": "Apache-2.0",
   "name": "@polkadot/app-contracts",
@@ -14,9 +11,9 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.124.2-199-x",
+  "version": "0.121.2-71-x",
   "dependencies": {
-    "@polkadot/api-contract": "^10.2.1",
-    "eventemitter3": "^5.0.0"
+    "@babel/runtime": "^7.19.0",
+    "@polkadot/api-contract": "^9.4.1"
   }
 }

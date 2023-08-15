@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/app-parachains authors & contributors
+// Copyright 2017-2022 @polkadot/app-parachains authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Option } from '@polkadot/types';
@@ -6,6 +6,8 @@ import type { AccountId, HeadData, ParaId } from '@polkadot/types/interfaces';
 import type { PolkadotRuntimeCommonParasRegistrarParaInfo, PolkadotRuntimeParachainsParasParaGenesisArgs, PolkadotRuntimeParachainsParasParaLifecycle } from '@polkadot/types/lookup';
 
 import { createNamedHook, useApi, useCallMulti } from '@polkadot/react-hooks';
+
+import { sliceHex } from '../util';
 
 interface Result {
   headHex: string | null;
@@ -21,9 +23,9 @@ const OPT_MULTI = {
   },
   transform: ([optHead, optGenesis, optLifecycle, optInfo]: [Option<HeadData>, Option<PolkadotRuntimeParachainsParasParaGenesisArgs>, Option<PolkadotRuntimeParachainsParasParaLifecycle>, Option<PolkadotRuntimeCommonParasRegistrarParaInfo>]): Result => ({
     headHex: optHead.isSome
-      ? optHead.unwrap().toHex()
+      ? sliceHex(optHead.unwrap())
       : optGenesis.isSome
-        ? optGenesis.unwrap().genesisHead.toHex()
+        ? sliceHex(optGenesis.unwrap().genesisHead)
         : null,
     lifecycle: optLifecycle.unwrapOr(null),
     manager: optInfo.isSome

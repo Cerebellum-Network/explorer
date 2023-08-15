@@ -1,15 +1,15 @@
-// Copyright 2017-2023 @polkadot/app-rpc authors & contributors
+// Copyright 2017-2022 @polkadot/app-rpc authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import React from 'react';
+import React, { useContext } from 'react';
 
-import { useQueue } from '@polkadot/react-hooks';
+import { StatusContext } from '@polkadot/react-components';
 
-import Results from './Results.js';
-import Selection from './Selection.js';
+import Results from './Results';
+import Selection from './Selection';
 
 function RpcApp (): React.ReactElement {
-  const { queueRpc, txqueue } = useQueue();
+  const { queueRpc, txqueue } = useContext(StatusContext);
 
   return (
     <>

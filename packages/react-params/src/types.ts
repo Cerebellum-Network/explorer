@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/react-params authors & contributors
+// Copyright 2017-2022 @polkadot/react-params authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Registry, TypeDef } from '@polkadot/types/types';
@@ -44,7 +44,7 @@ export interface Props {
   // eslint-disable-next-line no-use-before-define
   overrides?: ComponentMap;
   registry: Registry;
-  type: TypeDefExt;
+  type: TypeDef & { withOptionActive?: boolean };
   withLabel?: boolean;
 }
 
@@ -65,8 +65,4 @@ export interface ExpandedCid {
     digest: HexString;
   };
   version: 0 | 1;
-}
-
-export interface TypeDefExt extends TypeDef {
-  withOptionActive?: boolean;
 }

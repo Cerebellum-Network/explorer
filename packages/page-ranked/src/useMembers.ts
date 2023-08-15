@@ -1,21 +1,19 @@
-// Copyright 2017-2023 @polkadot/app-preimages authors & contributors
+// Copyright 2017-2022 @polkadot/app-preimages authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Option } from '@polkadot/types';
 import type { AccountId32 } from '@polkadot/types/interfaces';
 import type { PalletRankedCollectiveMemberRecord } from '@polkadot/types/lookup';
-import type { BN } from '@polkadot/util';
-import type { Member, PalletColl } from './types.js';
+import type { Member, PalletColl } from './types';
 
 import { useMemo } from 'react';
 
 import { createNamedHook, useApi, useCall } from '@polkadot/react-hooks';
 
-import useMembersIds from './useMemberIds.js';
+import useMembersIds from './useMemberIds';
 
 interface Result {
   memberIds: string[];
-  memberRanks: BN[];
   members: Member[];
 }
 
@@ -24,15 +22,14 @@ const OPT_MEM = {
     const members = infos
       .map((info, i) => [info.unwrapOr(null), ids[i]])
       .filter((r): r is [PalletRankedCollectiveMemberRecord, AccountId32] => !!r[0])
-      .sort(([a], [b]) => b.rank.cmp(a.rank))
       .map(([info, accountId]): Member => ({
         accountId: accountId.toString(),
         info
       }));
+    const memberIds = members.map(({ accountId }) => accountId);
 
     return {
-      memberIds: members.map(({ accountId }) => accountId),
-      memberRanks: members.map(({ info }) => info.rank),
+      memberIds,
       members
     };
   },
@@ -46,7 +43,7 @@ function useMembersImpl (collective: PalletColl): Result | undefined {
 
   return useMemo(
     () => ids && ids.length === 0
-      ? { memberIds: [], memberRanks: [], members: [] }
+      ? { memberIds: [], members: [] }
       : result,
     [ids, result]
   );

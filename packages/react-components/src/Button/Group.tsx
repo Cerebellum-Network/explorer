@@ -1,26 +1,21 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
+import type { GroupProps } from './types';
+
 import React from 'react';
+import styled from 'styled-components';
 
-import { styled } from '../styled.js';
-
-interface Props {
-  children?: React.ReactNode;
-  className?: string;
-  isCentered?: boolean;
-}
-
-function ButtonGroup ({ children, className = '', isCentered }: Props): React.ReactElement<Props> {
+function ButtonGroup ({ children, className = '', isCentered }: GroupProps): React.ReactElement<GroupProps> {
   return (
-    <StyledDiv className={`${className} ui--Button-Group ${isCentered ? 'isCentered' : ''}`}>
+    <div className={`ui--Button-Group${isCentered ? ' isCentered' : ''} ${className}`}>
       {children}
       <div className='clear' />
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(ButtonGroup)`
   margin: 1rem 0;
   text-align: right;
 
@@ -45,9 +40,7 @@ const StyledDiv = styled.div`
     display: inline-block;
   }
 
-  .ui--ToggleGroup, .ui--Dropdown {
+  .ui--ToggleGroup {
     float: left;
   }
-`;
-
-export default React.memo(ButtonGroup);
+`);

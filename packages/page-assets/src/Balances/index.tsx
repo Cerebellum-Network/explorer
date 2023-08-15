@@ -1,16 +1,17 @@
-// Copyright 2017-2023 @polkadot/app-assets authors & contributors
+// Copyright 2017-2022 @polkadot/app-assets authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { AssetInfo, AssetInfoComplete } from '../types.js';
+import type { AssetInfo, AssetInfoComplete } from '../types';
 
 import React, { useEffect, useMemo, useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { Dropdown, styled, Table } from '@polkadot/react-components';
+import { Dropdown, Table } from '@polkadot/react-components';
 import { formatNumber } from '@polkadot/util';
 
-import { useTranslation } from '../translate.js';
-import Account from './Account.js';
-import useBalances from './useBalances.js';
+import { useTranslation } from '../translate';
+import Account from './Account';
+import useBalances from './useBalances';
 
 interface Props {
   className?: string;
@@ -23,10 +24,10 @@ function Balances ({ className, infos = [] }: Props): React.ReactElement<Props> 
   const [info, setInfo] = useState<AssetInfoComplete | null>(null);
   const balances = useBalances(info?.id);
 
-  const headerRef = useRef<([React.ReactNode?, string?, number?] | false)[]>([
-    [t<string>('accounts'), 'start'],
-    [t<string>('frozen'), 'start'],
-    [t<string>('sufficient'), 'start'],
+  const headerRef = useRef([
+    [t('accounts'), 'start'],
+    [t('frozen'), 'start'],
+    [t('sufficient'), 'start'],
     [],
     []
   ]);
@@ -62,7 +63,7 @@ function Balances ({ className, infos = [] }: Props): React.ReactElement<Props> 
   }, [completeInfos, infoIndex]);
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       <Table
         empty={info && balances && t<string>('No accounts with balances found for the asset')}
         filter={assetOptions.length
@@ -90,14 +91,12 @@ function Balances ({ className, infos = [] }: Props): React.ReactElement<Props> 
           />
         ))}
       </Table>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Balances)`
   table {
     overflow: auto;
   }
-`;
-
-export default React.memo(Balances);
+`);

@@ -1,19 +1,20 @@
-// Copyright 2017-2023 @polkadot/apps authors & contributors
+// Copyright 2017-2022 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Route } from '@polkadot/apps-routing/types';
 
-import React, { Suspense, useMemo } from 'react';
+import React, { Suspense, useContext, useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
+import styled from 'styled-components';
 
 import createRoutes from '@polkadot/apps-routing';
-import { ErrorBoundary, Spinner, styled, TabsCtx } from '@polkadot/react-components';
-import { useApi, useQueue } from '@polkadot/react-hooks';
+import { ErrorBoundary, Spinner, StatusContext, TabsContext } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 
-import { findMissingApis } from '../endpoint.js';
-import { useTranslation } from '../translate.js';
-import NotFound from './NotFound.js';
-import Status from './Status.js';
+import { findMissingApis } from '../endpoint';
+import { useTranslation } from '../translate';
+import NotFound from './NotFound';
+import Status from './Status';
 
 interface Props {
   className?: string;
@@ -33,7 +34,7 @@ function Content ({ className }: Props): React.ReactElement<Props> {
   const location = useLocation();
   const { t } = useTranslation();
   const { api, isApiConnected, isApiReady, isDevelopment } = useApi();
-  const { queueAction } = useQueue();
+  const { queueAction } = useContext(StatusContext);
 
   const { Component, display: { needsApi, needsApiCheck, needsApiInstances }, icon, name, text } = useMemo(
     (): Route => {
@@ -58,7 +59,7 @@ function Content ({ className }: Props): React.ReactElement<Props> {
   );
 
   return (
-    <StyledDiv className={className}>
+    <div className={className}>
       {!missingApis
         ? (
           <div className='connecting'>
@@ -69,7 +70,7 @@ function Content ({ className }: Props): React.ReactElement<Props> {
           <>
             <Suspense fallback='...'>
               <ErrorBoundary trigger={name}>
-                <TabsCtx.Provider value={{ icon, text }}>
+                <TabsContext.Provider value={{ icon, text }}>
                   {missingApis.length
                     ? (
                       <NotFound
@@ -87,18 +88,18 @@ function Content ({ className }: Props): React.ReactElement<Props> {
                       />
                     )
                   }
-                </TabsCtx.Provider>
+                </TabsContext.Provider>
               </ErrorBoundary>
             </Suspense>
             <Status />
           </>
         )
       }
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Content)`
   flex-grow: 1;
   overflow: hidden auto;
   padding: 0 0 1rem 0;
@@ -115,15 +116,5 @@ const StyledDiv = styled.div`
     margin-left: auto;
     width: 100%;
     padding: 0 1.5rem;
-
-    @media only screen and (max-width: 1100px) {
-      padding: 0 1rem;
-    }
-
-    @media only screen and (max-width: 800px) {
-      padding: 0 0.75rem;
-    }
   }
-`;
-
-export default React.memo(Content);
+`);

@@ -1,33 +1,34 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { DeriveBalancesAll, DeriveStakingAccount } from '@polkadot/api-derive/types';
 import type { StakerState } from '@polkadot/react-hooks/types';
 import type { PalletStakingUnappliedSlash } from '@polkadot/types/lookup';
-import type { SortedTargets } from '../../types.js';
-import type { Slash } from '../types.js';
+import type { SortedTargets } from '../../types';
+import type { Slash } from '../types';
 
-import React, { useCallback, useMemo } from 'react';
+import React, { useCallback, useContext, useMemo } from 'react';
+import styled from 'styled-components';
 
 import { ApiPromise } from '@polkadot/api';
-import { AddressInfo, AddressMini, AddressSmall, Badge, Button, Menu, Popup, StakingBonded, StakingRedeemable, StakingUnbonding, styled, TxButton } from '@polkadot/react-components';
-import { useApi, useCall, useQueue, useToggle } from '@polkadot/react-hooks';
+import { AddressInfo, AddressMini, AddressSmall, Badge, Button, Menu, Popup, StakingBonded, StakingRedeemable, StakingUnbonding, StatusContext, TxButton } from '@polkadot/react-components';
+import { useApi, useCall, useToggle } from '@polkadot/react-hooks';
 import { BN, formatNumber, isFunction } from '@polkadot/util';
 
-import { useTranslation } from '../../translate.js';
-import useSlashingSpans from '../useSlashingSpans.js';
-import BondExtra from './BondExtra.js';
-import InjectKeys from './InjectKeys.js';
-import KickNominees from './KickNominees.js';
-import ListNominees from './ListNominees.js';
-import Nominate from './Nominate.js';
-import Rebond from './Rebond.js';
-import SetControllerAccount from './SetControllerAccount.js';
-import SetRewardDestination from './SetRewardDestination.js';
-import SetSessionKey from './SetSessionKey.js';
-import Unbond from './Unbond.js';
-import Validate from './Validate.js';
-import WarnBond from './WarnBond.js';
+import { useTranslation } from '../../translate';
+import useSlashingSpans from '../useSlashingSpans';
+import BondExtra from './BondExtra';
+import InjectKeys from './InjectKeys';
+import KickNominees from './KickNominees';
+import ListNominees from './ListNominees';
+import Nominate from './Nominate';
+import Rebond from './Rebond';
+import SetControllerAccount from './SetControllerAccount';
+import SetRewardDestination from './SetRewardDestination';
+import SetSessionKey from './SetSessionKey';
+import Unbond from './Unbond';
+import Validate from './Validate';
+import WarnBond from './WarnBond';
 
 interface Props {
   allSlashes?: [BN, PalletStakingUnappliedSlash[]][];
@@ -36,6 +37,7 @@ interface Props {
   info: StakerState;
   minCommission?: BN;
   next?: string[];
+  stashId: string;
   targets: SortedTargets;
   validators?: string[];
 }
@@ -63,7 +65,7 @@ function useStashCalls (api: ApiPromise, stashId: string) {
 function Account ({ allSlashes, className = '', info: { controllerId, destination, hexSessionIdNext, hexSessionIdQueue, isLoading, isOwnController, isOwnStash, isStashNominating, isStashValidating, nominating, sessionIds, stakingLedger, stashId }, isDisabled, minCommission, targets }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
   const { api } = useApi();
-  const { queueExtrinsic } = useQueue();
+  const { queueExtrinsic } = useContext(StatusContext);
   const [isBondExtraOpen, toggleBondExtra] = useToggle();
   const [isInjectOpen, toggleInject] = useToggle();
   const [isKickOpen, toggleKick] = useToggle();
@@ -96,7 +98,7 @@ function Account ({ allSlashes, className = '', info: { controllerId, destinatio
   const hasBonded = !!stakingAccount?.stakingLedger && !stakingAccount.stakingLedger.active?.isEmpty;
 
   return (
-    <StyledTr className={className}>
+    <tr className={className}>
       <td className='badge together'>
         {slashes.length !== 0 && (
           <Badge
@@ -357,16 +359,14 @@ function Account ({ allSlashes, className = '', info: { controllerId, destinatio
           </>
         )}
       </td>
-    </StyledTr>
+    </tr>
   );
 }
 
-const StyledTr = styled.tr`
+export default React.memo(styled(Account)`
   .ui--Button-Group {
     display: inline-block;
     margin-right: 0.25rem;
     vertical-align: inherit;
   }
-`;
-
-export default React.memo(Account);
+`);

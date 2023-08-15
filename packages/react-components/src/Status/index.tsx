@@ -1,18 +1,19 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { IconName } from '@fortawesome/fontawesome-svg-core';
-import type { QueueStatus, QueueTx, QueueTxStatus } from './types.js';
+import type { QueueStatus, QueueTx, QueueTxStatus } from './types';
 
-import React, { useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState } from 'react';
+import styled from 'styled-components';
 
-import { useQueue } from '@polkadot/react-hooks';
+import AddressMini from '../AddressMini';
+import Icon from '../Icon';
+import Spinner from '../Spinner';
+import { STATUS_COMPLETE } from './constants';
+import StatusContext from './Context';
 
-import AddressMini from '../AddressMini.js';
-import Icon from '../Icon.js';
-import Spinner from '../Spinner.js';
-import { styled } from '../styled.js';
-import { STATUS_COMPLETE } from './constants.js';
+export { StatusContext };
 
 interface Props {
   className?: string;
@@ -154,7 +155,7 @@ function filterTx (txqueue?: QueueTx[]): QueueTx[] {
 }
 
 function Status ({ className = '' }: Props): React.ReactElement<Props> | null {
-  const { stqueue, txqueue } = useQueue();
+  const { stqueue, txqueue } = useContext(StatusContext);
   const [allSt, setAllSt] = useState<QueueStatus[]>([]);
   const [allTx, setAllTx] = useState<QueueTx[]>([]);
 
@@ -171,14 +172,15 @@ function Status ({ className = '' }: Props): React.ReactElement<Props> | null {
   }
 
   return (
-    <StyledDiv className={`${className} ui--Status`}>
+    <div className={`ui--Status ${className}`}>
       {allTx.map(renderItem)}
       {allSt.map(renderStatus)}
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(Status)`
+  /* bottom: 0; */
   display: inline-block;
   overflow: hidden;
   position: fixed;
@@ -307,6 +309,4 @@ const StyledDiv = styled.div`
       }
     }
   }
-`;
-
-export default React.memo(Status);
+`);

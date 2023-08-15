@@ -1,38 +1,39 @@
-// Copyright 2017-2023 @polkadot/app-accounts authors & contributors
+// Copyright 2017-2022 @polkadot/app-accounts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React, { useRef, useState } from 'react';
+import styled from 'styled-components';
 
-import { LinkExternal, styled } from '@polkadot/react-components';
-import Sidebar from '@polkadot/react-components/Sidebar';
+import { LinkExternal, Sidebar } from '@polkadot/react-components';
 import { colorLink } from '@polkadot/react-components/styles/theme';
 import { useAccountInfo } from '@polkadot/react-hooks';
 
-import Balances from './Balances.js';
-import Identity from './Identity.js';
-import Multisig from './Multisig.js';
-import SidebarEditableSection from './SidebarEditableSection.js';
+import Balances from './Balances';
+import Identity from './Identity';
+import Multisig from './Multisig';
+import SidebarEditableSection from './SidebarEditableSection';
 
 interface Props {
   address: string;
   className?: string;
   dataTestId?: string;
-  onClose?: () => void;
-  onUpdateName?: (() => void) | null;
+  onClose: () => void;
+  onUpdateName: () => void;
 }
 
 function FullSidebar ({ address, className = '', dataTestId, onClose, onUpdateName }: Props): React.ReactElement<Props> {
   const [inEditMode, setInEditMode] = useState<boolean>(false);
   const { accountIndex, flags, identity, meta } = useAccountInfo(address);
-  const sidebarRef = useRef<HTMLDivElement>(null);
+
+  const ref = useRef<HTMLDivElement>(null);
 
   return (
-    <StyledSidebar
+    <Sidebar
       className={`${className}${inEditMode ? ' inEditMode' : ''}`}
       dataTestId={dataTestId}
       onClose={onClose}
       position='right'
-      sidebarRef={sidebarRef}
+      sidebarRef={ref}
     >
       <div
         className='ui--AddressMenu-header'
@@ -43,7 +44,7 @@ function FullSidebar ({ address, className = '', dataTestId, onClose, onUpdateNa
           address={address}
           isBeingEdited={setInEditMode}
           onUpdateName={onUpdateName}
-          sidebarRef={sidebarRef}
+          sidebarRef={ref}
         />
       </div>
       <div className='ui--ScrollSection'>
@@ -64,11 +65,11 @@ function FullSidebar ({ address, className = '', dataTestId, onClose, onUpdateNa
           type='address'
         />
       </section>
-    </StyledSidebar>
+    </Sidebar>
   );
 }
 
-const StyledSidebar = styled(Sidebar)`
+export default React.memo(styled(FullSidebar)`
   display: flex;
   flex-direction: column;
   background-color: var(--bg-sidebar);
@@ -96,16 +97,16 @@ const StyledSidebar = styled(Sidebar)`
     flex-direction: row;
     flex-wrap: nowrap;
     align-items: center;
+
+
     width: 100%;
 
     .ui--AddressSection__AddressColumn {
-      flex: 1;
       margin-left: 1rem;
 
       .ui--AccountName {
         max-width: 21.5rem;
         overflow: hidden;
-        white-space: normal;
       }
     }
 
@@ -121,8 +122,9 @@ const StyledSidebar = styled(Sidebar)`
 
   .ui--AddressMenu-addr,
   .ui--AddressMenu-index {
+    font: var(--font-mono);
     text-align: left;
-    font-size: var(--font-size-small);
+    font-size: 0.857rem;
   }
 
   .ui--AddressMenu-addr {
@@ -134,8 +136,9 @@ const StyledSidebar = styled(Sidebar)`
 
   .ui--AddressMenu-copyaddr,
   .ui--AddressMenu-index {
+    font: var(--font-mono);
     text-align: left;
-    font-size: var(--font-size-small);
+    font-size: 0.857rem;
   }
 
   .ui--AddressMenu-copyaaddr {
@@ -151,7 +154,7 @@ const StyledSidebar = styled(Sidebar)`
     flex-direction: row;
 
     label {
-      font-size: var(--font-size-small);
+      font-size: 0.857rem;
       margin-right: 0.4rem;
       text-transform: capitalize;
     }
@@ -197,7 +200,7 @@ const StyledSidebar = styled(Sidebar)`
   .ui--AddressMenu-multisig {
     .ui--AddressMenu-identityTable,
     .ui--AddressMenu-multisigTable {
-      font-size: var(--font-size-small);
+      font-size: 0.93rem;
       margin-top: 0.6rem;
 
       .tr {
@@ -212,7 +215,7 @@ const StyledSidebar = styled(Sidebar)`
           font-weight: var(--font-weight-normal);
           text-align: left;
           flex-basis: 25%;
-          font-size: var(--font-size-tiny);
+          font-size: 0.714rem;
 
           &.top {
             align-self: flex-start;
@@ -233,7 +236,7 @@ const StyledSidebar = styled(Sidebar)`
       }
 
       .subs-number {
-        font-size: var(--font-size-base);
+        font-size: 1rem;
         margin-bottom: 0.714rem;
       }
     }
@@ -250,7 +253,18 @@ const StyledSidebar = styled(Sidebar)`
       margin-bottom: 0.4rem;
     }
 
-    .ui--FormatBalance {
+    label:first-of-type {
+      margin-bottom: 0.4rem;
+      color: var(--color-text);
+    }
+
+    label {
+      color: var(--color-label);
+      text-transform: uppercase;
+      font-size: 0.714rem;
+    }
+
+    .ui--FormatBalance, label {
       line-height: 1rem;
     }
   }
@@ -325,6 +339,4 @@ const StyledSidebar = styled(Sidebar)`
       margin: 0 0.5rem;
     }
   }
-`;
-
-export default React.memo(FullSidebar);
+`);

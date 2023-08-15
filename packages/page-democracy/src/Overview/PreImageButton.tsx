@@ -1,46 +1,40 @@
-// Copyright 2017-2023 @polkadot/app-democracy authors & contributors
+// Copyright 2017-2022 @polkadot/app-democracy authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Hash } from '@polkadot/types/interfaces';
-import type { HexString } from '@polkadot/util/types';
 
 import React from 'react';
 
 import { Button } from '@polkadot/react-components';
-import { useApi, useToggle } from '@polkadot/react-hooks';
+import { useToggle } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
-import PreImage from './PreImage.js';
+import { useTranslation } from '../translate';
+import PreImage from './PreImage';
 
 interface Props {
-  imageHash: Hash | HexString;
+  imageHash: Hash;
   isImminent?: boolean;
 }
 
 function PreImageButton ({ imageHash, isImminent }: Props): React.ReactElement<Props> | null {
   const { t } = useTranslation();
-  const { api } = useApi();
   const [isPreimageOpen, togglePreimage] = useToggle();
 
   return (
-    api.tx.democracy.notePreimage
-      ? (
-        <>
-          <Button
-            icon='plus'
-            label={t<string>('Image')}
-            onClick={togglePreimage}
-          />
-          {isPreimageOpen && (
-            <PreImage
-              imageHash={imageHash}
-              isImminent={isImminent}
-              onClose={togglePreimage}
-            />
-          )}
-        </>
-      )
-      : null
+    <>
+      <Button
+        icon='plus'
+        label={t<string>('Image')}
+        onClick={togglePreimage}
+      />
+      {isPreimageOpen && (
+        <PreImage
+          imageHash={imageHash}
+          isImminent={isImminent}
+          onClose={togglePreimage}
+        />
+      )}
+    </>
   );
 }
 

@@ -1,11 +1,11 @@
-// Copyright 2017-2023 @polkadot/react-components authors & contributors
+// Copyright 2017-2022 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import React from 'react';
+import styled from 'styled-components';
 
-import AccountName from '../AccountName.js';
-import IdentityIcon from '../IdentityIcon/index.js';
-import { styled } from '../styled.js';
+import AccountName from '../AccountName';
+import IdentityIcon from '../IdentityIcon';
 
 interface Props {
   address: string;
@@ -17,7 +17,7 @@ interface Props {
 
 function KeyPair ({ address, className = '' }: Props): React.ReactElement<Props> {
   return (
-    <StyledDiv className={`${className} ui--KeyPair`}>
+    <div className={`ui--KeyPair ${className}`}>
       <IdentityIcon
         className='icon'
         value={address}
@@ -28,11 +28,11 @@ function KeyPair ({ address, className = '' }: Props): React.ReactElement<Props>
       <div className='address'>
         {address}
       </div>
-    </StyledDiv>
+    </div>
   );
 }
 
-const StyledDiv = styled.div`
+export default React.memo(styled(KeyPair)`
   display: flex;
   flex-wrap: nowrap;
   justify-content: space-between;
@@ -42,11 +42,9 @@ const StyledDiv = styled.div`
   > .address {
     display: inline-block;
     flex: 1;
-    font-size: var(--font-size-small);
+    font: var(--font-mono);
     margin-left: 1rem;
-    max-width: var(--width-shortaddr);
-    min-width: var(--width-shortaddr);
-    opacity: var(--opacity-light);
+    opacity: 0.5;
     overflow: hidden;
     text-align: right;
     text-overflow: ellipsis;
@@ -69,6 +67,4 @@ const StyledDiv = styled.div`
       text-transform: uppercase;
     }
   }
-`;
-
-export default React.memo(KeyPair);
+`);

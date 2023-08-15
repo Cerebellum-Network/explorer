@@ -1,11 +1,12 @@
-// Copyright 2017-2023 @polkadot/app-nfts authors & contributors
+// Copyright 2017-2022 @polkadot/app-nfts authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { ItemInfo } from './types.js';
+import type { ItemInfo } from './types';
 
 import React from 'react';
 
-import { AddressSmall, IconLink, Table } from '@polkadot/react-components';
+import { AddressSmall, IconLink } from '@polkadot/react-components';
+import { formatNumber } from '@polkadot/util';
 
 interface Props {
   className?: string;
@@ -19,7 +20,7 @@ function Item ({ className, collectionName, value: { account, id, ipfsData } }: 
 
   return (
     <tr className={className}>
-      <Table.Column.Id value={id} />
+      <td className='number'><h1>{formatNumber(id)}</h1></td>
       <td className='together all'>
         { name && imageLink
           ? (

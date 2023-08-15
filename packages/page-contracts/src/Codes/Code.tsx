@@ -1,19 +1,20 @@
-// Copyright 2017-2023 @polkadot/app-staking authors & contributors
+// Copyright 2017-2022 @polkadot/app-staking authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Option } from '@polkadot/types';
 import type { Codec } from '@polkadot/types/types';
-import type { CodeStored } from '../types.js';
+import type { CodeStored } from '../types';
 
 import React, { useCallback } from 'react';
+import styled from 'styled-components';
 
-import { Button, Card, CopyButton, Forget, styled } from '@polkadot/react-components';
+import { Button, Card, CopyButton, Forget } from '@polkadot/react-components';
 import { useApi, useCall, useToggle } from '@polkadot/react-hooks';
 
-import { CodeRow, Messages } from '../shared/index.js';
-import store from '../store.js';
-import { useTranslation } from '../translate.js';
-import useAbi from '../useAbi.js';
+import { CodeRow, Messages } from '../shared';
+import store from '../store';
+import { useTranslation } from '../translate';
+import useAbi from '../useAbi';
 
 interface Props {
   className?: string;
@@ -54,7 +55,7 @@ function Code ({ className, code, onShowDeploy }: Props): React.ReactElement<Pro
   );
 
   return (
-    <StyledTr className={className}>
+    <tr className={className}>
       <td className='address top'>
         <Card>
           <CodeRow
@@ -80,16 +81,14 @@ function Code ({ className, code, onShowDeploy }: Props): React.ReactElement<Pro
         </Card>
       </td>
       <td className='all top'>
-        {contractAbi && (
-          <Messages
-            contractAbi={contractAbi}
-            onSelectConstructor={_onDeployConstructor}
-            withConstructors
-          />
-        )}
+        <Messages
+          contractAbi={contractAbi}
+          onSelectConstructor={_onDeployConstructor}
+          withConstructors
+        />
       </td>
       <td className='together codeHash'>
-        <div>{`${code.json.codeHash.slice(0, 8)}…${code.json.codeHash.slice(-6)}`}</div>
+        <div>{`${code.json.codeHash.substr(0, 8)}…${code.json.codeHash.slice(-6)}`}</div>
         <CopyButton value={code.json.codeHash} />
       </td>
       <td className='start together'>
@@ -105,16 +104,16 @@ function Code ({ className, code, onShowDeploy }: Props): React.ReactElement<Pro
         {!contractAbi && (
           <Button
             icon='upload'
-            label={t<string>('deploy')}
+            label={t('deploy')}
             onClick={_onShowDeploy}
           />
         )}
       </td>
-    </StyledTr>
+    </tr>
   );
 }
 
-const StyledTr = styled.tr`
+export default React.memo(styled(Code)`
   .codeHash {
     div {
       display: inline;
@@ -125,6 +124,4 @@ const StyledTr = styled.tr`
       }
     }
   }
-`;
-
-export default React.memo(Code);
+`);

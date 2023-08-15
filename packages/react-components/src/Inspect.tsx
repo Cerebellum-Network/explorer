@@ -1,16 +1,16 @@
-// Copyright 2017-2023 @polkadot/app-extrinsics authors & contributors
+// Copyright 2017-2022 @polkadot/app-extrinsics authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Inspect } from '@polkadot/types/types';
 
 import React, { useMemo } from 'react';
+import styled from 'styled-components';
 
+import { Output } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 import { u8aToHex } from '@polkadot/util';
 
-import Output from './Output.js';
-import { styled } from './styled.js';
-import { useTranslation } from './translate.js';
+import { useTranslation } from './translate';
 
 interface Props {
   className?: string;
@@ -67,7 +67,7 @@ function DecodedInspect ({ className, hex, inspect, label }: Props): React.React
   }
 
   return (
-    <StyledOutput
+    <Output
       className={className}
       isDisabled
       label={label}
@@ -76,7 +76,7 @@ function DecodedInspect ({ className, hex, inspect, label }: Props): React.React
         <tbody>
           {formatted.map(({ name, value }, i) => (
             <tr key={i}>
-              <td><label>{name}</label></td>
+              <td>{name}</td>
               <td>{value}</td>
             </tr>
           ))}
@@ -85,7 +85,7 @@ function DecodedInspect ({ className, hex, inspect, label }: Props): React.React
               className='isLink'
               key='hex'
             >
-              <td><label>{t<string>('link')}</label></td>
+              <td>{t<string>('link')}</td>
               <td>
                 <a
                   href={link}
@@ -97,11 +97,11 @@ function DecodedInspect ({ className, hex, inspect, label }: Props): React.React
           )}
         </tbody>
       </table>
-    </StyledOutput>
+    </Output>
   );
 }
 
-const StyledOutput = styled(Output)`
+export default React.memo(styled(DecodedInspect)`
   table {
     width: 100%;
 
@@ -116,13 +116,10 @@ const StyledOutput = styled(Output)`
         }
 
         td:first-child {
+          color: var(--color-label);
+          padding: 0 0.5em 0 1rem;
           text-align: right;
-          vertical-align: middle;
           white-space: nowrap;
-
-          label {
-            padding: 0 0.5rem 0 1.25rem;
-          }
         }
 
         &:not(.isLink) td:last-child {
@@ -145,6 +142,4 @@ const StyledOutput = styled(Output)`
       }
     }
   }
-`;
-
-export default React.memo(DecodedInspect);
+`);

@@ -1,39 +1,36 @@
-// Copyright 2017-2023 @polkadot/app-explorer authors & contributors
+// Copyright 2017-2022 @polkadot/app-explorer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { KeyedEvent } from '@polkadot/react-hooks/ctx/types';
+import type { KeyedEvent } from '@polkadot/react-query/types';
 import type { BlockNumber, Extrinsic } from '@polkadot/types/interfaces';
-import type { BN } from '@polkadot/util';
 
 import React, { useMemo } from 'react';
 
 import { Table } from '@polkadot/react-components';
+import { useApi } from '@polkadot/react-hooks';
 
-import { useTranslation } from '../translate.js';
-import ExtrinsicDisplay from './Extrinsic.js';
+import { useTranslation } from '../translate';
+import ExtrinsicDisplay from './Extrinsic';
 
 interface Props {
   blockNumber?: BlockNumber;
   className?: string;
   events?: KeyedEvent[] | null;
   label?: React.ReactNode;
-  maxBlockWeight?: BN;
   value?: Extrinsic[] | null;
   withLink: boolean;
 }
 
-function Extrinsics ({ blockNumber, className = '', events, label, maxBlockWeight, value, withLink }: Props): React.ReactElement<Props> {
+function Extrinsics ({ blockNumber, className = '', events, label, value, withLink }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
+  const { api } = useApi();
 
-  const header = useMemo<[React.ReactNode?, string?, number?][]>(
-    () => [
-      [label || t<string>('extrinsics'), 'start', 2],
-      [t<string>('events'), 'start media--1000', 2],
-      [t<string>('weight'), 'media--1400'],
-      [undefined, 'address media--1200']
-    ],
-    [label, t]
-  );
+  const header = useMemo(() => [
+    [label || t<string>('extrinsics'), 'start', 2],
+    [t('events'), 'start media--1000', 2],
+    [t('weight'), 'media--1400'],
+    [undefined, 'address media--1200']
+  ], [label, t]);
 
   return (
     <Table
@@ -42,13 +39,13 @@ function Extrinsics ({ blockNumber, className = '', events, label, maxBlockWeigh
       header={header}
       isFixed
     >
-      {value && value.map((extrinsic, index): React.ReactNode =>
+      {value?.map((extrinsic, index): React.ReactNode =>
         <ExtrinsicDisplay
           blockNumber={blockNumber}
           events={events}
           index={index}
           key={`extrinsic:${index}`}
-          maxBlockWeight={maxBlockWeight}
+          maxBlockWeight={api.consts.system.blockWeights?.maxBlock}
           value={extrinsic}
           withLink={withLink}
         />
