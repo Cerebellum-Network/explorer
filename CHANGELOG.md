@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.24.0
 - Added Type Bundle for Cere Mainnet to be able to see all historical blocks
 
 ## 0.23.0
