@@ -81,11 +81,14 @@ export const typesBundle = {
           }
         },
         {
-          "minmax": [295, null],
+          "minmax": [
+            295,
+            null
+          ],
           "types": {}
         }
       ]
-    },
+    }
   },
   "spec": {
     "Crab": {
