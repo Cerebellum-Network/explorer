@@ -4,7 +4,6 @@
 import type { EndpointOption } from './types';
 
 import { POLKADOT_GENESIS } from '../api/constants';
-import { getTeleports } from './util';
 
 /* eslint-disable sort-keys */
 
@@ -28,8 +27,7 @@ export const prodParasPolkadot: EndpointOption[] = [
       'Acala Foundation 3': 'wss://acala-rpc-3.aca-api.network/ws',
       'Polkawallet 0': 'wss://acala.polkawallet.io',
       OnFinality: 'wss://acala-polkadot.api.onfinality.io/public-ws',
-      Dwellir: 'wss://acala-rpc.dwellir.com',
-      'Automata 1RPC': 'wss://1rpc.io/aca'
+      Dwellir: 'wss://acala-rpc.dwellir.com'
     }
   },
   {
@@ -60,10 +58,7 @@ export const prodParasPolkadot: EndpointOption[] = [
       Blast: 'wss://astar.public.blastapi.io',
       Dwellir: 'wss://astar-rpc.dwellir.com',
       OnFinality: 'wss://astar.api.onfinality.io/public-ws',
-      Pinknode: 'wss://public-rpc.pinknode.io/astar',
-      'Automata 1RPC': 'wss://1rpc.io/astr',
-      // NOTE: Keep this as the last entry, nothing after it
-      'light client': 'light://substrate-connect/polkadot/astar' // NOTE: Keep last
+      Pinknode: 'wss://public-rpc.pinknode.io/astar'
     }
   },
   {
@@ -109,8 +104,8 @@ export const prodParasPolkadot: EndpointOption[] = [
     paraId: 2002,
     text: 'Clover',
     providers: {
-      Clover: 'wss://rpc-para.clover.finance'
-      // OnFinality: 'wss://clover.api.onfinality.io/public-ws' // https://github.com/polkadot-js/apps/issues/8301
+      Clover: 'wss://rpc-para.clover.finance',
+      OnFinality: 'wss://clover.api.onfinality.io/public-ws'
     }
   },
   {
@@ -179,8 +174,7 @@ export const prodParasPolkadot: EndpointOption[] = [
     paraId: 2011,
     text: 'Equilibrium',
     providers: {
-      Equilibrium: 'wss://node.pol.equilibrium.io/',
-      Dwellir: 'wss://equilibrium-rpc.dwellir.com'
+      Equilibrium: 'wss://node.pol.equilibrium.io/'
     }
   },
   {
@@ -232,17 +226,6 @@ export const prodParasPolkadot: EndpointOption[] = [
     }
   },
   {
-    info: 'kilt',
-    homepage: 'https://www.kilt.io/',
-    paraId: 2086,
-    text: 'KILT Spiritnet',
-    providers: {
-      'KILT Protocol': 'wss://spiritnet.kilt.io/',
-      OnFinality: 'wss://spiritnet.api.onfinality.io/public-ws',
-      Dwellir: 'wss://kilt-rpc.dwellir.com'
-    }
-  },
-  {
     info: 'kylin',
     homepage: 'https://kylin.network/',
     paraId: 2052,
@@ -281,9 +264,9 @@ export const prodParasPolkadot: EndpointOption[] = [
     providers: {
       'Moonbeam Foundation': 'wss://wss.api.moonbeam.network',
       Blast: 'wss://moonbeam.public.blastapi.io',
+      Dwellir: 'wss://moonbeam-rpc.dwellir.com',
       OnFinality: 'wss://moonbeam.api.onfinality.io/public-ws',
-      Pinknode: 'wss://public-rpc.pinknode.io/moonbeam',
-      'Automata 1RPC': 'wss://1rpc.io/glmr'
+      Pinknode: 'wss://public-rpc.pinknode.io/moonbeam'
     }
   },
   {
@@ -332,7 +315,7 @@ export const prodParasPolkadot: EndpointOption[] = [
     paraId: 2012,
     text: 'Parallel',
     providers: {
-      // OnFinality: 'wss://parallel.api.onfinality.io/public-ws', // https://github.com/polkadot-js/apps/issues/8301
+      OnFinality: 'wss://parallel.api.onfinality.io/public-ws',
       Parallel: 'wss://rpc.parallel.fi'
     }
   },
@@ -342,8 +325,7 @@ export const prodParasPolkadot: EndpointOption[] = [
     paraId: 2035,
     text: 'Phala Network',
     providers: {
-      Phala: 'wss://api.phala.network/ws',
-      OnFinality: 'wss://phala.api.onfinality.io/public-ws'
+      Phala: 'wss://api.phala.network/ws'
     }
   },
   {
@@ -417,11 +399,9 @@ export const prodRelayPolkadot: EndpointOption = {
     Pinknode: 'wss://public-rpc.pinknode.io/polkadot',
     RadiumBlock: 'wss://polkadot.public.curie.radiumblock.io/ws',
     // 'Geometry Labs': 'wss://polkadot.geometry.io/websockets', // https://github.com/polkadot-js/apps/pull/6746
-    'Automata 1RPC': 'wss://1rpc.io/dot',
-    // NOTE: Keep this as the last entry, nothing after it
-    'light client': 'light://substrate-connect/polkadot' // NOTE: Keep last
+    'light client': 'light://substrate-connect/polkadot'
   },
-  teleport: getTeleports(prodParasPolkadotCommon),
+  teleport: [1000],
   linked: [
     ...prodParasPolkadotCommon,
     ...prodParasPolkadot

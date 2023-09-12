@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Hash } from '@polkadot/types/interfaces';
-import type { HexString } from '@polkadot/util/types';
 
 import React from 'react';
 
@@ -13,7 +12,7 @@ import { useTranslation } from '../translate';
 import PreImage from './PreImage';
 
 interface Props {
-  imageHash: Hash | HexString;
+  imageHash: Hash;
   isImminent?: boolean;
 }
 

@@ -10,7 +10,6 @@ import { Link } from 'react-router-dom';
 
 import { AddressSmall, Columar, LinkExternal, Table } from '@polkadot/react-components';
 import { useApi, useIsMountedRef } from '@polkadot/react-hooks';
-import { convertWeight } from '@polkadot/react-hooks/useWeight';
 import { formatNumber } from '@polkadot/util';
 
 import Events from '../Events';
@@ -56,17 +55,9 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
   const [blkError, setBlkError] = useState<Error | null | undefined>(error);
   const [evtError, setEvtError] = useState<Error | null | undefined>();
 
-  const [isVersionCurrent, maxBlockWeight] = useMemo(
-    () => [
-      !!runtimeVersion && api.runtimeVersion.specName.eq(runtimeVersion.specName) && api.runtimeVersion.specVersion.eq(runtimeVersion.specVersion),
-      api.consts.system.blockWeights && api.consts.system.blockWeights.maxBlock && convertWeight(api.consts.system.blockWeights.maxBlock).v1Weight
-    ],
+  const isVersionCurrent = useMemo(
+    () => !!runtimeVersion && api.runtimeVersion.specName.eq(runtimeVersion.specName) && api.runtimeVersion.specVersion.eq(runtimeVersion.specVersion),
     [api, runtimeVersion]
-  );
-
-  const systemEvents = useMemo(
-    () => events && events.filter(({ record: { phase } }) => !phase.isApplyExtrinsic),
-    [events]
   );
 
   useEffect((): void => {
@@ -119,7 +110,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
     <div className={className}>
       <Summary
         events={events}
-        maxBlockWeight={maxBlockWeight}
+        maxBlockWeight={api.consts.system.blockWeights?.maxBlock}
         signedBlock={getBlock}
       />
       <Table
@@ -158,7 +149,6 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
           <Extrinsics
             blockNumber={blockNumber}
             events={events}
-            maxBlockWeight={maxBlockWeight}
             value={getBlock.block.extrinsics}
             withLink={isVersionCurrent}
           />
@@ -167,7 +157,7 @@ function BlockByHash ({ className = '', error, value }: Props): React.ReactEleme
               <Events
                 error={evtError}
                 eventClassName='explorer--BlockByHash-block'
-                events={systemEvents}
+                events={events && events.filter(({ record: { phase } }) => !phase.isApplyExtrinsic)}
                 label={t<string>('system events')}
               />
             </Columar.Column>

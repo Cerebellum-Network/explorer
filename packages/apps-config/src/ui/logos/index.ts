@@ -71,7 +71,6 @@ import nodeTotem from './chains/totem.svg';
 import chainTuring from './chains/turing.png';
 import chainUnique from './chains/unique.svg';
 import chainUnorthodox from './chains/unorthodox.png';
-import chainVara from './chains/vara.svg';
 import chainVirto from './chains/virto.png';
 import chainWatr from './chains/watr.png';
 import chainEggnet from './chains/webb.png';
@@ -88,7 +87,7 @@ import externalPolkastats from './external/polkastats.png';
 import externalSingular from './external/singular.svg';
 import externalStatescan from './external/statescan.svg';
 import externalSubId from './external/subid.svg';
-import externalSubscan from './external/subscan.png';
+import externalSubscan from './external/subscan.svg';
 import externalSubsquare from './external/subsquare.svg';
 import nodeAjuna from './nodes/ajuna.png';
 import nodeApron from './nodes/apron.png';
@@ -107,6 +106,7 @@ import nodeBifrost from './nodes/bifrost.svg';
 import nodeBitCountry from './nodes/bitcountry.png';
 import nodeCalamari from './nodes/calamari.png';
 import nodeCentrifuge from './nodes/centrifuge.png';
+import nodeCere from './nodes/cere.svg';
 import nodeCESS from './nodes/cess.png';
 import nodeChainx from './nodes/chainx.svg';
 import nodeClover from './nodes/clover.svg';
@@ -140,7 +140,6 @@ import nodeIdavoll from './nodes/idavoll.png';
 import nodeImbue from './nodes/imbue.png';
 import nodeIntegritee from './nodes/integritee.svg';
 import nodeInterBTC from './nodes/interlay.svg';
-import nodeIPCI from './nodes/ipci.svg';
 import nodeIpse from './nodes/ipse.png';
 import nodeJaz from './nodes/jaz.png';
 import nodeJoystream from './nodes/joystream.svg';
@@ -219,7 +218,6 @@ import nodeUniarts from './nodes/uniarts.png';
 import nodeUnique from './nodes/unique.svg';
 import nodeUnitv from './nodes/unitv.png';
 import nodeVln from './nodes/valiu.png';
-import nodeVara from './nodes/vara.svg';
 import nodeWeb3games from './nodes/web3games.svg';
 import nodeWestend from './nodes/westend_colour.svg';
 import nodeWestlake from './nodes/westlake.png';
@@ -264,6 +262,11 @@ export const chainLogos = Object.entries({
   'Calamari Parachain Testnet': nodeCalamari,
   'Catalyst Testnet': nodeCentrifuge,
   Centrifuge: nodeCentrifuge,
+  'Cere Mainnet Alpha': nodeCere,
+  'Cere Mainnet Beta': nodeCere,
+  'Cere Testnet': nodeCere,
+  'Cere QAnet': nodeCere,
+  'Cere Devnet': nodeCere,
   'CESS Testnet': nodeCESS,
   ChainOLI: chainOLI,
   ChainX: nodeChainx,
@@ -310,7 +313,6 @@ export const chainLogos = Object.entries({
   Interlay: chainInterlay,
   'InvArch Brainstorm Testnet': chainBrainstorm,
   'InvArch Tinker Network': chainTinker,
-  ipci: nodeIPCI,
   IpseTestnet: nodeIpse,
   'Jupiter A1': nodeJupiter,
   'Jupiter PC1': nodeJupiter,
@@ -427,6 +429,7 @@ export const chainLogos = Object.entries({
   subsocial: nodeSubsocial,
   subsocialX: nodeSubsocialX,
   subspace: nodeSubspace,
+  'Substrate Node': nodeCere,
   Subzero: nodeZero,
   swapdex: nodeSwapdex,
   t0rn: chainT0rn,
@@ -442,7 +445,6 @@ export const chainLogos = Object.entries({
   UNIQUE: chainUnique,
   'Unit Network': nodeUnitv,
   Unorthodox: chainUnorthodox,
-  'Vara Network': chainVara,
   VirtoRococo: chainVirto,
   Vln: nodeVln,
   'VLN PC': nodeVln,
@@ -491,6 +493,8 @@ export const nodeLogos = Object.entries({
   Centrifuge: nodeCentrifuge,
   'centrifuge chain': nodeCentrifuge,
   'Centrifuge Chain Node': nodeCentrifuge,
+  'cere': nodeCere,
+  'cereTestnet': nodeCere,
   'CESS Testnet': nodeCESS,
   ChainOLI: nodeChainOLI,
   'ChainX Node': nodeChainx,
@@ -503,7 +507,6 @@ export const nodeLogos = Object.entries({
   'Crust Collator': nodeCrust,
   'Crust Maxwell': nodeCrustMaxwell,
   'Crust Testnet': nodeCrustParachain,
-  'DAO IPCI': nodeIPCI,
   darwinia: nodeDarwinia,
   'darwinia crab': nodeCrab,
   'darwinia parachain': nodeDarwinia,
@@ -632,6 +635,7 @@ export const nodeLogos = Object.entries({
   subspace: nodeSubspace,
   'substrate-contracts-node': nodeSubstrateContractsNode,
   'substrate-node': nodeSubstrate,
+  'Substrate Node': nodeCere,
   'subzero node': nodeZero,
   swapdex: nodeSwapdex,
   t0rn: chainT0rn,
@@ -707,6 +711,8 @@ export const namedLogos: Record<string, unknown> = {
   brainstorm: chainBrainstorm,
   calamari: nodeCalamari,
   centrifuge: nodeCentrifuge,
+  cere: nodeCere,
+  cereTestnet: nodeCere,
   cess: nodeCESS,
   chainoli: nodeChainOLI,
   chainx: nodeChainx,
@@ -757,7 +763,6 @@ export const namedLogos: Record<string, unknown> = {
   integritee: nodeIntegritee,
   interlay: chainInterlay,
   'interlay-testnet': chainInterlay,
-  ipci: nodeIPCI,
   ipse: nodeIpse,
   jaz: nodeJaz,
   joystream: nodeJoystream,
@@ -932,6 +937,7 @@ export const namedLogos: Record<string, unknown> = {
   'subspace-gemini-2a': nodeSubspace,
   substrate: nodeSubstrate,
   substrateContractsNode: nodeSubstrateContractsNode,
+  'Substrate Node': nodeCere,
   swapdex: nodeSwapdex,
   t0rn: chainT0rn,
   tanganika: chainKusamaDataHighway,
@@ -947,7 +953,6 @@ export const namedLogos: Record<string, unknown> = {
   unitv: nodeUnitv,
   unorthodox: chainUnorthodox,
   vanilla: nodeParallel,
-  vara: nodeVara,
   vln: nodeVln,
   web3games: nodeWeb3games,
   westend: nodeWestend,

@@ -3,19 +3,18 @@
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { Hash, VoteThreshold } from '@polkadot/types/interfaces';
-import type { HexString } from '@polkadot/util/types';
 
 import React, { useEffect, useMemo, useState } from 'react';
 
 import { getFastTrackThreshold } from '@polkadot/apps-config';
 import { Button, Input, InputAddress, InputNumber, Modal, Toggle, TxButton } from '@polkadot/react-components';
 import { useApi, useCall, useCollectiveInstance, useToggle } from '@polkadot/react-hooks';
-import { BN, isString } from '@polkadot/util';
+import { BN } from '@polkadot/util';
 
 import { useTranslation } from '../translate';
 
 interface Props {
-  imageHash: Hash | HexString;
+  imageHash: Hash;
   members: string[];
   threshold: VoteThreshold;
 }
@@ -109,7 +108,7 @@ function Fasttrack ({ imageHash, members, threshold }: Props): React.ReactElemen
               <Input
                 isDisabled
                 label={t<string>('preimage hash')}
-                value={isString(imageHash) ? imageHash : imageHash.toHex()}
+                value={imageHash.toHex()}
               />
             </Modal.Columns>
             <Modal.Columns hint={t<string>('The voting period and delay to apply to this proposal. The threshold is calculated from these values.')}>

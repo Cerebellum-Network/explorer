@@ -4,7 +4,6 @@
 import type { EndpointOption } from './types';
 
 import { KUSAMA_GENESIS } from '../api/constants';
-import { getTeleports } from './util';
 
 /* eslint-disable sort-keys */
 
@@ -33,8 +32,8 @@ export const prodParasKusama: EndpointOption[] = [
     paraId: 2124,
     text: 'Amplitude',
     providers: {
-      PendulumChain: 'wss://rpc-amplitude.pendulumchain.tech'
-    }
+      PendulumChain: 'wss://pencol-kus-01.pendulumchain.tech'
+    } // Working on making this live ASAP
   },
   {
     info: 'bajun',
@@ -96,25 +95,6 @@ export const prodParasKusama: EndpointOption[] = [
     }
   },
   {
-    info: 'shadow',
-    homepage: 'https://crust.network/',
-    paraId: 2225,
-    text: 'Crust Shadow 2',
-    isUnreachable: true,
-    providers: {
-      Crust: 'wss://rpc-shadow.crust.network/'
-    }
-  },
-  {
-    info: 'ipci',
-    homepage: 'https://ipci.io',
-    paraId: 2222,
-    text: 'DAO IPCI',
-    providers: {
-      Airalab: 'wss://kusama.rpc.ipci.io'
-    }
-  },
-  {
     info: 'crab',
     homepage: 'https://crab.network',
     paraId: 2105,
@@ -135,19 +115,9 @@ export const prodParasKusama: EndpointOption[] = [
   {
     info: 'genshiro',
     homepage: 'https://genshiro.equilibrium.io',
-    isUnreachable: true,
+    isUnreachable: true, // https://github.com/polkadot-js/apps/pull/6761
     paraId: 2024,
     text: 'Genshiro',
-    providers: {
-      Equilibrium: 'wss://node.genshiro.io'
-    }
-  },
-  {
-    info: 'genshiro',
-    homepage: 'https://genshiro.equilibrium.io',
-    isUnreachable: true,
-    paraId: 2226,
-    text: 'Genshiro crowdloan 2',
     providers: {
       Equilibrium: 'wss://node.genshiro.io'
     }
@@ -161,10 +131,7 @@ export const prodParasKusama: EndpointOption[] = [
       GMorDieDAO: 'wss://kusama.gmordie.com',
       'bLd Nodes': 'wss://ws.gm.bldnodes.org',
       TerraBioDAO: 'wss://ws-node-gm.terrabiodao.org',
-      Leemo: 'wss://leemo.gmordie.com',
-      'GM Intern': 'wss://intern.gmordie.com',
-      // NOTE: Keep this as the last entry, nothing after it
-      'light client': 'light://substrate-connect/kusama/gm' // NOTE: Keep last
+      'light client': 'light://substrate-connect/kusama/gm'
     }
   },
   {
@@ -194,9 +161,7 @@ export const prodParasKusama: EndpointOption[] = [
     text: 'InvArch Tinkernet',
     providers: {
       'InvArch Team': 'wss://tinker.invarch.network',
-      OnFinality: 'wss://invarch-tinkernet.api.onfinality.io/public-ws',
-      // NOTE: Keep this as the last entry, nothing after it
-      'light client': 'light://substrate-connect/kusama/tinkernet' // NOTE: Keep last
+      'light client': 'light://substrate-connect/kusama/tinkernet'
     }
   },
   {
@@ -205,7 +170,7 @@ export const prodParasKusama: EndpointOption[] = [
     paraId: 2113,
     text: 'Kabocha',
     providers: {
-      JelliedOwl: 'wss://kabocha.jelliedowl.net'
+      JelliedOwl: 'wss://kabocha.jelliedowl.com'
     }
   },
   {
@@ -241,8 +206,19 @@ export const prodParasKusama: EndpointOption[] = [
     paraId: 2107,
     text: 'KICO',
     providers: {
-      'DICO Foundation': 'wss://rpc.kico.dico.io'
-      // 'DICO Foundation 2': 'wss://rpc.api.kico.dico.io' // https://github.com/polkadot-js/apps/issues/8203
+      'DICO Foundation': 'wss://rpc.kico.dico.io',
+      'DICO Foundation 2': 'wss://rpc.api.kico.dico.io'
+    }
+  },
+  {
+    info: 'kilt',
+    homepage: 'https://www.kilt.io/',
+    paraId: 2086,
+    text: 'KILT Spiritnet',
+    providers: {
+      'KILT Protocol': 'wss://spiritnet.kilt.io/',
+      OnFinality: 'wss://spiritnet.api.onfinality.io/public-ws',
+      Dwellir: 'wss://kilt-rpc.dwellir.com'
     }
   },
   {
@@ -323,6 +299,7 @@ export const prodParasKusama: EndpointOption[] = [
     providers: {
       'Moonbeam Foundation': 'wss://wss.api.moonriver.moonbeam.network',
       Blast: 'wss://moonriver.public.blastapi.io',
+      Dwellir: 'wss://moonriver-rpc.dwellir.com',
       OnFinality: 'wss://moonriver.api.onfinality.io/public-ws',
       Pinknode: 'wss://public-rpc.pinknode.io/moonriver'
       // Pinknode: 'wss://rpc.pinknode.io/moonriver/explorer' // https://github.com/polkadot-js/apps/issues/7058
@@ -395,9 +372,7 @@ export const prodParasKusama: EndpointOption[] = [
     providers: {
       Airalab: 'wss://kusama.rpc.robonomics.network/',
       OnFinality: 'wss://robonomics.api.onfinality.io/public-ws',
-      Dwellir: 'wss://robonomics-rpc.dwellir.com',
-      Samsara: 'wss://robonomics.0xsamsara.com',
-      Leemo: 'wss://robonomics.leemo.me'
+      Dwellir: 'wss://robonomics-rpc.dwellir.com'
     }
   },
   {
@@ -420,9 +395,7 @@ export const prodParasKusama: EndpointOption[] = [
       Blast: 'wss://shiden.public.blastapi.io',
       Dwellir: 'wss://shiden-rpc.dwellir.com',
       OnFinality: 'wss://shiden.api.onfinality.io/public-ws',
-      Pinknode: 'wss://public-rpc.pinknode.io/shiden',
-      // NOTE: Keep this as the last entry, nothing after it
-      'light client': 'light://substrate-connect/kusama/shiden' // NOTE: Keep last
+      Pinknode: 'wss://public-rpc.pinknode.io/shiden'
     }
   },
   {
@@ -439,8 +412,8 @@ export const prodParasKusama: EndpointOption[] = [
     info: 'snow',
     homepage: 'https://icenetwork.io/snow',
     paraId: 2129,
-    text: 'SNOW Network',
-    isUnreachable: false,
+    text: 'Snow Network',
+    isUnreachable: true,
     providers: {
       IceNetwork: 'wss://snow-rpc.icenetwork.io'
     }
@@ -561,11 +534,9 @@ export const prodRelayKusama: EndpointOption = {
     RadiumBlock: 'wss://kusama.public.curie.radiumblock.xyz/ws',
     Pinknode: 'wss://public-rpc.pinknode.io/kusama',
     // 'Geometry Labs': 'wss://kusama.geometry.io/websockets', // https://github.com/polkadot-js/apps/pull/6746
-    'Automata 1RPC': 'wss://1rpc.io/ksm',
-    // NOTE: Keep this as the last entry, nothing after it
-    'light client': 'light://substrate-connect/kusama' // NOTE: Keep last
+    'light client': 'light://substrate-connect/kusama'
   },
-  teleport: getTeleports(prodParasKusamaCommon),
+  teleport: [1000, 1001],
   linked: [
     ...prodParasKusamaCommon,
     ...prodParasKusama

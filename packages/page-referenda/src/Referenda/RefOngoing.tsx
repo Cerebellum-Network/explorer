@@ -1,15 +1,13 @@
 // Copyright 2017-2022 @polkadot/app-referenda authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type { Hash } from '@polkadot/types/interfaces';
 import type { PalletReferendaTrackInfo } from '@polkadot/types/lookup';
 import type { BN } from '@polkadot/util';
-import type { HexString } from '@polkadot/util/types';
 import type { Referendum, ReferendumProps as Props } from '../types';
 
 import React, { useMemo } from 'react';
 
-import usePreimage, { getPreimageHash } from '@polkadot/app-preimages/usePreimage';
+import usePreimage from '@polkadot/app-preimages/usePreimage';
 import { CallExpander, Progress } from '@polkadot/react-components';
 
 import { useTranslation } from '../translate';
@@ -26,14 +24,13 @@ interface Expanded {
     decideEnd: BN | null;
     confirmEnd: BN | null;
   };
-  proposalHash: HexString;
   shortHash: string;
   tallyTotal: BN;
 }
 
 function expandOngoing (info: Referendum['info'], track?: PalletReferendaTrackInfo): Expanded {
   const ongoing = info.asOngoing;
-  const proposalHash = getPreimageHash(ongoing.proposal || (ongoing as unknown as { proposalHash: Hash }).proposalHash);
+  const hexHash = ongoing.proposalHash.toHex();
   let prepareEnd: BN | null = null;
   let decideEnd: BN | null = null;
   let confirmEnd: BN | null = null;
@@ -65,8 +62,7 @@ function expandOngoing (info: Referendum['info'], track?: PalletReferendaTrackIn
       periodEnd: confirmEnd || decideEnd || prepareEnd,
       prepareEnd
     },
-    proposalHash,
-    shortHash: `${proposalHash.slice(0, 8)}…${proposalHash.slice(-6)}`,
+    shortHash: `${hexHash.slice(0, 8)}…${hexHash.slice(-6)}`,
     tallyTotal: ongoing.tally.ayes.add(ongoing.tally.nays)
   };
 }
@@ -74,7 +70,7 @@ function expandOngoing (info: Referendum['info'], track?: PalletReferendaTrackIn
 function Ongoing ({ isMember, members, palletReferenda, palletVote, value: { id, info, isConvictionVote, track } }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
 
-  const { ongoing: { decisionDeposit, submissionDeposit, tally }, periods: { confirmEnd, decideEnd, periodEnd }, proposalHash, shortHash, tallyTotal } = useMemo(
+  const { ongoing: { decisionDeposit, proposalHash, submissionDeposit, tally }, periods: { confirmEnd, decideEnd, periodEnd }, shortHash, tallyTotal } = useMemo(
     () => expandOngoing(info, track),
     [info, track]
   );
