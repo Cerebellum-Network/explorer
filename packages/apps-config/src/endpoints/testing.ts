@@ -75,6 +75,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'edgeware',
+    isDisabled: true,
     text: 'Beresheet',
     providers: {
       JelliedOwl: 'wss://beresheet.jelliedowl.net'
@@ -596,6 +597,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'subspace-gemini-2a',
+    isDisabled: true,
     text: 'Subspace Gemini 2a',
     providers: {
       'Europe 0': 'wss://eu-0.gemini-2a.subspace.network/ws',
@@ -660,6 +662,7 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'vara',
+    isDisabled: true,
     text: 'Vara',
     providers: {
       'Gear Tech': 'wss://rpc.vara-network.io'
