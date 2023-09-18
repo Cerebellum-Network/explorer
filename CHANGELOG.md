@@ -1,7 +1,7 @@
 # CHANGELOG
 
 ## vNext
-...
+- Added CereStats links for users to view blocks, accounts, and validators.
 
 ## 0.24.0
 - Added Type Bundle for Cere Mainnet to be able to see all historical blocks
