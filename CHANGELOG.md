@@ -1,6 +1,9 @@
 # CHANGELOG
 
 ## vNext
+...
+
+## 0.25.0
 - Added CereStats links for users to view blocks, accounts, and validators.
 
 ## 0.24.0
