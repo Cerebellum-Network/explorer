@@ -71,7 +71,7 @@ export const prodChains: EndpointOption[] = [
     isDisabled: true,
     text: 'Competitors Club',
     providers: {
-      // 'Competitors Club': 'wss://node0.competitors.club/wss' // https://github.com/polkadot-js/apps/issues/8263
+      'Competitors Club': 'wss://node0.competitors.club/wss'
     }
   },
   {
@@ -133,7 +133,7 @@ export const prodChains: EndpointOption[] = [
     text: 'Edgeware',
     providers: {
       'Commonwealth Labs': 'wss://mainnet.edgewa.re',
-      JelliedOwl: 'wss://edgeware.jelliedowl.net',
+      JelliedOwl: 'wss://edgeware.jelliedowl.com',
       OnFinality: 'wss://edgeware.api.onfinality.io/public-ws',
       Dwellir: 'wss://edgeware-rpc.dwellir.com'
     }

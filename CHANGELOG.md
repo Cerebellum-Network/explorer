@@ -3,6 +3,35 @@
 ## vNext
 ...
 
+## 0.25.0
+- Added CereStats links for users to view blocks, accounts, and validators.
+
+## 0.24.0
+- Added Type Bundle for Cere Mainnet to be able to see all historical blocks
+
+## 0.23.0
+- Reverted to commit `f778359c` (between tags `v0.121.1` and `v0.122.1` of Polkadot-JS Apps) to align with our node version and fix the Smart Contract Page
+
+## 0.22.0
+- Added Cere Mainnet link to PolkassemblyIo
+
+## 0.21.0
+- Added workflow_dispatch for Prod and Stage
+
+## 0.20.0
+- Synced codebase with the Polkadot-JS App master branch.
+- Fixed bugs related to merging the new version.
+- Replaced the node image in the workflow from version 14 to the latest LTS version.
+
+## 0.19.3
+- Added GTAG GA4 Analytics tracking support
+
+## 0.19.2
+- Replaced DCC Wiki with Community Portal link.
+
+## 0.19.1
+- Added workflow_dispatch for Prod and Stage
+
 ## 0.19.0
 - Hid Files (IPFS) page
 
