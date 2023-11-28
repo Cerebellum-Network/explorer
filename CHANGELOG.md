@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.26.0
+- Update to Polkadot-JS Apps 0.121.2-127-x and Substrate Node v0.9.30
+
 ## 0.25.0
 - Added CereStats links for users to view blocks, accounts, and validators.
 
