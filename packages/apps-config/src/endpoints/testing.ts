@@ -29,7 +29,8 @@ export const testChains: EndpointOption[] = [
     isDisabled: true,
     text: 'Aleph Zero Testnet',
     providers: {
-      'Aleph Zero Foundation': 'wss://ws.test.azero.dev'
+      'Aleph Zero Foundation': 'wss://ws.test.azero.dev',
+      Dwellir: 'wss://aleph-zero-testnet-rpc.dwellir.com'
     }
   },
   {
@@ -74,9 +75,10 @@ export const testChains: EndpointOption[] = [
   },
   {
     info: 'edgeware',
+    isDisabled: true,
     text: 'Beresheet',
     providers: {
-      // 'Commonwealth Labs': 'wss://beresheet.edgewa.re' // https://github.com/polkadot-js/apps/issues/7982
+      JelliedOwl: 'wss://beresheet.jelliedowl.net'
     }
   },
   {
@@ -288,7 +290,8 @@ export const testChains: EndpointOption[] = [
     isDisabled: true,
     text: 'Joystream',
     providers: {
-      Jsgenesis: 'wss://rpc.joystream.org:9944'
+      Jsgenesis: 'wss://rpc.joystream.org:9944',
+      Dwellir: 'wss://joystream-rpc.dwellir.com'
     }
   },
   {
@@ -599,7 +602,8 @@ export const testChains: EndpointOption[] = [
     providers: {
       'Europe 0': 'wss://eu-0.gemini-2a.subspace.network/ws',
       'Europe 1': 'wss://eu-1.gemini-2a.subspace.network/ws',
-      'Europe 2': 'wss://eu-2.gemini-2a.subspace.network/ws'
+      'Europe 2': 'wss://eu-2.gemini-2a.subspace.network/ws',
+      Dwelllir: 'wss://subspace-gemini-2a-rpc.dwellir.com'
     }
   },
   {
@@ -657,11 +661,19 @@ export const testChains: EndpointOption[] = [
     }
   },
   {
+    info: 'vara',
+    isDisabled: true,
+    text: 'Vara',
+    providers: {
+      'Gear Tech': 'wss://rpc.vara-network.io'
+    }
+  },
+  {
     info: 'vodka',
     isDisabled: true,
     text: 'Vodka',
     providers: {
-      Vodka: 'wss://vodka.rpc.neatcoin.org/ws'
+      // Vodka: 'wss://vodka.rpc.neatcoin.org/ws' // https://github.com/polkadot-js/apps/issues/8175
     }
   },
   {
@@ -694,7 +706,7 @@ export const testChains: EndpointOption[] = [
     isDisabled: true,
     text: 'Zero Alphaville',
     providers: {
-      ZERO: 'wss://alphaville.zero.io'
+      // ZERO: 'wss://alphaville.zero.io' // https://github.com/polkadot-js/apps/issues/8263
     }
   }
 ];
