@@ -2,29 +2,12 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import queryString from 'query-string';
+import store from 'store';
 
 import { createWsEndpoints } from '@polkadot/apps-config';
 import { extractIpfsDetails } from '@polkadot/react-hooks/useIpfs';
 import { settings } from '@polkadot/ui-settings';
 import { assert } from '@polkadot/util';
-
-export function validateURL (url: string): boolean {
-  if (!/^wss?:\/\//.test(url)) {
-    throw new Error('Non-prefixed ws/wss url');
-  }
-
-  const URLObj = new URL(url);
-  const hostname = URLObj.hostname;
-  const port = Number(URLObj.port);
-
-  if (port && port > 64000) {
-    throw new Error('Invalid ws port');
-  }
-
-  assert(/(.*.cere.network$)|(.*.republiccrypto.com$)|(.*.republiccrypto-runtime.com$)|(^localhost$)|(^127.0.0.1$)/.test(hostname), 'Invalid ws url');
-
-  return true;
-}
 
 function networkOrUrl (apiUrl: string): void {
   if (apiUrl.startsWith('light://')) {
@@ -47,9 +30,9 @@ function getApiUrl (): string {
     // https://polkadot.js.org/apps/?rpc=ws://127.0.0.1:9944#/explorer;
     const url = decodeURIComponent(urlOptions.rpc.split('#')[0]);
 
-    if (validateURL(url)) {
-      return url;
-    }
+    assert(url.startsWith('ws://') || url.startsWith('wss://') || url.startsWith('light://'), 'Non-prefixed ws/wss/light url');
+
+    return url;
   }
 
   const endpoints = createWsEndpoints(<T = string>(): T => ('' as unknown as T));
@@ -64,12 +47,11 @@ function getApiUrl (): string {
     }
   }
 
+  const stored = store.get('settings') as Record<string, unknown> || {};
   const fallbackUrl = endpoints.find(({ value }) => !!value);
 
   // via settings, or the default chain
-  const urls = endpoints.map((endpoint) => endpoint.value).filter((url) => !!url);
-
-  return [...urls, process.env.WS_URL].includes(settings.apiUrl)
+  return [stored.apiUrl, process.env.WS_URL].includes(settings.apiUrl)
     ? settings.apiUrl // keep as-is
     : fallbackUrl
       ? fallbackUrl.value // grab the fallback

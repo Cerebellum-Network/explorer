@@ -5,16 +5,11 @@ import fs from 'fs';
 
 import { objectSpread } from '@polkadot/util';
 
-import chain from './chain/index.js';
 import spec from './spec';
 
 it('generates the typesBundle', (): void => {
   const specEntries = Object.entries(spec);
-  const chainEntries = Object.entries(chain);
-  const typesBundle: {
-    chain: Record<string, unknown>
-    spec: Record<string, unknown>
-  } = { chain: {}, spec: {} };
+  const typesBundle: { spec: Record<string, unknown> } = { spec: {} };
 
   specEntries.forEach(([k, v]): void => {
     const value = objectSpread<{ derives: unknown }>({}, v);
@@ -22,14 +17,6 @@ it('generates the typesBundle', (): void => {
     delete value.derives;
 
     typesBundle.spec[k] = value;
-  });
-
-  chainEntries.forEach(([k, v]): void => {
-    const value = objectSpread<{ derives: unknown }>({}, v);
-
-    delete value.derives;
-
-    typesBundle.chain[k] = value;
   });
 
   fs.writeFileSync('packages/apps-config/src/api/typesBundle.ts', `// Copyright 2017-2022 @polkadot/apps-config authors & contributors

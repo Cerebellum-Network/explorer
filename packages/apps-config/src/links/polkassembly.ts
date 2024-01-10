@@ -12,7 +12,6 @@ export const PolkassemblyIo = {
     'Bifrost Polkadot': 'bifrost',
     Calamari: 'calamari',
     'Centrifuge Mainnet': 'centrifuge',
-    'Cere Mainnet Beta': 'cere',
     Khala: 'khala',
     Kusama: 'kusama',
     'Kusama CC3': 'kusama',

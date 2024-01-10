@@ -84,7 +84,7 @@ function Summary ({ className = '', stakingOverview, targets: { counterForNomina
             className='media--1200'
             label={t<string>('inflation')}
           >
-            <>{inflation.toFixed(4)}%</>
+            <>{inflation.toFixed(1)}%</>
           </CardSummary>
         )}
       </section>

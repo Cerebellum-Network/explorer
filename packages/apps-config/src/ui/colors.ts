@@ -177,7 +177,6 @@ const nodeBajun = '#161212';
 const nodeBitCountry = '#191a2e';
 const nodeBifrost = '#5a25f0';
 const nodeCentrifuge = '#fcc367';
-const nodeCere = '#b7aeff';
 const nodeCoinversation = '#e6017a';
 const nodeCompetitorsClub = '#213830';
 const nodeCrownSterling = '#13264b';
@@ -459,7 +458,6 @@ export const chainColors: Record<string, string> = Object.entries({
   'SubGame Gamma': nodeSubGame,
   'SubGame Staging': nodeSubGame,
   Subspace: nodeSubspace,
-  'Substrate Node': nodeCere,
   Subzero: chainZero,
   swapdex: chainSwapdex,
   t0rn: chainT0rn,
@@ -592,7 +590,6 @@ export const nodeColors = Object.entries({
   'Subsocial Collator': nodeSubsocialX,
   'subsocial node': nodeSubsocial,
   Subspace: nodeSubspace,
-  'Substrate Node': nodeCere,
   'subzero node': nodeZero,
   swapdex: nodeSwapdex,
   'Ternoa Node': nodeTernoa,

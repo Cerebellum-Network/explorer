@@ -33,12 +33,12 @@ interface UrlState {
 
 const STORAGE_AFFINITIES = 'network:affinities';
 
-export function isValidUrl (url: string): boolean {
-  const regex = /^(wss?:\/\/)(.{7,})/;
-
+function isValidUrl (url: string): boolean {
   return (
-    // check it matches the URL format wss://domain-name
-    (regex.test(url))
+    // some random length... we probably want to parse via some lib
+    (url.length >= 7) &&
+    // check that it starts with a valid ws identifier
+    (url.startsWith('ws://') || url.startsWith('wss://') || url.startsWith('light://'))
   );
 }
 

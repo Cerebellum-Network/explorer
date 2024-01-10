@@ -18,6 +18,7 @@ import democracy from './democracy';
 import explorer from './explorer';
 import extrinsics from './extrinsics';
 import fellowship from './fellowship';
+import files from './files';
 import gilt from './gilt';
 import js from './js';
 import membership from './membership';
@@ -78,6 +79,7 @@ export default function create (t: TFunction): Routes {
     runtime(t),
     signing(t),
     sudo(t),
+    files(t),
     js(t),
     utilities(t),
     settings(t)

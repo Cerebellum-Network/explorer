@@ -24,7 +24,9 @@ function Apps ({ className = '' }: Props): React.ReactElement<Props> {
   const { isDevelopment, specName, systemChain, systemName } = useApi();
 
   const uiHighlight = useMemo(
-    () => getSystemColor(systemChain, systemName, specName),
+    () => isDevelopment
+      ? undefined
+      : getSystemColor(systemChain, systemName, specName),
     [isDevelopment, specName, systemChain, systemName]
   );
 

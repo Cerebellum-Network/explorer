@@ -18,7 +18,6 @@ export * from './productionRelayPolkadot';
 export const prodChains: EndpointOption[] = [
   {
     info: 'aleph',
-    isDisabled: true,
     text: 'Aleph Zero',
     providers: {
       'Aleph Zero Foundation': 'wss://ws.azero.dev'
@@ -26,7 +25,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'Ares Odyssey',
-    isDisabled: true,
     text: 'Ares Odyssey',
     providers: {
       'Ares Protocol': 'wss://odyssey.aresprotocol.io'
@@ -34,7 +32,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'automata',
-    isDisabled: true,
     text: 'Automata',
     providers: {
       'Automata Network': 'wss://api.ata.network',
@@ -42,17 +39,8 @@ export const prodChains: EndpointOption[] = [
     }
   },
   {
-    info: 'cere',
-    text: 'Cere Mainnet',
-    providers: {
-      'Cere Network': 'wss://archive.mainnet.cere.network/ws',
-      'Republic Crypto | Runtime': 'wss://mainnet.cere-archive.republiccrypto-runtime.com:444',
-    }
-  },
-  {
     dnslink: 'centrifuge',
     info: 'centrifuge',
-    isDisabled: true,
     text: 'Centrifuge Standalone [Archived]',
     providers: {
       // Centrifuge: 'wss://fullnode.centrifuge.io' // https://github.com/polkadot-js/apps/issues/8012
@@ -60,7 +48,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'chainx',
-    isDisabled: true,
     text: 'ChainX',
     providers: {
       ChainX: 'wss://mainnet.chainx.org/ws'
@@ -68,15 +55,13 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'competitors-club',
-    isDisabled: true,
     text: 'Competitors Club',
     providers: {
-      'Competitors Club': 'wss://node0.competitors.club/wss'
+      // 'Competitors Club': 'wss://node0.competitors.club/wss' // https://github.com/polkadot-js/apps/issues/8263
     }
   },
   {
     info: 'creditcoin',
-    isDisabled: true,
     text: 'Creditcoin',
     providers: {
       'Creditcoin Foundation': 'wss://rpc.mainnet.creditcoin.network/ws'
@@ -84,7 +69,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'crown-sterling',
-    isDisabled: true,
     text: 'Crown Sterling',
     providers: {
       'Crown Sterling': 'wss://blockchain.crownsterling.io'
@@ -92,7 +76,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'crust',
-    isDisabled: true,
     text: 'Crust Network',
     providers: {
       'Crust Network': 'wss://rpc.crust.network',
@@ -101,7 +84,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'darwinia',
-    isDisabled: true,
     text: 'Darwinia',
     providers: {
       'Darwinia Network': 'wss://rpc.darwinia.network',
@@ -110,7 +92,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'crab',
-    isDisabled: true,
     text: 'Darwinia Crab',
     providers: {
       'Darwinia Network': 'wss://crab-rpc.darwinia.network',
@@ -120,7 +101,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'dock-pos-mainnet',
-    isDisabled: true,
     text: 'Dock',
     providers: {
       'Dock Association': 'wss://mainnet-node.dock.io'
@@ -129,11 +109,10 @@ export const prodChains: EndpointOption[] = [
   {
     dnslink: 'edgeware',
     info: 'edgeware',
-    isDisabled: true,
     text: 'Edgeware',
     providers: {
       'Commonwealth Labs': 'wss://mainnet.edgewa.re',
-      JelliedOwl: 'wss://edgeware.jelliedowl.com',
+      JelliedOwl: 'wss://edgeware.jelliedowl.net',
       OnFinality: 'wss://edgeware.api.onfinality.io/public-ws',
       Dwellir: 'wss://edgeware-rpc.dwellir.com'
     }
@@ -154,7 +133,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'genshiro',
-    isDisabled: true,
     text: 'Genshiro',
     providers: {
       Equilibrium: 'wss://node.genshiro.io'
@@ -170,7 +148,6 @@ export const prodChains: EndpointOption[] = [
   {
     dnslink: 'kulupu',
     info: 'kulupu',
-    isDisabled: true,
     text: 'Kulupu',
     providers: {
       Kulupu: 'wss://rpc.kulupu.corepaper.org/ws'
@@ -178,7 +155,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'kusari',
-    isDisabled: true,
     text: 'Kusari',
     providers: {
       Swapdex: 'wss://ws.kusari.network'
@@ -186,7 +162,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'logion',
-    isDisabled: true,
     text: 'logion Standalone',
     providers: {
       Logion: 'wss://rpc01.logion.network'
@@ -194,7 +169,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'mathchain',
-    isDisabled: true,
     text: 'MathChain',
     providers: {
       MathWallet: 'wss://mathchain-asia.maiziqianbao.net/ws',
@@ -210,7 +184,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'myriad',
-    isDisabled: true,
     text: 'Myriad',
     providers: {
       Myriad: 'wss://ws-rpc.myriad.social'
@@ -218,7 +191,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'neatcoin',
-    isDisabled: true,
     text: 'Neatcoin',
     providers: {
       Neatcoin: 'wss://rpc.neatcoin.org/ws'
@@ -226,7 +198,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'nftmart',
-    isDisabled: true,
     text: 'NFTMart',
     providers: {
       NFTMart: 'wss://mainnet.nftmart.io/rpc/ws'
@@ -234,7 +205,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'nodle',
-    isDisabled: true,
     text: 'Nodle',
     providers: {
       // Nodle: 'wss://main3.nodleprotocol.io', // https://github.com/polkadot-js/apps/issues/7652
@@ -243,7 +213,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'polkadex',
-    isDisabled: true,
     text: 'Polkadex',
     providers: {
       'Polkadex Team': 'wss://mainnet.polkadex.trade',
@@ -252,7 +221,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'polymesh',
-    isDisabled: true,
     text: 'Polymesh Mainnet',
     providers: {
       Polymath: 'wss://mainnet-rpc.polymesh.network'
@@ -260,7 +228,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'riochain',
-    isDisabled: true,
     text: 'RioChain',
     providers: {
       RioChain: 'wss://node.v1.riochain.io'
@@ -275,7 +242,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'sherpax',
-    isDisabled: true,
     text: 'SherpaX',
     providers: {
       ChainX: 'wss://mainnet.sherpax.io'
@@ -283,7 +249,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'sora-substrate',
-    isDisabled: true,
     text: 'SORA',
     providers: {
       'SORA Parliament Ministry of Finance #2': 'wss://mof2.sora.org',
@@ -311,7 +276,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'subgame',
-    isDisabled: true,
     text: 'SubGame',
     providers: {
       SubGame: 'wss://mainnet.subgame.org/'
@@ -319,7 +283,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'subsocial',
-    isDisabled: true,
     text: 'Subsocial',
     providers: {
       // DappForce: 'wss://rpc.subsocial.network' // https://github.com/polkadot-js/apps/issues/8046
@@ -327,7 +290,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'swapdex',
-    isDisabled: true,
     text: 'Swapdex',
     providers: {
       Swapdex: 'wss://ws.swapdex.network'
@@ -335,7 +297,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'ternoa',
-    isDisabled: true,
     text: 'Ternoa',
     providers: {
       CapsuleCorp: 'wss://mainnet.ternoa.network'
@@ -343,7 +304,6 @@ export const prodChains: EndpointOption[] = [
   },
   {
     info: 'uniarts',
-    isDisabled: true,
     text: 'UniArts',
     providers: {
       UniArts: 'wss://mainnet.uniarts.vip:9443'
