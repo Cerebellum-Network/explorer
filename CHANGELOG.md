@@ -1,221 +1,133 @@
 # CHANGELOG
 
-## 0.123.1 Jan 16, 2023
+## vNext
+...
 
-Contributed:
+## 0.26.0
+- Update to Polkadot-JS Apps 0.121.2-127-x and Substrate Node v0.9.30
 
-- Update Subsquare external links (Thanks to https://github.com/wliyongfeng)
-- Add Subsquare external links for referenda (Thanks to https://github.com/wliyongfeng)
-- Add Subsquare external links for fellowship (Thanks to https://github.com/wliyongfeng)
-- Update Robonomics endpoints (Thanks to https://github.com/Leemo94)
-- Update Edgeware endpoints (Thanks to https://github.com/ShankarWarang)
-- Update OnFinality endpoints for Clover & Parallel (Thanks to https://github.com/banananeko)
-- Ethereum compatibility for Atlayer (Thanks to https://github.com/atenjin)
-- Ethereum compatibility for Darwinia (Thanks to https://github.com/isunaslabs)
-- Ethereum compatibility for Bifrost (Thanks to https://github.com/dnjscksdn98)
-- Fix entry params encoding for `Option<Bytes>` (Thanks to https://github.com/adamdossa)
-- Light client bootnode for Astar (Thanks to https://github.com/gluneau)
-- Update Bitgreen types (Thanks to https://github.com/abhath-labs)
-- Add Bitgreen as Polkadot parachain (Thanks to https://github.com/abhath-labs)
-- Unitlogo endpoint changes (Thanks to https://github.com/unitpdw)
-- Add Dwellir endpoints for Moonbeam/Moonriver (Thanks to https://github.com/Maharacha)
-- Remove Dwellir endpoints for Altair, Centrifuge, Integritee, Kisugi (Thanks to https://github.com/Maharacha)
-- Remove OnFinality endpoint for Quartz (Thanks to https://github.com/ashkuc)
-- Enable Crust Shadow endpoint (Thanks to https://github.com/yashirooooo)
-- Update RadiumBlock Statemint endpoint (Thanks to https://github.com/radiumb)
-- Update RadiumBlock Polkadot endpoint (Thanks to https://github.com/radiumb)
-- Add RadiumBlock Astar endpoint (Thanks to https://github.com/radiumb)
-- Update endpoints for Rococo Frequency (Thanks to https://github.com/wilwade)
-- Add new Subsocial parachain endpoint (Thanks to https://github.com/olehmell)
-- Add Robonomics crowdloan 2 information (Thanks to https://github.com/vol4tim)
-- Add Polkassembly external links for referenda (Thanks to https://github.com/niklabh)
-- Update Arjun RPC endpoint (Thanks to https://github.com/darkfriend77)
-- Updata Acala types package (Thanks to https://github.com/qwer951123)
-- Add Kiko2 parachain info (Thanks to https://github.com/wetalice)
-- Add Kusama RioDefi parachain (Thanks to https://github.com/liuliang)
-- Add Frequency mainnet (Thanks to https://github.com/wilwade)
-- Enable OnFinality Quartz endpoint (Thanks to https://github.com/banananeko)
-- Enable OnFinality Bifrost, Parallel, Heiko & Clover endpoints (Thanks to https://github.com/banananeko)
-- Update Picasso endpoint (Thanks to https://github.com/alexkdefi)
-- Add stake.plus endpoints for Kusama, Polkadot & Westend (Thanks to https://github.com/senseless)
-- Updata Sora endpoints for testing & production (Thanks to https://github.com/stefashkaa)
-- Remove extra Subspace Gemini 2a endpoints (Thanks to https://github.com/nazar-pc)
-- Custom signed extension for Encointer (Thanks to https://github.com/clangenb)
-- Add Pendulum chain (Thanks to https://github.com/gonzamontiel)
-- Update Rococo Amplitude information (Thanks to https://github.com/gonzamontiel)
-- Update Kilt type definitions (Thanks to https://github.com/ntn-x2)
-- Add Myriad endpoint (Thanks to https://github.com/irmannmal)
-- Add DeBio network endpoint (Thanks to https://github.com/irmannmal)
-- Add Joystream mainnet info (Thanks to https://github.com/Lezek123)
-- Update Pendulum logo (Thanks to https://github.com/cr4pt0)
-- Add 3dpass network (Thanks to https://github.com/fedosov)
-- Add Rococo Acurast network (Thanks to https://github.com/godenzim)
-- Remove Pinknode Shibuya (Thanks to https://github.com/Shawn-Eng-888)
-- Remove Dwellir endpoints for Moonbeam/Moonriver (Thanks to https://github.com/Maharacha)
-- Remove Dwellir endpoint for Subspace Gemini 2a (Thanks to https://github.com/Maharacha)
-- Adjust RadiumBlock hybrid compute endpoints (Thanks to https://github.com/radiumb)
-- Add Rococo Ethos (Thanks to https://github.com/ashi20192020)
-- Add OnFinality endpoint for HydraDx (Thanks to https://github.com/banananeko)
-- Enable OnFinality Tinker endpoint (Thanks to https://github.com/arrudagates)
-- Add UnitedBloc endpoints (Thanks to https://github.com/albertov19)
-- Add Bitgreen testnet & mainnet (Thanks to https://github.com/abhath-labs)
-- Add Bittensor Nakamoto (Thanks to https://github.com/camfairchild)
-- Add Dwellir Tunisia location endpoints (Thanks to https://github.com/Maharacha)
-- Add high-quality Kusama svg logo (Thanks to https://github.com/Nick-1979)
-- Adjust OmniBTC endpoints (Thanks to https://github.com/icodezjb)
-- Add Rococo Bridge hub parachain (Thanks to https://github.com/BulatSaif)
-- Add Subzero parachain (Thanks to https://github.com/2075)
-- Updata Crust IPFS files endpoints (Thanks to https://github.com/BOBOKaa)
-- Re-introduce support for per-chain types (Thanks to https://github.com/ntn-x2)
-- Adjust KILT types to apply per-chain (Thanks to https://github.com/ntn-x2)
-- Remove OnFinality endpoint for Efinity (Thanks to https://github.com/tommycodebox)
-- Fix democracy display when no launchPeriod is available (Thanks to https://github.com/sander2)
-- Improve council compatibility across chains (Thanks to https://github.com/peterwht)
-- Add Onfinaly Ajuna endpoint (Thanks to https://github.com/banananeko)
-- Update t0rn endpoint (Thanks to https://github.com/3h4x)
+## 0.25.0
+- Added CereStats links for users to view blocks, accounts, and validators.
 
-Changes:
+## 0.24.0
+- Added Type Bundle for Cere Mainnet to be able to see all historical blocks
 
-- Display all decimals on InputBalance component
-- Adjust Latency charts (with in-order rendering for latest chart plugins)
-- Swap to default 1x conviction
-- Expand full structures on Struct & Enum params display
-- Adjust Call/Event Balance display (known call configs)
-- Adjust function detection for proxy/multisig operations
-- Adjust chilled filtering for latest Substrate (no auto chill)
-- Display warning/error messages on preimage app (encoding issues)
-- Display referenda locks in account section
-- Display inactive issuance for referenda
-- Display account import & qr warning where genesisHash is mismatched
-- Add support for abstain conviction voting
-- Allow referena voting with no preimage
-- Display icon for unlocked parachains
-- Apply consistency in preimage hash styling (w/ copy)
-- Ensure referenda sumbission always has the correct length
-- Don't reply on availability of `earliestUnappliedSlash`
-- Support new preimage pallet on democracy
-- Add Collectives parachain info
-- Adjust democracy proposeExternal
-- Don't assume council availability on treasury rendering
-- Sort & display ranked collectives
-- Display track info (as per config) for different tracks
-- Add & display track texts for fellowship
-- Render MultiAddress.Id via Address component
-- Sort endpoints by provider name in display
-- Adjust detection of democracy app display
-- Display scheduler entries with inline hash
-- Allow selection of origin where track has multiples
-- Adjust pool metadata display (no unicode, overflow)
-- Cleanup detail vote displays
-- Decode all scheduler entries via hash lookup (as available)
-- Add display filters for referenda tracks
-- Adjust event mapping, no non-required firing
-- Split scheduler from democracy into own app
-- Enable vote-disable based on rank and track
-- Adjust proxy list for governance 2 pallets
-- Add calculations for referenda curves (& display on ongoing)
-- Add elased overlays on referendum graphs
-- Ensure new-generation slash has correct era offset in calculations
-- Display referenda confirming end block
-- Add full ErrorBoundary around 3rd party chart component
-- Add Unnote capability to preimages
-- Remove odd/even table backgrounds; round table rows
-- Apply expander functionality of all applicable tables
-- Rework params labels to allow for sub with Option
-- Adjust all styled component wrappers (+ bug fixes for underlying hidden issues)
-- Rework context usage, move all to react-hooks package
-- Allow input of AccountId32/20 as non-native AccountId format
-- Remove unmaintained HelpOverlay usage
-- Remove all per-label help icons (unnaintained)
-- Disable all unreachable endpoints
-- Add option (default: off) to allow in-localStorage account saving
+## 0.23.0
+- Reverted to commit `f778359c` (between tags `v0.121.1` and `v0.122.1` of Polkadot-JS Apps) to align with our node version and fix the Smart Contract Page
 
+## 0.22.0
+- Added Cere Mainnet link to PolkassemblyIo
 
-## 0.122.2 Nov 7, 2022
+## 0.21.0
+- Added workflow_dispatch for Prod and Stage
 
-Changes:
+## 0.20.0
+- Synced codebase with the Polkadot-JS App master branch.
+- Fixed bugs related to merging the new version.
+- Replaced the node image in the workflow from version 14 to the latest LTS version.
 
-- Bump Electron packages to workaround/fix 0.122.1 Mac issues
+## 0.19.3
+- Added GTAG GA4 Analytics tracking support
 
+## 0.19.2
+- Replaced DCC Wiki with Community Portal link.
 
-## 0.122.1 Nov 7, 2022
+## 0.19.1
+- Added workflow_dispatch for Prod and Stage
 
-Contributed:
+## 0.19.0
+- Hid Files (IPFS) page
 
-- Adjust Account/Address layouts with dual-column
-- Add Zeitgeist to Subsquare links (Thanks to https://github.com/wliyongfeng)
-- Add Centrifuge & Altair to Subsquare links (Thanks to https://github.com/wliyongfeng)
-- Add Litentry/Litmus Statescan links (Thanks to https://github.com/wliyongfeng)
-- Add Rococo MD5 parachain (Thanks to https://github.com/3yekn)
-- Add Rococo Frequency parachain (Thanks to https://github.com/saraswatpuneet)
-- Add Rococo Tinkernet pareachain (Thanks to https://github.com/arrudagates)
-- Add Rococo Watr parachain (Thanks to https://github.com/NachoPal)
-- Add Rococo HydraX parachain (Thanks to https://github.com/green-jay)
-- Update Subscan links (Thanks to https://github.com/carlhong)
-- Updata Subscan logo (Thanks to https://github.com/carlhong)
-- Fix Darwinia Subscan link (Thanks to https://github.com/JayJay1024)
-- Add Root chain types (Thanks to https://github.com/aidan-starke)
-- Add Adjuna parachain (Thanks to https://github.com/darkfriend77)
-- Add support for parachain light clients (Thanks to https://github.com/arrudagates)
-- Update OnFinality Pichiu endpoint (Thanks to https://github.com/banananeko)
-- Add OnFinality Invarch Tinker endpoint (Thanks to https://github.com/banananeko)
-- Add OnFinality Bajun endpoint (Thanks to https://github.com/cowboy-bebug)
-- Add OnFinality Phala endpoint (Thanks to https://github.com/banananeko)
-- Add long-term Rococo Bajun id (Thanks to https://github.com/cowboy-bebug)
-- Update Bifrost endpoints (Thanks to https://github.com/awesomepan)
-- Add Radiumblock endpoint for Statemint (Thanks to https://github.com/radiumb)
-- Add Adventus parachain info (Thanks to https://github.com/nahuseyoum)
-- Add additional Edgeware endpoint (Thanks to https://github.com/JelliedOwl)
-- Updata Galactic Council endpoints (Thanks to https://github.com/lumir-mrkva)
-- Add Robonomics & Integritee endpoints (Thanks to https://github.com/Ank4n)
-- Adjust Subspace Gemini 1 endpoitns (Thanks to https://github.com/nazar-pc)
-- Add Subspace Gemini 2a endpoints (Thanks to https://github.com/nazar-pc)
-- Update KILT types to latest (Thanks to https://github.com/ntn-x2)
-- Add Subid link for Bitcountry (Thanks to https://github.com/teodorus-nathaniel)
-- Add Polkadot Bitgreen parachain (Thanks to https://github.com/abhath-labs)
-- Update Rocfinity logo (Thanks to https://github.com/leonardocustodio)
-- Update Logion types (Thanks to https://github.com/gdethier)
-- Add OAK chain (Thanks to https://github.com/justinzhou93)
-- Add Totem StageX network (Thanks to https://github.com/chrisdcosta)
-- Update Kusama/Rococo Kabocha (Thans to https://github.com/decentration)
-- Remove Dwellir endpoints for Composanle & Picaso (Thanks to https://github.com/benjichat)
-- Add Dwellir endpoints for Altair & Centrifuge (Thanks to https://github.com/Maharacha)
-- Add Dwellir endpoint for Joystream (Thanks to https://github.com/Maharacha)
-- Add Dwellir endpoint for Subspace Gemini 2a (Thanks to https://github.com/Maharacha)
-- Add Dwellir endpoint for Alpeh Zero (Thanks to https://github.com/Maharacha)
-- Add Dwellir endpoint for Equilibrium (Thanks to https://github.com/Maharacha)
-- Remove Dwellir endpoints for Moonbeam & Moonriver (Thanks to https://github.com/Maharacha)
-- Add Automata endpoint (Thanks to https://github.com/smilenow)
-- New endpoint for Beresheet (Thanks to https://github.com/ShankarWarang)
-- Add Leemo endpoint for GM (Thanks to https://github.com/Leemo94)
-- Add Crust Shadow 2 loan info (Thanks to https://github.com/mmyyrroonn)
-- Add Genshiro 2 loan info (Thanks to https://github.com/alex-nax)
-- Move KILT parachain to Polkadot (Thanks to https://github.com/wischli)
-- Update Amplitude endpoint (Thanks to https://github.com/gonzamontiel)
-- Add DAO IPCI endpoint (Thanks to https://github.com/PavelSheremetev)
-- Update Rococo Zeitgeist para (Thanks to https://github.com/sea212)
-- Update Parity Rockmine endpoint (Thanks to https://github.com/PierreBesson)
-- Add Samsara Robonomics endpoint (Thanks to https://github.com/0xSamsara)
-- Update Robonomics endpoints (Thanks to https://github.com/Leemo94)
-- Light client support for Shiden & Astar (Thanks to https://github.com/gluneau)
-- Updates to Shiden & Astar bootnodes (Thanks to https://github.com/gluneau)
-- Updata & fix Khala types (Thanks to https://github.com/jasl)
-- Add Rococo Briodgehub parachain (Thanks to https://github.com/lazam)
-- Add Vara network (Thanks to https://github.com/EugenWay)
-- Add identity icon override for Litentry (Thanks to https://github.com/Kailai-Wang)
-- Updata Amplitude endpoint (Thanks to https://github.com/gonzamontiel)
+## 0.18.2
+- Added "Republic Crypto | Runtime" as a Cere archive node provider in Mainnet
 
-Changes:
+## 0.18.1
+- Added "Republic Crypto | Runtime" as a Cere archive node provider in Testnet
 
-- Retrieve light client specs via async import
-- Pass alliance retiringAt info as available
-- Retrieve pending pool info via runtime call
-- Update Governance 2 UI with track info (latest APIs)
-- Support for new preimages pallet structure
-- Adjust identity judgements with new hash parameter
-- Cater for Weight V2 usage
-- Disable unreachable endpoints
+## 0.18.0
+- Added support of the Cere node v2.32.0
 
+## 0.17.1
+- Added Cere Devnet 1
+
+## 0.17.0
+- Updated Cere Blockchain public URLs
+- Fixed getting cached app settings from local storage
+
+## 0.16.1
+- Reverted Cere QAnet renaming
+
+## 0.16.0
+- Renamed Cere QAnet -> Cere Qanet
+
+## 0.15.1
+- Updated Cere Devnet url
+
+## 0.15.0
+- Added Republic Crypto as a Cere archive node provider
+
+## 0.14.0
+- Updated Cere QAnet, Testnet and Mainnet urls
+
+## 0.13.3
+- Added Cere Mirror 1 and 2
+
+## 0.13.2
+- Updated inflation parameters
+
+## 0.13.1
+- Added `Cere Mainnet Beta` to the types mapping
+
+## 0.13.0
+- Enabled inflation on staking overview page
+
+## 0.12.0
+- Updated page title
+- Reordered networks under Test Network
+- Fixed linter error
+- Updated favicon
+
+## 0.1.11-cere Oct 21, 2021
+- Renamed `Cerebellum` to `Cere`
+
+## 0.1.10-cere Aug 24, 2021
+- Added qa network support
+
+## 0.1.9-cere Aug 20, 2021
+- Added ext-devs-5 network support
+
+## 0.1.8-cere Aug 18, 2021
+- Added assert for connection string
+- Updated URL validation
+- Updated endpoints for all the networks
+
+## 0.1.7-cere Jul 20, 2021
+- Added support for External Dev cluster
+
+## 0.1.6-cere May 31, 2021
+- Update cere chain config
+- Added Cerebellum Mainnet to the chain config list
+
+## 0.1.5-cere May 24, 2021
+- Update cere chain config
+- Added Cerebellum Mainnet to the chain config list
+
+## 0.1.4-cere Apr 30, 2021
+- Update cere chain config
+- Set inflation and stakedReturn to zero
+
+## 0.1.3-cere Apr 20, 2021
+- Fixed chain config
+
+## 0.1.2-cere Apr 17, 2021
+- Updated config after forkless upgrade for ERC20 bridge
+
+## 0.1.1-cere Apr 17, 2021
+- Fixed chain config
+
+## 0.1.0-cere Apr 16, 2021
+- Added config for ERC20 Bridge for Cere Network
+- Updated using upstream from origin repo master branch
 
 ## 0.121.1 Aug 22, 2022
 

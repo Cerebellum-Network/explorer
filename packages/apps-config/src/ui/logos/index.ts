@@ -87,6 +87,7 @@ import chainWatr from './chains/watr.png';
 import chainEggnet from './chains/webb.png';
 import chainWestendColl from './chains/westend-collectives.png';
 import extensionPolkadotJs from './extensions/polkadot-js.svg';
+import externalCereStats from './external/cerestats.png';
 import externalCommonwealth from './external/commonwealth.png';
 import externalDotreasury from './external/dotreasury.svg';
 import externalDotScanner from './external/dotscanner.png';
@@ -117,6 +118,7 @@ import nodeBifrost from './nodes/bifrost.svg';
 import nodeBitCountry from './nodes/bitcountry.png';
 import nodeCalamari from './nodes/calamari.png';
 import nodeCentrifuge from './nodes/centrifuge.png';
+import nodeCere from './nodes/cere.svg';
 import nodeCESS from './nodes/cess.png';
 import nodeChainx from './nodes/chainx.svg';
 import nodeClover from './nodes/clover.svg';
@@ -280,6 +282,11 @@ export const chainLogos = Object.entries({
   'Calamari Parachain Testnet': nodeCalamari,
   'Catalyst Testnet': nodeCentrifuge,
   Centrifuge: nodeCentrifuge,
+  'Cere Mainnet Alpha': nodeCere,
+  'Cere Mainnet Beta': nodeCere,
+  'Cere Testnet': nodeCere,
+  'Cere QAnet': nodeCere,
+  'Cere Devnet': nodeCere,
   'CESS Testnet': nodeCESS,
   ChainOLI: chainOLI,
   ChainX: nodeChainx,
@@ -456,6 +463,7 @@ export const chainLogos = Object.entries({
   subsocial: nodeSubsocial,
   subsocialX: nodeSubsocialX,
   subspace: nodeSubspace,
+  'Substrate Node': nodeCere,
   Subzero: nodeZero,
   swapdex: nodeSwapdex,
   t0rn: chainT0rn,
@@ -522,6 +530,8 @@ export const nodeLogos = Object.entries({
   Centrifuge: nodeCentrifuge,
   'centrifuge chain': nodeCentrifuge,
   'Centrifuge Chain Node': nodeCentrifuge,
+  cere: nodeCere,
+  cereTestnet: nodeCere,
   'CESS Testnet': nodeCESS,
   ChainOLI: nodeChainOLI,
   'ChainX Node': nodeChainx,
@@ -671,6 +681,7 @@ export const nodeLogos = Object.entries({
   subspace: nodeSubspace,
   'substrate-contracts-node': nodeSubstrateContractsNode,
   'substrate-node': nodeSubstrate,
+  'Substrate Node': nodeCere,
   'subzero node': nodeZero,
   swapdex: nodeSwapdex,
   t0rn: chainT0rn,
@@ -747,12 +758,12 @@ export const namedLogos: Record<string, unknown> = {
   bitcountry: nodeBitCountry,
   bitcountryPioneer: nodePioneerNetwork,
   bitgreen: chainBitgreen,
-  bittensor: chainBittensor,
   brainstorm: chainBrainstorm,
   calamari: nodeCalamari,
   centrifuge: nodeCentrifuge,
+  cere: nodeCere,
+  cereTestnet: nodeCere,
   cess: nodeCESS,
-  'cess-testnet': nodeCESS,
   chainoli: nodeChainOLI,
   chainx: nodeChainx,
   charcoal: nodeCentrifuge,
@@ -990,6 +1001,7 @@ export const namedLogos: Record<string, unknown> = {
   'subspace-gemini-2a': nodeSubspace,
   substrate: nodeSubstrate,
   substrateContractsNode: nodeSubstrateContractsNode,
+  'Substrate Node': nodeCere,
   swapdex: nodeSwapdex,
   t0rn: chainT0rn,
   tanganika: chainKusamaDataHighway,
@@ -1028,6 +1040,7 @@ export const extensionLogos: Record<string, unknown> = {
 
 // external logos, i.e. for explorers
 export const externalLogos: Record<string, unknown> = {
+  cerestats: externalCereStats,
   commonwealth: externalCommonwealth,
   dotreasury: externalDotreasury,
   dotscanner: externalDotScanner,
