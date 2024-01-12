@@ -244,7 +244,6 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'datahighway',
     isDisabled: true,
-    isDisabled: true,
     providers: {
       MXC: 'wss://spreehafen.datahighway.com'
     },
@@ -458,7 +457,6 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'ipse',
     isDisabled: true, // https://github.com/polkadot-js/apps/issues/6242
-    isDisabled: true,
     providers: {
       'IPSE China': 'wss://testnet-china.ipse.io',
       'IPSE Europe': 'wss://testnet-europe.ipse.io',
