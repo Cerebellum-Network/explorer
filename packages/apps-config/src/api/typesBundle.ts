@@ -11,267 +11,40 @@ import type { OverrideBundleType } from '@polkadot/types/types';
 
 export const typesBundle = {
   "chain": {
-    "KILT Mashnet": {
-      "runtime": {
-        "DidApi": [
-          {
-            "methods": {
-              "query_did_by_w3n": {
-                "description": "Return the information relative to the owner of the provided web3name, if any.",
-                "params": [
-                  {
-                    "name": "name",
-                    "type": "Text"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query_did_by_account_id": {
-                "description": "Return the information relative to the DID to which the provided account is linked, if any.",
-                "params": [
-                  {
-                    "name": "account",
-                    "type": "DidApiAccountId"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query_did": {
-                "description": "Return the information relative to the owner of the provided DID, if present.",
-                "params": [
-                  {
-                    "name": "did",
-                    "type": "AccountId32"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              }
-            },
-            "version": 1
-          },
-          {
-            "methods": {
-              "query_did_by_w3n": {
-                "description": "Return the information relative to the owner of the provided web3name, if any.",
-                "params": [
-                  {
-                    "name": "name",
-                    "type": "Text"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query_did_by_account_id": {
-                "description": "Return the information relative to the DID to which the provided account is linked, if any.",
-                "params": [
-                  {
-                    "name": "account",
-                    "type": "DidApiAccountId"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query_did": {
-                "description": "Return the information relative to the owner of the provided DID, if present.",
-                "params": [
-                  {
-                    "name": "did",
-                    "type": "AccountId32"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              }
-            },
-            "version": 2
-          }
-        ],
-        "Did": [
-          {
-            "methods": {
-              "query_by_web3_name": {
-                "description": "Return the information relative to the owner of the provided web3name, if any.",
-                "params": [
-                  {
-                    "name": "name",
-                    "type": "Text"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query_by_account": {
-                "description": "Return the information relative to the DID to which the provided account is linked, if any.",
-                "params": [
-                  {
-                    "name": "account",
-                    "type": "DidApiAccountId"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query": {
-                "description": "Return the information relative to the owner of the provided DID, if present.",
-                "params": [
-                  {
-                    "name": "did",
-                    "type": "AccountId32"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              }
-            },
-            "version": 1
-          },
-          {
-            "methods": {
-              "query_by_web3_name": {
-                "description": "Return the information relative to the owner of the provided web3name, if any.",
-                "params": [
-                  {
-                    "name": "name",
-                    "type": "Text"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query_by_account": {
-                "description": "Return the information relative to the DID to which the provided account is linked, if any.",
-                "params": [
-                  {
-                    "name": "account",
-                    "type": "DidApiAccountId"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              },
-              "query": {
-                "description": "Return the information relative to the owner of the provided DID, if present.",
-                "params": [
-                  {
-                    "name": "did",
-                    "type": "AccountId32"
-                  }
-                ],
-                "type": "Option<RawDidLinkedInfo>"
-              }
-            },
-            "version": 2
-          }
-        ],
-        "PublicCredentials": [
-          {
-            "methods": {
-              "get_by_id": {
-                "description": "Return the public credential with the specified ID, if found.",
-                "params": [
-                  {
-                    "name": "credential_id",
-                    "type": "Hash"
-                  }
-                ],
-                "type": "Option<PublicCredentialsCredentialsCredentialEntry>"
-              },
-              "get_by_subject": {
-                "description": "Return all the public credentials linked to the specified subject.\n          An optional filter can be passed to be applied to the result before being returned to the client.\n          It returns an error if the provided specified subject ID is not valid.\n          ",
-                "params": [
-                  {
-                    "name": "subject",
-                    "type": "Text"
-                  },
-                  {
-                    "name": "filter",
-                    "type": "Option<PublicCredentialFilter>"
-                  }
-                ],
-                "type": "Result<Vec<(Hash, PublicCredentialsCredentialsCredentialEntry)>, PublicCredentialError>"
-              }
-            },
-            "version": 1
-          }
-        ]
-      },
+    "Cere Mainnet Beta": {
       "types": [
         {
           "minmax": [
-            0,
-            8
+            266,
+            281
           ],
           "types": {
-            "DispatchError": "DispatchErrorPre6First",
+            "ChainId": "u8",
+            "DepositNonce": "u64",
+            "ResourceId": "[u8; 32]",
+            "ProposalStatus": {
+              "_enum": [
+                "Initiated",
+                "Approved",
+                "Rejected"
+              ]
+            },
+            "ProposalVotes": {
+              "votes_for": "Vec<AccountId>",
+              "votes_against": "Vec<AccountId>",
+              "status": "ProposalStatus",
+              "expiry": "BlockNumber"
+            },
+            "TokenId": "u256",
+            "Erc721Token": {
+              "id": "TokenId",
+              "metadata": "Vec<u8>"
+            },
+            "Address": "IndicesLookupSource",
+            "LookupSource": "IndicesLookupSource",
             "AccountInfo": "AccountInfoWithDualRefCount",
-            "Address": "AccountId",
-            "Attestation": {
-              "ctypeHash": "Hash",
-              "attester": "AccountId",
-              "delegationId": "Option<DelegationNodeId>",
-              "revoked": "bool"
-            },
-            "Balance": "u128",
-            "DelegationNode": {
-              "rootId": "DelegationNodeId",
-              "parent": "Option<DelegationNodeId>",
-              "owner": "AccountId",
-              "permissions": "Permissions",
-              "revoked": "bool"
-            },
-            "DelegationNodeId": "Hash",
-            "DelegationRoot": {
-              "ctypeHash": "Hash",
-              "owner": "AccountId",
-              "revoked": "bool"
-            },
-            "DidRecord": {
-              "signKey": "Hash",
-              "boxKey": "Hash",
-              "docRef": "Option<Vec<u8>>"
-            },
-            "Index": "u64",
-            "LookupSource": "AccountId",
-            "Permissions": "u32",
-            "PublicBoxKey": "Hash",
-            "PublicSigningKey": "Hash",
-            "Signature": "MultiSignature",
-            "XCurrencyId": {
-              "chainId": "ChainId",
-              "currencyId": "Vec<u8>"
-            },
-            "ChainId": {
-              "_enum": {
-                "RelayChain": "Null",
-                "ParaChain": "ParaId"
-              }
-            },
-            "CurrencyIdOf": "CurrencyId",
-            "CurrencyId": {
-              "_enum": {
-                "DOT": 0,
-                "KSM": 1,
-                "KILT": 2
-              }
-            },
-            "XcmError": {
-              "_enum": {
-                "Undefined": 0,
-                "Unimplemented": 1,
-                "UnhandledXcmVersion": 2,
-                "UnhandledXcmMessage": 3,
-                "UnhandledEffect": 4,
-                "EscalationOfPrivilege": 5,
-                "UntrustedReserveLocation": 6,
-                "UntrustedTeleportLocation": 7,
-                "DestinationBufferOverflow": 8,
-                "CannotReachDestination": 9,
-                "MultiLocationFull": 10,
-                "FailedToDecode": 11,
-                "BadOrigin": 12,
-                "ExceedsMaxMessageSize": 13,
-                "FailedToTransactAsset": 14
-              }
-            },
-            "ReferendumInfo": {
-              "_enum": {
-                "Ongoing": "ReferendumStatus",
-                "Finished": "ReferendumInfoFinished"
-              }
+            "ValidatorPrefs": {
+              "commission": "Compact<Perbill>"
             }
           }
         },

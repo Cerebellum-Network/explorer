@@ -22,8 +22,8 @@ module.exports = merge(
     plugins: [
       new SubresourceIntegrityPlugin(),
       new HtmlWebpackPlugin({
-        PAGE_TITLE: 'Polkadot/Substrate Portal',
-        minify: false,
+        PAGE_TITLE: 'Cere Explorer',
+        inject: true,
         template: path.join(context, `${hasPublic ? 'public/' : ''}index.html`)
       })
     ]

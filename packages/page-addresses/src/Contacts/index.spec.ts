@@ -63,7 +63,6 @@ describe.skip('Addresses page', () => {
   describe('when some contacts exist', () => {
     it('the contacts table contains some contact rows', async () => {
       addressesPage.renderDefaultContacts(2);
-
       const rows = await addressesPage.getAddressesRows();
 
       expect(rows).toHaveLength(2);

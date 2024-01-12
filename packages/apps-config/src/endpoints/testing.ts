@@ -149,6 +149,28 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'cere',
+    text: 'Cere QAnet',
+    providers: {
+      'Cere Network': 'wss://archive.qanet.cere.network/ws'
+    },
+    ui: {
+      color: '#B7AEFF',
+      logo: nodesCereSVG
+    }
+  },
+  {
+    info: 'cere',
+    text: 'Cere Devnet',
+    providers: {
+      'Cere Network': 'wss://archive.devnet.cere.network/ws'
+    },
+    ui: {
+      color: '#B7AEFF',
+      logo: nodesCereSVG
+    }
+  },
+  {
     info: 'cess-testnet',
     providers: {
       CESS: 'wss://testnet-rpc0.cess.cloud/ws/'

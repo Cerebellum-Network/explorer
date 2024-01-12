@@ -4,10 +4,11 @@
 import type { BN } from '@polkadot/util';
 
 import { externalLogos } from '../ui/logos';
+import { nodesCereSVG } from '../ui/logos/nodes/index.js';
 
 export default {
   chains: {
-    'Cere Mainnet Beta': 'cere',
+    'Cere Mainnet Beta': 'cere'
   },
   create: (chain: string, path: string, data: BN | number | string): string =>
     `https://stats.cere.network/${path}/${data.toString()}`,
@@ -18,5 +19,10 @@ export default {
     block: 'block',
     validator: 'validator'
   },
-  url: 'https://stats.cere.network'
+  url: 'https://stats.cere.network',
+  homepage: 'https://https://cere.network/',
+  ui: {
+    color: '#B7AEFF',
+    logo: nodesCereSVG
+  }
 };
