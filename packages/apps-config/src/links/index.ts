@@ -3,7 +3,7 @@
 
 import type { ExternalDef } from './types.js';
 
-import CereStats from './cerestats';
+import CereStats from './cerestats.js';
 import { Commonwealth } from './commonwealth.js';
 import { Dotreasury } from './dotreasury.js';
 import { DotScanner } from './dotscanner.js';

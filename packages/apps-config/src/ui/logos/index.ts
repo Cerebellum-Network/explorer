@@ -8,7 +8,7 @@
 
 // anything for a specific chain, most would probably fit into the node category (but allow for chain-specific)
 // alphabetical
-import { sanitize } from '../util';
+import { sanitize } from '../util.js';
 import chainAcala from './chains/acala.svg';
 import chainAleph from './chains/aleph.svg';
 import chainAltair from './chains/altair.svg';
@@ -494,8 +494,8 @@ export const nodeLogos = Object.entries({
   Centrifuge: nodeCentrifuge,
   'centrifuge chain': nodeCentrifuge,
   'Centrifuge Chain Node': nodeCentrifuge,
-  'cere': nodeCere,
-  'cereTestnet': nodeCere,
+  cere: nodeCere,
+  cereTestnet: nodeCere,
   'CESS Testnet': nodeCESS,
   ChainOLI: nodeChainOLI,
   'ChainX Node': nodeChainx,

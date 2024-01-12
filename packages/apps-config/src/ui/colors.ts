@@ -4,7 +4,7 @@
 /* eslint sort-keys: ["error", "asc", { caseSensitive: false }] */
 
 import nodeBasiliskRococo from './logos/nodes/basilisk-rococo-bg.png';
-import { sanitize } from './util';
+import { sanitize } from './util.js';
 
 // The mapping here is done on the actual chain name (system.chain RPC) or
 // the actual RPC node it is corrected to (system.name RPC)

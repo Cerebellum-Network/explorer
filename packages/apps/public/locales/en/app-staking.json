@@ -142,6 +142,7 @@
   "The Threshold must be a positive number": "The Threshold must be a positive number",
   "The Threshold must lower than 11": "The Threshold must lower than 11",
   "The UI puts a limit of 40 payouts at a time, where each payout is a single validator for a single era.": "The UI puts a limit of 40 payouts at a time, where each payout is a single validator for a single era.",
+  "The account that is to join the pool.": "The account that is to join the pool.",
   "The account that will join the pool.": "The account that will join the pool.",
   "The account that will submit the rebag transaction.": "The account that will submit the rebag transaction.",
   "The accounts that will be rebagged as a result of this operation.": "The accounts that will be rebagged as a result of this operation.",

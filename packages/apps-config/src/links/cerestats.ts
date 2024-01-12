@@ -3,14 +3,14 @@
 
 import type { BN } from '@polkadot/util';
 
-import { externalLogos } from '../ui/logos';
+import { externalLogos } from '../ui/logos/index.js';
 import { nodesCereSVG } from '../ui/logos/nodes/index.js';
 
 export default {
   chains: {
     'Cere Mainnet Beta': 'cere'
   },
-  create: (chain: string, path: string, data: BN | number | string): string =>
+  create: (_chain: string, path: string, data: BN | number | string): string =>
     `https://stats.cere.network/${path}/${data.toString()}`,
   isActive: true,
   logo: externalLogos.cerestats as string,
