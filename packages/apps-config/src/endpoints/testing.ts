@@ -19,6 +19,7 @@ export * from './testingRelayWestend.js';
 export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: '3dpass-testnet',
+    isDisabled: true,
     providers: {
       '3dpass': 'wss://test-rpc.3dpass.org'
     },
@@ -30,6 +31,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'ajuna',
+    isDisabled: true,
     providers: {
       'Ajuna Network': 'wss://rpc-test.ajuna.network'
     },
@@ -41,6 +43,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'aleph',
+    isDisabled: true,
     providers: {
       'Aleph Zero Foundation': 'wss://ws.test.azero.dev',
       Dwellir: 'wss://aleph-zero-testnet-rpc.dwellir.com'
@@ -53,6 +56,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'nodle',
+    isDisabled: true,
     providers: {
       // Nodle: 'wss://arcadia1.nodleprotocol.io' // https://github.com/polkadot-js/apps/issues/7652
     },
@@ -64,6 +68,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'arctic',
+    isDisabled: true,
     providers: {
       Arctic: 'wss://arctic-rpc.icenetwork.io:9944'
     },
@@ -74,6 +79,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'Ares Gladios',
+    isDisabled: true,
     providers: {
       // 'Ares Protocol': 'wss://gladios.aresprotocol.io' // https://github.com/polkadot-js/apps/issues/9106
     },
@@ -85,6 +91,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'jaz',
+    isDisabled: true,
     providers: {
       // Jaz: 'wss://ws0.jaz.network' // https://github.com/polkadot-js/apps/issues/9059
     },
@@ -96,6 +103,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'automata-contextfree',
+    isDisabled: true,
     providers: {
       'Automata Network': 'wss://cf-api.ata.network',
       OnFinality: 'wss://contextfree.api.onfinality.io/public-ws'
@@ -108,6 +116,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'edgeware',
+    isDisabled: true,
     providers: {
       JelliedOwl: 'wss://beresheet.jelliedowl.net'
     },
@@ -118,6 +127,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'bifrost',
+    isDisabled: true,
     providers: {
       // Liebi: 'wss://bifrost-rpc.testnet.liebi.com/ws' // https://github.com/polkadot-js/apps/issues/8139
     },
@@ -128,6 +138,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'bitcountry',
+    isDisabled: true,
     providers: {
       // 'Metaverse Foundation': 'wss://tewai-rpc.bit.country' // https://github.com/polkadot-js/apps/issues/9059
     },
@@ -172,6 +183,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'cess-testnet',
+    isDisabled: true,
     providers: {
       CESS: 'wss://testnet-rpc0.cess.cloud/ws/'
     },
@@ -183,6 +195,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'clover',
+    isDisabled: true,
     providers: {
       // Clover: 'wss://api.clover.finance/' // Cannot construct unknown type BridgeNetworks
     },
@@ -194,6 +207,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'creditcoin-testnet',
+    isDisabled: true,
     providers: {
       'Creditcoin Foundation': 'wss://rpc.testnet.creditcoin.network/ws'
     },
@@ -205,6 +219,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'Crust Maxwell',
+    isDisabled: true,
     providers: {
       // 'Crust Network': 'wss://api.crust.network/', // https://github.com/polkadot-js/apps/issues/8060
       // 'DCloud Foundation': 'wss://api.decloudf.com/' // https://github.com/polkadot-js/apps/issues/8060
@@ -217,6 +232,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'Curio',
+    isDisabled: true,
     providers: {
     },
     text: 'Curio',
@@ -228,6 +244,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'datahighway',
     isDisabled: true,
+    isDisabled: true,
     providers: {
       MXC: 'wss://spreehafen.datahighway.com'
     },
@@ -238,6 +255,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'debio-testnet',
+    isDisabled: true,
     providers: {
       DeBio: 'wss://ws-rpc.testnet.debio.network'
     },
@@ -249,6 +267,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'dock-testnet',
+    isDisabled: true,
     providers: {
       // 'Dock Association': 'wss://knox-1.dock.io' // https://github.com/polkadot-js/apps/issues/6831
     },
@@ -259,6 +278,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'dolphin',
+    isDisabled: true,
     providers: {
       // 'Dolphin Testnet': 'wss://trillian.dolphin.red' // https://github.com/polkadot-js/apps/issues/7439
     },
@@ -270,6 +290,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'dotmog',
+    isDisabled: true,
     providers: {
       // DOTMog: 'wss://mogiway-01.dotmog.com' // https://github.com/polkadot-js/apps/issues/8895
     },
@@ -281,6 +302,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'encointer',
+    isDisabled: true,
     providers: {
       'Encointer Association': 'wss://gesell.encointer.org'
     },
@@ -292,6 +314,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'equilibrium',
+    isDisabled: true,
     providers: {
       // Equilibrium: 'wss://testnet.equilibrium.io' // https://github.com/polkadot-js/apps/issues/6250
     },
@@ -303,6 +326,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'fantour',
+    isDisabled: true,
     providers: {
       // FantourDev: 'wss://test-ws.fantour.io' // https://github.com/polkadot-js/apps/issues/6519
     },
@@ -314,6 +338,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'ferrum',
+    isDisabled: true,
     providers: {
       // Ferrum: 'wss://testnet.dev.svcs.ferrumnetwork.io' // https://github.com/polkadot-js/apps/issues/9224
     },
@@ -325,6 +350,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'substrate',
+    isDisabled: true,
     providers: {
       // Parity: 'wss://substrate-rpc.parity.io' // https://github.com/polkadot-js/apps/issues/5571
     },
@@ -335,6 +361,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'fragnova',
+    isDisabled: true,
     providers: { // The actual hosted secure websocket endpoint
       'Fragnova Network': 'wss://ws-test.fragnova.network'
     },
@@ -346,6 +373,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'Galital',
+    isDisabled: true,
     providers: {
       // StarkleyTech: 'wss://galital-rpc-testnet.starkleytech.com' // https://github.com/polkadot-js/apps/issues/6721
     },
@@ -357,6 +385,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'galois',
+    isDisabled: true,
     providers: {
       // MathWallet: 'wss://galois-hk.maiziqianbao.net/ws', // https://github.com/polkadot-js/apps/issues/9059
       // 'MathWallet Backup': 'wss://galois.maiziqianbao.net/ws' // https://github.com/polkadot-js/apps/issues/9109
@@ -369,6 +398,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'gamepower',
+    isDisabled: true,
     providers: {
       // GamePower: 'wss://gamepower.io' // https://github.com/polkadot-js/apps/issues/7223
     },
@@ -380,6 +410,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'geek',
+    isDisabled: true,
     providers: {
       // 'Geek Team': 'wss://testnet.geekcash.org' // https://github.com/polkadot-js/apps/issues/8361
     },
@@ -391,6 +422,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'halongbay',
+    isDisabled: true,
     providers: {
       // Halongbay: 'wss://halongbay.polkafoundry.com' // https://github.com/polkadot-js/apps/issues/6871
     },
@@ -402,6 +434,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'interlay-testnet',
+    isDisabled: true,
     providers: {
       Interlay: 'wss://api-testnet.interlay.io/parachain/'
     },
@@ -412,6 +445,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'brainstorm',
+    isDisabled: true,
     providers: {
       // 'InvArch Team': 'wss://brainstorm.invarch.network/' // https://github.com/polkadot-js/apps/issues/8020
     },
@@ -424,6 +458,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'ipse',
     isDisabled: true, // https://github.com/polkadot-js/apps/issues/6242
+    isDisabled: true,
     providers: {
       'IPSE China': 'wss://testnet-china.ipse.io',
       'IPSE Europe': 'wss://testnet-europe.ipse.io',
@@ -437,6 +472,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'jupiter',
+    isDisabled: true,
     providers: {
       // Patract: 'wss://ws.jupiter-poa.patract.cn' // https://github.com/polkadot-js/apps/issues/7765
     },
@@ -448,6 +484,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'khala',
+    isDisabled: true,
     providers: {
       // 'Phala Network': 'wss://pc-test-3.phala.network/khala/ws' // https://github.com/polkadot-js/apps/issues/6930
     },
@@ -459,6 +496,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'kilt',
+    isDisabled: true,
     providers: {
       'KILT Protocol': 'wss://full-nodes.kilt.io:9944/'
     },
@@ -469,6 +507,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'kilt',
+    isDisabled: true,
     providers: {
       'KILT Protocol': 'wss://peregrine.kilt.io/parachain-public-ws/'
     },
@@ -480,6 +519,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'kintsugi-testnet',
+    isDisabled: true,
     providers: {
       Interlay: 'wss://api-dev-kintsugi.interlay.io/parachain'
     },
@@ -491,6 +531,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'klugdossier',
+    isDisabled: true,
     providers: {
       // 'Klug Dossier': 'wss://klugdossier.net/' // https://github.com/polkadot-js/apps/issues/8081
     },
@@ -502,6 +543,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'kylin',
+    isDisabled: true,
     providers: {
       // 'Kylin Network': 'wss://testnet.kylin-node.co.uk' // https://github.com/polkadot-js/apps/issues/6635
     },
@@ -512,6 +554,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'litentry',
+    isDisabled: true,
     providers: {
       // Litentry: 'wss://testnet.litentry.io' // https://github.com/polkadot-js/apps/issues/9059
     },
@@ -523,6 +566,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'logion',
+    isDisabled: true,
     providers: {
       Logion: 'wss://chimay.logion.network'
     },
@@ -534,6 +578,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'logion',
+    isDisabled: true,
     providers: {
       Logion: 'wss://test-rpc01.logion.network'
     },
@@ -546,6 +591,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'acala',
     isUnreachable: true,
+    isDisabled: true,
     providers: {
       // Acala: 'wss://mandala.polkawallet.io' // https://github.com/polkadot-js/apps/issues/9005
       // OnFinality: 'wss://acala-mandala.api.onfinality.io/public-ws' // https://github.com/polkadot-js/apps/issues/8105
@@ -557,6 +603,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'manta',
+    isDisabled: true,
     providers: {
       // 'Manta Testnet': 'wss://ws.f1.testnet.manta.network' // https://github.com/polkadot-js/apps/issues/6384
     },
@@ -568,6 +615,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'minix',
+    isDisabled: true,
     providers: {
       // Chainx: 'wss://minichain.coming.chat/ws' // https://github.com/polkadot-js/apps/issues/8132
     },
@@ -579,6 +627,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'moonbaseAlpha',
+    isDisabled: true,
     providers: {
       Blast: 'wss://moonbase-alpha.public.blastapi.io',
       'Moonbeam Foundation': 'wss://wss.api.moonbase.moonbeam.network',
@@ -593,6 +642,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'mybank',
+    isDisabled: true,
     providers: {
       // MYBANK: 'wss://mybank.network/substrate' // https://github.com/polkadot-js/apps/issues/5845
     },
@@ -604,6 +654,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'myriad-tesnet',
+    isDisabled: true,
     providers: {
       Myriad: 'wss://ws-rpc.testnet.myriad.social'
     },
@@ -615,6 +666,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'nftmart',
+    isDisabled: true,
     providers: {
       // NFTMartDev: 'wss://dev-ws.nftmart.io', // https://github.com/polkadot-js/apps/issues/9059
       // NFTMartStaging: 'wss://staging-ws.nftmart.io' // https://github.com/polkadot-js/apps/issues/9059
@@ -627,6 +679,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'opal',
+    isDisabled: true,
     providers: {
       'Geo Load Balancer': 'wss://ws-opal.unique.network',
       'Unique America': 'wss://us-ws-opal.unique.network',
@@ -641,6 +694,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'opportunity',
+    isDisabled: true,
     providers: {
       // 'Standard Protocol': 'wss://rpc.opportunity.standard.tech' // https://github.com/polkadot-js/apps/issues/7982
     },
@@ -652,6 +706,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'pangoro',
+    isDisabled: true,
     providers: {
       'Darwinia Network': 'wss://pangoro-rpc.darwinia.network'
     },
@@ -663,6 +718,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'phala',
+    isDisabled: true,
     providers: {
       'Phala Network': 'wss://poc5.phala.network/ws'
     },
@@ -673,6 +729,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'phoenix',
+    isDisabled: true,
     providers: {
       // 'phoenix Protocol': 'wss://phoenix-ws.coinid.pro/' // https://github.com/polkadot-js/apps/issues/6181
     },
@@ -684,6 +741,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'pichiu',
+    isDisabled: true,
     providers: {
       // 'Kylin Network': 'wss://westend.kylin-node.co.uk' // https://github.com/polkadot-js/apps/pull/6761
     },
@@ -694,6 +752,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'polkadex',
+    isDisabled: true,
     providers: {
       // 'Polkadex Team': 'wss://blockchain.polkadex.trade' // https://github.com/polkadot-js/apps/issues/9150
     },
@@ -705,6 +764,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'polymesh',
+    isDisabled: true,
     providers: {
       Polymesh: 'wss://testnet-rpc.polymesh.live'
     },
@@ -716,6 +776,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'pontem',
+    isDisabled: true,
     providers: {
       // Pontem: 'wss://testnet.pontem.network/ws', // https://github.com/polkadot-js/apps/issues/7652
     },
@@ -727,6 +788,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'prism',
+    isDisabled: true,
     providers: {
       // Prism: 'wss://testnet.psm.link' // https://github.com/polkadot-js/apps/issues/7340
     },
@@ -738,6 +800,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'realis',
+    isDisabled: true,
     providers: {
       // 'Realis.Network': 'wss://rpc.realis.network/' // https://github.com/polkadot-js/apps/issues/7982
     },
@@ -749,6 +812,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'riochain',
+    isDisabled: true,
     providers: {
       // 'RioChain Staging': 'wss://node.v1.staging.riochain.io' // https://github.com/polkadot-js/apps/issues/6181
     },
@@ -760,6 +824,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'sherpax',
+    isDisabled: true,
     providers: {
       Chainx: 'wss://sherpax-testnet.chainx.org'
     },
@@ -771,6 +836,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'shibuya',
+    isDisabled: true,
     providers: {
       Dwellir: 'wss://shibuya-rpc.dwellir.com',
       StakeTechnologies: 'wss://rpc.shibuya.astar.network'
@@ -783,6 +849,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'skyekiwi',
+    isDisabled: true,
     providers: {
       SkyeKiwi: 'wss://staging.rpc.skye.kiwi'
     },
@@ -794,6 +861,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'soonsocial',
+    isDisabled: true,
     providers: {
       // DappForce: 'wss://testnet.subsocial.network' // https://github.com/polkadot-js/apps/issues/8315
     },
@@ -804,6 +872,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'sora-substrate',
+    isDisabled: true,
     providers: {
       'Soramitsu #1': 'wss://ws.framenode-1.s1.stg1.sora2.soramitsu.co.jp',
       'Soramitsu #2': 'wss://ws.framenode-2.s1.stg1.sora2.soramitsu.co.jp',
@@ -818,6 +887,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'subdao',
+    isDisabled: true,
     providers: {
       // SubDAO: 'wss://alpha.subdao.org' // https://github.com/polkadot-js/apps/issues/7473
     },
@@ -829,6 +899,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'subgame',
+    isDisabled: true,
     providers: {
       // SubGame: 'wss://staging.subgame.org' // https://github.com/polkadot-js/apps/issues/7982
     },
@@ -840,6 +911,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'subspace-farmnet',
+    isDisabled: true,
     providers: {
       // 'Subspace Network': 'wss://farm-rpc.subspace.network/ws' // https://github.com/polkadot-js/apps/issues/8135
     },
@@ -851,6 +923,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'subspace-gemini-1',
+    isDisabled: true,
     providers: {
       Europe: 'wss://eu.gemini-1b.subspace.network/ws'
     },
@@ -862,6 +935,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'subspace-gemini-2a',
+    isDisabled: true,
     providers: {
       Europe: 'wss://eu-0.gemini-2a.subspace.network/ws'
     },
@@ -873,6 +947,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'subspace',
+    isDisabled: true,
     providers: {
       // 'Subspace Network': 'wss://test-rpc.subspace.network' // https://github.com/polkadot-js/apps/issues/8598
     },
@@ -884,6 +959,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'tangle',
+    isDisabled: true,
     providers: {
       // Webb: 'wss://tangle-archive.webb.tools' // https://github.com/polkadot-js/apps/issues/9104
     },
@@ -895,6 +971,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'ternoa-alphanet',
+    isDisabled: true,
     providers: {
       CapsuleCorp: 'wss://alphanet.ternoa.com'
     },
@@ -905,6 +982,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'ternoa-testnet',
+    isDisabled: true,
     providers: {
       CapsuleCorp: 'wss://testnet.ternoa.com/'
     },
@@ -916,6 +994,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'thebifrost-testnet',
+    isDisabled: true,
     providers: {
       'Pilab #1': 'wss://public-01.testnet.thebifrost.io/ws',
       'Pilab #2': 'wss://public-02.testnet.thebifrost.io/ws'
@@ -928,6 +1007,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'laminar',
+    isDisabled: true,
     providers: {
       // Laminar: 'wss://testnet-node-1.laminar-chain.laminar.one/ws' // https://github.com/polkadot-js/apps/issues/8060
     },
@@ -939,6 +1019,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'uniarts',
+    isDisabled: true,
     providers: {
       // UniArts: 'wss://testnet.uniarts.network' // https://github.com/polkadot-js/apps/issues/8541
     },
@@ -949,6 +1030,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'unique',
+    isDisabled: true,
     providers: {
       // Unique: 'wss://testnet2.unique.network' // https://github.com/polkadot-js/apps/issues/7621
     },
@@ -960,6 +1042,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'unitv',
+    isDisabled: true,
     providers: {
       // 'Unit Network': 'wss://unitventures.io/' // https://github.com/polkadot-js/apps/issues/5684
     },
@@ -971,6 +1054,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'vodka',
+    isDisabled: true,
     providers: {
       // Vodka: 'wss://vodka.rpc.neatcoin.org/ws' // https://github.com/polkadot-js/apps/issues/8175
     },
@@ -979,6 +1063,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'web3games',
+    isDisabled: true,
     providers: {
       'Web3Games Foundation': 'wss://devnet.web3games.org'
     },
@@ -990,6 +1075,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'zCloak',
+    isDisabled: true,
     providers: {
       // 'zCloak Network': 'wss://test1.zcloak.network' // https://github.com/polkadot-js/apps/issues/7408
     },
@@ -1001,6 +1087,7 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'zero',
+    isDisabled: true,
     providers: {
       // ZERO: 'wss://alphaville.zero.io' // https://github.com/polkadot-js/apps/issues/8263
     },
