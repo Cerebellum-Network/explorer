@@ -1,4 +1,4 @@
-// Copyright 2017-2022 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2023 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import { useCallback, useEffect, useState } from 'react';
@@ -8,7 +8,7 @@ import { api } from '@polkadot/react-api';
 import { createNamedHook } from '@polkadot/react-hooks';
 import { u8aToString } from '@polkadot/util';
 
-import store from './store';
+import store from './store.js';
 
 interface AbiState {
   abi: string | null;
