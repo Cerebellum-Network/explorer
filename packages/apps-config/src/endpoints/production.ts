@@ -102,7 +102,7 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'cere',
     providers: {
       'Cere Network': 'wss://archive.mainnet.cere.network/ws'
-      // 'Republic Crypto | Runtime': 'wss://mainnet.cere-archive.republiccrypto-runtime.com:444' // https://github.com/polkadot-js/apps/issues/9828
+      // 'Republic Crypto | Runtime': 'wss://mainnet.cere-archive.republiccrypto-runtime.com:444' // https://github.com/polkadot-js/apps/issues/9828 // ToDo is it turned off?
     },
     text: 'Cere Network',
     ui: {
