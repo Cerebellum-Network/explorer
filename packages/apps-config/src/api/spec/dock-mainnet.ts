@@ -3,7 +3,6 @@
 
 import type { OverrideBundleDefinition } from '@polkadot/types/types';
 
-// @ts-expect-error No definitions provided in package
 import { spec } from '@docknetwork/node-types';
 
 export default (spec as { 'dock-main-runtime': OverrideBundleDefinition })['dock-main-runtime'];
