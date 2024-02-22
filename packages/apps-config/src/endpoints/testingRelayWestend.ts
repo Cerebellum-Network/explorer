@@ -18,6 +18,7 @@ import { getTeleports } from './util.js';
 export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   {
     info: 'charcoal',
+    isDisabled: true,
     paraId: 2086,
     providers: {
       // Centrifuge: 'wss://fullnode-collator.charcoal.centrifuge.io' // https://github.com/polkadot-js/apps/issues/8219
@@ -29,6 +30,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'integritee',
+    isDisabled: true,
     paraId: 2081,
     providers: {
       // Integritee: 'wss://teerw1.integritee.network' // https://github.com/polkadot-js/apps/issues/8937
@@ -41,6 +43,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'interlay',
+    isDisabled: true,
     paraId: 2094,
     providers: {
       // Interlay: 'wss://api-westend.interlay.io/parachain' // https://github.com/polkadot-js/apps/issues/6261
@@ -52,6 +55,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'moonshadow',
+    isDisabled: true,
     paraId: 2002,
     providers: {
       // PureStake: 'wss://wss.moonshadow.testnet.moonbeam.network' // https://github.com/polkadot-js/apps/issues/6181
@@ -65,6 +69,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://kylin.network/',
     info: 'westendPichiu',
+    isDisabled: true,
     paraId: 2112,
     providers: {
       // 'Kylin Network': 'wss://westend.kylin-node.co.uk' // https://github.com/polkadot-js/apps/issues/8710
@@ -76,6 +81,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'westendStandard',
+    isDisabled: true,
     paraId: 2094,
     providers: {
       // 'Standard Protocol': 'wss://rpc.westend.standard.tech' // https://github.com/polkadot-js/apps/issues/8525
@@ -87,6 +93,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'karura',
+    isDisabled: true,
     paraId: 2005,
     providers: {
       // 'Acala Foundation': 'wss://karura-westend-rpc.aca-staging.network' // https://github.com/polkadot-js/apps/issues/5830
@@ -98,6 +105,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'whala',
+    isDisabled: true,
     paraId: 2013,
     providers: {
       // Phala: 'wss://whala.phala.network/ws' // https://github.com/polkadot-js/apps/issues/6181
@@ -113,6 +121,7 @@ export const testParasWestend: Omit<EndpointOption, 'teleport'>[] = [
 export const testParasWestendCommon: EndpointOption[] = [
   {
     info: 'WestendAssetHub',
+    isDisabled: true,
     paraId: 1000,
     providers: {
       Dwellir: 'wss://westmint-rpc.dwellir.com',
@@ -132,6 +141,7 @@ export const testParasWestendCommon: EndpointOption[] = [
   },
   {
     info: 'westendBridgeHub',
+    isDisabled: true,
     paraId: 1002,
     providers: {
       Dwellir: 'wss://westend-bridge-hub-rpc.dwellir.com',
@@ -148,6 +158,7 @@ export const testParasWestendCommon: EndpointOption[] = [
   },
   {
     info: 'westendCollectives',
+    isDisabled: true,
     paraId: 1001,
     providers: {
       Dwellir: 'wss://westend-collectives-rpc.dwellir.com',
@@ -169,6 +180,7 @@ export const testRelayWestend: EndpointOption = {
   dnslink: 'westend',
   genesisHash: WESTEND_GENESIS,
   info: 'westend',
+  isDisabled: true,
   linked: [
     ...testParasWestendCommon,
     ...testParasWestend

@@ -19,6 +19,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://acala.network/',
     info: 'acala',
+    isDisabled: true,
     paraId: 2000,
     providers: {
       'Acala Foundation 0': 'wss://acala-rpc-0.aca-api.network',
@@ -39,6 +40,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://ajuna.io',
     info: 'ajuna',
+    isDisabled: true,
     paraId: 2051,
     providers: {
       AjunaNetwork: 'wss://rpc-parachain.ajuna.network',
@@ -54,6 +56,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.aresprotocol.io/',
     info: 'odyssey',
+    isDisabled: true,
     paraId: 2028,
     providers: {
       // AresProtocol: 'wss://wss.odyssey.aresprotocol.io' // https://github.com/polkadot-js/apps/issues/9059
@@ -67,6 +70,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://astar.network',
     info: 'astar',
+    isDisabled: true,
     paraId: 2006,
     providers: {
       Astar: 'wss://rpc.astar.network',
@@ -86,6 +90,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.aventus.io/',
     info: 'aventus',
+    isDisabled: true,
     paraId: 2056,
     providers: {
       Aventus: 'wss://public-rpc.mainnet.aventus.io'
@@ -99,6 +104,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://crowdloan.bifrost.app',
     info: 'bifrost',
+    isDisabled: true,
     paraId: 2030,
     providers: {
       Liebi: 'wss://hk.p.bifrost-rpc.liebi.com/ws',
@@ -114,6 +120,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.bitgreen.org',
     info: 'bitgreen',
+    isDisabled: true,
     paraId: 2048,
     providers: {
       Bitgreen: 'wss://mainnet.bitgreen.org'
@@ -128,6 +135,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://centrifuge.io',
     info: 'centrifuge',
+    isDisabled: true,
     paraId: 2031,
     providers: {
       Centrifuge: 'wss://fullnode.centrifuge.io',
@@ -144,6 +152,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://clover.finance',
     info: 'clover',
+    isDisabled: true,
     paraId: 2002,
     providers: {
       Clover: 'wss://rpc-para.clover.finance'
@@ -158,6 +167,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'http://www.coinversation.io/',
     info: 'coinversation',
+    isDisabled: true,
     paraId: 2027,
     providers: {
       // Coinversation: 'wss://rpc.coinversation.io/' // https://github.com/polkadot-js/apps/issues/6635
@@ -171,6 +181,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://composable.finance/',
     info: 'composable',
+    isDisabled: true,
     paraId: 2019,
     providers: {
       Composable: 'wss://rpc.composable.finance',
@@ -186,6 +197,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://crust.network',
     info: 'crustParachain',
+    isDisabled: true,
     paraId: 2008,
     providers: {
       Crust: 'wss://crust-parachain.crustapps.net'
@@ -199,6 +211,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://darwinia.network/',
     info: 'darwinia',
+    isDisabled: true,
     paraId: 2046,
     providers: {
       Darwinia: 'wss://rpc.darwinia.network',
@@ -215,6 +228,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://efinity.io',
     info: 'efinity',
+    isDisabled: true,
     paraId: 2021,
     providers: {
       // NOTE We don't support connections to this parachain at all.
@@ -234,6 +248,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://crowdloan.energywebx.com/',
     info: 'ewx',
+    isDisabled: true,
     paraId: 3345,
     providers: {
     },
@@ -246,6 +261,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://equilibrium.io/',
     info: 'equilibrium',
+    isDisabled: true,
     paraId: 2011,
     providers: {
       Dwellir: 'wss://equilibrium-rpc.dwellir.com'
@@ -261,6 +277,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://frequency.xyz',
     info: 'frequency',
+    isDisabled: true,
     paraId: 2091,
     providers: {
       Dwellir: 'wss://frequency-rpc.dwellir.com',
@@ -277,6 +294,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://geminis.network/',
     info: 'geminis',
+    isDisabled: true,
     isUnreachable: true,
     paraId: 2038,
     providers: {
@@ -290,6 +308,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://hashed.network/',
     info: 'hashed',
+    isDisabled: true,
     paraId: 2093,
     providers: {
       'Hashed Systems 1': 'wss://c1.hashed.live',
@@ -305,6 +324,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://hydradx.io/',
     info: 'hydradx',
+    isDisabled: true,
     paraId: 2034,
     providers: {
       Dwellir: 'wss://hydradx-rpc.dwellir.com',
@@ -321,6 +341,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://integritee.network',
     info: 'integritee',
+    isDisabled: true,
     paraId: 2039,
     providers: {
       // Dwellir: 'wss://integritee-rpc.dwellir.com' // https://github.com/polkadot-js/apps/issues/10006
@@ -336,6 +357,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://interlay.io/',
     info: 'interlay',
+    isDisabled: true,
     paraId: 2032,
     providers: {
       Dwellir: 'wss://interlay-rpc.dwellir.com',
@@ -352,6 +374,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://invarch.network/',
     info: 'invarch',
+    isDisabled: true,
     paraId: 3340,
     providers: {
       Dwellir: 'wss://invarch-rpc.dwellir.com'
@@ -365,6 +388,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://totemaccounting.com/',
     info: 'kapex',
+    isDisabled: true,
     paraId: 2007,
     providers: {
       Dwellir: 'wss://kapex-rpc.dwellir.com'
@@ -380,6 +404,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.kilt.io/',
     info: 'kilt',
+    isDisabled: true,
     paraId: 2086,
     providers: {
       BOTLabs: 'wss://spiritnet.kilt.io/',
@@ -395,6 +420,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://kylin.network/',
     info: 'kylin',
+    isDisabled: true,
     paraId: 2052,
     providers: {
       // 'Kylin Network': 'wss://polkadot.kylin-node.co.uk' // https://github.com/polkadot-js/apps/issues/10030
@@ -408,6 +434,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.litentry.com/',
     info: 'litentry',
+    isDisabled: true,
     paraId: 2013,
     providers: {
       Dwellir: 'wss://litentry-rpc.dwellir.com',
@@ -423,6 +450,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://logion.network/',
     info: 'logion',
+    isDisabled: true,
     paraId: 3354,
     providers: {},
     text: 'Logion',
@@ -434,6 +462,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://manta.network',
     info: 'manta',
+    isDisabled: true,
     paraId: 2104,
     providers: {
       'Manta Network': 'wss://ws.manta.systems'
@@ -448,6 +477,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://moonbeam.network/networks/moonbeam/',
     info: 'moonbeam',
+    isDisabled: true,
     paraId: 2004,
     providers: {
       'Automata 1RPC': 'wss://1rpc.io/glmr',
@@ -465,6 +495,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://moonsama.com',
     info: 'moonsama',
+    isDisabled: true,
     paraId: 3334,
     providers: {
       Moonsama: 'wss://rpc.moonsama.com/ws'
@@ -478,6 +509,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://nodle.com',
     info: 'nodle',
+    isDisabled: true,
     paraId: 2026,
     providers: {
       Dwellir: 'wss://eden-rpc.dwellir.com',
@@ -492,6 +524,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://oak.tech',
     info: 'oak',
+    isDisabled: true,
     isUnreachable: true,
     paraId: 2090,
     providers: {
@@ -506,6 +539,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.omnibtc.finance',
     info: 'omnibtc',
+    isDisabled: true,
     isUnreachable: true,
     paraId: 2053,
     providers: {
@@ -520,6 +554,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://parachain.origintrail.io',
     info: 'origintrail-parachain',
+    isDisabled: true,
     paraId: 2043,
     providers: {
       Dwellir: 'wss://origintrail-rpc.dwellir.com',
@@ -535,6 +570,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://parallel.fi',
     info: 'parallel',
+    isDisabled: true,
     paraId: 2012,
     providers: {
       Dwellir: 'wss://parallel-rpc.dwellir.com',
@@ -550,6 +586,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://peaq.network/',
     info: 'peaq',
+    isDisabled: true,
     paraId: 3338,
     providers: {},
     text: 'peaq',
@@ -560,6 +597,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://pendulumchain.org/',
     info: 'pendulum',
+    isDisabled: true,
     paraId: 2094,
     providers: {
       Dwellir: 'wss://pendulum-rpc.dwellir.com',
@@ -574,6 +612,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://phala.network',
     info: 'phala',
+    isDisabled: true,
     paraId: 2035,
     providers: {
       Dwellir: 'wss://phala-rpc.dwellir.com',
@@ -589,6 +628,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://polkadex.trade/',
     info: 'polkadex',
+    isDisabled: true,
     paraId: 2040,
     providers: {
       Dwellir: 'wss://polkadex-rpc.dwellir.com',
@@ -604,6 +644,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://sora.org/',
     info: 'sora',
+    isDisabled: true,
     paraId: 2025,
     providers: {
       // Soramitsu: 'wss://ws.framenode-1.r0.sora2.soramitsu.co.jp'
@@ -617,6 +658,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://subdao.network/',
     info: 'subdao',
+    isDisabled: true,
     isUnreachable: true,
     paraId: 2018,
     providers: {
@@ -631,6 +673,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'http://subgame.org/',
     info: 'subgame',
+    isDisabled: true,
     paraId: 2017,
     providers: {
       // SubGame: 'wss://gamma.subgame.org/' // https://github.com/polkadot-js/apps/pull/6761
@@ -644,6 +687,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://subsocial.network/',
     info: 'subsocial',
+    isDisabled: true,
     paraId: 2101,
     providers: {
       Dappforce: 'wss://para.subsocial.network'
@@ -658,6 +702,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.t3rn.io/',
     info: 't3rn',
+    isDisabled: true,
     paraId: 3333,
     providers: {
       t3rn: 'wss://ws.t3rn.io'
@@ -671,6 +716,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://unique.network/',
     info: 'unique',
+    isDisabled: true,
     paraId: 2037,
     providers: {
       Dwellir: 'wss://unique-rpc.dwellir.com',
@@ -689,6 +735,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.watr.org/',
     info: 'watr',
+    isDisabled: true,
     paraId: 2058,
     providers: {
       Watr: 'wss://watr-rpc.watr-api.network'
@@ -702,6 +749,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://zeitgeist.pm',
     info: 'zeitgeist',
+    isDisabled: true,
     paraId: 2092,
     providers: {
       Dwellir: 'wss://zeitgeist-rpc.dwellir.com',
@@ -719,6 +767,7 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
 export const prodParasPolkadotCommon: EndpointOption[] = [
   {
     info: 'PolkadotAssetHub',
+    isDisabled: true,
     paraId: 1000,
     providers: {
       Dwellir: 'wss://statemint-rpc.dwellir.com',
@@ -740,6 +789,7 @@ export const prodParasPolkadotCommon: EndpointOption[] = [
   },
   {
     info: 'polkadotBridgeHub',
+    isDisabled: true,
     paraId: 1002,
     providers: {
       Dwellir: 'wss://polkadot-bridge-hub-rpc.dwellir.com',
@@ -758,6 +808,7 @@ export const prodParasPolkadotCommon: EndpointOption[] = [
   },
   {
     info: 'polkadotCollectives',
+    isDisabled: true,
     paraId: 1001,
     providers: {
       Dwellir: 'wss://polkadot-collectives-rpc.dwellir.com',
@@ -783,6 +834,7 @@ export const prodRelayPolkadot: EndpointOption = {
   dnslink: 'polkadot',
   genesisHash: POLKADOT_GENESIS,
   info: 'polkadot',
+  isDisabled: true,
   linked: [
     ...prodParasPolkadotCommon,
     ...prodParasPolkadot
