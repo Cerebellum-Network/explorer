@@ -47,8 +47,8 @@ import equilibrium from './equilibrium.js';
 import fantour from './fantour.js';
 // See https://github.com/polkadot-js/apps/pull/9243
 // import fragnova from './fragnova.js';
-// See https://github.com/polkadot-js/apps/pull/9243
-// import frequency from './frequency.js';
+import ferrum from './ferrum.js';
+import frequency from './frequency.js';
 import galital from './galital.js';
 import galitalParachain from './galital-parachain.js';
 import galois from './galois.js';
@@ -90,6 +90,8 @@ import pangolin from './pangolin.js';
 import pangoro from './pangoro.js';
 import parallel from './parallel.js';
 import parami from './parami.js';
+import peaq from './peaq.js';
+import pendulum from './pendulum.js';
 import phoenix from './phoenix.js';
 import pichiu from './pichiu.js';
 import polkadex from './polkadex.js';
@@ -143,7 +145,6 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'Darwinia PC2': pangolin,
   Equilibrium: equilibrium,
   Genshiro: genshiro,
-  'Genshiro Rococo Testnet': genshiro,
   Pangolin: pangolin,
   Pangoro: pangoro,
   VLN: vln,
@@ -151,6 +152,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   ...acala,
   ajuna,
   altair,
+  amplitude: pendulum,
   apron,
   'ares-gladios': aresGladios,
   'ares-mars': aresParachain,
@@ -196,9 +198,10 @@ const spec: Record<string, OverrideBundleDefinition> = {
   // See https://github.com/polkadot-js/apps/pull/9243
   // fragnova,
   // 'fragnova-testnet': fragnova,
-  // See https://github.com/polkadot-js/apps/pull/9243
-  // frequency,
-  // 'frequency-rococo': frequency,
+  'ferrum-parachain': ferrum,
+  foucoco: pendulum,
+  frequency,
+  'frequency-rococo': frequency,
   galital,
   'galital-collator': galitalParachain,
   gamepower,
@@ -217,6 +220,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'jupiter-prep': jupiter,
   'jupiter-rococo': jupiterRococo,
   'jur-chain': jur,
+  'jur-node': jur,
   kerria: parallel,
   khala,
   'kintsugi-parachain': interbtc,
@@ -250,6 +254,10 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'origintrail-parachain': origintrail,
   parallel,
   parami,
+  'peaq-node': peaq,
+  'peaq-node-dev': peaq,
+  'peaq-node-krest': peaq,
+  pendulum,
   'phoenix-node': phoenix,
   'phoenix-parachain': phoenix,
   pichiu,
@@ -258,6 +266,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   polymesh_testnet: polymeshTestnet,
   'pontem-node': pontem,
   prism,
+  'quantum-portal-network-parachain': ferrum,
   quartz,
   realis,
   'riochain-runtime': riochain,
@@ -269,6 +278,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   snowbridge,
   'sora-substrate': soraSubstrate,
   sora_ksm: soraSubstrate,
+  'spacewalk-standalone': pendulum,
   spanner,
   stafi,
   standard,

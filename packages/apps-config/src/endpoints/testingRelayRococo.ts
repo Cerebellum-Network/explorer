@@ -4,8 +4,8 @@
 import type { EndpointOption } from './types.js';
 
 import { ROCOCO_GENESIS } from '../api/constants.js';
-import { chainsAcurastPNG, chainsAmplitudeSVG, chainsBitgreenPNG, chainsFrequencySVG, chainsGenshiroSVG, chainsHydratePNG, chainsIdiyanaleLogoWhiteSVG, chainsJurPNG, chainsMangataPNG, chainsMoonsamaPNG, chainsOrigintrailTestnetPNG, chainsRococoSVG, chainsSnowbridgePNG, chainsT0rnPNG, chainsTanglePNG, chainsTinkerPNG, chainsTotemSVG, chainsTuringPNG, chainsVirtoPNG, chainsWatrPNG } from '../ui/logos/chains/index.js';
-import { nodesArcticPNG, nodesAventusSVG, nodesBajunPNG, nodesBasiliskPNG, nodesBasiliskRococoBgPNG, nodesBifrostSVG, nodesBridgeHubBlackSVG, nodesCentrifugePNG, nodesConftiSVG, nodesCrustParachainSVG, nodesDatahighwayPNG, nodesDolphinSVG, nodesEncointerBlueSVG, nodesGiantPNG, nodesHelixstreetPNG, nodesImbuePNG, nodesIntegriteeSVG, nodesKabochaSVG, nodesKiltPNG, nodesLitentryRococoPNG, nodesMd5PNG, nodesNodleSVG, nodesOliSVG, nodesPangolinSVG, nodesPicassoPNG, nodesPolkadexSVG, nodesRobonomicsSVG, nodesRocfinitySVG, nodesSoonsocialXPNG, nodesSoraSubstrateSVG, nodesStatemineSVG, nodesSubstrateContractsNodePNG, nodesUnitnetworkPNG, nodesZeitgeistPNG, nodesZeroSVG } from '../ui/logos/nodes/index.js';
+import { chainsAcurastPNG, chainsAmplitudeSVG, chainsBitgreenPNG, chainsFrequencySVG, chainsGenshiroSVG, chainsHydratePNG, chainsIdiyanaleLogoWhiteSVG, chainsJurPNG, chainsMangataPNG, chainsMoonsamaPNG, chainsOrigintrailTestnetPNG, chainsRococoSVG, chainsSnowbridgePNG, chainsT0rnPNG, chainsTinkerPNG, chainsTotemSVG, chainsTuringPNG, chainsVirtoPNG, chainsWatrPNG } from '../ui/logos/chains/index.js';
+import { nodesArcticPNG, nodesAssetHubSVG, nodesAventusSVG, nodesBajunPNG, nodesBasiliskPNG, nodesBasiliskRococoBgPNG, nodesBifrostSVG, nodesBridgeHubBlackSVG, nodesCentrifugePNG, nodesConftiSVG, nodesCrustParachainSVG, nodesDatahighwayPNG, nodesDolphinSVG, nodesEncointerBlueSVG, nodesGiantPNG, nodesHelixstreetPNG, nodesImbuePNG, nodesIntegriteeSVG, nodesKabochaSVG, nodesKiltPNG, nodesLitentryRococoPNG, nodesMd5PNG, nodesMetaquityNetworkPNG, nodesNodleSVG, nodesOliSVG, nodesPangolinSVG, nodesPhalaSVG, nodesPicassoPNG, nodesPolkadexSVG, nodesRexSVG, nodesRobonomicsSVG, nodesRocfinitySVG, nodesSocietalSVG, nodesSoonsocialXPNG, nodesSoraSubstrateSVG, nodesSubstrateContractsNodePNG, nodesTrappistRococoPNG, nodesUnitnetworkPNG, nodesYerbanetworkPNG, nodesZeitgeistPNG, nodesZeroSVG } from '../ui/logos/nodes/index.js';
 import { getTeleports } from './util.js';
 
 // The available endpoints that will show in the dropdown. For the most part (with the exception of
@@ -17,10 +17,12 @@ import { getTeleports } from './util.js';
 // IMPORTANT: Alphabetical based on text
 export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
+    homepage: 'https://acurast.com',
     info: 'rococoAcurast',
-    paraId: 4191,
+    isDisabled: true,
+    paraId: 2239,
     providers: {
-      Acurast: 'wss://ws.acurast-rococo.diamond.papers.tech'
+      Acurast: 'wss://acurast-testnet-ws.prod.gke.papers.tech'
     },
     text: 'Acurast Testnet',
     ui: {
@@ -30,6 +32,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoAmplitude',
+    isDisabled: true,
     paraId: 2124,
     providers: {
       PendulumChain: 'wss://rpc-foucoco.pendulumchain.tech'
@@ -42,6 +45,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'arctic',
+    isDisabled: true,
     paraId: 3015,
     providers: {
       // Arctic: 'wss://arctic-rococo-rpc.icenetwork.io' // https://github.com/polkadot-js/apps/issues/9224
@@ -54,6 +58,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.aventus.io/',
     info: 'rococoAventus',
+    isDisabled: true,
     paraId: 2056,
     providers: {
       Aventus: 'wss://public-rpc.public-testnet.aventus.io'
@@ -66,6 +71,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoBajun',
+    isDisabled: true,
     paraId: 2119,
     providers: {
       AjunaNetwork: 'wss://rpc-rococo.bajun.network'
@@ -78,9 +84,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoBasilisk',
+    isDisabled: true,
     paraId: 2090,
     providers: {
-      'Galactic Council': 'wss://rococo-basilisk-rpc.hydration.dev'
+      'Galactic Council': 'wss://basilisk-rococo-rpc.play.hydration.cloud'
     },
     text: 'Basilisk',
     ui: {
@@ -90,6 +97,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoBifrost',
+    isDisabled: true,
     paraId: 2030,
     providers: {
       Liebi: 'wss://bifrost-rpc.rococo.liebi.com/ws'
@@ -102,9 +110,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoBitgreen',
+    isDisabled: true,
     paraId: 20048,
     providers: {
-      Bitgreen: 'wss://staging.bitgreen.org'
+      // Bitgreen: 'wss://staging.bitgreen.org' // https://github.com/polkadot-js/apps/issues/9369
     },
     text: 'Bitgreen',
     ui: {
@@ -114,9 +123,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoCatalyst',
+    isDisabled: true,
     paraId: 2031,
     providers: {
-      Centrifuge: 'wss://fullnode.catalyst.cntrfg.com'
+      // Centrifuge: 'wss://fullnode.catalyst.cntrfg.com' // https://github.com/polkadot-js/apps/issues/9748
     },
     text: 'Catalyst',
     ui: {
@@ -125,6 +135,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoConfti',
+    isDisabled: true,
     paraId: 4094,
     providers: {
       // Confti: 'wss://ws.confti.club' // https://github.com/polkadot-js/apps/issues/8036
@@ -136,6 +147,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoCrust',
+    isDisabled: true,
     paraId: 2012,
     providers: {
       // Crust: 'wss://rococo-csm.crustcode.com/' // https://github.com/polkadot-js/apps/issues/9025
@@ -147,6 +159,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoDolphin',
+    isDisabled: true,
     paraId: 2084,
     providers: {
       // 'Manta Network': 'wss://ws.rococo.dolphin.engineering' // https://github.com/polkadot-js/apps/issues/9071
@@ -158,9 +171,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoEthos',
+    isDisabled: true,
     paraId: 2095,
     providers: {
-      Jur: 'wss://ethos.jur.io'
+      // Jur: 'wss://ethos.jur.io' // https://github.com/polkadot-js/apps/issues/10025
     },
     text: 'Ethos',
     ui: {
@@ -170,8 +184,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoFrequency',
+    isDisabled: true,
     paraId: 4044,
     providers: {
+      Dwellir: 'wss://frequency-rococo-rpc.dwellir.com',
       Frequency: 'wss://rpc.rococo.frequency.xyz'
     },
     text: 'Frequency',
@@ -182,6 +198,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoGenshiro',
+    isDisabled: true,
     paraId: 2024,
     providers: {
       // Equilibrium: 'wss://parachain-testnet.equilab.io/rococo/collator/node1/wss' // https://github.com/polkadot-js/apps/issues/9059
@@ -194,6 +211,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'giantTestnet',
+    isDisabled: true,
     paraId: 4227,
     providers: {
       // GIANT: 'wss://rpc-1-us-east-1-testnetrococo.giantprotocol.org' // https://github.com/polkadot-js/apps/issues/9261
@@ -206,6 +224,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'helixstreet',
+    isDisabled: true,
     paraId: 3025,
     providers: {
       // Helixstreet: 'wss://rpc-rococo.helixstreet.io' // https://github.com/polkadot-js/apps/issues/9296
@@ -217,9 +236,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoHydraDX',
+    isDisabled: true,
     paraId: 2034,
     providers: {
-      'Galactic Council': 'wss://rococo-hydradx-rpc.hydration.dev'
+      'Galactic Council': 'wss://hydradx-rococo-rpc.play.hydration.cloud'
     },
     text: 'HydraDX',
     ui: {
@@ -229,6 +249,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoIdiyanale',
+    isDisabled: true,
     paraId: 4222,
     providers: {
       // 'Anagolay Network': 'wss://rococo.rpc.idiyanale.anagolay.io' // https://github.com/polkadot-js/apps/issues/9292
@@ -241,9 +262,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoImbue',
+    isDisabled: true,
     paraId: 2121,
     providers: {
-      // 'Imbue Network': 'wss://rococo.imbue.network' // https://github.com/polkadot-js/apps/issues/9075
+      // 'Imbue Network': 'wss://rococo.imbue.network' // https://github.com/polkadot-js/apps/issues/9947
     },
     text: 'Imbue Network',
     ui: {
@@ -253,6 +275,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoIntegritee',
+    isDisabled: true,
     paraId: 3002,
     providers: {
       Integritee: 'wss://rococo.api.integritee.network'
@@ -265,6 +288,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoKabocha',
+    isDisabled: true,
     paraId: 2113,
     providers: {
       // JelliedOwl: 'wss://kabsoup1.jelliedowl.com' // https://github.com/polkadot-js/apps/issues/9059
@@ -278,6 +302,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://polkadex.trade',
     info: 'rococoKaizen',
+    isDisabled: true,
     paraId: 2040,
     providers: {
       // 'Polkadex Team': 'wss://kaizen-parachain.polkadex.trade' // https://github.com/polkadot-js/apps/issues/9059
@@ -291,6 +316,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.litentry.com/',
     info: 'rococoLitentry',
+    isDisabled: true,
     paraId: 2106,
     providers: {
       Litentry: 'wss://rpc.rococo-parachain-sg.litentry.io'
@@ -303,9 +329,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoMangata',
+    isDisabled: true,
     paraId: 2110,
     providers: {
-      Mangata: 'wss://roccoco-testnet-collator-01.mangatafinance.cloud'
+      // Mangata: 'wss://collator-01-ws-rococo.mangata.online' // https://github.com/polkadot-js/apps/issues/10028
     },
     text: 'Mangata',
     ui: {
@@ -315,9 +342,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoMd5',
-    paraId: 2089,
+    isDisabled: true,
+    paraId: 2093,
     providers: {
-      // 'Hashed Systems': 'wss://c1.md5.network' // https://github.com/polkadot-js/apps/issues/9059
+      'Hashed Systems': 'wss://c1.md5.hashed.live'
     },
     text: 'MD5 Network',
     ui: {
@@ -326,7 +354,22 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    homepage: 'https://www.metaquity.xyz/',
+    info: 'rococoMetaquity-network',
+    isDisabled: true,
+    paraId: 4304,
+    providers: {
+      Metaquity: 'wss://rpc.rococo-testnet.metaquity.xyz'
+    },
+    text: 'Metaquity Network',
+    ui: {
+      color: '#4034AB',
+      logo: nodesMetaquityNetworkPNG
+    }
+  },
+  {
     info: 'rococoMoonsama',
+    isDisabled: true,
     paraId: 2055,
     providers: {
       // Moonsama: 'wss://moonsama-testnet-rpc.moonsama.com' // https://github.com/polkadot-js/apps/issues/7526
@@ -339,9 +382,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoNodle',
+    isDisabled: true,
     paraId: 2026,
     providers: {
-      OnFinality: 'wss://nodle-paradis.api.onfinality.io/public-ws'
+      OnFinality: 'wss://node-6957502816543653888.lh.onfinality.io/ws?apikey=09b04494-3139-4b57-a5d1-e1c4c18748ce'
     },
     text: 'Nodle',
     ui: {
@@ -352,6 +396,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://www.my-oli.com/en/',
     info: 'chainoli',
+    isDisabled: true,
     paraId: 4023,
     providers: {},
     text: 'OLI',
@@ -363,6 +408,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://parachain.origintrail.io',
     info: 'rococoOriginTrailParachain',
+    isDisabled: true,
     paraId: 2043,
     providers: {
       TraceLabs: 'wss://parachain-testnet-rpc.origin-trail.network/'
@@ -375,11 +421,12 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoPangolin',
+    isDisabled: true,
     paraId: 2105,
     providers: {
       'Darwinia Network': 'wss://pangolin-rpc.darwinia.network'
     },
-    text: 'Pangolin 2',
+    text: 'Pangolin2',
     ui: {
       color: '#4B30DD',
       logo: nodesPangolinSVG
@@ -387,6 +434,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoPicasso',
+    isDisabled: true,
     paraId: 2087,
     providers: {
       Composable: 'wss://picasso-rococo-rpc-lb.composablenodes.tech'
@@ -398,10 +446,36 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'rococoEwx',
+    isDisabled: true,
+    paraId: 3345,
+    providers: {
+      'Energy Web': 'wss://public-rpc.testnet.energywebx.com/'
+    },
+    text: 'REX',
+    ui: {
+      color: '#452E66',
+      logo: nodesRexSVG
+    }
+  },
+  {
+    info: 'rococoPhala',
+    isDisabled: true,
+    paraId: 2004,
+    providers: {
+      'Phala Network': 'wss://rhala-node.phala.network/ws'
+    },
+    text: 'Rhala Testnet',
+    ui: {
+      logo: nodesPhalaSVG
+    }
+  },
+  {
     info: 'rococoKilt',
+    isDisabled: true,
     paraId: 2086,
     providers: {
-      'KILT Protocol': 'wss://rococo.kilt.io'
+      // 'KILT Protocol': 'wss://rococo.kilt.io' // https://github.com/polkadot-js/apps/issues/9338
     },
     text: 'RILT',
     ui: {
@@ -412,9 +486,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'http://robonomics.network/',
     info: 'robonomics',
+    isDisabled: true,
     paraId: 2048,
     providers: {
-      Airalab: 'wss://rococo.rpc.robonomics.network'
+      // Airalab: 'wss://rococo.rpc.robonomics.network' // https://github.com/polkadot-js/apps/issues/9319
     },
     text: 'Robonomics',
     ui: {
@@ -424,6 +499,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rocfinity',
+    isDisabled: true,
     paraId: 2021,
     providers: {
       // Efinity: 'wss://rpc.rococo.efinity.io' // https://github.com/polkadot-js/apps/issues/9059
@@ -435,18 +511,45 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
-    info: 'snowbridge',
-    paraId: 3016,
+    info: 'snowbridgeAssetHub',
+    isDisabled: true,
+    paraId: 3416,
     providers: {
-      // Snowfork: 'wss://rococo-rpc.snowbridge.network' // https://github.com/polkadot-js/apps/issues/8723
+      Snowfork: 'wss://rococo-rpc.snowbridge.network/assethub'
     },
-    text: 'Snowbridge',
+    text: 'Snowbridge Asset Hub',
     ui: {
       logo: chainsSnowbridgePNG
     }
   },
   {
+    info: 'snowbridgeBridgeHub',
+    isDisabled: true,
+    paraId: 3016,
+    providers: {
+      Snowfork: 'wss://rococo-rpc.snowbridge.network/bridgehub'
+    },
+    text: 'Snowbridge Bridge Hub',
+    ui: {
+      logo: chainsSnowbridgePNG
+    }
+  },
+  {
+    info: 'rococoSocietal',
+    isDisabled: true,
+    paraId: 4253,
+    providers: {
+      // Societal: 'wss://node-ws-rococo.testnet.sctl.link' // https://github.com/polkadot-js/apps/issues/9748
+    },
+    text: 'Societal',
+    ui: {
+      color: '#501254',
+      logo: nodesSocietalSVG
+    }
+  },
+  {
     info: 'rococoSubsocial',
+    isDisabled: true,
     paraId: 2100,
     providers: {
       DappForce: 'wss://rco-para.subsocial.network'
@@ -459,6 +562,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoSora',
+    isDisabled: true,
     paraId: 2011,
     providers: {
       Soramitsu: 'wss://ws.parachain-collator-1.c1.stg1.sora2.soramitsu.co.jp'
@@ -471,9 +575,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoSpreehafen',
+    isDisabled: true,
     paraId: 2116,
     providers: {
-      DataHighway: 'wss://spreehafen.datahighway.com'
+      // DataHighway: 'wss://spreehafen.datahighway.com' // https://github.com/polkadot-js/apps/issues/9601
     },
     text: 'Spreehafen',
     ui: {
@@ -484,6 +589,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   {
     homepage: 'https://totemaccounting.com/',
     info: 'stagex',
+    isDisabled: true,
     paraId: 2007,
     providers: {
       // Totem: 'wss://s-ui.kapex.network' // https://github.com/polkadot-js/apps/issues/9286
@@ -496,9 +602,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoSubzero',
+    isDisabled: true,
     paraId: 4040,
     providers: {
-      ZERO: 'wss://staging.para.sub.zero.io'
+      // ZERO: 'wss://staging.para.sub.zero.io' // https://github.com/polkadot-js/apps/issues/9522
     },
     text: 'Subzero',
     ui: {
@@ -507,9 +614,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 't0rn',
+    isDisabled: true,
     paraId: 3333,
     providers: {
-      t3rn: 'wss://ws.t0rn.io'
+      t3rn: 'wss://rpc.t0rn.io'
     },
     text: 't0rn',
     ui: {
@@ -518,19 +626,8 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
-    info: 'tangle',
-    paraId: 4006,
-    providers: {
-      // Webb: 'wss://tangle-rococo-archive.webb.tools' // https://github.com/polkadot-js/apps/issues/9069
-    },
-    text: 'Tangle',
-    ui: {
-      color: '#483d8b',
-      logo: chainsTanglePNG
-    }
-  },
-  {
     info: 'rococoTinkernet',
+    isDisabled: true,
     paraId: 2125,
     providers: {
       // 'InvArch Team': 'wss://rococo.invarch.network' // https://github.com/polkadot-js/apps/issues/8266
@@ -542,7 +639,21 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'rococoTrappist',
+    isDisabled: true,
+    paraId: 1836,
+    providers: {
+      Parity: 'wss://rococo-trappist-rpc.polkadot.io'
+    },
+    text: 'Trappist',
+    ui: {
+      color: '#000000',
+      logo: nodesTrappistRococoPNG
+    }
+  },
+  {
     info: 'rococoTuring',
+    isDisabled: true,
     paraId: 2114,
     providers: {
       OAK: 'wss://rpc.turing-staging.oak.tech'
@@ -555,9 +666,10 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoUnitNetwork',
+    isDisabled: true,
     paraId: 4168,
     providers: {
-      UnitNetwork: 'wss://www.unitnode3.info:443'
+      // UnitNetwork: 'wss://www.unitnode3.info:443' // https://github.com/polkadot-js/apps/issues/9609
     },
     text: 'Unit Network',
     ui: {
@@ -567,6 +679,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoVirto',
+    isDisabled: true,
     paraId: 3003,
     providers: {
       // VirtoNetwork: 'wss://rococo.virtonetwork.xyz' // https://github.com/polkadot-js/apps/issues/8024
@@ -579,6 +692,7 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'rococoWatr',
+    isDisabled: true,
     paraId: 2058,
     providers: {
       Watr: 'wss://rpc.dev.watr.org'
@@ -590,7 +704,21 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'rococoYerba',
+    isDisabled: true,
+    paraId: 4292,
+    providers: {
+      Yerba: 'wss://rpc.dev.yerba.network'
+    },
+    text: 'Yerba Network',
+    ui: {
+      color: '#4f6f4b',
+      logo: nodesYerbanetworkPNG
+    }
+  },
+  {
     info: 'rococoZeitgeist',
+    isDisabled: true,
     paraId: 2101,
     providers: {
       Zeitgeist: 'wss://bsr.zeitgeist.pm'
@@ -605,20 +733,37 @@ export const testParasRococo: Omit<EndpointOption, 'teleport'>[] = [
 
 export const testParasRococoCommon: EndpointOption[] = [
   {
-    info: 'rococoStatemint',
+    info: 'RococoAssetHub',
+    isDisabled: true,
     paraId: 1000,
     providers: {
-      Parity: 'wss://rococo-rockmine-rpc.polkadot.io'
+      Dwellir: 'wss://rococo-asset-hub-rpc.dwellir.com',
+      Parity: 'wss://rococo-asset-hub-rpc.polkadot.io'
     },
     teleport: [-1],
-    text: 'Rockmine',
+    text: 'AssetHub',
     ui: {
       color: '#77bb77',
-      logo: nodesStatemineSVG
+      logo: nodesAssetHubSVG
+    }
+  },
+  {
+    info: 'rococoBridgehub',
+    isDisabled: true,
+    paraId: 1013,
+    providers: {
+      Dwellir: 'wss://rococo-bridge-hub-rpc.dwellir.com',
+      Parity: 'wss://rococo-bridge-hub-rpc.polkadot.io'
+    },
+    teleport: [-1],
+    text: 'Bridgehub',
+    ui: {
+      logo: nodesBridgeHubBlackSVG
     }
   },
   {
     info: 'rococoContracts',
+    isDisabled: true,
     paraId: 1002,
     providers: {
       Parity: 'wss://rococo-contracts-rpc.polkadot.io'
@@ -633,6 +778,7 @@ export const testParasRococoCommon: EndpointOption[] = [
   {
     homepage: 'https://encointer.org/',
     info: 'encointer',
+    isDisabled: true,
     paraId: 1003,
     providers: {
       'Encointer Association': 'wss://rococo.api.encointer.org'
@@ -642,18 +788,6 @@ export const testParasRococoCommon: EndpointOption[] = [
     ui: {
       color: '#0000cc',
       logo: nodesEncointerBlueSVG
-    }
-  },
-  {
-    info: 'rococoBridgehub',
-    paraId: 1013,
-    providers: {
-      Parity: 'wss://rococo-bridge-hub-rpc.polkadot.io'
-    },
-    teleport: [-1],
-    text: 'Bridgehub',
-    ui: {
-      logo: nodesBridgeHubBlackSVG
     }
   }
 ];
@@ -666,6 +800,7 @@ export const testRelayRococo: EndpointOption = {
     ...testParasRococoCommon,
     ...testParasRococo
   ],
+  isDisabled: true,
   providers: {
     Parity: 'wss://rococo-rpc.polkadot.io',
     // 'Ares Protocol': 'wss://rococo.aresprotocol.com' // https://github.com/polkadot-js/apps/issues/5767
@@ -675,6 +810,7 @@ export const testRelayRococo: EndpointOption = {
   text: 'Rococo',
   ui: {
     color: '#6f36dc',
+    identityIcon: 'polkadot',
     logo: chainsRococoSVG
   }
 };

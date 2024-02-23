@@ -3,8 +3,12 @@
 ## vNext
 ...
 
+
+## 0.28.0
+- Update to Polkadot-JS Apps 0.133.1 and Substrate Node v1.0.0
+
 ## 0.27.0
-- Update to Polkadot-JS Apps 0.126.1 and Substrate Node v0.9.36
+- Update to Polkadot-JS Apps 0.126.1 and Substrate Node v0.9.36-0.9.43
 
 ## 0.26.0
 - Update to Polkadot-JS Apps 0.121.2-127-x and Substrate Node v0.9.30
