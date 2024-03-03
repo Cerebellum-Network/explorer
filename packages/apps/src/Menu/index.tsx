@@ -1,7 +1,7 @@
 // Copyright 2017-2023 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
-import type {Route, Routes, TFunction} from '@polkadot/apps-routing/types';
+import type { Route, Routes } from '@polkadot/apps-routing/types';
 import type { ApiProps } from '@polkadot/react-api/types';
 import type { AccountId } from '@polkadot/types/interfaces';
 import type { Group, Groups, ItemRoute } from './types.js';
@@ -24,11 +24,11 @@ interface Props {
   className?: string;
 }
 
-function createExternals (t: TFunction): ItemRoute[] {
-    return [
-      { href: 'https://portal.cere.network', icon: 'book', name: 'Home', text: t<string>('nav.home', 'Community Portal', { ns: 'apps-routing' }) }
-    ];
-  }
+function createExternals (t: (key: string, optionsOrText?: string | { replace: Record<string, unknown> }, options?: { ns: string }) => string): ItemRoute[] {
+  return [
+    { href: 'https://portal.cere.network', icon: 'book', name: 'Home', text: t('nav.home', 'Community Portal', { ns: 'apps-routing' }) }
+  ];
+}
 
 function checkVisible ({ api, isApiConnected, isApiReady, isDevelopment: isApiDevelopment }: ApiProps, allowTeleport: boolean, hasAccounts: boolean, hasSudo: boolean, { isDevelopment, isHidden, needsAccounts, needsApi, needsApiCheck, needsApiInstances, needsSudo, needsTeleport }: Route['display']): boolean {
   if (isHidden) {
