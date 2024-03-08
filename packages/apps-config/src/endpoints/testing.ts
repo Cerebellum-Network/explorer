@@ -153,7 +153,6 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'cere',
     providers: {
       'Cere Network': 'wss://archive.testnet.cere.network/ws',
-      'Republic Crypto | Runtime': 'wss://testnet.cere-archive.republiccrypto-runtime.com:444'
     },
     text: 'Cere Network Testnet',
     ui: {
