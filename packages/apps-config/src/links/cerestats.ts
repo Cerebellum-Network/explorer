@@ -2,27 +2,24 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
+import type { ExternalDef } from './types.js';
 
 import { externalCerestatsPNG } from '../ui/logos/external/index.js';
-import { nodesCereSVG } from '../ui/logos/nodes/index.js';
 
-export default {
+export const CereStats: ExternalDef = {
   chains: {
     'Cere Mainnet Beta': 'cere'
   },
-  create: (_chain: string, path: string, data: BN | number | string): string =>
+  create: (_: string, path: string, data: BN | number | string): string =>
     `https://stats.cere.network/${path}/${data.toString()}`,
+  homepage: 'https://stats.cere.network',
   isActive: true,
-  logo: externalCerestatsPNG as string,
   paths: {
     address: 'account',
     block: 'block',
     validator: 'validator'
   },
-  url: 'https://stats.cere.network',
-  homepage: 'https://https://cere.network/',
   ui: {
-    color: '#B7AEFF',
-    logo: nodesCereSVG
+    logo: externalCerestatsPNG
   }
 };

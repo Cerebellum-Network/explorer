@@ -3,6 +3,7 @@
 
 import type { SubmittableExtrinsic } from '@polkadot/api/types';
 import type { CodeSubmittableResult } from '@polkadot/api-contract/promise/types';
+import type { BN } from '@polkadot/util';
 
 import React, { useCallback, useEffect, useMemo, useState } from 'react';
 
@@ -11,7 +12,7 @@ import { Button, Dropdown, InputAddress, InputBalance, InputFile, MarkError, Mod
 import { useAccountId, useApi, useFormField, useNonEmptyString, useStepper } from '@polkadot/react-hooks';
 import { Available } from '@polkadot/react-query';
 import { keyring } from '@polkadot/ui-keyring';
-import { BN, BN_ZERO, isNull, isWasm, stringify } from '@polkadot/util';
+import { BN_ZERO, isNull, isWasm, stringify } from '@polkadot/util';
 
 import { ABI, InputMegaGas, InputName, MessageSignature, Params } from '../shared/index.js';
 import store from '../store.js';
@@ -151,7 +152,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
 
   return (
     <Modal
-      header={t<string>('Upload & deploy code {{info}}', { replace: { info: `${step}/2` } })}
+      header={t('Upload & deploy code {{info}}', { replace: { info: `${step}/2` } })}
       onClose={onClose}
     >
       <Modal.Content>
@@ -159,10 +160,10 @@ function Upload ({ onClose }: Props): React.ReactElement {
           <>
             <InputAddress
               isInput={false}
-              label={t<string>('deployment account')}
+              label={t('deployment account')}
               labelExtra={
                 <Available
-                  label={t<string>('transferrable')}
+                  label={t('transferrable')}
                   params={accountId}
                 />
               }
@@ -176,7 +177,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
               isError={invalidAbi}
               isSupplied={isAbiSupplied}
               isValid={isAbiValid}
-              label={t<string>('json for either ABI or .contract bundle')}
+              label={t('json for either ABI or .contract bundle')}
               onChange={onChangeAbi}
               onRemove={onRemoveAbi}
               withWasm
@@ -186,9 +187,9 @@ function Upload ({ onClose }: Props): React.ReactElement {
                 {!contractAbi.info.source.wasm.length && (
                   <InputFile
                     isError={!isWasmValid}
-                    label={t<string>('compiled contract WASM')}
+                    label={t('compiled contract WASM')}
                     onChange={_onAddWasm}
-                    placeholder={wasm && !isWasmValid && t<string>('The code is not recognized as being in valid WASM format')}
+                    placeholder={wasm && !isWasmValid && t('The code is not recognized as being in valid WASM format')}
                   />
                 )}
                 <InputName
@@ -204,7 +205,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
           <>
             <Dropdown
               isDisabled={contractAbi.constructors.length <= 1}
-              label={t<string>('deployment constructor')}
+              label={t('deployment constructor')}
               onChange={setConstructorIndex}
               options={constructOptions}
               value={constructorIndex}
@@ -218,7 +219,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
               <InputBalance
                 isError={!isValueValid}
                 isZeroable
-                label={t<string>('value')}
+                label={t('value')}
                 onChange={setValue}
                 value={value}
               />
@@ -239,14 +240,14 @@ function Upload ({ onClose }: Props): React.ReactElement {
             <Button
               icon='step-forward'
               isDisabled={!code || !contractAbi}
-              label={t<string>('Next')}
+              label={t('Next')}
               onClick={nextStep}
             />
           )
           : (
             <Button
               icon='step-backward'
-              label={t<string>('Prev')}
+              label={t('Prev')}
               onClick={prevStep}
             />
           )
@@ -256,7 +257,7 @@ function Upload ({ onClose }: Props): React.ReactElement {
           extrinsic={uploadTx}
           icon='upload'
           isDisabled={!isSubmittable}
-          label={t<string>('Deploy')}
+          label={t('Deploy')}
           onClick={onClose}
           onSuccess={_onSuccess}
         />
