@@ -3,6 +3,8 @@
 ## vNext
 ...
 
+## 0.28.1
+- Update inflation parameters
 
 ## 0.28.0
 - Update to Polkadot-JS Apps 0.133.1 and Substrate Node v1.0.0
