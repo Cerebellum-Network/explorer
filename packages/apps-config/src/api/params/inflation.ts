@@ -27,7 +27,7 @@ const DEFAULT_PARAMS: InflationParams = {
   stakeTarget: 0.5
 };
 
-const CERE_NETWORK_INFLATION_PARAMS = { ...DEFAULT_PARAMS, maxInflation: 0.1, minInflation: 0.0002, stakeTarget: 0.2 };
+const CERE_NETWORK_INFLATION_PARAMS = { ...DEFAULT_PARAMS, maxInflation: 0.05, minInflation: 0.0001, stakeTarget: 0.2 };
 
 const KNOWN_PARAMS: Record<string, InflationParams> = {
   [CERE_NETWORK_GENESIS]: CERE_NETWORK_INFLATION_PARAMS,

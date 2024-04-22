@@ -16,10 +16,10 @@
   },
   "sideEffects": false,
   "type": "module",
-  "version": "0.28.1-cere",
+  "version": "0.28.2-cere",
   "versions": {
-    "git": "0.28.1-cere",
-    "npm": "0.28.1-cere"
+    "git": "0.28.2-cere",
+    "npm": "0.28.2-cere"
   },
   "workspaces": [
     "packages/*"

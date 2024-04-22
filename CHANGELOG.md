@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.28.2
+- Use original inflation parameters
+
 ## 0.28.1
 - Update inflation parameters
 
