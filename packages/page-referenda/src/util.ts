@@ -8,7 +8,7 @@ import type { CurveGraph, TrackDescription, TrackInfoExt } from './types.js';
 import { getGovernanceTracks } from '@polkadot/apps-config';
 import { BN, BN_BILLION, BN_ONE, BN_ZERO, bnMax, bnMin, formatNumber, objectSpread, stringPascalCase } from '@polkadot/util';
 
-const CURVE_LENGTH = 500;
+const CURVE_LENGTH = 100;
 
 export function getTrackName (trackId: BN, { name }: PalletReferendaTrackInfo): string {
   return `${

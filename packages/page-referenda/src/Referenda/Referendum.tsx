@@ -11,7 +11,7 @@ import React, { useMemo } from 'react';
 import { Chart, Columar, LinkExternal, styled, Table } from '@polkadot/react-components';
 import { useBestNumber, useBlockInterval, useToggle } from '@polkadot/react-hooks';
 import { calcBlockTime } from '@polkadot/react-hooks/useBlockTime';
-import { BN_MILLION, BN_THOUSAND, bnMax, bnToBn, formatNumber, objectSpread } from '@polkadot/util';
+import { BN_MILLION, BN_THOUSAND, BN_BILLION, bnMax, bnToBn, formatNumber, objectSpread } from '@polkadot/util';
 
 import { useTranslation } from '../translate.js';
 import Killed from './RefKilled.js';
@@ -114,7 +114,7 @@ function getChartResult (totalEligible: BN, isConvictionVote: boolean, info: Pal
       const values: number[][][] = [[[], [], []], [[], [], []]];
       const supc = totalEligible.isZero()
         ? 0
-        : currentSupport.mul(BN_THOUSAND).div(totalEligible).toNumber() / 10;
+        : currentSupport.mul(BN_MILLION).div(totalEligible).toNumber() / 10000;
       const appc = tally.ayes.isZero()
         ? 0
         : tally.ayes.mul(BN_THOUSAND).div(tally.ayes.add(tally.nays)).toNumber() / 10;
@@ -133,7 +133,7 @@ function getChartResult (totalEligible: BN, isConvictionVote: boolean, info: Pal
         values[0][appn ? PT_NEG : PT_POS][i] = appc;
         appx = (appn || appx !== -1) ? appx : i;
 
-        const supr = support[i].div(BN_MILLION).toNumber() / 10;
+        const supr = support[i].div(BN_THOUSAND).toNumber() / 10000;
         const supn = supc < supr;
 
         values[1][PT_CUR][i] = supr;
@@ -407,14 +407,14 @@ function Referendum (props: Props): React.ReactElement<Props> {
               <Columar.Column>
                 <Chart.Line
                   legends={chartLegend[0]}
-                  title={t('approval / {{percent}}%', { replace: { percent: chartProps[0].progress.percent.toFixed(1) } })}
+                  title={t('approval / {{percent}}%', { replace: { percent: chartProps[0].progress.percent.toFixed(4) } })}
                   {...chartProps[0]}
                 />
               </Columar.Column>
               <Columar.Column>
                 <Chart.Line
                   legends={chartLegend[1]}
-                  title={t('support / {{percent}}%', { replace: { percent: chartProps[1].progress.percent.toFixed(1) } })}
+                  title={t('support / {{percent}}%', { replace: { percent: chartProps[1].progress.percent.toFixed(4) } })}
                   {...chartProps[1]}
                 />
               </Columar.Column>
