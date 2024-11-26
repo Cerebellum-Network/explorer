@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2024 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { OverrideBundleDefinition } from '@polkadot/types/types';
@@ -9,8 +9,8 @@ import altair from './altair.js';
 import apron from './apron.js';
 import aresGladios from './ares-gladios.js';
 import aresParachain from './ares-parachain.js';
+import argon from './argon.js';
 import astar from './astar.js';
-import automata from './automata.js';
 import bajun from './bajun.js';
 import basilisk from './basilisk.js';
 import beresheet from './beresheet.js';
@@ -20,26 +20,27 @@ import bifrostParachain from './bifrost-parachain.js';
 import bitcountry from './bitcountry.js';
 import bitcountryPioneer from './bitcountry-pioneer.js';
 import bitcountryParachain from './bitcountry-rococo.js';
+import bittensor from './bittensor.js';
 import centrifuge from './centrifuge.js';
 import centrifugeChain from './centrifuge-chain.js';
 import chainx from './chainx.js';
 import clover from './clover.js';
 import cloverRococo from './clover-rococo.js';
 import coinversation from './coinversation.js';
+import communeai from './communeai.js';
 import competitorsClub from './competitors-club.js';
 import contracts from './contracts.js';
-import crab from './crab.js';
 import crownSterlingChain from './crown-sterling.js';
 import crust from './crust.js';
 import testPara from './cumulus-test-parachain.js';
 import curio from './curio.js';
-import darwinia from './darwinia.js';
 import datahighwayParachain from './datahighway.js';
 import dockMainnet from './dock-mainnet.js';
 import dockTestnet from './dock-testnet.js';
 import dotmog from './dotmog.js';
 import eave from './eave.js';
 import edgeware from './edgeware.js';
+import elysium from './elysium.js';
 import encointerNodeNotee from './encointer-node-notee.js';
 import encointerNodeTeeproxy from './encointer-node-teeproxy.js';
 import encointerPara from './encointer-para.js';
@@ -56,6 +57,7 @@ import gamepower from './gamepower.js';
 import genshiro from './genshiro.js';
 import hanonycash from './hanonycash.js';
 import hydrate from './hydrate.js';
+import hyperbridge from './hyperbridge.js';
 import idavoll from './idavoll.js';
 import imbue from './imbue.js';
 import integritee from './integritee.js';
@@ -65,6 +67,7 @@ import jupiter from './jupiter.js';
 import jupiterRococo from './jupiter-rococo.js';
 import jur from './jur.js';
 import khala from './khala.js';
+import kilt from './kilt.js';
 import konomi from './konomi.js';
 import kpron from './kpron.js';
 import kulupu from './kulupu.js';
@@ -78,19 +81,20 @@ import mangata from './mangata.js';
 import manta from './manta.js';
 import mathchain from './mathchain.js';
 import moonbeam from './moonbeam.js';
+import muse from './muse.js';
 import mybank from './mybank.js';
+import mythos from './mythos.js';
 import neatcoin from './neatcoin.js';
+import neuroweb from './neuroweb.js';
 import nftmart from './nftmart.js';
 import nodle from './nodle.js';
 import oak from './oak.js';
 import opal from './opal.js';
 import opportunity from './opportunity.js';
-import origintrail from './origintrail.js';
-import pangolin from './pangolin.js';
-import pangoro from './pangoro.js';
 import parallel from './parallel.js';
 import parami from './parami.js';
 import peaq from './peaq.js';
+import peerplays from './peerplays.js';
 import pendulum from './pendulum.js';
 import phoenix from './phoenix.js';
 import pichiu from './pichiu.js';
@@ -139,14 +143,8 @@ import zero from './zero.js';
 
 // NOTE: The mapping is done from specName in state.getRuntimeVersion
 const spec: Record<string, OverrideBundleDefinition> = {
-  Crab: crab,
-  Darwinia: darwinia,
-  'Darwinia Crab PC2': pangolin,
-  'Darwinia PC2': pangolin,
   Equilibrium: equilibrium,
   Genshiro: genshiro,
-  Pangolin: pangolin,
-  Pangoro: pangoro,
   VLN: vln,
   'VLN-PC': vlnrococo,
   ...acala,
@@ -157,9 +155,9 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'ares-gladios': aresGladios,
   'ares-mars': aresParachain,
   'ares-odyssey': aresParachain,
+  argon,
   asgard: bifrostAsgard,
   astar,
-  automata,
   bajun,
   basilisk,
   beresheet,
@@ -167,6 +165,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'bifrost-parachain': bifrostParachain,
   'bitcountry-node': bitcountry,
   'bitcountry-parachain': bitcountryParachain,
+  bittensor,
   centrifuge,
   'centrifuge-chain': centrifugeChain,
   chainx,
@@ -174,14 +173,15 @@ const spec: Record<string, OverrideBundleDefinition> = {
   clover,
   'clover-rococo': cloverRococo,
   coinversation,
+  communeai,
   'competitors-club': competitorsClub,
-  contextfree: automata,
+  'continuum-runtime': bitcountryPioneer,
   contracts,
   'crown-sterling': crownSterlingChain,
   crust,
   'crust-parachain': crust,
   'cumulus-test-parachain': testPara,
-  'curio-devnet': curio,
+  'curio-mainnet': curio,
   'curio-testnet': curio,
   datahighway: westlake,
   'datahighway-parachain': datahighwayParachain,
@@ -191,6 +191,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'dock-pos-test-runtime': dockTestnet,
   'dotmog-node': dotmog,
   edgeware,
+  elysium,
   'encointer-node-notee': encointerNodeNotee,
   'encointer-node-teeproxy': encointerNodeTeeproxy,
   'encointer-parachain': encointerPara,
@@ -201,15 +202,17 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'ferrum-parachain': ferrum,
   foucoco: pendulum,
   frequency,
-  'frequency-rococo': frequency,
+  'frequency-testnet': frequency,
   galital,
   'galital-collator': galitalParachain,
   gamepower,
+  gargantua: hyperbridge,
   'hack-hydra-dx': hydrate,
   halongbay: polkafoundry,
   hanonycash,
   heiko: parallel,
   'hydra-dx': hydrate,
+  hyperbridge,
   idavoll,
   imbue,
   'integritee-parachain': integritee,
@@ -223,6 +226,7 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'jur-node': jur,
   kerria: parallel,
   khala,
+  ...kilt,
   'kintsugi-parachain': interbtc,
   konomi,
   kpron,
@@ -238,12 +242,17 @@ const spec: Record<string, OverrideBundleDefinition> = {
   'manta-node': manta,
   mathchain,
   'mathchain-galois': galois,
+  messier: hyperbridge,
   moonbase: moonbeam,
   moonbeam,
   moonriver: moonbeam,
   moonshadow: moonbeam,
+  muse,
   'mybank.network Testnet': mybank,
+  mythos,
   neatcoin,
+  neuroweb,
+  nexus: hyperbridge,
   nftmart,
   'node-moonbeam': moonbeam,
   'node-polkadex': polkadex,
@@ -251,12 +260,12 @@ const spec: Record<string, OverrideBundleDefinition> = {
   oak,
   opal,
   opportunity,
-  'origintrail-parachain': origintrail,
   parallel,
   parami,
   'peaq-node': peaq,
   'peaq-node-dev': peaq,
   'peaq-node-krest': peaq,
+  peerplays,
   pendulum,
   'phoenix-node': phoenix,
   'phoenix-parachain': phoenix,
