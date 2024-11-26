@@ -28462,16 +28462,6 @@ export const typesBundle = {
                 }
               ],
               "type": "BalanceWrapper"
-            },
-            "freeStakable": {
-              "description": "Amount of kint/intr that account can lock, taking into consideration the Limits.",
-              "params": [
-                {
-                  "name": "account_id",
-                  "type": "AccountId"
-                }
-              ],
-              "type": "BalanceWrapper"
             }
           },
           "loans": {
@@ -29585,16 +29575,6 @@ export const typesBundle = {
                 {
                   "name": "height",
                   "type": "Option<BlockNumber>"
-                }
-              ],
-              "type": "BalanceWrapper"
-            },
-            "freeStakable": {
-              "description": "Amount of kint/intr that account can lock, taking into consideration the Limits.",
-              "params": [
-                {
-                  "name": "account_id",
-                  "type": "AccountId"
                 }
               ],
               "type": "BalanceWrapper"
