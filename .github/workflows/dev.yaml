@@ -4,7 +4,7 @@ on:
 
 jobs:
   build-and-deploy:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-upload-static.yaml@1.0.0
+    uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-upload-static.yaml@master
     with:
       runs-on: '["self-hosted", "cere-network-large"]'
       build_container: 'node:20-buster'
