@@ -9,12 +9,19 @@ import { externalStatescanSVG } from '../ui/logos/external/index.js';
 export const Statescan: ExternalDef = {
   chains: {
     Collectives: 'Collectives',
+    Crust: 'crust-parachain',
+    'Crust Shadow': 'shadow',
     Kusama: 'kusama',
+    'Kusama Asset Hub': 'statemine',
+    'Kusama People': 'people-kusama',
     Litentry: 'litentry',
     Litmus: 'litmus',
+    Parallel: 'parallel',
+    'Parallel Heiko': 'heiko',
     Polkadot: 'polkadot',
-    Statemine: 'statemine',
-    Statemint: 'statemint',
+    'Polkadot Asset Hub': 'statemint',
+    'Tangle Mainnet': 'tangle',
+    'Tangle Testnet': 'tangle-testnet',
     'Westend Collectives': 'westend-collectives',
     Westmint: 'westmint'
   },

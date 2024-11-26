@@ -3,8 +3,8 @@
 
 import type { EndpointOption } from './types.js';
 
-import { chains3dpassSVG, chainsAlephSVG, chainsBittensorPNG, chainsChainflipPNG, chainsCreditcoinPNG, chainsDebioSVG, chainsFragnovaPNG, chainsJurPNG, chainsLiberlandPNG, chainsLogionPNG, chainsMyriadPNG, chainsSpannerPNG, chainsVaraPNG, chainsVtbPNG } from '../ui/logos/chains/index.js';
-import { nodesAresOdysseySVG, nodesAutomataPNG, nodesCentrifugePNG, nodesCereSVG, nodesChainxSVG, nodesCompetitorsClubPNG, nodesCrownSterlingPNG, nodesCrustSVG, nodesDatahighwayPNG, nodesDockPNG, nodesEdgewareWhitePNG, nodesEfinitySVG, nodesHanyonycashPNG, nodesHumanodePNG, nodesInnovatorPNG, nodesJoystreamSVG, nodesKulupuSVG, nodesKusariSVG, nodesMathSVG, nodesMinixPNG, nodesNftmartPNG, nodesNodleSVG, nodesPolkadexSVG, nodesPolymeshSVG, nodesRiochainSVG, nodesRobonomicsSVG, nodesSherpaxPNG, nodesSoraSubstrateSVG, nodesStafiPNG, nodesSubgameSVG, nodesSubsocialSVG, nodesSwapdexSVG, nodesTernoaSVG, nodesThebifrostPNG, nodesUniartsPNG, nodesUnitnetworkPNG } from '../ui/logos/nodes/index.js';
+import { chains3dpassSVG, chainsAlephSVG, chainsBittensorPNG, chainsChainflipPNG, chainsCommuneaiPNG, chainsCreditcoinPNG, chainsDebioSVG, chainsFragnovaPNG, chainsJurPNG, chainsLiberlandPNG, chainsLogionPNG, chainsMyriadPNG, chainsSpannerPNG, chainsTanglePNG, chainsVaraPNG, chainsVtbPNG } from '../ui/logos/chains/index.js';
+import { nodesAresOdysseySVG, nodesCentrifugePNG, nodesCereSVG, nodesChainxSVG, nodesCompetitorsClubPNG, nodesCrownSterlingPNG, nodesCrustSVG, nodesDatahighwayPNG, nodesDockPNG, nodesEdgewareWhitePNG, nodesEfinitySVG, nodesElysiumPNG, nodesHanyonycashPNG, nodesHumanodePNG, nodesInnovatorPNG, nodesJoystreamSVG, nodesKulupuSVG, nodesKusariSVG, nodesMathSVG, nodesMinixPNG, nodesNftmartPNG, nodesNodleSVG, nodesPolkadexSVG, nodesPolymeshSVG, nodesRiochainSVG, nodesRobonomicsSVG, nodesSherpaxPNG, nodesSoraSubstrateSVG, nodesStafiPNG, nodesSubgameSVG, nodesSubsocialSVG, nodesSwapdexSVG, nodesTernoaSVG, nodesThebifrostPNG, nodesUniartsPNG, nodesUnitnetworkPNG } from '../ui/logos/nodes/index.js';
 
 export * from './productionRelayKusama.js';
 export * from './productionRelayPolkadot.js';
@@ -47,25 +47,12 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'Ares Odyssey',
     isDisabled: true,
     providers: {
-      'Ares Protocol': 'wss://odyssey.aresprotocol.io'
+      // 'Ares Protocol': 'wss://odyssey.aresprotocol.io' // https://github.com/polkadot-js/apps/issues/10411
     },
     text: 'Ares Odyssey',
     ui: {
       color: '#1295F0',
       logo: nodesAresOdysseySVG
-    }
-  },
-  {
-    info: 'automata',
-    isDisabled: true,
-    providers: {
-      // 'Automata Network': 'wss://api.ata.network', // https://github.com/polkadot-js/apps/issues/10289
-      OnFinality: 'wss://automata.api.onfinality.io/public-ws'
-    },
-    text: 'Automata',
-    ui: {
-      color: '#EC7032',
-      logo: nodesAutomataPNG
     }
   },
   {
@@ -85,12 +72,25 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'bittensor',
     isDisabled: true,
     providers: {
+      // Dwellir: 'wss://bittensor-mainnet-rpc.dwellir.com', // https://github.com/polkadot-js/apps/issues/10728
       'Opentensor Fdn (Archive)': 'wss://entrypoint-finney.opentensor.ai:443'
     },
     text: 'Bittensor',
     ui: {
       color: '#252525',
       logo: chainsBittensorPNG
+    }
+  },
+  {
+    info: 'creditcoin-classic',
+    isDisabled: true,
+    providers: {
+      'Creditcoin Foundation': 'wss://mainnet.creditcoin.network/ws'
+    },
+    text: 'CC Enterprise',
+    ui: {
+      color: '#2D353F',
+      logo: chainsCreditcoinPNG
     }
   },
   {
@@ -120,7 +120,8 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'chainflip',
     isDisabled: true,
     providers: {
-      chainflip: 'wss://mainnet-archive.chainflip.io'
+      chainflip: 'wss://mainnet-archive.chainflip.io',
+      dwellir: 'wss://chainflip-rpc.dwellir.com'
     },
     text: 'Chainflip',
     ui: {
@@ -141,6 +142,19 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'communeai',
+    isDisabled: true,
+    providers: {
+      Bitconnect: 'wss://commune-api-node-1.communeai.net'
+      // OnFinality: 'wss://commune.api.onfinality.io/public-ws'
+    },
+    text: 'Commune AI',
+    ui: {
+      color: '#060606',
+      logo: chainsCommuneaiPNG
+    }
+  },
+  {
     info: 'competitors-club',
     isDisabled: true,
     providers: {
@@ -156,7 +170,7 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'creditcoin',
     isDisabled: true,
     providers: {
-      'Creditcoin Foundation': 'wss://mainnet.creditcoin.network/ws'
+      'Creditcoin Foundation': 'wss://mainnet3.creditcoin.network'
     },
     text: 'Creditcoin',
     ui: {
@@ -181,6 +195,9 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     isDisabled: true,
     providers: {
       'Crust Network': 'wss://rpc.crust.network',
+      'Crust Network APP': 'wss://rpc.crustnetwork.app',
+      'Crust Network CC': 'wss://rpc.crustnetwork.cc',
+      'Crust Network XYZ': 'wss://rpc.crustnetwork.xyz',
       Dwellir: 'wss://crust-mainnet-rpc.dwellir.com',
       OnFinality: 'wss://crust.api.onfinality.io/public-ws'
     },
@@ -218,7 +235,7 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'edgeware',
     isDisabled: true,
     providers: {
-      'Commonwealth Labs': 'wss://mainnet2.edgewa.re',
+      // 'Commonwealth Labs': 'wss://mainnet2.edgewa.re', // https://github.com/polkadot-js/apps/issues/10373
       'JelliedOwl London': 'wss://edgeware-rpc1.jelliedowl.net',
       'JelliedOwl Los Angeles': 'wss://edgeware-rpc3.jelliedowl.net',
       'JelliedOwl New York': 'wss://edgeware-rpc0.jelliedowl.net',
@@ -244,7 +261,20 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'elysium',
+    isDisabled: true,
+    providers: {
+      Elysium: 'wss://ws.elysiumchain.tech'
+    },
+    text: 'Elysium',
+    ui: {
+      color: '#140533',
+      logo: nodesElysiumPNG
+    }
+  },
+  {
     info: 'fragnova',
+    isDisabled: true,
     providers: {
       // 'Fragnova Network': 'wss://ws.fragnova.network' // https://github.com/polkadot-js/apps/issues/10172
     },
@@ -281,7 +311,7 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'innovatorchain',
     isDisabled: true,
     providers: {
-      Innovator: 'wss://rpc.innovatorchain.com'
+      // Innovator: 'wss://rpc.innovatorchain.com' // https://github.com/polkadot-js/apps/issues/10373
     },
     text: 'Innovator Chain',
     ui: {
@@ -356,11 +386,9 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'logion',
     isDisabled: true,
     providers: {
-      'Logion 1': 'wss://rpc01.logion.network',
-      'Logion 2': 'wss://rpc02.logion.network',
-      'Logion 3': 'wss://rpc03.logion.network'
+      // 'Logion 1': 'wss://rpc01.logion.network' // https://github.com/polkadot-js/apps/issues/10667
     },
-    text: 'Logion Standalone',
+    text: 'Logion Solochain (Archive)',
     ui: {
       color: 'rgb(21, 38, 101)',
       logo: chainsLogionPNG
@@ -426,6 +454,7 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
   },
   {
     info: 'nodle',
+    isDisabled: true,
     providers: {
       // Nodle: 'wss://main3.nodleprotocol.io', // https://github.com/polkadot-js/apps/issues/7652
       // OnFinality: 'wss://nodle.api.onfinality.io/public-ws' // https://github.com/polkadot-js/apps/issues/8013
@@ -574,6 +603,19 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
+    info: 'tangle',
+    isDisabled: true,
+    providers: {
+      Dwellir: 'wss://tangle-mainnet-rpc.dwellir.com',
+      Webb: 'wss://rpc.tangle.tools'
+    },
+    text: 'Tangle',
+    ui: {
+      color: '#7578fb',
+      logo: chainsTanglePNG
+    }
+  },
+  {
     info: 'ternoa',
     isDisabled: true,
     providers: {
@@ -613,7 +655,9 @@ export const prodChains: Omit<EndpointOption, 'teleport'>[] = [
     info: 'vara',
     isDisabled: true,
     providers: {
-      Gear: 'wss://rpc.vara.network'
+      Blast: 'wss://vara-mainnet.public.blastapi.io',
+      Gear: 'wss://rpc.vara.network',
+      'P2P.org': 'wss://vara.substrate-rpc.p2p.org/'
     },
     text: 'Vara',
     ui: {
