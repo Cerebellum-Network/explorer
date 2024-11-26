@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.29.0
+- Update to Polkadot-JS Apps 0.145.1
+
 ## 0.28.2
 - Use original inflation parameters
 

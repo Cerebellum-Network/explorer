@@ -5,19 +5,17 @@ on:
       - 'release/**'
       - 'hotfix/**'
 
+permissions:
+  id-token: write
+  contents: read
+
 jobs:
   build-and-deploy:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/build-and-upload-static.yaml@1.0.0
+    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-to-cloudfront.yaml@master
     with:
-      runs-on: '["self-hosted", "cere-network-large"]'
       build_container: 'node:20-buster'
-      deploy_container: 'ubuntu:20.04'
       install_packages_command: 'yarn install'
       build_command: 'yarn build'
       path_to_static_files_to_upload: 'packages/apps/build'
-    secrets:
-      NETWORK_AWS_ACCESS_KEY_ID: ${{ secrets.STG_NETWORK_AWS_ACCESS_KEY_ID }}
-      NETWORK_AWS_SECRET_ACCESS_KEY: ${{ secrets.STG_NETWORK_AWS_SECRET_ACCESS_KEY }}
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      S3_BUCKET_NAME: ${{ secrets.S3_BUCKET_NAME_STG }}
-      CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID_STG }}
+      s3_bucket_name: 'stg-cere-explorer-dist'
+      aws_account_id: ${{ vars.STG_NETWORK_AWS_ACCOUNT_ID }}

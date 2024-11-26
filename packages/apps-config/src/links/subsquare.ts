@@ -1,4 +1,4 @@
-// Copyright 2017-2023 @polkadot/apps-config authors & contributors
+// Copyright 2017-2024 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { BN } from '@polkadot/util';
@@ -16,21 +16,18 @@ export const Subsquare: ExternalDef = {
     Centrifuge: 'centrifuge',
     Collectives: 'collectives',
     Crust: 'crust',
-    Darwinia2: 'darwinia2',
     HydraDX: 'hydradx',
     Interlay: 'interlay',
     Karura: 'karura',
     Khala: 'khala',
     Kusama: 'kusama',
     Litentry: 'litentry',
-    Litmus: 'litmus',
-    Moonriver: 'moonriver',
     Phala: 'phala',
     Polkadot: 'polkadot',
     Rococo: 'rococo',
-    'Turing Network': 'turing',
+    'Shibuya Testnet': 'shibuya',
     'Vara Network': 'vara',
-    'Westend Collectives': 'westend-collectives',
+    Westend: 'westend',
     Zeitgeist: 'zeitgeist',
     kintsugi: 'kintsugi'
   },
