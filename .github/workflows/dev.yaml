@@ -14,5 +14,5 @@ jobs:
       install_packages_command: 'yarn install'
       build_command: 'yarn build'
       path_to_static_files_to_upload: 'packages/apps/build'
-      s3_bucket_name: 'dev-cere-explorer-dist'
+      s3_bucket_name: 'explorer.dev.cere.network'
       aws_account_id: ${{ vars.DEV_NETWORK_AWS_ACCOUNT_ID }}
