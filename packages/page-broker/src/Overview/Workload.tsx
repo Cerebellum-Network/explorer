@@ -1,8 +1,8 @@
-// Copyright 2017-2024 @polkadot/app-broker authors & contributors
+// Copyright 2017-2025 @polkadot/app-broker authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
-import type { RegionInfo } from '@polkadot/react-hooks/types';
+import type { PalletBrokerConfigRecord, RegionInfo } from '@polkadot/react-hooks/types';
 import type { Option } from '@polkadot/types';
 import type { PalletBrokerStatusRecord } from '@polkadot/types/lookup';
 import type { CoreWorkloadType, CoreWorkplanType, InfoRow } from '../types.js';
@@ -11,6 +11,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 
 import { ExpandButton } from '@polkadot/react-components';
 import { useApi, useBrokerSalesInfo, useCall, useRegions, useToggle } from '@polkadot/react-hooks';
+import { useCoretimeConsts } from '@polkadot/react-hooks/useCoretimeConsts';
 
 import { formatRowInfo } from '../utils.js';
 import WorkInfoRow from './WorkInfoRow.js';
@@ -21,11 +22,13 @@ interface Props {
   core: number;
   workload: CoreWorkloadType[] | undefined
   workplan?: CoreWorkplanType[] | undefined
+  config: PalletBrokerConfigRecord
 }
 
-function Workload ({ api, core, workload, workplan }: Props): React.ReactElement<Props> {
+function Workload ({ api, config, core, workload, workplan }: Props): React.ReactElement<Props> {
   const { isApiReady } = useApi();
-  const salesInfo = useBrokerSalesInfo();
+  const salesInfo = useBrokerSalesInfo(api, isApiReady);
+  const coretimeConstants = useCoretimeConsts();
 
   const status = useCall<Option<PalletBrokerStatusRecord>>(isApiReady && api.query.broker?.status);
   const [isExpanded, toggleIsExpanded] = useToggle(false);
@@ -45,18 +48,35 @@ function Workload ({ api, core, workload, workplan }: Props): React.ReactElement
 
   useEffect(() => {
     if (!!workload?.length && !!salesInfo) {
-      setWorkloadData(formatRowInfo(workload, core, region, currentTimeSlice, salesInfo));
+      // saleInfo points to a regionEnd and regionBeing in the next cycle, but we want the start and end of the current cycle
+      setWorkloadData(formatRowInfo(
+        workload,
+        core,
+        region,
+        currentTimeSlice,
+        { regionBegin: salesInfo.regionBegin - config.regionLength, regionEnd: salesInfo.regionEnd - config.regionLength },
+        config.regionLength,
+        coretimeConstants?.relay
+      ));
     } else {
       return setWorkloadData([{ core }]);
     }
-  }, [workload, region, currentTimeSlice, core, salesInfo]);
+  }, [workload, region, currentTimeSlice, core, salesInfo, config, coretimeConstants]);
 
   useEffect(() => {
     if (!!workplan?.length && !!salesInfo) {
-      setWorkplanData(formatRowInfo(workplan, core, region, currentTimeSlice, salesInfo));
+      setWorkplanData(formatRowInfo(
+        workplan,
+        core,
+        region,
+        currentTimeSlice,
+        { regionBegin: salesInfo.regionBegin - config.regionLength, regionEnd: salesInfo.regionEnd - config.regionLength },
+        config.regionLength,
+        coretimeConstants?.relay
+      ));
     }
   }
-  , [workplan, region, currentTimeSlice, core, salesInfo]);
+  , [workplan, region, currentTimeSlice, core, salesInfo, config, coretimeConstants]);
 
   const hasWorkplan = workplan?.length;
 

@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2025 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
@@ -13,7 +13,7 @@ import { createNamedHook, useCall } from '@polkadot/react-hooks';
 import { processHexMask } from './utils/dataProcessing.js';
 
 function useBrokerReservationsImpl (api: ApiPromise, ready: boolean): Reservation[] | undefined {
-  const reservations = useCall<[any, Vec<Vec<PalletBrokerScheduleItem>>[]]>(ready && api.query.broker.reservations);
+  const reservations = useCall<[any, Vec<Vec<PalletBrokerScheduleItem>>[]]>(ready && api?.query.broker.reservations);
   const [state, setState] = useState<Reservation[]>();
 
   useEffect((): void => {

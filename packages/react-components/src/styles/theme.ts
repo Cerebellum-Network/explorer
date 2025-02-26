@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-components authors & contributors
+// Copyright 2017-2025 @polkadot/react-components authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /* default buttons, dark gray */
@@ -7,7 +7,7 @@ export const colorBtnDefault = '#767778';
 export const colorBtnShadow = '#98999a';
 
 /* highlighted buttons, orange */
-export const colorBtnHighlight = '#b7aeff';
+export const colorBtnHighlight = '#f19135';
 
 /* primary buttons, blue */
 export const colorBtnPrimary = colorBtnDefault; // '#2e86ab';

@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-signer authors & contributors
+// Copyright 2017-2025 @polkadot/react-signer authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // This is for the use of `Ledger`
@@ -339,7 +339,7 @@ function TxSigned ({ className, currentItem, isQueueSubmit, queueSize, requestAd
       if (senderInfo.signAddress) {
         const [tx, [status, pairOrAddress, options, isMockSign]] = await Promise.all([
           wrapTx(api, currentItem, senderInfo),
-          extractParams(api, senderInfo.signAddress, { nonce: -1, tip, withSignedTransaction: true }, getLedger, setQrState)
+          extractParams(api, senderInfo.signAddress, { nonce: -1, tip, withSignedTransaction: true, ...currentItem.signerOptions }, getLedger, setQrState)
         ]);
 
         queueSetTxStatus(currentItem.id, status);

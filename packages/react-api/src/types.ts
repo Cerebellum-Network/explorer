@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-api authors & contributors
+// Copyright 2017-2025 @polkadot/react-api authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Blockchain } from '@acala-network/chopsticks-core';
@@ -53,6 +53,7 @@ export interface ApiProps extends ApiState {
    * Used for checking if tx.idenitity.* should be used. Can be used for other scenarios as well.
    */
   enableIdentity: boolean;
+  apiCoretime: ApiPromise;
   apiRelay: ApiPromise | null;
   apiSystemPeople: ApiPromise | null;
   apiUrl?: string;

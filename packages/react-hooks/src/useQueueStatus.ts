@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2025 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { OnDemandQueueStatus } from './types.js';
@@ -19,7 +19,7 @@ function extractInfo (value: OnDemandQueueStatus) {
 function useQueueStatusImpl (): OnDemandQueueStatus | undefined {
   const { api } = useApi();
 
-  const queue = useCall<OnDemandQueueStatus>(api.query.onDemandAssignmentProvider.queueStatus);
+  const queue = useCall<OnDemandQueueStatus>(api.query.onDemandAssignmentProvider?.queueStatus);
 
   const [state, setState] = useState<OnDemandQueueStatus | undefined>();
 
