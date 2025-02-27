@@ -4,7 +4,7 @@
 ...
 
 ## 0.29.0
-- Update to Polkadot-JS Apps 0.145.1
+- Update to Polkadot-JS Apps 0.150.2
 
 ## 0.28.2
 - Use original inflation parameters

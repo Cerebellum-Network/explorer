@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/apps-config authors & contributors
+// Copyright 2017-2025 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { HexString } from '@polkadot/util/types';
@@ -6,7 +6,7 @@ import type { HexString } from '@polkadot/util/types';
 import { knownGenesis } from '@polkadot/networks/defaults';
 import { assert, BN } from '@polkadot/util';
 
-function getGenesis (name: string): HexString {
+export function getGenesis (name: string): HexString {
   const network = Object.entries(knownGenesis).find(([network]) => network === name);
 
   assert(network?.[1][0], `Unable to find genesisHash for ${name}`);
