@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2025 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
@@ -87,6 +87,7 @@ function getValRewards (api: ApiPromise, validatorEras: ValidatorWithEras[], era
           allRewards[stashId].push({
             era,
             eraReward: eraRewards.eraReward,
+            isClaimed: false,
             isEmpty: false,
             isValidator: true,
             nominating: [],
