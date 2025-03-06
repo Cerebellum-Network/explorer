@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2025 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
@@ -11,7 +11,7 @@ import { useEffect, useState } from 'react';
 import { createNamedHook, useCall } from '@polkadot/react-hooks';
 
 function useBrokerLeasesImpl (api: ApiPromise, ready: boolean): LegacyLease[] | undefined {
-  const leases = useCall<Vec<PalletBrokerLeaseRecordItem>>(ready && api.query.broker.leases);
+  const leases = useCall<Vec<PalletBrokerLeaseRecordItem>>(ready && api?.query?.broker?.leases);
   const [state, setState] = useState<LegacyLease[]>();
 
   useEffect((): void => {

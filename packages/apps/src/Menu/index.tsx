@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/apps authors & contributors
+// Copyright 2017-2025 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Route, Routes } from '@polkadot/apps-routing/types';
@@ -26,7 +26,18 @@ interface Props {
 
 function createExternals (t: (key: string, optionsOrText?: string | { replace: Record<string, unknown> }, options?: { ns: string }) => string): ItemRoute[] {
   return [
-    { href: 'https://portal.cere.network', icon: 'book', name: 'Home', text: t('nav.home', 'Community Portal', { ns: 'apps-routing' }) }
+    {
+      href: 'https://github.com/polkadot-js/apps',
+      icon: 'code-branch',
+      name: 'github',
+      text: t('nav.github', 'GitHub', { ns: 'apps-routing' })
+    },
+    {
+      href: 'https://wiki.polkadot.network',
+      icon: 'book',
+      name: 'wiki',
+      text: t('nav.wiki', 'Wiki', { ns: 'apps-routing' })
+    }
   ];
 }
 

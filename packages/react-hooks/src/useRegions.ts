@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/react-hooks authors & contributors
+// Copyright 2017-2025 @polkadot/react-hooks authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { ApiPromise } from '@polkadot/api';
@@ -27,9 +27,9 @@ const OPT_KEY = {
 };
 
 function useRegionsImpl (api: ApiPromise): RegionInfo[] | undefined {
-  const regionKeys = useMapKeys(api.query.broker.regions, [], OPT_KEY);
+  const regionKeys = useMapKeys(api?.query?.broker.regions, [], OPT_KEY);
 
-  const regionInfo = useCall<[[PalletBrokerRegionId[]], Option<PalletBrokerRegionRecord>[]]>(api.query.broker.regions.multi, [regionKeys], { withParams: true });
+  const regionInfo = useCall<[[PalletBrokerRegionId[]], Option<PalletBrokerRegionRecord>[]]>(api?.query?.broker.regions.multi, [regionKeys], { withParams: true });
 
   const [state, setState] = useState<RegionInfo[] | undefined>();
 

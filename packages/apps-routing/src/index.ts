@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/apps-routing authors & contributors
+// Copyright 2017-2025 @polkadot/apps-routing authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { Routes, TFunction } from './types.js';
@@ -14,6 +14,7 @@ import calendar from './calendar.js';
 import claims from './claims.js';
 import collator from './collator.js';
 import contracts from './contracts.js';
+import coretime from './coretime.js';
 import council from './council.js';
 import democracy from './democracy.js';
 import explorer from './explorer.js';
@@ -62,7 +63,9 @@ export default function create (t: TFunction): Routes {
     // Legacy staking Pre v14 pallet version.
     stakingLegacy(t),
     collator(t),
+    // Coretime
     broker(t),
+    coretime(t),
     // governance v2
     referenda(t),
     membership(t),

@@ -1,11 +1,11 @@
-// Copyright 2017-2024 @polkadot/apps-config authors & contributors
+// Copyright 2017-2025 @polkadot/apps-config authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 import type { EndpointOption } from './types.js';
 
 import { POLKADOT_GENESIS } from '../api/constants.js';
 import { chainsAcalaSVG, chainsBitgreenPNG, chainsComposableFinancePNG, chainsEquilibriumSVG, chainsFrequencySVG, chainsGeminisPNG, chainsHydrationSVG, chainsInvarchJPEG, chainsLaosPNG, chainsLogionPNG, chainsNeurowebPNG, chainsOakPNG, chainsPeaqPNG, chainsPendulumSVG, chainsPeoplePolkadotSVG, chainsPolkadotCircleSVG, chainsTotemSVG, chainsWatrPNG } from '../ui/logos/chains/index.js';
-import { nodesAjunaPNG, nodesAresOdysseySVG, nodesAssetHubSVG, nodesAstarPNG, nodesAventusSVG, nodesBifrostSVG, nodesBridgeHubSVG, nodesCentrifugePNG, nodesCloverSVG, nodesCoinversationPNG, nodesContinuumPNG, nodesCrustParachainSVG, nodesDarwiniaSVG, nodesEfinitySVG, nodesEwxSVG, nodesHashedPNG, nodesHyperbridgePNG, nodesIntegriteeSVG, nodesInterlaySVG, nodesKiltPNG, nodesKylinPNG, nodesLitentryPNG, nodesMantaPNG, nodesMoonbeamSVG, nodesMoonsamaSVG, nodesMythosPNG, nodesNodleSVG, nodesOmnibtcSVG, nodesParallelSVG, nodesPhalaSVG, nodesPolimecSVG, nodesPolkadexSVG, nodesRobonomicsSVG, nodesSoraSubstrateSVG, nodesSubdaoPNG, nodesSubgameSVG, nodesSubsocialSVG, nodesT3rnPNG, nodesUniqueSVG, nodesZeitgeistPNG } from '../ui/logos/nodes/index.js';
+import { nodesAjunaPNG, nodesAresOdysseySVG, nodesAssetHubSVG, nodesAstarPNG, nodesAventusSVG, nodesBifrostSVG, nodesBridgeHubSVG, nodesCentrifugePNG, nodesCloverSVG, nodesCoinversationPNG, nodesContinuumPNG, nodesCrustParachainSVG, nodesDarwiniaSVG, nodesEfinitySVG, nodesEwxSVG, nodesHashedPNG, nodesHyperbridgePNG, nodesIntegriteeSVG, nodesInterlaySVG, nodesKylinPNG, nodesMantaPNG, nodesMoonbeamSVG, nodesMoonsamaSVG, nodesMythosPNG, nodesNodleSVG, nodesOmnibtcSVG, nodesParallelSVG, nodesPhalaSVG, nodesPolimecSVG, nodesPolkadexSVG, nodesRobonomicsSVG, nodesSoraSubstrateSVG, nodesSubdaoPNG, nodesSubgameSVG, nodesSubsocialSVG, nodesT3rnPNG, nodesUniqueSVG, nodesZeitgeistPNG } from '../ui/logos/nodes/index.js';
 import { getTeleports } from './util.js';
 
 // The available endpoints that will show in the dropdown. For the most part (with the exception of
@@ -454,23 +454,6 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
-    homepage: 'https://www.kilt.io/',
-    info: 'kilt',
-    isDisabled: true,
-    paraId: 2086,
-    providers: {
-      BOTLabs: 'wss://spiritnet.kilt.io/',
-      Dwellir: 'wss://kilt-rpc.dwellir.com',
-      IBP1: 'wss://kilt.ibp.network',
-      IBP2: 'wss://kilt.dotters.network'
-    },
-    text: 'KILT Spiritnet',
-    ui: {
-      color: '#8c145a',
-      logo: nodesKiltPNG
-    }
-  },
-  {
     homepage: 'https://kylin.network/',
     info: 'kylin',
     isDisabled: true,
@@ -496,22 +479,6 @@ export const prodParasPolkadot: Omit<EndpointOption, 'teleport'>[] = [
     ui: {
       color: 'linear-gradient(90deg, #25143B 0%, #613D93 29.69%, #EF9365 69.79%, #E2CF61 100%)',
       logo: chainsLaosPNG
-    }
-  },
-  {
-    homepage: 'https://www.litentry.com/',
-    info: 'litentry',
-    isDisabled: true,
-    paraId: 2013,
-    providers: {
-      Dwellir: 'wss://litentry-rpc.dwellir.com',
-      Litentry: 'wss://rpc.litentry-parachain.litentry.io'
-      // OnFinality: 'wss://litentry.api.onfinality.io/public-ws' // https://github.com/polkadot-js/apps/issues/9993
-    },
-    text: 'Litentry',
-    ui: {
-      color: '#15B786',
-      logo: nodesLitentryPNG
     }
   },
   {

@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/app-addresses authors & contributors
+// Copyright 2017-2025 @polkadot/app-addresses authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 /// <reference types="@polkadot/dev-test/globals.d.ts" />
@@ -66,6 +66,7 @@ describe.skip('Addresses page', () => {
   describe('when some contacts exist', () => {
     it('the contacts table contains some contact rows', async () => {
       addressesPage.renderDefaultContacts(2);
+
       const rows = await addressesPage.getAddressesRows();
 
       expect(rows).toHaveLength(2);

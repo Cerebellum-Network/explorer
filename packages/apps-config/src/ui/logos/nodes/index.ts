@@ -1,4 +1,4 @@
-// Copyright 2017-2024 @polkadot/apps authors & contributors
+// Copyright 2017-2025 @polkadot/apps authors & contributors
 // SPDX-License-Identifier: Apache-2.0
 
 // Do not edit. Auto-generated via node scripts/imgConvert.mjs
@@ -12,6 +12,7 @@ export { nodesAresOdysseySVG } from './generated/ares-odysseySVG.js';
 export { nodesAresPNG } from './generated/aresPNG.js';
 export { nodesAssetHubSVG } from './generated/assetHubSVG.js';
 export { nodesAstarPNG } from './generated/astarPNG.js';
+export { nodesAutonomysPNG } from './generated/autonomysPNG.js';
 export { nodesAventusSVG } from './generated/aventusSVG.js';
 export { nodesBajunPNG } from './generated/bajunPNG.js';
 export { nodesBasiliskRococoBgPNG } from './generated/basilisk-rococo-bgPNG.js';
@@ -59,6 +60,8 @@ export { nodesGeekSVG } from './generated/geekSVG.js';
 export { nodesGiantPNG } from './generated/giantPNG.js';
 export { nodesHanyonycashPNG } from './generated/hanyonycashPNG.js';
 export { nodesHashedPNG } from './generated/hashedPNG.js';
+export { nodesHeimaPaseoPNG } from './generated/heima-paseoPNG.js';
+export { nodesHeimaSVG } from './generated/heimaSVG.js';
 export { nodesHelixstreetPNG } from './generated/helixstreetPNG.js';
 export { nodesHumanodePNG } from './generated/humanodePNG.js';
 export { nodesHyperbridgePNG } from './generated/hyperbridgePNG.js';
@@ -72,12 +75,14 @@ export { nodesInvoPNG } from './generated/invoPNG.js';
 export { nodesIpciSVG } from './generated/ipciSVG.js';
 export { nodesIpsePNG } from './generated/ipsePNG.js';
 export { nodesIpseSVG } from './generated/ipseSVG.js';
+export { nodesJamtonSVG } from './generated/jamtonSVG.js';
 export { nodesJazPNG } from './generated/jazPNG.js';
 export { nodesJoystreamSVG } from './generated/joystreamSVG.js';
 export { nodesJupiterSVG } from './generated/jupiterSVG.js';
 export { nodesKabochaSVG } from './generated/kabochaSVG.js';
 export { nodesKarmachainSVG } from './generated/karmachainSVG.js';
 export { nodesKhalaSVG } from './generated/khalaSVG.js';
+export { nodesKiltIconSVG } from './generated/kilt-iconSVG.js';
 export { nodesKiltPNG } from './generated/kiltPNG.js';
 export { nodesKineraPNG } from './generated/kineraPNG.js';
 export { nodesKlugPNG } from './generated/klugPNG.js';
