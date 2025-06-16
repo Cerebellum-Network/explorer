@@ -256,18 +256,6 @@ export const testChains: Omit<EndpointOption, 'teleport'>[] = [
     }
   },
   {
-    info: 'Dancebox',
-    isDisabled: true,
-    providers: {
-      Tanssi: 'wss://dancebox.tanssi-api.network'
-    },
-    text: 'Dancebox',
-    ui: {
-      color: '#000000',
-      logo: nodesDanceboxSVG
-    }
-  },
-  {
     info: 'datahighway',
     isDisabled: true,
     providers: {

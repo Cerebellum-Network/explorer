@@ -5,7 +5,7 @@ import type { BN } from '@polkadot/util';
 import type { AssetInfoComplete } from '../types.js';
 import type { PayWithAsset } from './types.js';
 
-import React, { useCallback, useEffect, useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 
 import { useApi, useAssetIds, useAssetInfos } from '@polkadot/react-hooks';
 
@@ -66,18 +66,14 @@ function PayWithAssetProvider ({ children }: Props): React.ReactElement<Props> {
   }, [completeAssetInfos]);
 
   const isEnabled = useMemo(() =>
-    api.registry.metadata.extrinsic.signedExtensions.some(
-      (a) => a.identifier.toString() === 'ChargeAssetTxPayment'
+    api.registry.signedExtensions.some(
+      (a) => a === 'ChargeAssetTxPayment'
     ) &&
     !!api.tx.assetConversion &&
     !!api.call.assetConversionApi &&
     completeAssetInfos.length > 0,
-  [api.call.assetConversionApi, api.registry.metadata.extrinsic.signedExtensions, api.tx.assetConversion, completeAssetInfos.length]
+  [api.call.assetConversionApi, api.registry.signedExtensions, api.tx.assetConversion, completeAssetInfos.length]
   );
-
-  useEffect(() => {
-    return () => setSelectedFeeAsset(null);
-  });
 
   const values: PayWithAsset = useMemo(() => {
     return {
