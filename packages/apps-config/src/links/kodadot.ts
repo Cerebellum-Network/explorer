@@ -20,9 +20,8 @@ const getNetwork = (_chain: string) => {
 export const KodaDot: ExternalDef = {
   chains: {
     Basilisk: 'basilisk',
-    Kusama: 'kusama',
-    Statemine: 'statemine',
-    Statemint: 'statemint'
+    'Kusama Asset Hub': 'statemine',
+    'Polkadot Asset Hub': 'statemint'
   },
   create: (_chain: string, _path: string, data: BN | number | string): string =>
     `${getNetwork(_chain)}${data.toString()}`,

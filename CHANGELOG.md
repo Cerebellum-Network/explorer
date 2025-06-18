@@ -3,6 +3,9 @@
 ## vNext
 ...
 
+## 0.31.0
+- Update to Polkadot-JS Apps 0.158.1
+
 ## 0.30.0
 - Update to Polkadot-JS Apps 0.150.3-13-x
 
