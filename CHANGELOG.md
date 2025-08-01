@@ -4,6 +4,9 @@
 ...
 
 ## 0.31.0
+- Update to Polkadot-JS Apps 0.162.1
+
+## 0.31.0
 - Update to Polkadot-JS Apps 0.158.1
 
 ## 0.30.0
