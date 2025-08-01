@@ -15,7 +15,6 @@ const appsVersion = `apps v${packageInfo.version.replace('-x', '')}`;
 
 function SystemVersion ({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
-  const appsVersion = getPackageVersion();
   const { api, isApiReady, systemName, systemVersion } = useApi();
 
   const headerRef = useRef<[React.ReactNode?, string?, number?][]>([
