@@ -5,11 +5,13 @@ import type { BareProps as Props } from '@polkadot/react-components/types';
 
 import React, { useRef } from 'react';
 
-import { getPackageVersion } from '@polkadot/apps-config';
+import { packageInfo } from '@polkadot/apps-config';
 import { Input, Spinner, styled, Table } from '@polkadot/react-components';
 import { useApi } from '@polkadot/react-hooks';
 
 import { useTranslation } from '../translate.js';
+
+const appsVersion = `apps v${packageInfo.version.replace('-x', '')}`;
 
 function SystemVersion ({ className }: Props): React.ReactElement<Props> {
   const { t } = useTranslation();
