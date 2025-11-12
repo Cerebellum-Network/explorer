@@ -4,7 +4,6 @@ on:
     branches:
       - 'release/**'
       - 'hotfix/**'
-      - 'devops/**'
 
 permissions:
   id-token: write
