@@ -3,16 +3,17 @@ on:
   workflow_dispatch:
 
 permissions:
-  id-token: write
   contents: read
 
 jobs:
   build-and-deploy:
-    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-to-cloudfront.yaml@master
+    uses: Cerebellum-Network/reusable-workflows/.github/workflows/deploy-to-cloudflare-pages.yaml@master
     with:
+      project_name: 'cere-explorer-dev'
       build_container: 'node:20-buster'
       install_packages_command: 'yarn install'
       build_command: 'yarn build'
       path_to_static_files_to_upload: 'packages/apps/build'
-      s3_bucket_name: 'explorer.dev.cere.network-static'
-      aws_account_id: ${{ vars.CERE_IO_AWS_ACCOUNT_ID }}
+    secrets:
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
